@@ -105,11 +105,7 @@ Material:
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
     - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
-<<<<<<< HEAD
---- !u!114 &3473067772530436402
-=======
---- !u!114 &1967136720003072119
->>>>>>> 9ab8647977f909f7ca385ec13d004803f2aee39b
+--- !u!114 &3047452615619952579
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
