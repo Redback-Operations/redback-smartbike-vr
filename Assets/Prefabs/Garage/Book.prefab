@@ -1105,15 +1105,15 @@ MonoBehaviour:
   - State: 0
     Sprite: {fileID: 21300000, guid: 57163a50a57a35540a2207e3f4f08da5, type: 3}
   - State: 0
+    Sprite: {fileID: 21300000, guid: 9c520affaf738d14fbe8f893c49696c4, type: 3}
+  - State: 2
     Sprite: {fileID: 21300000, guid: 57163a50a57a35540a2207e3f4f08da5, type: 3}
-  - State: 0
-    Sprite: {fileID: 21300000, guid: 57163a50a57a35540a2207e3f4f08da5, type: 3}
-  - State: 0
-    Sprite: {fileID: 21300000, guid: 57163a50a57a35540a2207e3f4f08da5, type: 3}
+  - State: 2
+    Sprite: {fileID: 21300000, guid: 9c520affaf738d14fbe8f893c49696c4, type: 3}
   - State: 0
     Sprite: {fileID: 21300000, guid: fd3b6841523deb141a1a697f8c7c4542, type: 3}
   selected: {fileID: 21300000, guid: 6dce9a2d330140846a40f9735eebcfbd, type: 3}
-  locked: {fileID: 0}
+  locked: {fileID: 21300000, guid: f36316f748f8c04478630115793798f1, type: 3}
   interactable: 0
   enableShadowEffect: 0
   currentPage: 0

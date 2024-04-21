@@ -564,12 +564,12 @@ PrefabInstance:
     - target: {fileID: 4931891032953996494, guid: 4e5a0882c7c82ac46827ac5579cb378f,
         type: 3}
       propertyPath: InteractionPosition.x
-      value: -139.99986
+      value: 880.00006
       objectReference: {fileID: 0}
     - target: {fileID: 4931891032953996494, guid: 4e5a0882c7c82ac46827ac5579cb378f,
         type: 3}
       propertyPath: InteractionPosition.y
-      value: 526.3333
+      value: 881
       objectReference: {fileID: 0}
     - target: {fileID: 4931891032953996494, guid: 4e5a0882c7c82ac46827ac5579cb378f,
         type: 3}
@@ -594,7 +594,7 @@ PrefabInstance:
     - target: {fileID: 5493485842357444300, guid: 4e5a0882c7c82ac46827ac5579cb378f,
         type: 3}
       propertyPath: PageOffset
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5493485842357444300, guid: 4e5a0882c7c82ac46827ac5579cb378f,
         type: 3}

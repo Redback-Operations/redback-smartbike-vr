@@ -433,11 +433,16 @@ public class Book : MonoBehaviour
     Sprite GetSprite(int index)
     {
         var page = bookPages[index];
-
         Debug.Log($"Getting Sprite for {index}");
 
+        if (!page.Dirty)
+            return page.GetSprite();
+
         if (page.State == PageState.None)
-            return page.Sprite;
+        {
+            page.SetSprite(page.Sprite);
+            return page.GetSprite();
+        }
 
         Debug.Log($"Page has an overlay! Requires {page.State}");
 
@@ -447,7 +452,7 @@ public class Book : MonoBehaviour
         Debug.Log($"Overlay was {(overlay == null ? "not " : "")}found");
 
         if (overlay == null)
-            return page.Sprite;
+            return page.GetSprite();
 
         var target = new Texture2D(main.width, main.height);
         target.SetPixels(main.GetPixels());
@@ -456,19 +461,20 @@ public class Book : MonoBehaviour
         {
             var rowOverlay = overlay.GetPixels(0, y, overlay.width, 1);
 
-            if (rowOverlay.Any(e => e.a > 0))
+            if (!rowOverlay.Any(e => e.a > 0))
+                continue;
+
+            for (var x = 0; x < overlay.width; x++)
             {
-                for (var x = 0; x < overlay.width; x++)
-                {
-                    if (rowOverlay[x].a > 0)
-                        target.SetPixel(x, y, rowOverlay[x]);
-                }
+                if (rowOverlay[x].a > 0)
+                    target.SetPixel(x, y, rowOverlay[x]);
             }
         }
 
         target.Apply();
+        page.SetSprite(Sprite.Create(target, new Rect(0, 0, target.width, target.height), new Vector2(0.5f, 0.5f)));
 
-        return Sprite.Create(target, new Rect(0, 0, target.width, target.height), new Vector2(0.5f, 0.5f));
+        return page.GetSprite();
     }
 
     public void TweenForward()
@@ -554,8 +560,8 @@ public class Book : MonoBehaviour
         if (currentPage == 0)
             return;
 
-        SelectPage(currentPage - 1);
-        OnSelected?.Invoke(SelectedPage);
+        if (SelectPage(currentPage - 1))
+            OnSelected?.Invoke(SelectedPage);
     }
 
     public void OnMouseSelectRightPage()
@@ -564,23 +570,32 @@ public class Book : MonoBehaviour
         if (currentPage >= TotalPageCount)
             return;
 
-        SelectPage(currentPage);
-        OnSelected?.Invoke(SelectedPage);
+        if (SelectPage(currentPage))
+            OnSelected?.Invoke(SelectedPage);
     }
 
-    public void SelectPage(int page)
+    public bool SelectPage(int page)
     {
         if (page < 1 || page > TotalPageCount)
-            return;
+            return false;
+
+        if (bookPages[page].State == PageState.Locked)
+            return false;
 
         if (SelectedPage > 0 && SelectedPage <= TotalPageCount)
+        {
             bookPages[SelectedPage - 1].State = PageState.None;
+            bookPages[SelectedPage - 1].Dirty = true;
+        }
+
         bookPages[page].State = PageState.Selected;
+        bookPages[page].Dirty = true;
 
         SelectedPage = page + 1;
 
         UpdateSprites();
-        //ShowSelection();
+
+        return true;
     }
 
     void ShowSelection()
