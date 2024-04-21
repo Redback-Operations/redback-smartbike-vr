@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Star
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38370782767fecd4899617d2f2ea99b7,
+        type: 3}
+      propertyPath: m_TagString
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3566390031902043909, guid: 38370782767fecd4899617d2f2ea99b7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

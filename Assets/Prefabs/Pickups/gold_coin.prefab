@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: gold_coin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fd3edca9c7baa74db1e9057e6e335f3,
+        type: 3}
+      propertyPath: m_TagString
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3566390031902043909, guid: 2fd3edca9c7baa74db1e9057e6e335f3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
