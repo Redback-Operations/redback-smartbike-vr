@@ -27,9 +27,9 @@ The Unity project for the SmartBike SunCycle VR exercise system.
     ```bash
     git checkout <branch-name>
     ```
-4. Open your terminal and navigate to the project directory
+4. Open Unity Hub and click Add button, find the Project in the repository that has been cloned and click the Open button
     ```bash
-    cd path/to/redback-smartbike-vr
+    path/to/redback-smartbike-vr
     ```
 ## Locations of Assets
 
