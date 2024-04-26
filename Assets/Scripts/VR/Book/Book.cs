@@ -353,12 +353,14 @@ public class Book : MonoBehaviour
 
         UpdateBookRTLToPoint(f);
     }
+
     public void OnMouseDragRightPage()
     {
         if (interactable)
             DragRightPageToPoint(transformPoint(InteractionPosition));
 
     }
+
     public void DragLeftPageToPoint(Vector3 point)
     {
         if (currentPage <= 0) return;

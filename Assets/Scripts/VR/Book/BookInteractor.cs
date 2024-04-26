@@ -16,7 +16,7 @@ public class BookInteractor : MonoBehaviour
     void Awake()
     {
         EnablePageTurning(false);
-        _interactable = GetComponent<XRGrabInteractable>();
+        _interactable = GetComponent<XRBaseInteractable>();
 
         if (Target != null)
             Target.SelectPage(PlayerPrefs.GetInt("SelectedBike") + 1);
