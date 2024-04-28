@@ -15,25 +15,29 @@ public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 5f;
     private Rigidbody rb;
-    
+
     //For score made by Jai
-    private int score;
-    
+    public int score;
+
     public TextMeshProUGUI scoreUI;
 
     //to store rotation made by Jai
     private Quaternion OldRotation;
     private int change = 0;
-    
+
 
     //For IOT Mad by Kirshin
     protected MqttClient client;
     private string clientId = Guid.NewGuid().ToString();
-    
+
     public string R_Turn = "LOW";
     public string L_Turn = "LOW";
 
-    
+
+    //For mission complete made by Dennis
+    public TextMeshProUGUI missionCompleteText;
+    private bool missionCompleted = false;
+
 
     void Start()
     {
@@ -51,10 +55,10 @@ public class PlayerController : MonoBehaviour
         client.MqttMsgPublishReceived += client_MqttMsgReceived;
         client.Subscribe(new string[] { "Turn/Right" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
         client.Subscribe(new string[] { "Turn/Left" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-        
+
         client.Connect(clientId);
     }
-    
+
     void client_MqttMsgReceived(object sender, MqttMsgPublishEventArgs e)
     {
         if (e.Topic == "Turn/Right")
@@ -142,22 +146,56 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "1")
+        if (other.tag == "1")
         {
             score = score + 1;
             other.gameObject.SetActive(false);
         }
 
-        if(other.tag == "2")
+        if (other.tag == "2")
         {
             score = score + 2;
             other.gameObject.SetActive(false);
         }
 
-        if(other.tag == "5")
+        if (other.tag == "5")
         {
             score = score + 5;
             other.gameObject.SetActive(false);
         }
     }
+
+
+    //For exchange apple with score made by Dennis
+
+
+
+
+
+
+    //For exchange apple with score and display message made by Dennis
+    public void DecrementScore()
+    {
+        score--;
+
+        if (!missionCompleted )
+        {
+            missionCompleteText.text = "Mission Complete";
+            missionCompleted = true;
+            StartCoroutine(DisplayMissionCompleteText());
+        }
+
+
+    }
+    private IEnumerator DisplayMissionCompleteText()
+    {
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+        missionCompleteText.text = ""; // Clear the text after 3 seconds
+    }
 }
+
+
+
+
+
+
