@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     //to store rotation made by Jai
     private Quaternion OldRotation;
-    private int change = 0;
+    private float change = 0;
     
 
     //For IOT Mad by Kirshin
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public string L_Turn = "LOW";
 
     private InputDevice? _controller;
+    private Vector2 _direction = Vector2.zero;
 
     void Start()
     {
@@ -76,33 +77,85 @@ public class PlayerController : MonoBehaviour
         //To check score made by Jai
         scoreUI.text = score.ToString();
 
-        // Check for the "W" key press made by Jai
-        if (IsForward())
-        {
-            // Move the cycle in the camera's forward direction made by Jai
-            MoveForward();
-        }
+        //// Check for the "W" key press made by Jai
+        //if (IsForward())
+        //{
+        //    // Move the cycle in the camera's forward direction made by Jai
+        //    MoveForward();
+        //}
 
-        if (IsBackward())
-        {
-            // Move the cycle in the camera's back direction made by Jai
-            MoveBackwards();
-        }
+        //if (IsBackward())
+        //{
+        //    // Move the cycle in the camera's back direction made by Jai
+        //    MoveBackwards();
+        //}
 
-        if (IsLeft()) // Krishin only added in the (L_Turn == "LEFT") part
-        {
-            // Move the cycle in the camera's forward direction made by Jai
-            RotationLeft();
-        }
+        //if (IsLeft()) // Krishin only added in the (L_Turn == "LEFT") part
+        //{
+        //    // Move the cycle in the camera's forward direction made by Jai
+        //    RotationLeft();
+        //}
 
-        if (IsRight()) // Krishin only added in the (R_Turn == "RIGHT") part
-        {
-            // Move the cycle in the camera's forward direction made by Jai
-            RotationRight();
-        }
+        //if (IsRight()) // Krishin only added in the (R_Turn == "RIGHT") part
+        //{
+        //    // Move the cycle in the camera's forward direction made by Jai
+        //    RotationRight();
+        //}
+
+        UpdateDirection();
+
+        MovePlayer();
+        RotatePlayer();
 
         //To make bike go towards new rotation made by Jai
         rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.05f);
+    }
+
+    public void UpdateDirection()
+    {
+        _direction = Vector2.zero;
+
+        if (XRSettings.enabled)
+        {
+            _direction = ControllerDirection();
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.W))
+                _direction.y += 1;
+
+            if (Input.GetKey(KeyCode.S))
+                _direction.y -= 1;
+
+            if (Input.GetKey(KeyCode.A))
+                _direction.x -= 1;
+
+            if (Input.GetKey(KeyCode.D))
+                _direction.x += 1;
+        }
+
+        if (L_Turn == "LEFT")
+            _direction.x = -1;
+
+        if (R_Turn == "RIGHT")
+            _direction.x = 1;
+    }
+
+    private void MovePlayer()
+    {
+        // Get the playter's forward direction made by Jai (updated by Jonathan)
+        Vector3 facingDirection = transform.forward;
+        // To prevent the bike from moving in the Y-axis
+        facingDirection.y = 0; 
+
+        // Move the bike in the player's forward direction made by Jai (updated by Jonathan)
+        transform.position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
+    }
+
+    private void RotatePlayer()
+    {
+        change += _direction.x;
+        OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y + change, rb.transform.rotation.z);
     }
 
     public bool IsForward()
@@ -140,9 +193,21 @@ public class PlayerController : MonoBehaviour
     private Vector2 ControllerDirection()
     {
         if (_controller == null)
+        {
+            var devices = new List<InputDevice>();
+            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
+
+            if (devices.Any())
+                _controller = devices.FirstOrDefault();
+        }
+
+        var value = Vector2.zero;
+
+        if (_controller?.TryGetFeatureValue(CommonUsages.primary2DAxis, out value) != true)
             return Vector2.zero;
 
-        return _controller.Value.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 value) ? value : Vector2.zero;
+        _direction = value;
+        return value;
     }
 
     void MoveForward()
