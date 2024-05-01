@@ -165,11 +165,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //For speed reference made by Dennis
+    public float GetSpeed()
+    {
+        return movementSpeed;
+    }
 
-    //For exchange apple with score made by Dennis
-
-
-
+    public void SetSpeed(float newSpeed)
+    {
+        movementSpeed = newSpeed;
+    }
 
 
 
@@ -178,7 +183,7 @@ public class PlayerController : MonoBehaviour
     {
         score--;
 
-        if (!missionCompleted )
+        if (!missionCompleted)
         {
             missionCompleteText.text = "Mission Complete";
             missionCompleted = true;
@@ -187,11 +192,23 @@ public class PlayerController : MonoBehaviour
 
 
     }
+
+    //For display message made by Dennis
     private IEnumerator DisplayMissionCompleteText()
     {
         yield return new WaitForSeconds(3f); // Wait for 3 seconds
         missionCompleteText.text = ""; // Clear the text after 3 seconds
     }
+
+
+
+
+
+
+
+
+
+
 }
 
 
