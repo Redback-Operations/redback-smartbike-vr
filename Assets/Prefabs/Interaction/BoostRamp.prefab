@@ -140,5 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3056c35d906eb904baa9116049fae11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBoostMultiplier: 2.5
-  speedBoostFadeDuration: 1.5
+  speedBoostMultiplier: 3.73
+  speedBoostFadeDuration: 1.23
