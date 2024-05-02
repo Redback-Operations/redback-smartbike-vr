@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
-
+using System.Collections;
 using TMPro;
 using UnityEngine.XR;
 
@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
 
     //to store rotation made by Jai
     private Quaternion OldRotation;
-    private int change = 0;
 
     private float change = 0;
     
