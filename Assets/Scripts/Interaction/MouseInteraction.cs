@@ -18,12 +18,12 @@ public class MouseInteraction : MonoBehaviour
         if (XRSettings.enabled)
             return;
 
-        // disable the interactors
-        var interactors = GetComponentsInChildren<XRRayInteractor>();
+        // disable the controllers
+        var controllers = GetComponentsInChildren<XRController>();
 
-        foreach (var interactor in interactors)
+        foreach (var controller in controllers)
         {
-            interactor.enabled = false;
+            controller.gameObject.SetActive(false);
         }
     }
 
