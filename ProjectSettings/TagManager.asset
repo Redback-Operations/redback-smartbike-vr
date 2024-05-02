@@ -18,6 +18,7 @@ TagManager:
   - Play
   - Garage-Menu
   - Shop
+  - BoostRamp
   layers:
   - Default
   - TransparentFX
