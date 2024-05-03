@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
-
+using System.Collections;
 using TMPro;
 using UnityEngine.XR;
 
@@ -13,23 +13,29 @@ public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 5f;
     private Rigidbody rb;
-    
+
     //For score made by Jai
-    private int score;
-    
+    public int score;
+
     public TextMeshProUGUI scoreUI;
 
     //to store rotation made by Jai
     private Quaternion OldRotation;
+
     private float change = 0;
     
 
     //For IOT Mad by Kirshin
     protected MqttClient client;
     private string clientId = Guid.NewGuid().ToString();
-    
+
     public string R_Turn = "LOW";
     public string L_Turn = "LOW";
+
+
+    //For mission complete made by Dennis
+    public TextMeshProUGUI missionCompleteText;
+    private bool missionCompleted = false;
 
     private InputDevice? _controller;
     private Vector2 _direction = Vector2.zero;
@@ -59,7 +65,7 @@ public class PlayerController : MonoBehaviour
         if (devices.Any())
             _controller = devices.FirstOrDefault();
     }
-    
+
     void client_MqttMsgReceived(object sender, MqttMsgPublishEventArgs e)
     {
         if (e.Topic == "Turn/Right")
@@ -250,22 +256,73 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "1")
+        if (other.tag == "1")
         {
             score = score + 1;
             other.gameObject.SetActive(false);
         }
 
-        if(other.tag == "2")
+        if (other.tag == "2")
         {
             score = score + 2;
             other.gameObject.SetActive(false);
         }
 
-        if(other.tag == "5")
+        if (other.tag == "5")
         {
             score = score + 5;
             other.gameObject.SetActive(false);
         }
     }
+
+    //For speed reference made by Dennis
+    public float GetSpeed()
+    {
+        return movementSpeed;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        movementSpeed = newSpeed;
+    }
+
+
+
+    //For exchange apple with score and display message made by Dennis
+    public void DecrementScore()
+    {
+        score--;
+
+        if (!missionCompleted)
+        {
+            missionCompleteText.text = "Mission Complete";
+            missionCompleted = true;
+            StartCoroutine(DisplayMissionCompleteText());
+        }
+
+
+    }
+
+    //For display message made by Dennis
+    private IEnumerator DisplayMissionCompleteText()
+    {
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+        missionCompleteText.text = ""; // Clear the text after 3 seconds
+    }
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+

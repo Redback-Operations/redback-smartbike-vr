@@ -17,6 +17,7 @@ TagManager:
   - UINameHolder
   - Play
   - Garage-Menu
+  - Shop
   layers:
   - Default
   - TransparentFX
