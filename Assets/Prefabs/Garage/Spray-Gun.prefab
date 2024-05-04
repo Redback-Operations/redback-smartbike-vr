@@ -4897,6 +4897,7 @@ GameObject:
   - component: {fileID: 202501815433924683}
   - component: {fileID: 7040902945023053070}
   - component: {fileID: 9082070404291734725}
+  - component: {fileID: 1545260624711271666}
   m_Layer: 0
   m_Name: Spray-Gun
   m_TagString: Untagged
@@ -5017,6 +5018,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9082070404291734725}
+        m_TargetAssemblyTypeName: SprayGun, Assembly-CSharp
+        m_MethodName: StopSpraying
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -5044,12 +5057,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9082070404291734725}
+        m_TargetAssemblyTypeName: SprayGun, Assembly-CSharp
+        m_MethodName: StartSpraying
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2718933977508456138}
         m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
         m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9082070404291734725}
+        m_TargetAssemblyTypeName: SprayGun, Assembly-CSharp
+        m_MethodName: StopSpraying
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5194,7 +5231,29 @@ MonoBehaviour:
   Liquid: {fileID: 8266848255474065189}
   Glass: {fileID: 4145297125599013632}
   Spray: {fileID: 2718933977508456138}
+  SprayCollider: {fileID: 1545260624711271666}
   LiquidRenderer: {fileID: 821766101248896208}
+--- !u!135 &1545260624711271666
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5423385292177310171}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.075
+  m_Center: {x: 0, y: 0.25, z: 0.5}
 --- !u!1 &7954520449753999710
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,10 +16,20 @@ public class SprayGun : MonoBehaviour
     public GameObject Glass;
 
     public ParticleSystem Spray;
+    public Collider SprayCollider;
+
     public Renderer LiquidRenderer;
+
+    public static SprayGun Instance;
 
     void Start()
     {
+        if (Instance != null)
+            Destroy(gameObject);
+
+        Instance = this;
+
+        StopSpraying();
         SetColor(SprayColor);
     }
 
@@ -89,5 +99,15 @@ public class SprayGun : MonoBehaviour
         var b = Mathf.Clamp(SprayColor.b + color.b * Time.deltaTime / fillTime, 0, 1);
 
         SprayColor = new Color(r, g, b);
+    }
+
+    public void StartSpraying()
+    {
+        SprayCollider.enabled = true;
+    }
+
+    public void StopSpraying()
+    {
+        SprayCollider.enabled = false;
     }
 }
