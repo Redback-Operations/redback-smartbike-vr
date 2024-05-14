@@ -14,8 +14,11 @@ public class HoverButton : MonoBehaviour
         LoadScene,
         ObjectsToggle,
         ObjectsOn,
-        ObjectsOff
+        ObjectsOff,
+        SetInt
     }
+
+    public int MissionSetter;
 
     public HoverButtonAction Action;
 
@@ -94,6 +97,11 @@ public class HoverButton : MonoBehaviour
                     return;
 
                 SceneManager.LoadScene(SceneTarget);
+            } break;
+
+            case HoverButtonAction.SetInt:
+            {
+                PlayerPrefs.SetInt("MissionNumber", MissionSetter);
             } break;
 
             default:
