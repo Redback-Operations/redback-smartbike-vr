@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -365,34 +365,10 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 165800284}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonHoverEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 165800284}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonHoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -401,19 +377,7 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 165800284}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: CityScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -478,8 +442,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 0
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
   ToggleTargets: []
-  SceneTarget: 
   Renderer: {fileID: 165800286}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
@@ -1591,6 +1558,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.284
       objectReference: {fileID: 0}
+    - target: {fileID: 6327369239490576853, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7753144384213315935, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1978,34 +1950,10 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 969448800}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonHoverEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 969448800}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonHoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -2014,19 +1962,7 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 969448800}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: CityScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -2090,9 +2026,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 1
+  Action: 7
+  TargetScene: CityScene
+  TargetValue: MissionSelect
+  IntValue: -1
+  StringValue: 
   ToggleTargets: []
-  SceneTarget: CityScene
   Renderer: {fileID: 969448802}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -2640,34 +2579,10 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1745123237}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonHoverEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1745123237}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonHoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -2676,19 +2591,7 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1745123237}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: CityScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -2753,8 +2656,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 0
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
   ToggleTargets: []
-  SceneTarget: 
   Renderer: {fileID: 1745123239}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
@@ -3476,34 +3382,10 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1807904912}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonHoverEnter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1807904912}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonHoverExit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -3512,19 +3394,7 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1807904912}
-        m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
-        m_MethodName: ButtonInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: CityScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -3611,8 +3481,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 0
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
   ToggleTargets: []
-  SceneTarget: 
   Renderer: {fileID: 1807904914}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}

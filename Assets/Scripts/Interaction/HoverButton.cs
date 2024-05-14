@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class HoverButton : MonoBehaviour
 {
@@ -14,14 +16,21 @@ public class HoverButton : MonoBehaviour
         LoadScene,
         ObjectsToggle,
         ObjectsOn,
-        ObjectsOff
+        ObjectsOff,
+        SetInteger,
+        SetString,
+        SetIntegerThenLoad,
+        SetStringThenLoad
     }
 
     public HoverButtonAction Action;
 
-    public Transform[] ToggleTargets;
+    public string TargetScene;
+    public string TargetValue;
+    public int IntValue;
+    public string StringValue;
 
-    public string SceneTarget;
+    public Transform[] ToggleTargets;
 
     public Renderer Renderer;
     public Color Selected = Color.white;
@@ -29,6 +38,15 @@ public class HoverButton : MonoBehaviour
 
     private Material _material;
     private bool _selected;
+
+    private XRSimpleInteractable _interactable;
+    private Button _button;
+
+    void Awake()
+    {
+        _interactable = GetComponent<XRSimpleInteractable>();
+        _button = GetComponent<Button>();
+    }
 
     void Start()
     {
@@ -43,10 +61,42 @@ public class HoverButton : MonoBehaviour
             _material.color = Unselected;
     }
 
+    void OnEnable()
+    {
+        if (_interactable != null)
+        {
+            _interactable.hoverEntered.AddListener(ButtonHoverEnter);
+            _interactable.hoverExited.AddListener(ButtonHoverExit);
+
+            _interactable.selectEntered.AddListener(OnButtonInteract);
+        }
+
+        if (_button != null)
+        {
+            _button.onClick.AddListener(ButtonInteract);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (_interactable != null)
+        {
+            _interactable.hoverEntered.RemoveListener(ButtonHoverEnter);
+            _interactable.hoverExited.RemoveListener(ButtonHoverExit);
+
+            _interactable.selectEntered.RemoveListener(OnButtonInteract);
+        }
+
+        if (_button != null)
+        {
+            _button.onClick.RemoveListener(ButtonInteract);
+        }
+    }
+
     void LateUpdate()
     {
-        // not needed, will use the XR events instead
-        if (XRSettings.enabled || !_selected)
+        // not needed, will use the events instead
+        if (XRSettings.enabled || !_selected || _button != null)
             return;
 
         if (Input.GetMouseButtonDown(0))
@@ -56,16 +106,16 @@ public class HoverButton : MonoBehaviour
     void OnMouseEnter()
     {
         _selected = true;
-        ButtonHoverEnter();
+        ButtonHoverEnter(null);
     }
 
     void OnMouseExit()
     {
         _selected = false;
-        ButtonHoverExit();
+        ButtonHoverExit(null);
     }
 
-    public void ButtonHoverEnter()
+    public void ButtonHoverEnter(HoverEnterEventArgs args)
     {
         if (_material == null)
             return;
@@ -73,12 +123,17 @@ public class HoverButton : MonoBehaviour
         _material.color = Selected;
     }
 
-    public void ButtonHoverExit()
+    public void ButtonHoverExit(HoverExitEventArgs args)
     {
         if (_material == null)
             return;
 
         _material.color = Unselected;
+    }
+
+    private void OnButtonInteract(SelectEnterEventArgs args)
+    {
+        ButtonInteract();
     }
 
     public void ButtonInteract()
@@ -90,10 +145,38 @@ public class HoverButton : MonoBehaviour
         {
             case HoverButtonAction.LoadScene:
             {
-                if (string.IsNullOrWhiteSpace(SceneTarget))
+                if (string.IsNullOrWhiteSpace(TargetScene))
                     return;
 
-                SceneManager.LoadScene(SceneTarget);
+                SceneManager.LoadScene(TargetScene);
+            } break;
+
+            case HoverButtonAction.SetInteger:
+            {
+                PlayerPrefs.SetInt(TargetValue, IntValue);
+            } break;
+
+            case HoverButtonAction.SetIntegerThenLoad:
+            {
+                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+                    return;
+
+                PlayerPrefs.SetInt(TargetValue, IntValue);
+                SceneManager.LoadScene(TargetScene);
+            } break;
+
+            case HoverButtonAction.SetString:
+            {
+                PlayerPrefs.SetString(TargetValue, StringValue);
+            } break;
+
+            case HoverButtonAction.SetStringThenLoad:
+            {
+                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+                    return;
+
+                PlayerPrefs.SetString(TargetValue, StringValue);
+                SceneManager.LoadScene(TargetScene);
             } break;
 
             default:
