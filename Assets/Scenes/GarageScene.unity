@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -442,8 +442,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 0
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
   ToggleTargets: []
-  SceneTarget: 
   Renderer: {fileID: 165800286}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
@@ -1549,10 +1552,140 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.019
       objectReference: {fileID: 0}
+    - target: {fileID: 2610642667491188101, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3046102865683281967, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.284
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Action
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: IntValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Renderer
+      value: 
+      objectReference: {fileID: 969448802}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: TargetScene
+      value: CityScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: TargetValue
+      value: MissionNumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Action
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: IntValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Renderer
+      value: 
+      objectReference: {fileID: 969448802}
+    - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: TargetScene
+      value: CityScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: TargetValue
+      value: MissionNumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124053911378424796, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124053911378424796, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.047
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Action
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: IntValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Renderer
+      value: 
+      objectReference: {fileID: 969448802}
+    - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: TargetScene
+      value: CityScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: TargetValue
+      value: MissionNumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438723058457035941, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458943978836687328, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6458943978836687328, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.047
+      objectReference: {fileID: 0}
+    - target: {fileID: 6569729648650794048, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584353878385853030, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584353878385853030, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584353878385853030, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309379678585858511, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7753144384213315935, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -1619,6 +1752,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Garage
       objectReference: {fileID: 0}
+    - target: {fileID: 8302113356133795616, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.047
+      objectReference: {fileID: 0}
     - target: {fileID: 8983002425762740239, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1670,7 +1808,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6327369239490576853, guid: 3265678c6a9bb6642aa0ac4087b69620, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6668593180383851580, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -1685,6 +1824,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1745123237}
+    - targetCorrespondingSourceObject: {fileID: 6438723058457035941, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 743075660}
     - targetCorrespondingSourceObject: {fileID: 3192309719715858068, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       insertIndex: -1
@@ -1729,6 +1872,37 @@ PrefabInstance:
 --- !u!4 &743075658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8983002425762740239, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &743075659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6438723058457035941, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &743075660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743075659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
+--- !u!224 &743075661 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6584353878385853030, guid: 3265678c6a9bb6642aa0ac4087b69620,
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
@@ -2053,9 +2227,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 1
+  Action: 7
+  TargetScene: CityScene
+  TargetValue: MissionNumber
+  IntValue: -1
+  StringValue: 
   ToggleTargets: []
-  SceneTarget: CityScene
   Renderer: {fileID: 969448802}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -2715,9 +2892,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 0
-  ToggleTargets: []
-  SceneTarget: 
+  Action: 3
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
+  ToggleTargets:
+  - {fileID: 743075661}
   Renderer: {fileID: 1745123239}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
@@ -3574,8 +3755,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 0
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
   ToggleTargets: []
-  SceneTarget: 
   Renderer: {fileID: 1807904914}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
