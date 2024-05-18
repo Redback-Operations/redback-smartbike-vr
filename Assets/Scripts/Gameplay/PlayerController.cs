@@ -12,6 +12,7 @@ using UnityEngine.XR;
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 5f;
+    public float rotationSpeed = 90f;
     private Rigidbody rb;
 
     //For score made by Jai
@@ -93,31 +94,6 @@ public class PlayerController : MonoBehaviour
         //To check score made by Jai
         scoreUI.text = score.ToString();
 
-        //// Check for the "W" key press made by Jai
-        //if (IsForward())
-        //{
-        //    // Move the cycle in the camera's forward direction made by Jai
-        //    MoveForward();
-        //}
-
-        //if (IsBackward())
-        //{
-        //    // Move the cycle in the camera's back direction made by Jai
-        //    MoveBackwards();
-        //}
-
-        //if (IsLeft()) // Krishin only added in the (L_Turn == "LEFT") part
-        //{
-        //    // Move the cycle in the camera's forward direction made by Jai
-        //    RotationLeft();
-        //}
-
-        //if (IsRight()) // Krishin only added in the (R_Turn == "RIGHT") part
-        //{
-        //    // Move the cycle in the camera's forward direction made by Jai
-        //    RotationRight();
-        //}
-
         UpdateDirection();
 
         MovePlayer();
@@ -178,40 +154,12 @@ public class PlayerController : MonoBehaviour
 
     private void RotatePlayer()
     {
-        change += _direction.x;
+        // updated to account for frame rate
+        change += _direction.x * rotationSpeed * Time.deltaTime;
+
+        //To make bike go towards new rotation made by Jai
         OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y + change, rb.transform.rotation.z);
-    }
-
-    public bool IsForward()
-    {
-        if (Input.GetKey(KeyCode.W))
-            return true;
-
-        return ControllerDirection().y > 0;
-    }
-
-    public bool IsBackward()
-    {
-        if (Input.GetKey(KeyCode.S))
-            return true;
-
-        return ControllerDirection().y < 0;
-    }
-
-    public bool IsLeft()
-    {
-        if (Input.GetKey(KeyCode.A) || L_Turn == "LEFT")
-            return true;
-
-        return ControllerDirection().x < 0;
-    }
-
-    public bool IsRight()
-    {
-        if (Input.GetKey(KeyCode.D) || L_Turn == "RIGHT")
-            return true;
-
-        return ControllerDirection().x > 0;
+        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.15f);
     }
 
     private Vector2 ControllerDirection()
@@ -337,8 +285,6 @@ public class PlayerController : MonoBehaviour
             missionCompleted = true;
             StartCoroutine(DisplayMissionCompleteText());
         }
-
-
     }
 
     //For display message made by Dennis
@@ -366,9 +312,3 @@ public class PlayerController : MonoBehaviour
 
 
 }
-
-
-
-
-
-
