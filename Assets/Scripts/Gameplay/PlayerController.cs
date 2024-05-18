@@ -12,6 +12,7 @@ using UnityEngine.XR;
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 5f;
+    public float rotationSpeed = 90f;
     private Rigidbody rb;
 
     //For score made by Jai
@@ -87,9 +88,6 @@ public class PlayerController : MonoBehaviour
 
         MovePlayer();
         RotatePlayer();
-
-        //To make bike go towards new rotation made by Jai
-        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.05f);
     }
 
     public void UpdateDirection()
@@ -135,8 +133,12 @@ public class PlayerController : MonoBehaviour
 
     private void RotatePlayer()
     {
-        change += _direction.x;
+        // updated to account for frame rate
+        change += _direction.x * rotationSpeed * Time.deltaTime;
+
+        //To make bike go towards new rotation made by Jai
         OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y + change, rb.transform.rotation.z);
+        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.15f);
     }
 
     private Vector2 ControllerDirection()
