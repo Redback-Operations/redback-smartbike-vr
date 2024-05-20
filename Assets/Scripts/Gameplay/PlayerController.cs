@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion OldRotation;
 
     private float change = 0;
-    
+
 
     //For IOT Mad by Kirshin
     protected MqttClient client;
@@ -38,11 +38,21 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI missionCompleteText;
     private bool missionCompleted = false;
 
+    //For achieve the fastest speed made by Dennis
+    private bool timerActive = false;
+    private float timerStartTime;
+
+
+
+
     private InputDevice? _controller;
     private Vector2 _direction = Vector2.zero;
 
+    private float originalSpeed;
+
     void Start()
     {
+        originalSpeed = movementSpeed;
         // Get the Rigidbody component attached to the bike GameObject
         rb = GetComponent<Rigidbody>();
 
@@ -88,6 +98,17 @@ public class PlayerController : MonoBehaviour
 
         MovePlayer();
         RotatePlayer();
+
+        //To make bike go towards new rotation made by Jai
+        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.05f);
+
+
+        //For achieve the fastest speed made by Dennis
+        if (timerActive)
+        {
+            float currentTime = Time.time;
+            missionCompleteText.text = "Timer: " + (currentTime - timerStartTime).ToString("F1") + "s";
+        }
     }
 
     public void UpdateDirection()
@@ -125,7 +146,7 @@ public class PlayerController : MonoBehaviour
         // Get the playter's forward direction made by Jai (updated by Jonathan)
         Vector3 facingDirection = transform.forward;
         // To prevent the bike from moving in the Y-axis
-        facingDirection.y = 0; 
+        facingDirection.y = 0;
 
         // Move the bike in the player's forward direction made by Jai (updated by Jonathan)
         transform.position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
@@ -226,10 +247,32 @@ public class PlayerController : MonoBehaviour
         return movementSpeed;
     }
 
-    public void SetSpeed(float newSpeed)
+    public void SetSpeed(float newSpeed) //Update achieved speed made by Dennis
     {
+        if (!timerHasBeenActivated && newSpeed > movementSpeed)
+        {
+            timerActive = true;
+            timerHasBeenActivated = true;
+            timerStartTime = Time.time;
+            missionCompleteText.text = "0.0s";
+        }
+
         movementSpeed = newSpeed;
+
+        if (timerActive && newSpeed >= 5 * originalSpeed)
+        {
+            timerActive = false;
+            float endTime = Time.time;
+            missionCompleteText.text = "Timer: " + (endTime - timerStartTime).ToString("F1") + "s";
+            StartCoroutine(ClearMissionCompleteText());
+        }
     }
+
+    public float GetOriginalSpeed()
+    {
+        return originalSpeed;
+    }
+
 
     //For exchange apple with score and display message made by Dennis
     public void DecrementScore()
@@ -247,7 +290,25 @@ public class PlayerController : MonoBehaviour
     //For display message made by Dennis
     private IEnumerator DisplayMissionCompleteText()
     {
-        yield return new WaitForSeconds(3f); // Wait for 3 seconds
-        missionCompleteText.text = ""; // Clear the text after 3 seconds
+        yield return new WaitForSeconds(3f);
+        missionCompleteText.text = ""; 
     }
+
+
+    private bool timerHasBeenActivated = false;
+
+    //For clear message made by Dennis
+    private IEnumerator ClearMissionCompleteText()
+    {
+        yield return new WaitForSeconds(2.5f);
+        missionCompleteText.text = "Speed up Complete";
+        yield return new WaitForSeconds(3); 
+        missionCompleteText.text = "";
+    }
+
+
+
+
+
+
 }
