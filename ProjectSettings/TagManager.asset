@@ -18,6 +18,8 @@ TagManager:
   - Play
   - Garage-Menu
   - Shop
+  - BoostRamp
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
