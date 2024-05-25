@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: f9a516e263fe69945984b34a05235ace, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.08023556, g: 0.08377206, b: 0.07251187, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 121229638}
   serializedVersion: 2
   m_LocalRotation: {x: 0.49222532, y: 0.49668688, z: -0.5077535, w: 0.5031926}
-  m_LocalPosition: {x: 5.92, y: 24.03, z: -3.16}
+  m_LocalPosition: {x: 1.38, y: 36.62, z: 19.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -260,6 +260,139 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &1360900081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360900085}
+  - component: {fileID: 1360900084}
+  - component: {fileID: 1360900083}
+  - component: {fileID: 1360900082}
+  - component: {fileID: 1360900086}
+  m_Layer: 0
+  m_Name: Test Collision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1360900082
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360900081}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1360900083
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360900081}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1360900084
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360900081}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1360900085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360900081}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.13, y: 2.003, z: -9.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1360900086
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360900081}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1809248188
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +587,7 @@ GameObject:
   - component: {fileID: 1993435072145304831}
   - component: {fileID: 1602658838946500025}
   - component: {fileID: 6108376157904854754}
+  - component: {fileID: 6108376157904854755}
   m_Layer: 0
   m_Name: dirt_road_straight
   m_TagString: Untagged
@@ -472,6 +606,7 @@ GameObject:
   - component: {fileID: 1609283350074622782}
   - component: {fileID: 1385415098423933503}
   - component: {fileID: 6241286369114308432}
+  - component: {fileID: 6241286369114308433}
   m_Layer: 0
   m_Name: dirt_road_right
   m_TagString: Untagged
@@ -553,8 +688,8 @@ Transform:
   m_GameObject: {fileID: 3481788980341155603}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 36.727337, y: 0.041906703, z: -15.720435}
-  m_LocalScale: {x: 419.06747, y: 419.06747, z: 419.06747}
+  m_LocalPosition: {x: -24, y: 0.1, z: -23.5}
+  m_LocalScale: {x: 213.93, y: 213.93, z: 213.93}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1754641832434043586}
@@ -610,7 +745,7 @@ Transform:
   m_GameObject: {fileID: 7951695173337341537}
   serializedVersion: 2
   m_LocalRotation: {x: -0.50129884, y: -0.49869788, z: -0.49869782, w: 0.5012987}
-  m_LocalPosition: {x: -27.1, y: 0, z: 23.7}
+  m_LocalPosition: {x: -69.246994, y: -0.042503852, z: 243.84328}
   m_LocalScale: {x: 471.85117, y: 471.85117, z: 471.85117}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -652,8 +787,9 @@ GameObject:
   - component: {fileID: 257280439537174793}
   - component: {fileID: 996591877346427260}
   - component: {fileID: 1403402988723049911}
+  - component: {fileID: 1403402988723049912}
   m_Layer: 0
-  m_Name: paved_road_straightbake
+  m_Name: paved_road_straight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -672,6 +808,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadMaterial: {fileID: 2100000, guid: 69e16866391eb574d93f07188e67319b, type: 2}
+--- !u!65 &1403402988723049912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403402988723049910}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.044682365, y: 0.020052163, z: 0}
+  m_Center: {x: 0.00013194792, y: -0.0001249965, z: 0.00007984656}
 --- !u!23 &1453918807665428032
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -731,7 +888,7 @@ Transform:
   m_GameObject: {fileID: 273644678813827425}
   serializedVersion: 2
   m_LocalRotation: {x: -0.50129884, y: -0.49869788, z: -0.49869782, w: 0.5012987}
-  m_LocalPosition: {x: -25.87416, y: 0.000080368176, z: 61.193443}
+  m_LocalPosition: {x: -68.02115, y: -0.042423483, z: 281.33673}
   m_LocalScale: {x: 471.85117, y: 471.85117, z: 471.85117}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -810,6 +967,7 @@ GameObject:
   - component: {fileID: 2060133049020275106}
   - component: {fileID: 6365636597506362843}
   - component: {fileID: 1453918807665428032}
+  - component: {fileID: 6365636597506362844}
   m_Layer: 0
   m_Name: dirt_road_xjunction
   m_TagString: Untagged
@@ -826,7 +984,7 @@ Transform:
   m_GameObject: {fileID: 259678883015595029}
   serializedVersion: 2
   m_LocalRotation: {x: -0.50129884, y: -0.49869788, z: -0.49869782, w: 0.5012987}
-  m_LocalPosition: {x: -34.571507, y: 0.00013345733, z: 83.45045}
+  m_LocalPosition: {x: -76.71849, y: -0.042370394, z: 303.59372}
   m_LocalScale: {x: 471.85117, y: 471.85117, z: 471.85117}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -841,7 +999,7 @@ Transform:
   m_GameObject: {fileID: 1836140691063411925}
   serializedVersion: 2
   m_LocalRotation: {x: -0.50129884, y: -0.49869788, z: -0.49869782, w: 0.5012987}
-  m_LocalPosition: {x: -65.97367, y: 1.4426014, z: 72.25114}
+  m_LocalPosition: {x: -108.12065, y: 1.4000976, z: 292.3944}
   m_LocalScale: {x: 471.85117, y: 471.85117, z: 471.85117}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -909,8 +1067,9 @@ GameObject:
   - component: {fileID: 2441082913436061365}
   - component: {fileID: 3973503259964964425}
   - component: {fileID: 4597888121708267563}
+  - component: {fileID: 4597888121708267564}
   m_Layer: 0
-  m_Name: paved_road_rightbake
+  m_Name: paved_road_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -933,8 +1092,8 @@ Transform:
   m_GameObject: {fileID: 7547504855816172481}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -42.39641, y: 0.041906703, z: 17.007116}
-  m_LocalScale: {x: 419.06747, y: 419.06747, z: 419.06747}
+  m_LocalPosition: {x: -56.4, y: 0.1, z: -6.9}
+  m_LocalScale: {x: 213.93, y: 213.93, z: 213.93}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1754641832434043586}
@@ -956,8 +1115,8 @@ Transform:
   m_GameObject: {fileID: 7924022239928491351}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.7046096, y: 0.041906703, z: 22.105473}
-  m_LocalScale: {x: 419.06747, y: 419.06747, z: 419.06747}
+  m_LocalPosition: {x: -41.4, y: 0.3, z: -4.2}
+  m_LocalScale: {x: 213.93, y: 213.93, z: 213.93}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1754641832434043586}
@@ -973,8 +1132,9 @@ GameObject:
   - component: {fileID: 941897753023535172}
   - component: {fileID: 8258444334424244210}
   - component: {fileID: 7944554825120544617}
+  - component: {fileID: 8258444334424244211}
   m_Layer: 0
-  m_Name: gravel_road_straight.001
+  m_Name: gravel_road_straight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1158,6 +1318,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadMaterial: {fileID: 2100000, guid: 6fcce40575eefc642beb8d89a1223ddd, type: 2}
+--- !u!64 &4597888121708267564
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2658053765961975623}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1563664576366497355, guid: d19045c8622d2854dad5ef44b9d391ae, type: 3}
 --- !u!4 &5004506113301415190
 Transform:
   m_ObjectHideFlags: 0
@@ -1185,8 +1367,9 @@ GameObject:
   - component: {fileID: 8065553528462093096}
   - component: {fileID: 3914207117609811671}
   - component: {fileID: 8998256534867168582}
+  - component: {fileID: 8998256534867168583}
   m_Layer: 0
-  m_Name: paved_road_tjunctionbake
+  m_Name: paved_road_tjunction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1262,6 +1445,7 @@ GameObject:
   - component: {fileID: 7637636730330356409}
   - component: {fileID: 589791538445558763}
   - component: {fileID: 7637636730330356410}
+  - component: {fileID: 7637636730330356411}
   m_Layer: 0
   m_Name: race_track
   m_TagString: Untagged
@@ -1278,8 +1462,8 @@ Transform:
   m_GameObject: {fileID: 9152577322941341997}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 8.783475, y: 0.041906703, z: -22.172411}
-  m_LocalScale: {x: 419.06747, y: 419.06747, z: 419.06747}
+  m_LocalPosition: {x: -38.3, y: 0.1, z: -26.8}
+  m_LocalScale: {x: 213.93, y: 213.93, z: 213.93}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1754641832434043586}
@@ -1296,8 +1480,9 @@ GameObject:
   - component: {fileID: 4485617862631786539}
   - component: {fileID: 8158659964371508171}
   - component: {fileID: 8158659964371508172}
+  - component: {fileID: 8158659964371508173}
   m_Layer: 0
-  m_Name: paved_road_xjunctionbake
+  m_Name: paved_road_xjunction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1360,6 +1545,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6108376157904854755
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259678883015595029}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013097803, y: 0.052814223, z: 0.0000000054350955}
+  m_Center: {x: 0.000020254667, y: 0.0034036352, z: -3.1060218e-10}
 --- !u!1 &6111537238752953384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,6 +1577,7 @@ GameObject:
   - component: {fileID: 8995901984535429531}
   - component: {fileID: 5507865613604015211}
   - component: {fileID: 2067358050596164953}
+  - component: {fileID: 8995901984535429532}
   m_Layer: 0
   m_Name: dirt_road_tjunction
   m_TagString: Untagged
@@ -1420,6 +1627,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6241286369114308433
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273644678813827425}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2599335790585271297, guid: 86f53069f83e44141a7d6ab997e9487e, type: 3}
 --- !u!23 &6288214506280756311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1470,6 +1699,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836140691063411925}
   m_Mesh: {fileID: -6498616721525487222, guid: 86f53069f83e44141a7d6ab997e9487e, type: 3}
+--- !u!64 &6365636597506362844
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836140691063411925}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6498616721525487222, guid: 86f53069f83e44141a7d6ab997e9487e, type: 3}
 --- !u!1 &7220226403137389900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,8 +1732,9 @@ GameObject:
   - component: {fileID: 9153572384333272534}
   - component: {fileID: 2739829050333049972}
   - component: {fileID: 196593108587045096}
+  - component: {fileID: 9153572384333272535}
   m_Layer: 0
-  m_Name: gravel_road_left.001
+  m_Name: gravel_road_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1520,13 +1772,36 @@ GameObject:
   - component: {fileID: 2960429712239355980}
   - component: {fileID: 4027446646031947921}
   - component: {fileID: 6288214506280756311}
+  - component: {fileID: 7547504855816172482}
   m_Layer: 0
-  m_Name: gravel_road_Tjunction.001
+  m_Name: gravel_road_Tjunction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &7547504855816172482
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547504855816172481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -193066307885048967, guid: f0e93afba0572a744a8914b6aa476f9c, type: 3}
 --- !u!33 &7637636730330356409
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1548,6 +1823,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadMaterial: {fileID: 2100000, guid: 078c3907f7f39bc4c952abdb2c219f72, type: 2}
+--- !u!64 &7637636730330356411
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704913180285408913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5993163305991275830, guid: d19045c8622d2854dad5ef44b9d391ae, type: 3}
 --- !u!1 &7898430411489361131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,13 +1872,36 @@ GameObject:
   - component: {fileID: 3291801047013874979}
   - component: {fileID: 4090653644861745485}
   - component: {fileID: 1741305550843141748}
+  - component: {fileID: 7924022239928491352}
   m_Layer: 0
-  m_Name: gravel_road_Xjunction.001
+  m_Name: gravel_road_Xjunction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &7924022239928491352
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7924022239928491351}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4256280951382999409, guid: f0e93afba0572a744a8914b6aa476f9c, type: 3}
 --- !u!23 &7944554825120544617
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1635,6 +1955,7 @@ GameObject:
   - component: {fileID: 1097157958992731544}
   - component: {fileID: 655177144225663854}
   - component: {fileID: 8980738946477797046}
+  - component: {fileID: 8980738946477797047}
   m_Layer: 0
   m_Name: dirt_road_left
   m_TagString: Untagged
@@ -1705,6 +2026,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadMaterial: {fileID: 2100000, guid: b2696313fae34b743af6b4a808ddbbdd, type: 2}
+--- !u!64 &8158659964371508173
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987497859050573408}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7667802555943670043, guid: d19045c8622d2854dad5ef44b9d391ae, type: 3}
 --- !u!33 &8258444334424244210
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1713,6 +2056,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3481788980341155603}
   m_Mesh: {fileID: 1761198021764481012, guid: f0e93afba0572a744a8914b6aa476f9c, type: 3}
+--- !u!65 &8258444334424244211
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3481788980341155603}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.01300665, y: 0.07457056, z: 1.6977978e-15}
+  m_Center: {x: -0.000001058681, y: 0.00000015459953, z: 3.1505456e-21}
 --- !u!4 &8300626844929242286
 Transform:
   m_ObjectHideFlags: 0
@@ -1745,8 +2109,9 @@ GameObject:
   - component: {fileID: 2995762448414636113}
   - component: {fileID: 3573483587797861661}
   - component: {fileID: 8657058128736957465}
+  - component: {fileID: 8657058128736957466}
   m_Layer: 0
-  m_Name: paved_road_leftbake
+  m_Name: paved_road_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1765,6 +2130,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadMaterial: {fileID: 2100000, guid: fa32db31c8f7f6d48a0048c18b43f283, type: 2}
+--- !u!64 &8657058128736957466
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657058128736957464}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1405533190395327709, guid: d19045c8622d2854dad5ef44b9d391ae, type: 3}
 --- !u!1 &8681269440553446932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,6 +2210,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8980738946477797047
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7951695173337341537}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4811848438226177062, guid: 86f53069f83e44141a7d6ab997e9487e, type: 3}
 --- !u!4 &8995901984535429531
 Transform:
   m_ObjectHideFlags: 0
@@ -1832,12 +2241,34 @@ Transform:
   m_GameObject: {fileID: 6111537238752953384}
   serializedVersion: 2
   m_LocalRotation: {x: -0.50129884, y: -0.49869788, z: -0.49869782, w: 0.5012987}
-  m_LocalPosition: {x: -62.20578, y: 1.4425038, z: 30.805363}
+  m_LocalPosition: {x: -104.35277, y: 1.4, z: 250.94865}
   m_LocalScale: {x: 471.85117, y: 471.85117, z: 471.85117}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8300626844929242286}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -89.702}
+--- !u!64 &8995901984535429532
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6111537238752953384}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7388669207791153755, guid: 86f53069f83e44141a7d6ab997e9487e, type: 3}
 --- !u!4 &8998256534867168581
 Transform:
   m_ObjectHideFlags: 0
@@ -1866,6 +2297,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadMaterial: {fileID: 2100000, guid: ddb6587ec5e94d64a897402f4705253e, type: 2}
+--- !u!64 &8998256534867168583
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276200276531101705}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3853613567844249308, guid: d19045c8622d2854dad5ef44b9d391ae, type: 3}
 --- !u!1 &9152577322941341997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,13 +2330,36 @@ GameObject:
   - component: {fileID: 5959184768129959189}
   - component: {fileID: 5384228823864768458}
   - component: {fileID: 5607164137659423114}
+  - component: {fileID: 9152577322941341998}
   m_Layer: 0
-  m_Name: gravel_road_right.001
+  m_Name: gravel_road_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &9152577322941341998
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9152577322941341997}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 491853136523173874, guid: f0e93afba0572a744a8914b6aa476f9c, type: 3}
 --- !u!4 &9153572384333272534
 Transform:
   m_ObjectHideFlags: 0
@@ -1893,12 +2369,34 @@ Transform:
   m_GameObject: {fileID: 7220226403137389900}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -42.474705, y: 0.041906703, z: -21.719805}
-  m_LocalScale: {x: 419.06747, y: 419.06747, z: 419.06747}
+  m_LocalPosition: {x: -56.5, y: 0.1, z: -26.7}
+  m_LocalScale: {x: 213.93, y: 213.93, z: 213.93}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1754641832434043586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &9153572384333272535
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220226403137389900}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4976492104021437299, guid: f0e93afba0572a744a8914b6aa476f9c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1908,3 +2406,4 @@ SceneRoots:
   - {fileID: 7410405112516404817}
   - {fileID: 1754641832434043586}
   - {fileID: 8300626844929242286}
+  - {fileID: 1360900085}
