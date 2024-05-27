@@ -14,20 +14,12 @@ The Unity project for the SmartBike SunCycle VR exercise system.
 - Git GUI such as GitKraken, SourceTree, GitHub Desktop (if you prefer this over working only with terminal commands)
 
 ## Getting Started
-1. Clone the repository to your local machine
+1. Create a fork of the main repository by clicking the fork button on the main repository or by clicking [here](https://github.com/Redback-Operations/redback-smartbike-vr/fork)
+2. Clone the repository to your local machine
     ```bash
-    git clone https://github.com/Redback-Operations/redback-smartbike-vr.git
+    git clone https://github.com/[YOURUSERNAME]/redback-smartbike-vr.git
     ```
-   (or SSH if you have set up SSH access to your GitHub account)
-2. Create a branch for your work, following the Capstone [Branching Guidelines](https://verdant-raindrop-f3e404.netlify.app/processes/quality-assurance/git-contributions-guide/#branching-guidelines)
-    ```bash
-    git branch <branch-name>
-    ```
-3. Check out your branch
-    ```bash
-    git checkout <branch-name>
-    ```
-4. Open Unity Hub and click Add button, find the Project in the repository that has been cloned and click the Open button
+3. Open Unity Hub and click Add button, find the Project in the local repository that has been cloned and click the Open button
     ```bash
     path/to/redback-smartbike-vr
     ```
