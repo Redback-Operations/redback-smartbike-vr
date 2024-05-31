@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         //to set score to 0 made by Jai
         score = 0;
 
+        // get MQTT host from PlayerPrefs
         var mqttHost = PlayerPrefs.GetString("MQTTHost");
 
         if (string.IsNullOrEmpty(mqttHost))
@@ -79,8 +80,8 @@ public class PlayerController : MonoBehaviour
                
         SpeedClient.MqttMsgPublishReceived += client_MqttMsgReceived;
         SpeedClient.Subscribe(new string[] { "bike/000001/speed" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-        SpeedClient.Connect(Guid.NewGuid().ToString(), "USERNAME", "PASSWORD");// FIND USERNAME IN PROJECT HANDOVER DOC
-
+        // FIND USERNAME IN PROJECT HANDOVER DOC - configure in menu MQTT/Host Settings
+        SpeedClient.Connect(SpeedclientId, PlayerPrefs.GetString("MQTTUsername"), PlayerPrefs.GetString("MQTTPassword"));
 
         var devices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
