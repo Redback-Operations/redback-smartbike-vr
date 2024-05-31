@@ -140,19 +140,27 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.W) || !Mathf.Approximately(MQTT_Speed, 0))
+            if (Input.GetKey(KeyCode.W))
 				_direction.y += 1;
 
             if (Input.GetKey(KeyCode.S))
                 _direction.y -= 1;
 
-            if (Input.GetKey(KeyCode.A) || (L_Turn == "LEFT"))
+            if (Input.GetKey(KeyCode.A))
                 _direction.x -= 1;
 
-            if (Input.GetKey(KeyCode.D) || (R_Turn == "RIGHT"))
+            if (Input.GetKey(KeyCode.D))
                 _direction.x += 1;
         }
 
+        if (!Mathf.Approximately(MQTT_Speed, 0))
+            _direction.y = 1;
+
+        if (L_Turn == "LEFT")
+            _direction.x = -1;
+
+        if (R_Turn == "RIGHT")
+            _direction.x = 1;
     }
 
     private void MovePlayer()
