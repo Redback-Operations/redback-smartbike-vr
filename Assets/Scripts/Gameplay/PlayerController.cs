@@ -13,7 +13,7 @@ using System.Net.Security;
 
 public class PlayerController : MonoBehaviour
 {
-    public float movementSpeed = 0;
+    public float movementSpeed = 5f;
     public float rotationSpeed = 90f;
     private Rigidbody rb;
 
