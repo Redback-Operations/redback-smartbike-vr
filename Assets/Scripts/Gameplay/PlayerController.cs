@@ -14,6 +14,7 @@ using System.Net.Security;
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 0;
+    public float rotationSpeed = 90f;
     private Rigidbody rb;
 
     //For score made by Jai
@@ -25,11 +26,8 @@ public class PlayerController : MonoBehaviour
     private Quaternion OldRotation;
 
     private float change = 0;
-    
 
-    //For IOT MadE by Krishn
-
-    
+    //For IOT Made by Krishn
     protected MqttClient TurnClient;
     private string clientId = Guid.NewGuid().ToString();
     protected MqttClient SpeedClient;
@@ -37,16 +35,24 @@ public class PlayerController : MonoBehaviour
 
     public string R_Turn = "LOW";
     public string L_Turn = "LOW";
+	public float MQTT_Speed = 0f;
 
     //For mission complete made by Dennis
     public TextMeshProUGUI missionCompleteText;
     private bool missionCompleted = false;
 
+    //For achieve the fastest speed made by Dennis
+    private bool timerActive = false;
+    private float timerStartTime;
+
     private InputDevice? _controller;
     private Vector2 _direction = Vector2.zero;
 
+    private float originalSpeed;
+
     void Start()
     {
+        originalSpeed = movementSpeed;
         // Get the Rigidbody component attached to the bike GameObject
         rb = GetComponent<Rigidbody>();
 
@@ -56,18 +62,25 @@ public class PlayerController : MonoBehaviour
         //to set score to 0 made by Jai
         score = 0;
 
-        //IOT Updated by Krishn -- Now connectedc to Redback's MQTT server
-        TurnClient = new MqttClient("LOCAL MQTT SERVER FOR DEAKIN: REFER TO PROJECT HANDOVER");
+        var mqttHost = PlayerPrefs.GetString("MQTTHost");
+
+        if (string.IsNullOrEmpty(mqttHost))
+            Debug.LogError("The MQTT Host is not setup, please configure in MQTT/Host Settings menu");
+
+        //IOT Updated by Krishn -- Now connected to Redback's MQTT server
+        TurnClient = new MqttClient(mqttHost);
         TurnClient.MqttMsgPublishReceived += client_MqttMsgReceived;
         TurnClient.Subscribe(new string[] { "Turn/Right" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
         TurnClient.Subscribe(new string[] { "Turn/Left" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
         TurnClient.Connect(clientId);
 
-        SpeedClient = new MqttClient("MQTT CLOUD HOSTNAME: REFER TO PROJECT HANDOVER",8883,true,null,null, MqttSslProtocols.TLSv1_2);
+        //Krishn-Implementing Speed
+        SpeedClient = new MqttClient(mqttHost, 8883,true,null,null, MqttSslProtocols.TLSv1_2);
                
         SpeedClient.MqttMsgPublishReceived += client_MqttMsgReceived;
         SpeedClient.Subscribe(new string[] { "bike/000001/speed" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
         SpeedClient.Connect(Guid.NewGuid().ToString(), "USERNAME", "PASSWORD");// FIND USERNAME IN PROJECT HANDOVER DOC
+
 
         var devices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
@@ -94,9 +107,8 @@ public class PlayerController : MonoBehaviour
             int startIndex = json.IndexOf(valueKey) + valueKey.Length;
             int endIndex = json.IndexOf(",", startIndex);
             string valueStr = json.Substring(startIndex, endIndex - startIndex);
-            movementSpeed = float.Parse(valueStr);
+			MQTT_Speed = float.Parse(valueStr);
         }
-
     }
 
     void Update()
@@ -109,8 +121,12 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         RotatePlayer();
 
-        //To make bike go towards new rotation made by Jai
-        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.05f);
+        //For achieve the fastest speed made by Dennis
+        if (timerActive)
+        {
+            float currentTime = Time.time;
+            missionCompleteText.text = "Timer: " + (currentTime - timerStartTime).ToString("F1") + "s";
+        }
     }
 
     public void UpdateDirection()
@@ -123,8 +139,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if ((Input.GetKey(KeyCode.W)) || (movementSpeed !=0))
-                _direction.y = (float)(movementSpeed * 0.5);
+            if (Input.GetKey(KeyCode.W) || !Mathf.Approximately(MQTT_Speed, 0))
+				_direction.y += 1;
 
             if (Input.GetKey(KeyCode.S))
                 _direction.y -= 1;
@@ -136,7 +152,6 @@ public class PlayerController : MonoBehaviour
                 _direction.x += 1;
         }
 
-        
     }
 
     private void MovePlayer()
@@ -144,16 +159,24 @@ public class PlayerController : MonoBehaviour
         // Get the playter's forward direction made by Jai (updated by Jonathan)
         Vector3 facingDirection = transform.forward;
         // To prevent the bike from moving in the Y-axis
-        facingDirection.y = 0; 
+        facingDirection.y = 0;
 
         // Move the bike in the player's forward direction made by Jai (updated by Jonathan)
-        transform.position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
+		if (!Mathf.Approximately(MQTT_Speed, 0))
+			transform.position += (facingDirection.normalized * MQTT_Speed * Time.deltaTime * _direction.y);
+		else
+			transform.position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
     }
 
     private void RotatePlayer()
     {
-        change += _direction.x;
+        // updated to account for frame rate
+        change += _direction.x * rotationSpeed * Time.deltaTime;
+
+        //To make bike go towards new rotation made by Jai
         OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y + change, rb.transform.rotation.z);
+        //To make bike go towards new rotation made by Jai
+        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.15f);
     }
 
     private Vector2 ControllerDirection()
@@ -241,9 +264,30 @@ public class PlayerController : MonoBehaviour
         return movementSpeed;
     }
 
-    public void SetSpeed(float newSpeed)
+    public void SetSpeed(float newSpeed) //Update achieved speed made by Dennis
     {
+        if (!timerHasBeenActivated && newSpeed > movementSpeed)
+        {
+            timerActive = true;
+            timerHasBeenActivated = true;
+            timerStartTime = Time.time;
+            missionCompleteText.text = "0.0s";
+        }
+
         movementSpeed = newSpeed;
+
+        if (timerActive && newSpeed >= 5 * originalSpeed)
+        {
+            timerActive = false;
+            float endTime = Time.time;
+            missionCompleteText.text = "Timer: " + (endTime - timerStartTime).ToString("F1") + "s";
+            StartCoroutine(ClearMissionCompleteText());
+        }
+    }
+
+    public float GetOriginalSpeed()
+    {
+        return originalSpeed;
     }
 
     //For exchange apple with score and display message made by Dennis
@@ -264,5 +308,17 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(3f); // Wait for 3 seconds
         missionCompleteText.text = ""; // Clear the text after 3 seconds
+    }
+
+
+    private bool timerHasBeenActivated = false;
+
+    //For clear message made by Dennis
+    private IEnumerator ClearMissionCompleteText()
+    {
+        yield return new WaitForSeconds(2.5f);
+        missionCompleteText.text = "Speed up Complete";
+        yield return new WaitForSeconds(3); 
+        missionCompleteText.text = "";
     }
 }
