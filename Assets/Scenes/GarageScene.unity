@@ -447,6 +447,10 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets: []
+  MissionDescriptionPanel: {fileID: 0}
+  MissionDescriptionText: {fileID: 0}
+  MissionDescription: 
+  MissionButtons: []
   Renderer: {fileID: 165800286}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
@@ -743,6 +747,12 @@ Transform:
   - {fileID: 373697414}
   m_Father: {fileID: 1770767474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &325975035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7621004194524283122, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &373697413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1553,20 +1563,96 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.019
       objectReference: {fileID: 0}
+    - target: {fileID: 1187882144389811659, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Action
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620915626604017896, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2610642667491188101, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695725432501774896, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695725432501774896, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: de302e5f594a8564fa0c640c7d739d64,
+        type: 3}
+    - target: {fileID: 2695725432501774896, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695725432501774896, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.4862745
       objectReference: {fileID: 0}
     - target: {fileID: 3046102865683281967, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.284
       objectReference: {fileID: 0}
+    - target: {fileID: 3111586202175505974, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3111586202175505974, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719655165260732271, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionDescriptionText
+      value: 
+      objectReference: {fileID: 1491853581}
+    - target: {fileID: 3719655165260732271, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionDescriptionPanel
+      value: 
+      objectReference: {fileID: 988721189}
+    - target: {fileID: 3719655165260732271, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719655165260732271, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 325975035}
+    - target: {fileID: 3719655165260732271, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1207954762}
+    - target: {fileID: 3719655165260732271, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1002109612}
+    - target: {fileID: 4044411599614390785, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: Action
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -1581,22 +1667,37 @@ PrefabInstance:
     - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: TargetScene
-      value: CityScene
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: TargetValue
-      value: MissionNumber
+      value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionDescription
+      value: sdawdTMPro.TextMeshProUGUITMPro.TextMeshProUGUITMPro.TextMeshProUGUITMPro.TextMeshProUGUITMPro.TextMeshProUGUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionDescriptionText
+      value: 
+      objectReference: {fileID: 1491853581}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: MissionDescriptionPanel
+      value: 
+      objectReference: {fileID: 988721189}
     - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: Action
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: IntValue
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -1606,12 +1707,17 @@ PrefabInstance:
     - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: TargetScene
-      value: CityScene
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5554603139875272983, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: TargetValue
-      value: MissionNumber
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765882139090513969, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6124053911378424796, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -1626,12 +1732,12 @@ PrefabInstance:
     - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: Action
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: IntValue
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -1641,12 +1747,12 @@ PrefabInstance:
     - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: TargetScene
-      value: CityScene
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: TargetValue
-      value: MissionNumber
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6438723058457035941, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -1687,6 +1793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621004194524283122, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7753144384213315935, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -1753,6 +1864,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Garage
       objectReference: {fileID: 0}
+    - target: {fileID: 8226406842665186613, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Action
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226406842665186613, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: Renderer
+      value: 
+      objectReference: {fileID: 969448802}
     - target: {fileID: 8302113356133795616, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1811,6 +1932,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6327369239490576853, guid: 3265678c6a9bb6642aa0ac4087b69620, type: 3}
+    - {fileID: 2769739803231546078, guid: 3265678c6a9bb6642aa0ac4087b69620, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6668593180383851580, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -2234,12 +2356,28 @@ MonoBehaviour:
   IntValue: -1
   StringValue: 
   ToggleTargets: []
+  MissionDescriptionPanel: {fileID: 0}
+  MissionDescriptionText: {fileID: 0}
+  MissionDescription: 
+  MissionButtons: []
   Renderer: {fileID: 969448802}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!23 &969448802 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2378812104571972965, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &988721189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5652821091347406231, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1002109612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3372701433534246235, guid: 3265678c6a9bb6642aa0ac4087b69620,
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
@@ -2532,6 +2670,24 @@ MonoBehaviour:
   m_Controllers:
   - {fileID: 1770767479}
   m_DeadZone: 0.75
+--- !u!1 &1207954762 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6488453024622794717, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1491853581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 312167690819743065, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1493674838
 GameObject:
   m_ObjectHideFlags: 0
@@ -3023,6 +3179,10 @@ MonoBehaviour:
   StringValue: 
   ToggleTargets:
   - {fileID: 743075661}
+  MissionDescriptionPanel: {fileID: 0}
+  MissionDescriptionText: {fileID: 0}
+  MissionDescription: 
+  MissionButtons: []
   Renderer: {fileID: 1745123239}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
@@ -3884,6 +4044,10 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets: []
+  MissionDescriptionPanel: {fileID: 0}
+  MissionDescriptionText: {fileID: 0}
+  MissionDescription: 
+  MissionButtons: []
   Renderer: {fileID: 1807904914}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
