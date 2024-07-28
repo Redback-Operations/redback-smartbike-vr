@@ -20,7 +20,14 @@ public class HoverButton : MonoBehaviour
         SetInteger,
         SetString,
         SetIntegerThenLoad,
-        SetStringThenLoad
+        SetStringThenLoad,
+
+
+        //Dennis
+        ShowMissionDescription,
+        GoToMission,
+        BackToMissionSelection
+        //
     }
 
     public HoverButtonAction Action;
@@ -31,6 +38,16 @@ public class HoverButton : MonoBehaviour
     public string StringValue;
 
     public Transform[] ToggleTargets;
+
+
+    //Dennis
+    public GameObject MissionDescriptionPanel;
+    public TMPro.TextMeshProUGUI MissionDescriptionText;
+    public string MissionDescription;
+    public GameObject[] MissionButtons;
+
+    //
+
 
     public Renderer Renderer;
     public Color Selected = Color.white;
@@ -59,6 +76,12 @@ public class HoverButton : MonoBehaviour
 
         if (_material != null)
             _material.color = Unselected;
+
+        //Dennis
+        if (MissionDescriptionPanel != null)
+        {
+            MissionDescriptionPanel.SetActive(false);
+        }
     }
 
     void OnEnable()
@@ -144,54 +167,98 @@ public class HoverButton : MonoBehaviour
         switch (Action)
         {
             case HoverButtonAction.LoadScene:
-            {
+                {
+                    if (string.IsNullOrWhiteSpace(TargetScene))
+                        return;
+
+                    SceneManager.LoadScene(TargetScene);
+                }
+                break;
+
+            case HoverButtonAction.SetInteger:
+                {
+                    PlayerPrefs.SetInt(TargetValue, IntValue);
+                }
+                break;
+
+            case HoverButtonAction.SetIntegerThenLoad:
+                {
+                    if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+                        return;
+
+                    PlayerPrefs.SetInt(TargetValue, IntValue);
+                    SceneManager.LoadScene(TargetScene);
+                }
+                break;
+
+            case HoverButtonAction.SetString:
+                {
+                    PlayerPrefs.SetString(TargetValue, StringValue);
+                }
+                break;
+
+            case HoverButtonAction.SetStringThenLoad:
+                {
+                    if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+                        return;
+
+                    PlayerPrefs.SetString(TargetValue, StringValue);
+                    SceneManager.LoadScene(TargetScene);
+                }
+                break;
+
+
+
+            //Dennis
+            case HoverButtonAction.ShowMissionDescription:
+                if (MissionDescriptionPanel == null || MissionDescriptionText == null)
+                    return;
+
+                MissionDescriptionPanel.SetActive(true);
+                MissionDescriptionText.text = MissionDescription;
+
+                // Hide other mission buttons
+                foreach (var button in MissionButtons)
+                {
+                    button.SetActive(false);
+                }
+                break;
+
+            case HoverButtonAction.GoToMission:
                 if (string.IsNullOrWhiteSpace(TargetScene))
                     return;
 
                 SceneManager.LoadScene(TargetScene);
-            } break;
+                break;
 
-            case HoverButtonAction.SetInteger:
-            {
-                PlayerPrefs.SetInt(TargetValue, IntValue);
-            } break;
-
-            case HoverButtonAction.SetIntegerThenLoad:
-            {
-                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+            case HoverButtonAction.BackToMissionSelection:
+                if (MissionDescriptionPanel == null)
                     return;
 
-                PlayerPrefs.SetInt(TargetValue, IntValue);
-                SceneManager.LoadScene(TargetScene);
-            } break;
+                MissionDescriptionPanel.SetActive(false);
 
-            case HoverButtonAction.SetString:
-            {
-                PlayerPrefs.SetString(TargetValue, StringValue);
-            } break;
+                foreach (var button in MissionButtons)
+                {
+                    button.SetActive(true);
+                }
+                break;
 
-            case HoverButtonAction.SetStringThenLoad:
-            {
-                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
-                    return;
-
-                PlayerPrefs.SetString(TargetValue, StringValue);
-                SceneManager.LoadScene(TargetScene);
-            } break;
+            //
 
             default:
-            {
-                if (ToggleTargets == null || ToggleTargets.Length == 0)
-                    return;
-
-                foreach (var target in ToggleTargets)
                 {
-                    if (Action == HoverButtonAction.ObjectsToggle)
-                        target.gameObject.SetActive(!target.gameObject.activeInHierarchy);
-                    else
-                        target.gameObject.SetActive(Action == HoverButtonAction.ObjectsOn);
+                    if (ToggleTargets == null || ToggleTargets.Length == 0)
+                        return;
+
+                    foreach (var target in ToggleTargets)
+                    {
+                        if (Action == HoverButtonAction.ObjectsToggle)
+                            target.gameObject.SetActive(!target.gameObject.activeInHierarchy);
+                        else
+                            target.gameObject.SetActive(Action == HoverButtonAction.ObjectsOn);
+                    }
                 }
-            } break;
+                break;
         }
     }
 }
