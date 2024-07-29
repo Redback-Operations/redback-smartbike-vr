@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5814028473757160756}
   - component: {fileID: 1156436516180986838}
   - component: {fileID: 4963289931606338744}
+  - component: {fileID: 3684283927957941493}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -146,19 +147,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 11
+  Action: 3
   TargetScene: 
   TargetValue: 
   IntValue: 0
   StringValue: 
-  ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 186441495533958383}
-  MissionDescriptionText: {fileID: 0}
-  MissionDescription: 
-  MissionButtons:
-  - {fileID: 7621004194524283122}
-  - {fileID: 6488453024622794717}
-  - {fileID: 3372701433534246235}
+  ToggleTargets:
+  - {fileID: 8302113356133795616}
+  - {fileID: 6458943978836687328}
+  Renderer: {fileID: 0}
+  Selected: {r: 1, g: 1, b: 1, a: 1}
+  Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &3684283927957941493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136424749324324971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Action: 4
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
+  ToggleTargets:
+  - {fileID: 2769961716335008871}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -447,7 +465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2769961716335008871
 RectTransform:
   m_ObjectHideFlags: 0
@@ -762,6 +780,7 @@ GameObject:
   - component: {fileID: 3503309204058484312}
   - component: {fileID: 6089798220685985466}
   - component: {fileID: 3719655165260732271}
+  - component: {fileID: 1763831641051268207}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -895,19 +914,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 11
+  Action: 3
   TargetScene: 
   TargetValue: 
   IntValue: 0
   StringValue: 
-  ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 5652821091347406231}
-  MissionDescriptionText: {fileID: 0}
-  MissionDescription: 
-  MissionButtons:
-  - {fileID: 7621004194524283122}
-  - {fileID: 6488453024622794717}
-  - {fileID: 3372701433534246235}
+  ToggleTargets:
+  - {fileID: 6124053911378424796}
+  - {fileID: 6458943978836687328}
+  Renderer: {fileID: 0}
+  Selected: {r: 1, g: 1, b: 1, a: 1}
+  Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &1763831641051268207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927087965200900913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Action: 4
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
+  ToggleTargets:
+  - {fileID: 4044411599614390785}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -1063,10 +1099,6 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 0}
-  MissionDescriptionText: {fileID: 0}
-  MissionDescription: 
-  MissionButtons: []
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -1475,6 +1507,7 @@ GameObject:
   - component: {fileID: 2929447616724687168}
   - component: {fileID: 5646904351521779934}
   - component: {fileID: 4777378190437375607}
+  - component: {fileID: 1164952158473161143}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -1608,19 +1641,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 11
+  Action: 3
   TargetScene: 
   TargetValue: 
   IntValue: 0
   StringValue: 
-  ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 2730659781573323928}
-  MissionDescriptionText: {fileID: 0}
-  MissionDescription: 
-  MissionButtons:
-  - {fileID: 7621004194524283122}
-  - {fileID: 6488453024622794717}
-  - {fileID: 3372701433534246235}
+  ToggleTargets:
+  - {fileID: 8302113356133795616}
+  - {fileID: 6124053911378424796}
+  Renderer: {fileID: 0}
+  Selected: {r: 1, g: 1, b: 1, a: 1}
+  Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &1164952158473161143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592531333553253704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Action: 4
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
+  ToggleTargets:
+  - {fileID: 4304209267227592432}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -2043,7 +2093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4304209267227592432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2117,6 +2167,7 @@ GameObject:
   - component: {fileID: 8549951140351740430}
   - component: {fileID: 2610642667491188101}
   - component: {fileID: 6169171383474610423}
+  - component: {fileID: 8603237501080047008}
   m_Layer: 0
   m_Name: Mission3
   m_TagString: Untagged
@@ -2251,18 +2302,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 9
+  Action: 3
   TargetScene: 
   TargetValue: 
   IntValue: 0
   StringValue: 
-  ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 2730659781573323928}
-  MissionDescriptionText: {fileID: 4425921073702395261}
-  MissionDescription: 
-  MissionButtons:
-  - {fileID: 7621004194524283122}
-  - {fileID: 6488453024622794717}
+  ToggleTargets:
+  - {fileID: 4304209267227592432}
+  Renderer: {fileID: 0}
+  Selected: {r: 1, g: 1, b: 1, a: 1}
+  Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &8603237501080047008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372701433534246235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Action: 4
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
+  ToggleTargets:
+  - {fileID: 8302113356133795616}
+  - {fileID: 6124053911378424796}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -3189,16 +3258,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 10
+  Action: 7
   TargetScene: CityScene
   TargetValue: 
-  IntValue: 0
+  IntValue: 1
   StringValue: 
   ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 0}
-  MissionDescriptionText: {fileID: 0}
-  MissionDescription: 
-  MissionButtons: []
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -3219,7 +3284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4044411599614390785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3432,10 +3497,6 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 0}
-  MissionDescriptionText: {fileID: 0}
-  MissionDescription: 
-  MissionButtons: []
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -3834,7 +3895,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ssadawdawsda
+  m_text: Mission2DescriptionMission2DescriptionMission2DescriptionMission2DescriptionMission2DescriptionMission2DescriptionMission2DescriptionMission2DescriptionMission2Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3916,6 +3977,7 @@ GameObject:
   - component: {fileID: 6873906044492844675}
   - component: {fileID: 6569729648650794048}
   - component: {fileID: 5554603139875272983}
+  - component: {fileID: 5807678588710638171}
   m_Layer: 0
   m_Name: Mission2
   m_TagString: Untagged
@@ -4050,18 +4112,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 9
+  Action: 3
   TargetScene: 
   TargetValue: 
   IntValue: 0
   StringValue: 
-  ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 186441495533958383}
-  MissionDescriptionText: {fileID: 2089396084879455361}
-  MissionDescription: 
-  MissionButtons:
-  - {fileID: 7621004194524283122}
-  - {fileID: 3372701433534246235}
+  ToggleTargets:
+  - {fileID: 2769961716335008871}
+  Renderer: {fileID: 0}
+  Selected: {r: 1, g: 1, b: 1, a: 1}
+  Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &5807678588710638171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6488453024622794717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Action: 4
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
+  ToggleTargets:
+  - {fileID: 8302113356133795616}
+  - {fileID: 6458943978836687328}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -4198,6 +4278,7 @@ GameObject:
   - component: {fileID: 3933697886585783319}
   - component: {fileID: 7309379678585858511}
   - component: {fileID: 5359565180278453061}
+  - component: {fileID: 1190270621594193423}
   m_Layer: 0
   m_Name: Mission1
   m_TagString: Untagged
@@ -4332,18 +4413,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 9
+  Action: 3
   TargetScene: 
   TargetValue: 
   IntValue: 0
   StringValue: 
-  ToggleTargets: []
-  MissionDescriptionPanel: {fileID: 5652821091347406231}
-  MissionDescriptionText: {fileID: 312167690819743065}
-  MissionDescription: 
-  MissionButtons:
-  - {fileID: 6488453024622794717}
-  - {fileID: 3372701433534246235}
+  ToggleTargets:
+  - {fileID: 4044411599614390785}
+  Renderer: {fileID: 0}
+  Selected: {r: 1, g: 1, b: 1, a: 1}
+  Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+--- !u!114 &1190270621594193423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7621004194524283122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Action: 4
+  TargetScene: 
+  TargetValue: 
+  IntValue: 0
+  StringValue: 
+  ToggleTargets:
+  - {fileID: 6124053911378424796}
+  - {fileID: 6458943978836687328}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -5082,7 +5181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ssadawdawsda
+  m_text: Mission1DescriptionMission1DescriptionMission1DescriptionMission1DescriptionMission1DescriptionMission1DescriptionMission1DescriptionMission1Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5216,7 +5315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ssadawdawsda
+  m_text: Mission3DescriptionMission3DescriptionMission3DescriptionMission3DescriptionMission3DescriptionMission3DescriptionMission3DescriptionMission3DescriptionMission3Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
