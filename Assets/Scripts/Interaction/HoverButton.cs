@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -67,7 +66,6 @@ public class HoverButton : MonoBehaviour
         {
             _interactable.hoverEntered.AddListener(ButtonHoverEnter);
             _interactable.hoverExited.AddListener(ButtonHoverExit);
-
             _interactable.selectEntered.AddListener(OnButtonInteract);
         }
 
@@ -83,7 +81,6 @@ public class HoverButton : MonoBehaviour
         {
             _interactable.hoverEntered.RemoveListener(ButtonHoverEnter);
             _interactable.hoverExited.RemoveListener(ButtonHoverExit);
-
             _interactable.selectEntered.RemoveListener(OnButtonInteract);
         }
 
@@ -158,7 +155,7 @@ public class HoverButton : MonoBehaviour
 
             case HoverButtonAction.SetIntegerThenLoad:
             {
-                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetValue))
                     return;
 
                 PlayerPrefs.SetInt(TargetValue, IntValue);
@@ -172,7 +169,7 @@ public class HoverButton : MonoBehaviour
 
             case HoverButtonAction.SetStringThenLoad:
             {
-                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetValue))
                     return;
 
                 PlayerPrefs.SetString(TargetValue, StringValue);
