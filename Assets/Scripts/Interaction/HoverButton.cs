@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,9 +19,7 @@ public class HoverButton : MonoBehaviour
         SetInteger,
         SetString,
         SetIntegerThenLoad,
-        SetStringThenLoad,
-
-
+        SetStringThenLoad
     }
 
     public HoverButtonAction Action;
@@ -61,8 +58,6 @@ public class HoverButton : MonoBehaviour
 
         if (_material != null)
             _material.color = Unselected;
-
-
     }
 
     void OnEnable()
@@ -146,37 +141,43 @@ public class HoverButton : MonoBehaviour
         switch (Action)
         {
             case HoverButtonAction.LoadScene:
+            {
                 if (string.IsNullOrWhiteSpace(TargetScene))
                     return;
 
                 SceneManager.LoadScene(TargetScene);
-                break;
+            } break;
 
             case HoverButtonAction.SetInteger:
+            {
                 PlayerPrefs.SetInt(TargetValue, IntValue);
-                break;
+            } break;
 
             case HoverButtonAction.SetIntegerThenLoad:
+            {
                 if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetValue))
                     return;
 
                 PlayerPrefs.SetInt(TargetValue, IntValue);
                 SceneManager.LoadScene(TargetScene);
-                break;
+            } break;
 
             case HoverButtonAction.SetString:
+            {
                 PlayerPrefs.SetString(TargetValue, StringValue);
-                break;
+            } break;
 
             case HoverButtonAction.SetStringThenLoad:
+            {
                 if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetValue))
                     return;
 
                 PlayerPrefs.SetString(TargetValue, StringValue);
                 SceneManager.LoadScene(TargetScene);
-                break;
+            } break;
 
             default:
+            {
                 if (ToggleTargets == null || ToggleTargets.Length == 0)
                     return;
 
@@ -187,12 +188,7 @@ public class HoverButton : MonoBehaviour
                     else
                         target.gameObject.SetActive(Action == HoverButtonAction.ObjectsOn);
                 }
-                break;
+            } break;
         }
     }
-
- 
-
-
-
 }
