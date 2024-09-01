@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165800284}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
         m_MethodName: ButtonHoverEnter
         m_Mode: 1
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_HoverExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165800284}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
         m_MethodName: ButtonHoverExit
         m_Mode: 1
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165800284}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: HoverButton, Assembly-CSharp
         m_MethodName: ButtonInteract
         m_Mode: 1
@@ -453,28 +453,6 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &165800284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165800278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Action: 3
-  TargetScene: 
-  TargetValue: 
-  IntValue: 0
-  StringValue: 
-  ToggleTargets:
-  - {fileID: 1407068934}
-  Renderer: {fileID: 165800286}
-  Selected: {r: 1, g: 1, b: 1, a: 1}
-  Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
 --- !u!23 &165800286 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7333160949982309426, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -2622,12 +2600,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4424435816322397919, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: Action
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424435816322397919, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: Renderer
       value: 
       objectReference: {fileID: 165800286}
     - target: {fileID: 4424435816322397919, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424435816322397919, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: ToggleTargets.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4495400592778756615, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -2893,7 +2881,7 @@ PrefabInstance:
     - target: {fileID: 6584353878385853030, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.482
+      value: -0.458
       objectReference: {fileID: 0}
     - target: {fileID: 6584353878385853030, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -3769,10 +3757,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 165800282}
-    - targetCorrespondingSourceObject: {fileID: 3192309719715858068, guid: 3265678c6a9bb6642aa0ac4087b69620,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 165800284}
     - targetCorrespondingSourceObject: {fileID: 8023077374614064733, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       insertIndex: -1
@@ -4622,12 +4606,6 @@ RectTransform:
 --- !u!224 &1371759491 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4681388589942372684, guid: 3265678c6a9bb6642aa0ac4087b69620,
-    type: 3}
-  m_PrefabInstance: {fileID: 743075657}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1407068934 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8552319349494267021, guid: 3265678c6a9bb6642aa0ac4087b69620,
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
@@ -5850,7 +5828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34da174b9bf9f9b4892591d58e4d6ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sensitivity: 45
+  Sensitivity: 0
   XRotation: 0
   YRotation: 0
 --- !u!114 &1792777829

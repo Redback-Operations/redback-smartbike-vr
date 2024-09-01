@@ -14178,14 +14178,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 2
+  Action: 4
   TargetScene: 
   TargetValue: 
   IntValue: 0
   StringValue: 
   ToggleTargets:
   - {fileID: 8552319349494267021}
-  - {fileID: 3933215460380618106}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
