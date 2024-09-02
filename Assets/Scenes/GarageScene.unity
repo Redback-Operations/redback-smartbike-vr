@@ -2783,6 +2783,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6169171383474610423, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: TargetScene
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6438723058457035941, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_IsActive
@@ -4169,7 +4174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 7
-  TargetScene: CityScene
+  TargetScene: TerrainScene
   TargetValue: MissionNumber
   IntValue: -1
   StringValue: 
