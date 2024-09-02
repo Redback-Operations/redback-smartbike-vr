@@ -19,6 +19,10 @@ public class AngleControl : MonoBehaviour
     public float positiveModifier = 2;
     public float negativeModifier = 3;
 
+    //The minimum and maximum of the angle the bike can take.
+    public float maximumAngle = 19;
+    public float minimumAngle = -10;
+
     //Intervals that will be used for the when the code updates the bike angle.
     //Will be updating mqtt.inclineTopic as that is the portion of the Mqtt that handles the bike's incline.
     private float timeInterval = 0.0f;
@@ -41,7 +45,7 @@ public class AngleControl : MonoBehaviour
         {
             var ts = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
             //Clamps the data sent to the bike to within the valid range.
-            float incline = Mathf.Clamp(BikeAngle, -10.0f, 19.0f);
+            float incline = Mathf.Clamp(BikeAngle, minimumAngle, maximumAngle);
             string payload = "{\"ts\": " + ts + ", \"incline\": " + incline + "}";
             mqtt.Publish(mqtt.inclineTopic, payload);
 
