@@ -12,8 +12,12 @@ public class AngleControl : MonoBehaviour
 
     //Declaring the two angles which will be used. InGameAngle is the calculated angle of the in game avatar.
     //BikeAngle is the angle that will be sent to the IoT stuff for the actual bike, which has to be clamped to a range between -10 and +30.
-    public float InGameAngle;
-    private float BikeAngle;
+    private float InGameAngle;
+    public float BikeAngle;
+
+    //The numbers that the angle will be divided by dpending on whether it is positive or negative.
+    public float positiveModifier = 2;
+    public float negativeModifier = 3;
 
     //Intervals that will be used for the when the code updates the bike angle.
     //Will be updating mqtt.inclineTopic as that is the portion of the Mqtt that handles the bike's incline.
@@ -53,13 +57,13 @@ public class AngleControl : MonoBehaviour
         if (RawAngle < 0)
         {
             //Divides negative angles by 3, then round to the nearest 0.5
-            Refined = RawAngle/3;
+            Refined = RawAngle/negativeModifier;
             Refined = MathF.Round(Refined*2)/2;
         }
         else if (RawAngle > 0)
         {
             //Divides positive angles by 2, then round to the nearest 0.5
-            Refined = RawAngle/2;
+            Refined = RawAngle/positiveModifier;
             Refined = MathF.Round(Refined*2)/2;
         }
         else
