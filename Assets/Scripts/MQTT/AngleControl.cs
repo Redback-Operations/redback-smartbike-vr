@@ -37,7 +37,7 @@ public class AngleControl : MonoBehaviour
         {
             var ts = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
             //Clamps the data sent to the bike to within the valid range.
-            float incline = Mathf.Clamp(BikeAngle, -10.0f, 30.0f);
+            float incline = Mathf.Clamp(BikeAngle, -10.0f, 19.0f);
             string payload = "{\"ts\": " + ts + ", \"incline\": " + incline + "}";
             mqtt.Publish(mqtt.inclineTopic, payload);
 
