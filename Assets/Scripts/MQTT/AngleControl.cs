@@ -54,6 +54,48 @@ public class AngleControl : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+       Vector3 playerVector = Player.transform.forward;
+
+       InGameAngle = Player.transform.rotation.eulerAngles.x;
+       
+       BikeAngle = RefineAngle(InGameAngle);
+
+       timeInterval += Time.deltaTime;
+        if (timeInterval >= publishPeriod)
+        {
+            var ts = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            float incline = Mathf.Clamp(BikeAngle, minimumAngle, maximumAngle);
+            string payload = "{\"ts\": " + ts + ", \"incline\": " + incline + "}";
+            mqtt.Publish(mqtt.inclineTopic, payload);
+
+            BikeAngle = incline;
+            timeInterval = 0.0f;
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+       Vector3 playerVector = Player.transform.forward;
+
+       InGameAngle = Player.transform.rotation.eulerAngles.x;
+       
+       BikeAngle = RefineAngle(InGameAngle);
+
+       timeInterval += Time.deltaTime;
+        if (timeInterval >= publishPeriod)
+        {
+            var ts = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            float incline = Mathf.Clamp(BikeAngle, minimumAngle, maximumAngle);
+            string payload = "{\"ts\": " + ts + ", \"incline\": " + incline + "}";
+            mqtt.Publish(mqtt.inclineTopic, payload);
+
+            BikeAngle = incline;
+            timeInterval = 0.0f;
+        }
+    }
+
     private float RefineAngle(float RawAngle)
     {
         float Refined;
