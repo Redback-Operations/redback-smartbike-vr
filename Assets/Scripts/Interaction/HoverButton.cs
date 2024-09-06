@@ -94,7 +94,7 @@ public class HoverButton : MonoBehaviour
     void LateUpdate()
     {
         // not needed, will use the events instead
-        if (XRSettings.enabled || !_selected || _button != null)
+        if (!_selected || _button != null)
             return;
 
         if (Input.GetMouseButtonDown(0))
@@ -149,7 +149,7 @@ public class HoverButton : MonoBehaviour
                 if (string.IsNullOrWhiteSpace(TargetScene))
                     return;
 
-                SceneManager.LoadScene(TargetScene);
+                MapLoader.LoadScene(TargetScene);
             } break;
 
             case HoverButtonAction.SetInteger:
@@ -163,7 +163,7 @@ public class HoverButton : MonoBehaviour
                     return;
 
                 PlayerPrefs.SetInt(TargetValue, IntValue);
-                SceneManager.LoadScene(TargetScene);
+                MapLoader.LoadScene(TargetScene);
             } break;
 
             case HoverButtonAction.SetString:
@@ -177,7 +177,7 @@ public class HoverButton : MonoBehaviour
                     return;
 
                 PlayerPrefs.SetString(TargetValue, StringValue);
-                SceneManager.LoadScene(TargetScene);
+                MapLoader.LoadScene(TargetScene);
             } break;
 
             default:

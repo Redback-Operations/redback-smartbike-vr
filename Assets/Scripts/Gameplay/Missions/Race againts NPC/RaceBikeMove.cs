@@ -5,7 +5,6 @@ using UnityEngine;
 public class RaceBikeMove : MonoBehaviour
 {
     private bool racing = false;
-    public CheckpointManager checkpointManager;
     public Transform[] waypoints; // Array of waypoints forming a path
     public float speed = 5.0f; // Speed at which the bike moves
     public float rotationSpeed = 5.0f;
@@ -83,9 +82,12 @@ public class RaceBikeMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (CheckpointManager.Instance == null)
+            return;
+
         if (other.CompareTag("Checkpoint"))
         {
-            checkpointManager.CheckpointReached(other.gameObject, this.gameObject);
+            CheckpointManager.Instance.CheckpointReached(other.gameObject, this.gameObject);
         }
     }
 }

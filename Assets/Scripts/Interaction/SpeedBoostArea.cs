@@ -6,54 +6,50 @@ public class SpeedBoostArea : MonoBehaviour
     public float speedBoostFadeDuration = 0.5f;
     public float maxSpeed = 30f; 
 
-    private PlayerController playerController;
     private Coroutine fadeCoroutine; 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerController = other.GetComponent<PlayerController>();
-            if (playerController != null)
-            {
-                if (fadeCoroutine != null)
-                {
-                    StopCoroutine(fadeCoroutine);
-                }
+        if (!other.CompareTag("Player"))
+            return;
 
-                ApplySpeedBoost();
-                fadeCoroutine = StartCoroutine(FadeBackSpeed());
-            }
-        }
+        var playerController = other.GetComponent<PlayerController>();
+
+        if (playerController == null)
+            return;
+
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
+
+        ApplySpeedBoost(playerController);
+        fadeCoroutine = StartCoroutine(FadeBackSpeed(playerController));
     }
 
-    private void ApplySpeedBoost()
+    private void ApplySpeedBoost(PlayerController controller)
     {
-        float currentSpeed = playerController.GetSpeed();
+        float currentSpeed = controller.GetSpeed();
         float newSpeed = currentSpeed * speedBoostMultiplier;
 
         if (newSpeed > maxSpeed)
-        {
             newSpeed = maxSpeed;
-        }
 
-        playerController.SetSpeed(newSpeed);
+        controller.SetSpeed(newSpeed);
     }
 
-    private IEnumerator FadeBackSpeed()
+    private IEnumerator FadeBackSpeed(PlayerController controller)
     {
         float elapsedTime = 0f;
-        float startSpeed = playerController.GetSpeed();
-        float targetSpeed = playerController.GetOriginalSpeed();
+        float startSpeed = controller.GetSpeed();
+        float targetSpeed = controller.GetOriginalSpeed();
 
         while (elapsedTime < speedBoostFadeDuration)
         {
             float newSpeed = Mathf.Lerp(startSpeed, targetSpeed, elapsedTime / speedBoostFadeDuration);
-            playerController.SetSpeed(newSpeed);
+            controller.SetSpeed(newSpeed);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        playerController.SetSpeed(targetSpeed);
+        controller.SetSpeed(targetSpeed);
     }
 }

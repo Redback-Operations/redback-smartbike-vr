@@ -10,17 +10,19 @@ using UnityEngine.XR;
 using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
+using UnityEditor.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 5f;
+    private float originalSpeed = 5f;
+
     public float rotationSpeed = 90f;
+
     private Rigidbody rb;
 
     //For score made by Jai
     public int score;
-
-    public TextMeshProUGUI scoreUI;
 
     //to store rotation made by Jai
     private Quaternion OldRotation;
@@ -37,24 +39,25 @@ public class PlayerController : MonoBehaviour
     public string L_Turn = "LOW";
 	public float MQTT_Speed = 0f;
 
-    //For mission complete made by Dennis
-    public TextMeshProUGUI missionCompleteText;
-    private bool missionCompleted = false;
-
-    //For achieve the fastest speed made by Dennis
-    private bool timerActive = false;
-    private float timerStartTime;
+    public Transform Bikes;
 
     private InputDevice? _controller;
     private Vector2 _direction = Vector2.zero;
 
-    private float originalSpeed;
+    private float _groundHeight = 0;
+    private float _angleX = 0;
+
+    private BoxCollider _collider;
 
     void Start()
     {
-        originalSpeed = movementSpeed;
+        change = transform.rotation.eulerAngles.y;
+
+        Debug.Log($"The rotation is currently set to {change}");
+
         // Get the Rigidbody component attached to the bike GameObject
         rb = GetComponent<Rigidbody>();
+        _collider = GetComponent<BoxCollider>();
 
         // Freeze rotation along the X and Z axes to prevent tumbling
         rb.freezeRotation = true;
@@ -114,44 +117,58 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //To check score made by Jai
-        scoreUI.text = score.ToString();
-
         UpdateDirection();
 
         MovePlayer();
         RotatePlayer();
+    }
 
-        //For achieve the fastest speed made by Dennis
-        if (timerActive)
-        {
-            float currentTime = Time.time;
-            missionCompleteText.text = "Timer: " + (currentTime - timerStartTime).ToString("F1") + "s";
-        }
+    void LateUpdate()
+    {
+        if (Terrain.activeTerrain == null)
+            return;
+
+        _groundHeight = Terrain.activeTerrain.SampleHeight(transform.position);
+
+        var normal = CalculateNormal(Terrain.activeTerrain, transform.position);
+        var forward = Vector3.Cross(normal, -transform.right);
+
+        var rotation = Quaternion.LookRotation(forward, normal);
+        _angleX = rotation.eulerAngles.x;
+    }
+
+    private Vector3 CalculateNormal(Terrain terrain, Vector3 position)
+    {
+        var offset = 0.1f;
+
+        var heightLeft = terrain.SampleHeight(position + Vector3.left * offset);
+        var heightRight = terrain.SampleHeight(position + Vector3.right * offset);
+        var heightForward = terrain.SampleHeight(position + Vector3.forward * offset);
+        var heightBack = terrain.SampleHeight(position + Vector3.back * offset);
+
+        var tangentX = new Vector3(2.0f * offset, heightRight - heightLeft, 0).normalized;
+        var tangentZ = new Vector3(0, heightForward - heightBack, 2.0f * offset).normalized;
+
+        var normal = Vector3.Cross(tangentZ, tangentX).normalized;
+
+        return normal;
     }
 
     public void UpdateDirection()
     {
-        _direction = Vector2.zero;
+        _direction = ControllerDirection();
 
-        if (XRSettings.enabled)
-        {
-            _direction = ControllerDirection();
-        }
-        else
-        {
-            if (Input.GetKey(KeyCode.W))
-				_direction.y += 1;
+        if (Input.GetKey(KeyCode.W))
+            _direction.y += 1;
 
-            if (Input.GetKey(KeyCode.S))
-                _direction.y -= 1;
+        if (Input.GetKey(KeyCode.S))
+            _direction.y -= 1;
 
-            if (Input.GetKey(KeyCode.A))
-                _direction.x -= 1;
+        if (Input.GetKey(KeyCode.A))
+            _direction.x -= 1;
 
-            if (Input.GetKey(KeyCode.D))
-                _direction.x += 1;
-        }
+        if (Input.GetKey(KeyCode.D))
+            _direction.x += 1;
 
         if (!Mathf.Approximately(MQTT_Speed, 0))
             _direction.y = 1;
@@ -170,11 +187,17 @@ public class PlayerController : MonoBehaviour
         // To prevent the bike from moving in the Y-axis
         facingDirection.y = 0;
 
+        var position = transform.position;
+
         // Move the bike in the player's forward direction made by Jai (updated by Jonathan)
-		if (!Mathf.Approximately(MQTT_Speed, 0))
-			transform.position += (facingDirection.normalized * MQTT_Speed * Time.deltaTime * _direction.y);
-		else
-			transform.position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
+        if (!Mathf.Approximately(MQTT_Speed, 0))
+            position += (facingDirection.normalized * MQTT_Speed * Time.deltaTime * _direction.y);
+        else
+            position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
+
+        position.y = _groundHeight;
+
+        transform.position = position;
     }
 
     private void RotatePlayer()
@@ -183,13 +206,16 @@ public class PlayerController : MonoBehaviour
         change += _direction.x * rotationSpeed * Time.deltaTime;
 
         //To make bike go towards new rotation made by Jai
-        OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y + change, rb.transform.rotation.z);
+        OldRotation = Quaternion.Euler(_angleX, rb.transform.rotation.y + change, rb.transform.rotation.z);
         //To make bike go towards new rotation made by Jai
         rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.15f);
     }
 
     private Vector2 ControllerDirection()
     {
+        if (!XRSettings.enabled)
+            return Vector2.zero;
+
         if (_controller == null)
         {
             var devices = new List<InputDevice>();
@@ -208,46 +234,11 @@ public class PlayerController : MonoBehaviour
         return value;
     }
 
-    void MoveForward()
-    {
-        // Get the camera's forward direction made by Jai
-        Vector3 cameraForward = transform.forward;
-        cameraForward.y = 0; // To prevent the bike from moving in the Y-axis
-
-        // Move the bike in the camera's forward direction made by Jai
-        transform.position += cameraForward.normalized * movementSpeed * Time.deltaTime;
-    }
-
-    void MoveBackwards()
-    {
-        // Get the camera's forward direction made by Jai
-        Vector3 cameraBackwards = transform.forward;
-        cameraBackwards.y = 0; // To prevent the bike from moving in the Y-axis
-
-        // Move the bike in the camera's forward direction made by Jai
-        transform.position -= cameraBackwards.normalized * movementSpeed * Time.deltaTime;
-    }
-
-    void RotationLeft()
-    {
-        //To make chage in rotation made by Jai
-        change += 1;
-        //To set new rotation
-        OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y - change, rb.transform.rotation.z);
-    }
-
-    void RotationRight()
-    {
-        //To make chage in rotation made by Jai
-        change -= 1;
-        //To set new rotation made by Jai
-        OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y - change, rb.transform.rotation.z);
-    }
-
     //For scoring made by Jai
-
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
+
         if (other.tag == "1")
         {
             score = score + 1;
@@ -275,59 +266,11 @@ public class PlayerController : MonoBehaviour
 
     public void SetSpeed(float newSpeed) //Update achieved speed made by Dennis
     {
-        if (!timerHasBeenActivated && newSpeed > movementSpeed)
-        {
-            timerActive = true;
-            timerHasBeenActivated = true;
-            timerStartTime = Time.time;
-            missionCompleteText.text = "0.0s";
-        }
-
         movementSpeed = newSpeed;
-
-        if (timerActive && newSpeed >= 5 * originalSpeed)
-        {
-            timerActive = false;
-            float endTime = Time.time;
-            missionCompleteText.text = "Timer: " + (endTime - timerStartTime).ToString("F1") + "s";
-            StartCoroutine(ClearMissionCompleteText());
-        }
     }
 
     public float GetOriginalSpeed()
     {
         return originalSpeed;
-    }
-
-    //For exchange apple with score and display message made by Dennis
-    public void DecrementScore()
-    {
-        score--;
-
-        if (!missionCompleted)
-        {
-            missionCompleteText.text = "Mission Complete";
-            missionCompleted = true;
-            StartCoroutine(DisplayMissionCompleteText());
-        }
-    }
-
-    //For display message made by Dennis
-    private IEnumerator DisplayMissionCompleteText()
-    {
-        yield return new WaitForSeconds(3f); // Wait for 3 seconds
-        missionCompleteText.text = ""; // Clear the text after 3 seconds
-    }
-
-
-    private bool timerHasBeenActivated = false;
-
-    //For clear message made by Dennis
-    private IEnumerator ClearMissionCompleteText()
-    {
-        yield return new WaitForSeconds(2.5f);
-        missionCompleteText.text = "Speed up Complete";
-        yield return new WaitForSeconds(3); 
-        missionCompleteText.text = "";
     }
 }
