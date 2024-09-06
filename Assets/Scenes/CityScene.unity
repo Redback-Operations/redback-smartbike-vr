@@ -9717,18 +9717,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1249617805}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1249617807 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5542067809961168323, guid: b746fd2962cf7b04ca8c52a342f5fced,
-    type: 3}
-  m_PrefabInstance: {fileID: 1249617805}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1249952722
 GameObject:
   m_ObjectHideFlags: 0
@@ -10020,10 +10008,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1277739015}
-  mqtt: {fileID: 0}
+  mqtt: {fileID: 1688436727}
   BikeAngle: 0
   positiveModifier: 2
   negativeModifier: 3
+  maximumAngle: 19
+  minimumAngle: -10
   publishPeriod: 1
 --- !u!4 &1279174054 stripped
 Transform:
@@ -11571,12 +11561,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcaa7b49f2367d4c880a91b6f62c956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bike: {fileID: 39477266}
-  speed: 0
-  objective: 0
-  missionComplete: 0
-  missionObjective: {fileID: 1249617807}
-  missionStatus: {fileID: 1642030616}
 --- !u!4 &1535792443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4134154446092604674, guid: f8d972788775663478934cd66f3d168b,
@@ -11675,6 +11659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759151481748946755, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12654,18 +12643,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1642030614}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1642030616 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7676242247300802779, guid: c471d04896c6e2f48a1ecaa52d179aa4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1642030614}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1660232091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13037,6 +13014,57 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 180769458}
   m_SourcePrefab: {fileID: 100100000, guid: f305b9d662b804a4e9b35a1ae7ec40e5, type: 3}
+--- !u!1 &1688436726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688436728}
+  - component: {fileID: 1688436727}
+  m_Layer: 0
+  m_Name: MQTT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1688436727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688436726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a307835828b1c45abf919460305e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mqttHostname: f5b2a345ee944354b5bf1263284d879e.s1.eu.hivemq.cloud
+  mqttPort: 8883
+  mqttUsername: redbackiotclient
+  mqttPassword: IoTClient@123
+  deviceId: 
+  certificate: {fileID: 0}
+  connected: 0
+--- !u!4 &1688436728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688436726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -43.094448, y: -1.1355644, z: 40.416748}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691429545
 GameObject:
   m_ObjectHideFlags: 0
@@ -67128,3 +67156,4 @@ SceneRoots:
   - {fileID: 1213417133}
   - {fileID: 394817080}
   - {fileID: 2044290680}
+  - {fileID: 1688436728}
