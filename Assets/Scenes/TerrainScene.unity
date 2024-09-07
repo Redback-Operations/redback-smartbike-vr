@@ -1101,7 +1101,7 @@ Transform:
   m_GameObject: {fileID: 147873715}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1438.1602, y: 234.6, z: 2464.0261}
+  m_LocalPosition: {x: 1438.1602, y: 134.6, z: 2464.0261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2371,7 +2371,7 @@ PrefabInstance:
     - target: {fileID: 1507636620937791777, guid: 7097ba7ba649e1f41bba232312bdcbd8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 148.2
+      value: 84.9
       objectReference: {fileID: 0}
     - target: {fileID: 1507636620937791777, guid: 7097ba7ba649e1f41bba232312bdcbd8,
         type: 3}
@@ -5029,12 +5029,12 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: b887987ce4cb99a4c8a1933a6fe09593, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 2000
-  m_TreeCrossFadeLength: 200
-  m_TreeMaximumFullLODCount: 10000
-  m_DetailObjectDistance: 1000
-  m_DetailObjectDensity: 1
+  m_TreeDistance: 1000
+  m_TreeBillboardDistance: 800
+  m_TreeCrossFadeLength: 100
+  m_TreeMaximumFullLODCount: 5000
+  m_DetailObjectDistance: 400
+  m_DetailObjectDensity: 0.5
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
