@@ -6,27 +6,27 @@ using UnityEngine.UI;
 
 public class BikePartInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-public SkinnedMeshRenderer SkinnedMeshRenderer; 
-    public int MaterialIndex; 
-    public Color HighlightColor = Color.white; 
-    private Color originalColor; 
+    public MeshRenderer meshRenderer; 
+    public int materialIndex;
+    public Color highlightColor = Color.white; 
+    private Color originalColor;
 
     private Material _material;
 
-    public GameObject colorPickerUI; 
-    public FlexibleColorPicker colorPicker; 
+    public GameObject colorPickerUI;
+    public FlexibleColorPicker colorPicker;
 
     void Start()
     {
-        if (SkinnedMeshRenderer == null)
+        if (meshRenderer  == null)
         {
-            Debug.LogError("SkinnedMeshRenderer is not assigned.");
+            Debug.LogError("MeshRenderer  is not assigned.");
             return;
         }
 
-        if (MaterialIndex < SkinnedMeshRenderer.materials.Length)
+        if (materialIndex < meshRenderer.materials.Length)
         {
-            _material = SkinnedMeshRenderer.materials[MaterialIndex];
+             _material = meshRenderer.materials[materialIndex];
             originalColor = _material.color;
         }
         else
@@ -41,7 +41,7 @@ public SkinnedMeshRenderer SkinnedMeshRenderer;
 
         if (colorPicker != null)
         {
-            colorPicker.onColorChange.AddListener(OnColorChanged); 
+            colorPicker.onColorChange.AddListener(OnColorChanged);
         }
     }
 
@@ -49,11 +49,11 @@ public SkinnedMeshRenderer SkinnedMeshRenderer;
     {
         if (_material != null)
         {
-            _material.color = HighlightColor;
+            _material.color = highlightColor;
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+     public void OnPointerExit(PointerEventData eventData)
     {
         if (_material != null)
         {
@@ -63,7 +63,7 @@ public SkinnedMeshRenderer SkinnedMeshRenderer;
 
 
 
-    public void OnColorChanged(Color newColor)
+     public void OnColorChanged(Color newColor)
     {
         if (_material != null)
         {
@@ -71,11 +71,19 @@ public SkinnedMeshRenderer SkinnedMeshRenderer;
         }
     }
 
+    public void OnButtonClick()
+    {
+        if (colorPickerUI != null)
+        {
+            colorPickerUI.SetActive(true);
+        }
+    }
+
     private void OnDestroy()
     {
         if (colorPicker != null)
         {
-            colorPicker.onColorChange.RemoveListener(OnColorChanged); 
+            colorPicker.onColorChange.RemoveListener(OnColorChanged);
         }
     }
 }

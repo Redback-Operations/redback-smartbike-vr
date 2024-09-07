@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class PlayerBikeScript : MonoBehaviour
 {
-    public CheckpointManager checkpointManager;
-
     private void OnTriggerEnter(Collider other)
     {
+        // must have a checkpoint manager in the scene
+        if (CheckpointManager.Instance == null)
+            return;
+
         if (other.CompareTag("Checkpoint"))
         {
-            checkpointManager.CheckpointReached(other.gameObject, this.gameObject);
+            CheckpointManager.Instance.CheckpointReached(other.gameObject, this.gameObject);
         }
     }
 }
