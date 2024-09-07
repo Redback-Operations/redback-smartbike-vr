@@ -29,12 +29,6 @@ public class PlayerController : MonoBehaviour
 
     private float change = 0;
 
-    //For IOT Made by Krishn
-    protected MqttClient TurnClient;
-    private string clientId = Guid.NewGuid().ToString();
-    protected MqttClient SpeedClient;
-    private string SpeedclientId = Guid.NewGuid().ToString();
-
     public string R_Turn = "LOW";
     public string L_Turn = "LOW";
 	public float MQTT_Speed = 0f;
@@ -51,9 +45,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // get the initial rotation of the player
         change = transform.rotation.eulerAngles.y;
-
-        Debug.Log($"The rotation is currently set to {change}");
 
         // Get the Rigidbody component attached to the bike GameObject
         rb = GetComponent<Rigidbody>();
@@ -65,26 +58,10 @@ public class PlayerController : MonoBehaviour
         //to set score to 0 made by Jai
         score = 0;
 
-        // get MQTT host from PlayerPrefs
-        var mqttHost = PlayerPrefs.GetString("MQTTHost");
-
-        if (string.IsNullOrEmpty(mqttHost))
-            Debug.LogError("The MQTT Host is not setup, please configure in MQTT/Host Settings menu");
-
-        //IOT Updated by Krishn -- Now connected to Redback's MQTT server
-        TurnClient = new MqttClient(mqttHost);
-        TurnClient.MqttMsgPublishReceived += client_MqttMsgReceived;
-        TurnClient.Subscribe(new string[] { "Turn/Right" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-        TurnClient.Subscribe(new string[] { "Turn/Left" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-        TurnClient.Connect(clientId);
-
-        //Krishn-Implementing Speed
-        SpeedClient = new MqttClient(mqttHost, 8883,true,null,null, MqttSslProtocols.TLSv1_2);
-               
-        SpeedClient.MqttMsgPublishReceived += client_MqttMsgReceived;
-        SpeedClient.Subscribe(new string[] { "bike/000001/speed" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-        // FIND USERNAME IN PROJECT HANDOVER DOC - configure in menu MQTT/Host Settings
-        SpeedClient.Connect(SpeedclientId, PlayerPrefs.GetString("MQTTUsername"), PlayerPrefs.GetString("MQTTPassword"));
+        // subscribe to the MQTT topics required
+        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.LeftTurnTopic);
+        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.RightTurnTopic);
+        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.SpeedTopic);
 
         var devices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
@@ -95,18 +72,17 @@ public class PlayerController : MonoBehaviour
 
     void client_MqttMsgReceived(object sender, MqttMsgPublishEventArgs e)
     {
-        if (e.Topic == "Turn/Right")
+        if (e.Topic == Mqtt.RightTurnTopic)
         {
             R_Turn = System.Text.Encoding.UTF8.GetString(e.Message);
         }
-        else if(e.Topic == "Turn/Left")
+        else if(e.Topic == Mqtt.LeftTurnTopic)
         {
             L_Turn = System.Text.Encoding.UTF8.GetString(e.Message);
         }
-        else if( e.Topic == "bike/000001/speed")
+        else if( e.Topic == Mqtt.SpeedTopic)
         {
             string json = System.Text.Encoding.UTF8.GetString(e.Message); 
-            
             string valueKey = "\"value\":";
             int startIndex = json.IndexOf(valueKey) + valueKey.Length;
             int endIndex = json.IndexOf(",", startIndex);
