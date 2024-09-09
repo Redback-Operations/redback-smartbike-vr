@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 public class CheckpointManager : MonoBehaviour
 {
+    public static CheckpointManager Instance;
+
     public GameObject[] checkpoints;
     public NPCBikeManager npcBikeManager;
     public TextMeshProUGUI raceResultText;
@@ -32,6 +34,14 @@ public class CheckpointManager : MonoBehaviour
     }
     void Start()
     {
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+
+        Instance = this;
+
         playerCheckpoints = new bool[checkpoints.Length];
         npcCheckpoints = new bool[checkpoints.Length];
         raceResultText.text = null;
