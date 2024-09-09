@@ -37,12 +37,17 @@ public class Mission6 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the tag on the triggered collision is "GoldStar" or "RedStar"
+        // Check if the tag on the triggered collision is Silver Star, Sliver coin or gold coin.
         if (other.CompareTag("1"))
         {
             CollectItem(other.gameObject, 1, 5f);
         }
         else if (other.CompareTag("2"))
+        {
+          
+            CollectItem(other.gameObject, 2, 5f);
+        }
+        else if (other.CompareTag("5"))
         {
             CollectItem(other.gameObject, 3, 10f);
         }
@@ -86,7 +91,7 @@ public class Mission6 : MonoBehaviour
         missionStatusText.text = "Mission Complete! Final Points: " + points;
         StartCoroutine(HideMissionStatusText());
 
-        // Optionally, hide other UI elements
+        //hide other UI elements
         missionNameText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
         pointsText.gameObject.SetActive(false);
