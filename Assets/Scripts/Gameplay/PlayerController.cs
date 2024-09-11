@@ -59,6 +59,9 @@ public class PlayerController : MonoBehaviour
     public float minXRotation = -45f;
     public float maxXRotation = 45f;
 
+
+    [SerializeField] private float currentSpeed;
+
     void Start()
     {
         // get the initial rotation of the player
@@ -122,6 +125,9 @@ public class PlayerController : MonoBehaviour
         HandleSteering();
         UpdateWheels();
         UpdateHandle();
+
+        //For testing the bike movement
+        currentSpeed = rb.velocity.magnitude;
 
     }
 
