@@ -2,7 +2,11 @@ using System.Collections;
 using UnityEngine;
 
 //Pressing a button from player that opens up the gate - placed in the button GameObject/Prefab
+<<<<<<< HEAD:Assets/button.cs
 public class Button : MonoBehaviour
+=======
+public class GateTrigger : MonoBehaviour
+>>>>>>> 3cea4df05ab2758ffd665f22bbd7c2a83ffa2ee9:Assets/Scripts/Interaction/GateTrigger.cs
 {
     //Referencing the gate, joints and bike.
     public GameObject LJoint;

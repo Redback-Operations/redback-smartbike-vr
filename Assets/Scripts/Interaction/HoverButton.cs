@@ -1,6 +1,7 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR;
@@ -102,6 +103,9 @@ public class HoverButton : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         _selected = true;
         ButtonHoverEnter(null);
     }
