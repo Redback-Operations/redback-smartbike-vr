@@ -166,24 +166,28 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
         int selectedAvatar = PlayerPrefs.GetInt("selectedAvatar", 0);
         GameObject prefab = avatarPrefabs[selectedAvatar];
 
-        GameObject avatar = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject avatar = Instantiate(prefab, Player.transform.position, Player.transform.rotation);
         avatar.transform.SetParent(Player.transform);  // Set avatar as a child of the Player (bike)
-        avatar.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
-        avatar.transform.localPosition = new Vector3(-.02f, 0.65f, 0.10f);
 
-        // Get the Animator component on the avatar
+        // Adjusting the avatar's position relative to the bike
+        avatar.transform.localPosition = new Vector3(-0.02f, 0.55f, -.20f); // Adjust as needed
+        avatar.transform.localRotation = Quaternion.identity; // Resets rotation to align with bike
+
+        Vector3 scale = new Vector3(0.6f, 0.6f, 0.6f); // Adjust scale as needed (0.5 is 50% of the original size)
+        avatar.transform.localScale = scale;
+
         Animator avatarAnimator = avatar.GetComponent<Animator>();
 
-        // Get the PlayerMovementController component from the bike
+        
         PlayerMovementController movementController = Player.GetComponent<PlayerMovementController>();
 
-        // If both the avatar's animator and movement controller are found, assign the animator to the controller
+        
         if (avatarAnimator != null && movementController != null) {
-            movementController.AssignCharacterAnimator(avatarAnimator);  // Assign avatar's animator to the bike's controller
+            movementController.AssignCharacterAnimator(avatarAnimator);  // Assigning avatar's animator to the bike's controller
         } else {
             Debug.LogError("No animator found on avatar prefab or PlayerMovementController is missing.");
         }
-        //KA
+        
 
     }
 
