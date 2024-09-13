@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
 
 public class AppleGenerator : MonoBehaviour
 {
     //public GameObject apple; //Old code for testing
-
     //public Transform spawnPoint;  //Old code for testing
 
-    public PlayerController playerController;
-
+    private PlayerController playerController;
     private AppleCounter appleCounter;
 
 
@@ -17,6 +16,7 @@ public class AppleGenerator : MonoBehaviour
     {
         appleCounter = AppleCounter.GetInstance();
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T) && IsPlayerInShopArea())
@@ -24,10 +24,9 @@ public class AppleGenerator : MonoBehaviour
             if (playerController.score > 0)
             {
                 //Instantiate(apple, spawnPoint.position, Quaternion.identity); //Old code for testing
-                
                 appleCounter.IncrementApplesGenerated();
                 Debug.Log("Apple bought!");
-                playerController.DecrementScore(); 
+                //playerController.DecrementScore(); 
             }
             else
             {
@@ -43,7 +42,13 @@ public class AppleGenerator : MonoBehaviour
         {
             if (collider.CompareTag("Player"))
             {
+                if (playerController == null)
+                    playerController = collider.gameObject.GetComponent<PlayerController>();
                 return true;
+            }
+            else
+            {
+                playerController = null;
             }
         }
         return false;
