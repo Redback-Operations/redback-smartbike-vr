@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class SelectMap : MonoBehaviour
 {
 
-    [SerializeField] private Button desertButton;
-    [SerializeField] private Button cityButton;
+    [SerializeField] private UnityEngine.UI.Button desertButton;
+    [SerializeField] private UnityEngine.UI.Button cityButton;
 
 
     // Start is called before the first frame update
