@@ -350,7 +350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f739e47b7e04d439e7630838881a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointManager: {fileID: 0}
   waypoints:
   - {fileID: 555166827}
   - {fileID: 1876600688}
@@ -3286,6 +3285,11 @@ MonoBehaviour:
   SpawnTarget: {fileID: 800190335}
   Prefabs: []
   Player: {fileID: 0}
+  avatarPrefabs:
+  - {fileID: 4603769971612631423, guid: b918fc7ecfcf0e44382b67a51c1791e1, type: 3}
+  - {fileID: 1622555878925337678, guid: 82b3db82be196e24c8b2739c688e3c54, type: 3}
+  spawnPoint: {fileID: 800190335}
+  bike: {fileID: 34002221728508653, guid: e7fc1e67d1e037f43a17308005f7abd1, type: 3}
 --- !u!4 &479887307
 Transform:
   m_ObjectHideFlags: 0
@@ -7330,7 +7334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f739e47b7e04d439e7630838881a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointManager: {fileID: 0}
   waypoints:
   - {fileID: 466360057}
   - {fileID: 1876600688}
@@ -10011,7 +10014,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f739e47b7e04d439e7630838881a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointManager: {fileID: 0}
   waypoints:
   - {fileID: 12247324}
   - {fileID: 1876600688}
