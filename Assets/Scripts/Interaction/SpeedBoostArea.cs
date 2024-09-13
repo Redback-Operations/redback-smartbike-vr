@@ -23,6 +23,10 @@ public class SpeedBoostArea : MonoBehaviour
 
                 ApplySpeedBoost();
                 fadeCoroutine = StartCoroutine(FadeBackSpeed());
+
+                //Added by Delia - to change up the speed boost ramp for speeds up or slow downs.
+                var rand = new System.Random();
+                speedBoostMultiplier = rand.Next(1, 10);
             }
         }
     }
