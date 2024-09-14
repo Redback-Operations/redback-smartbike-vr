@@ -33,7 +33,7 @@ public class AvatarSelection : MonoBehaviour {
     public void StartGame() {
         PlayerPrefs.SetInt("selectedAvatar", selectedAvatar);
 
-        SceneManager.LoadScene(0, LoadSceneMode.Single); /*To load into the garage scene*/
+        SceneManager.LoadScene(1, LoadSceneMode.Single); /*To load into the garage scene*/
     }
 
     /*To have the animator disabled during the character selection scene */
