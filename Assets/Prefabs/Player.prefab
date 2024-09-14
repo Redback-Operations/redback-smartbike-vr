@@ -198,6 +198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe4581166d86524693613faa2232bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatarPrefabs:
+  - {fileID: 4603769971612631423, guid: b918fc7ecfcf0e44382b67a51c1791e1, type: 3}
+  - {fileID: 1622555878925337678, guid: 82b3db82be196e24c8b2739c688e3c54, type: 3}
   Bikes:
   - {fileID: 1276909053926126734}
   - {fileID: 2747763905237077975}

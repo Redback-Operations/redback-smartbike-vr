@@ -5,8 +5,44 @@ using UnityEngine;
 
 public class BikeCustomization : MonoBehaviour
 {
+    public GameObject[] avatarPrefabs;
+
+    private Animator avatarAnimator;
+    private PlayerMovementController movementController;
+
+    private GameObject avatar;
+
     public GameObject[] Bikes;
     private GameObject _current;
+
+    void Start()
+    {
+        // Spawn the avatar as a child of the bike (Player)
+        int selectedAvatar = PlayerPrefs.GetInt("selectedAvatar", 0);
+        GameObject prefab = avatarPrefabs[selectedAvatar];
+
+        GameObject avatar = Instantiate(prefab, transform.position, transform.rotation);
+        avatar.transform.SetParent(transform);  // Set avatar as a child of the Player (bike)
+
+        // Adjusting the avatar's position relative to the bike
+        avatar.transform.localPosition = new Vector3(-0.02f, 0.55f, 0f); // Adjust as needed
+        avatar.transform.localRotation = Quaternion.identity; // Resets rotation to align with bike
+
+        Vector3 scale = new Vector3(0.45f, 0.45f, 0.45f); // Adjust scale as needed (0.5 is 50% of the original size)
+        avatar.transform.localScale = scale;
+
+        avatarAnimator = avatar.GetComponent<Animator>();
+        movementController = GetComponent<PlayerMovementController>();
+
+        if (avatarAnimator != null && movementController != null)
+        {
+            movementController.AssignCharacterAnimator(avatarAnimator);  // Assigning avatar's animator to the bike's controller
+        }
+        else
+        {
+            Debug.LogError("No animator found on avatar prefab or PlayerMovementController is missing.");
+        }
+    }
 
     public void DisplayBike(int id)
     {
