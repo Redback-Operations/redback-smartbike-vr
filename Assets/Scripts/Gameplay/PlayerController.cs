@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     public string R_Turn = "LOW";
     public string L_Turn = "LOW";
-	public float MQTT_Speed = 0f;
+    public float MQTT_Speed = 0f;
 
     public Transform Bikes;
 
@@ -59,9 +59,12 @@ public class PlayerController : MonoBehaviour
         score = 0;
 
         // subscribe to the MQTT topics required
-        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.LeftTurnTopic);
-        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.RightTurnTopic);
-        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.SpeedTopic);
+        if (Mqtt.Instance != null)
+        {
+            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.LeftTurnTopic);
+            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.RightTurnTopic);
+            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.SpeedTopic);
+        }
 
         var devices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
@@ -76,18 +79,18 @@ public class PlayerController : MonoBehaviour
         {
             R_Turn = System.Text.Encoding.UTF8.GetString(e.Message);
         }
-        else if(e.Topic == Mqtt.LeftTurnTopic)
+        else if (e.Topic == Mqtt.LeftTurnTopic)
         {
             L_Turn = System.Text.Encoding.UTF8.GetString(e.Message);
         }
-        else if( e.Topic == Mqtt.SpeedTopic)
+        else if (e.Topic == Mqtt.SpeedTopic)
         {
-            string json = System.Text.Encoding.UTF8.GetString(e.Message); 
+            string json = System.Text.Encoding.UTF8.GetString(e.Message);
             string valueKey = "\"value\":";
             int startIndex = json.IndexOf(valueKey) + valueKey.Length;
             int endIndex = json.IndexOf(",", startIndex);
             string valueStr = json.Substring(startIndex, endIndex - startIndex);
-			MQTT_Speed = float.Parse(valueStr);
+            MQTT_Speed = float.Parse(valueStr);
         }
     }
 
@@ -210,27 +213,39 @@ public class PlayerController : MonoBehaviour
         return value;
     }
 
-    //For scoring made by Jai
+    // trigger system updated to be use Collectable MonoBehaviour by Jonathan
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        var collectable = other.GetComponent<Collectable>();
 
-        if (other.tag == "1")
+        if (collectable != null)
         {
-            score = score + 1;
-            other.gameObject.SetActive(false);
+            if (collectable.Tag == this.tag)
+                score += collectable.Collect();
         }
-
-        if (other.tag == "2")
+        else
         {
-            score = score + 2;
-            other.gameObject.SetActive(false);
-        }
+            // old collision code by Jai
+            // TODO replace other pickups with collectable script as above, see Prefabs/Pickups/Star for example
+            Debug.Log(other.name);
 
-        if (other.tag == "5")
-        {
-            score = score + 5;
-            other.gameObject.SetActive(false);
+            if (other.tag == "1")
+            {
+                score = score + 1;
+                other.gameObject.SetActive(false);
+            }
+
+            if (other.tag == "2")
+            {
+                score = score + 2;
+                other.gameObject.SetActive(false);
+            }
+
+            if (other.tag == "5")
+            {
+                score = score + 5;
+                other.gameObject.SetActive(false);
+            }
         }
     }
 

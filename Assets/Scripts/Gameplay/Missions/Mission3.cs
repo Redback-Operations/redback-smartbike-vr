@@ -23,29 +23,34 @@ public class Mission3 : MonoBehaviour
     public TextMeshProUGUI missionObjective; //Show objective speed for current situation
     public TextMeshProUGUI missionStatus; //Show player current speed
 
-        IEnumerator StartResetting()
+    IEnumerator StartResetting()
     {
         // Set resetting flag to true to prevent multiple coroutines running simultaneously
         isDelayed = true;
-        
+
         // Wait for the specified delay before resetting the text
         yield return new WaitForSeconds(delay);
-        missionObjective.text = null;
-        missionStatus.text = null;
+
+        if (missionObjective != null)
+            missionObjective.text = null;
+        if (missionStatus != null)
+            missionStatus.text = null;
 
         // Generate a new objective after delay
         GenerateNewObjective();
-        
+
         // Reset the text
         isDelayed = false;
     }
 
-    void GenerateNewObjective(){
+    void GenerateNewObjective()
+    {
         var rand = new System.Random();
         objective = rand.Next(5, 30);
         //Show objective speed for UI - should show for current section so how to split down zones and add
         //Less than 5 makes it reverse so but does that mean it slows down player?
-        missionObjective.text = "Objective speed: " + objective.ToString();
+        if (missionObjective != null)
+            missionObjective.text = "Objective speed: " + objective.ToString();
 
     }
     void Start()
@@ -57,10 +62,16 @@ public class Mission3 : MonoBehaviour
     {
         //Show current speed of the bike
         speed = bike.movementSpeed;
-        missionStatus.text = "Speed: " + bike.movementSpeed; 
+
+        if (missionStatus != null)
+            missionStatus.text = "Speed: " + bike.movementSpeed;
+
         Debug.Log("Objective: " + objective + " Speed: " + bike.movementSpeed);
-         if (bike.movementSpeed >= objective){
-            missionStatus.text = "Speed accomplished";
+
+        if (bike.movementSpeed >= objective)
+        {
+            if (missionStatus != null)
+                missionStatus.text = "Speed accomplished";
             //Will show Objective speed for a few seconds in varying numbers before stopping and restart.
             StartCoroutine(StartResetting());
         }

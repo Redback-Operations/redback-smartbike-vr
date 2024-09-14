@@ -57,7 +57,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd4c0f5e896ced449298302d6af51e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnClient: {fileID: 5181704840213667243}
   movementSpeed: 5
   rotationSpeed: 125
   score: 0
@@ -1651,6 +1650,7 @@ MonoBehaviour:
   MqttPort: 1883
   MqttUsername: 
   MqttPassword: 
+  AutoConnect: 0
 --- !u!1 &2709005852558651207
 GameObject:
   m_ObjectHideFlags: 0
