@@ -171,10 +171,10 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
         avatar.transform.SetParent(Player.transform);  // Set avatar as a child of the Player (bike)
 
         // Adjusting the avatar's position relative to the bike
-        avatar.transform.localPosition = new Vector3(-0.02f, 0.55f, -.20f); // Adjust as needed
+        avatar.transform.localPosition = new Vector3(-0.02f, 0.55f, 0f); // Adjust as needed
         avatar.transform.localRotation = Quaternion.identity; // Resets rotation to align with bike
 
-        Vector3 scale = new Vector3(0.6f, 0.6f, 0.6f); // Adjust scale as needed (0.5 is 50% of the original size)
+        Vector3 scale = new Vector3(0.45f, 0.45f, 0.45f); // Adjust scale as needed (0.5 is 50% of the original size)
         avatar.transform.localScale = scale;
 
         Animator avatarAnimator = avatar.GetComponent<Animator>();
