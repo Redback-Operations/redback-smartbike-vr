@@ -9,13 +9,6 @@ using System;
 
 public class SpeedListener : MonoBehaviour
 {
-    // Connect this to the MQTT object in the inspector
-    // TODO: Do this via looking up the gameobject in the constructor instead
-    public Mqtt mqtt;
-
-    // The device ID of the bike - Used for validation
-    public string deviceId;
-
     // Set to true once this client has subscribed
     public bool subscribed = false;
 
@@ -24,9 +17,9 @@ public class SpeedListener : MonoBehaviour
     void Update()
     {
         // Once MQTT connects, subscribe for updates (if not already subscribed)
-        if (mqtt.connected && !subscribed)
+        if (Mqtt.Instance.IsConnected && !subscribed)
         {
-            mqtt.Subscribe(OnMessage);
+            Mqtt.Instance.Subscribe(OnMessage);
             subscribed = true;
         }
 
@@ -40,7 +33,7 @@ public class SpeedListener : MonoBehaviour
     {
         // Return if this is not the message we are interested in
         String[] topicTokens = e.Topic.Split('/');
-        if (topicTokens[0] != "" || topicTokens[1] != "bike" || topicTokens[2] != deviceId || topicTokens[3] != "speed")
+        if (topicTokens[0] != "" || topicTokens[1] != "bike" || topicTokens[2] != Mqtt.Instance.ConnectionID || topicTokens[3] != "speed")
             return;
 
         // Parse the JSON payload

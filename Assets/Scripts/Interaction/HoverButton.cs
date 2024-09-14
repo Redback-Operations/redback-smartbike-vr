@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR;
@@ -67,7 +67,6 @@ public class HoverButton : MonoBehaviour
         {
             _interactable.hoverEntered.AddListener(ButtonHoverEnter);
             _interactable.hoverExited.AddListener(ButtonHoverExit);
-
             _interactable.selectEntered.AddListener(OnButtonInteract);
         }
 
@@ -83,7 +82,6 @@ public class HoverButton : MonoBehaviour
         {
             _interactable.hoverEntered.RemoveListener(ButtonHoverEnter);
             _interactable.hoverExited.RemoveListener(ButtonHoverExit);
-
             _interactable.selectEntered.RemoveListener(OnButtonInteract);
         }
 
@@ -96,7 +94,7 @@ public class HoverButton : MonoBehaviour
     void LateUpdate()
     {
         // not needed, will use the events instead
-        if (XRSettings.enabled || !_selected || _button != null)
+        if (!_selected || _button != null)
             return;
 
         if (Input.GetMouseButtonDown(0))
@@ -105,6 +103,9 @@ public class HoverButton : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         _selected = true;
         ButtonHoverEnter(null);
     }
@@ -148,7 +149,7 @@ public class HoverButton : MonoBehaviour
                 if (string.IsNullOrWhiteSpace(TargetScene))
                     return;
 
-                SceneManager.LoadScene(TargetScene);
+                MapLoader.LoadScene(TargetScene);
             } break;
 
             case HoverButtonAction.SetInteger:
@@ -158,11 +159,11 @@ public class HoverButton : MonoBehaviour
 
             case HoverButtonAction.SetIntegerThenLoad:
             {
-                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetValue))
                     return;
 
                 PlayerPrefs.SetInt(TargetValue, IntValue);
-                SceneManager.LoadScene(TargetScene);
+                MapLoader.LoadScene(TargetScene);
             } break;
 
             case HoverButtonAction.SetString:
@@ -172,11 +173,11 @@ public class HoverButton : MonoBehaviour
 
             case HoverButtonAction.SetStringThenLoad:
             {
-                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetScene))
+                if (string.IsNullOrWhiteSpace(TargetScene) || string.IsNullOrWhiteSpace(TargetValue))
                     return;
 
                 PlayerPrefs.SetString(TargetValue, StringValue);
-                SceneManager.LoadScene(TargetScene);
+                MapLoader.LoadScene(TargetScene);
             } break;
 
             default:

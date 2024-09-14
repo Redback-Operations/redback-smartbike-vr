@@ -26,27 +26,25 @@ public class PlayerMovementController : MonoBehaviour {
 
     private void Update() {
         if (bikeAnim != null) {
-            float vert = Input.GetAxis("Vertical"); 
+            float vert = Input.GetAxis("Vertical");
             float horz = Input.GetAxis("Horizontal");
 
-            
             bool isMoving = vert != 0 || horz != 0;
 
             //Setting Animator parameters based on movement for bike
             bikeAnim.SetBool("Moving", isMoving);
-            bikeAnim.SetFloat("Speed", isMoving ? vert : 0.0f); 
+            bikeAnim.SetFloat("Speed", isMoving ? vert : 0.0f);
 
             //Setting Animator parameters based on movement for character
             if (characterAnim != null) {
                 characterAnim.SetBool("Moving", isMoving);
-                characterAnim.SetFloat("Speed", isMoving ? vert : 0.0f); 
+                characterAnim.SetFloat("Speed", isMoving ? vert : 0.0f);
             }
 
+            // Move the bike forward/backward and rotate based on input
             this.transform.Translate(0.0f, 0.0f, vert * MoveSpeed * Time.deltaTime);
             this.transform.Rotate(0.0f, horz * TurnSpeed * Time.deltaTime, 0.0f);
         }
     }
-
-
 
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LoadBike : MonoBehaviour
 {
-    public GameObject[] bikeSelected;
+    public BikeCustomization Customization;
     private int _currentSelected;
 
     void Start()
@@ -16,22 +16,7 @@ public class LoadBike : MonoBehaviour
 
     public void DisplayBike(int id)
     {
-        // ensure there are bikes available to select from
-        if (bikeSelected.Length == 0)
-            return;
-
-        // ensure the bike is available
-        id = Math.Clamp(id, 0, bikeSelected.Length - 1);
-
-        // loop through each bike available
-        for (int index = 0; index < bikeSelected.Length; index++)
-        {
-            // update the active status based on id selected
-            bikeSelected[index].SetActive(index == id);
-        }
-
-        _currentSelected = id;
-        RestoreCustomization();
+        Customization.DisplayBike(id);
     }
 
     public void ResetBike()
@@ -39,8 +24,10 @@ public class LoadBike : MonoBehaviour
         // store the currently selected bike
         _currentSelected = PlayerPrefs.GetInt("SelectedBike");
         Debug.Log("selected Character: " + _currentSelected);
+
         // reset the bike to the current selected
-        DisplayBike(_currentSelected);
+        Customization.DisplayBike(_currentSelected);
+        Customization.RestoreCustomization(PlayerPrefs.GetString($"Bike_{_currentSelected}"));
     }
 
     public void SelectBike()
@@ -53,78 +40,24 @@ public class LoadBike : MonoBehaviour
     {
         Debug.Log($"Updating Bike {_currentSelected}, setting {name}[{index}] to {ColorUtility.ToHtmlStringRGB(color)}");
 
-        var data = new BikeCustomization{ CustomColors = new List<BikeCustomColor>() };
+        var data = new BikeCustomization.Customization{ CustomColors = new List<BikeCustomization.CustomColor>() };
         var current = PlayerPrefs.GetString($"Bike_{_currentSelected}");
 
         if (!string.IsNullOrEmpty(current))
-            data = JsonUtility.FromJson<BikeCustomization>(current);
+            data = JsonUtility.FromJson<BikeCustomization.Customization>(current);
 
         var target = data.CustomColors.FirstOrDefault(e => e.Material == index);
 
         if (target == null)
-            data.CustomColors.Add(target = new BikeCustomColor());
+            data.CustomColors.Add(target = new BikeCustomization.CustomColor());
 
         target.Name = name;
         target.Material = index;
         target.Color = color;
 
-        PlayerPrefs.SetString($"Bike_{_currentSelected}", JsonUtility.ToJson(data));
-    }
+        var json = JsonUtility.ToJson(data);
 
-    public void RestoreCustomization()
-    {
-        Debug.Log("Restoring Customization (if any)");
-
-        var current = PlayerPrefs.GetString($"Bike_{_currentSelected}");
-
-        if (string.IsNullOrEmpty(current))
-            return;
-
-        Debug.Log($" - Customization found, {current}");
-
-        var data = JsonUtility.FromJson<BikeCustomization>(current);
-
-        foreach (var item in data.CustomColors)
-        {
-            var target = FindTarget(bikeSelected[_currentSelected].gameObject, item.Name);
-
-            if (target == null)
-                continue;
-
-            var renderer = target.GetComponent<Renderer>();
-
-            if (renderer != null)
-                renderer.materials[item.Material].color = item.Color;
-        }
-    }
-
-    private GameObject FindTarget(GameObject current, string name)
-    {
-        if (current.name == name)
-            return current;
-
-        foreach (Transform child in current.transform)
-        {
-            var target = FindTarget(child.gameObject, name);
-
-            if (target != null)
-                return target;
-        }
-
-        return null;
-    }
-
-    [Serializable]
-    public class BikeCustomization
-    {
-        public List<BikeCustomColor> CustomColors;
-    }
-
-    [Serializable]
-    public class BikeCustomColor
-    {
-        public string Name;
-        public int Material;
-        public Color Color;
+        PlayerPrefs.SetString($"Bike_{_currentSelected}", json);
+        Debug.Log($"JSON is {json.Length} bytes");
     }
 }
