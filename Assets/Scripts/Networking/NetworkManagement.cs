@@ -18,7 +18,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
     // prefabs for spawning
     public GameObject NetworkPlayer;
-
+ 
     public Transform SpawnTarget;
     private MissionSpawn[] _spawnPoints;
 
@@ -135,7 +135,6 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
             return;
 
         // spawn the bikes with brains, others will show based on the current location of the bikes on the server
-
     }
 
     private NetworkPlayer FindNetworkPlayer(int id)

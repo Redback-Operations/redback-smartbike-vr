@@ -4992,6 +4992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
       propertyPath: bikeSelected.Array.size
       value: 4
       objectReference: {fileID: 0}

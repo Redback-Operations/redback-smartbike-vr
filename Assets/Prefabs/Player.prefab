@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 3502780611218496969}
   - component: {fileID: 2159730943896507330}
   - component: {fileID: 996567693356485488}
+  - component: {fileID: -6243379898425970557}
+  - component: {fileID: 4502725951429615996}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -196,6 +198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe4581166d86524693613faa2232bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  avatarPrefabs:
+  - {fileID: 4603769971612631423, guid: b918fc7ecfcf0e44382b67a51c1791e1, type: 3}
+  - {fileID: 1622555878925337678, guid: 82b3db82be196e24c8b2739c688e3c54, type: 3}
   Bikes:
   - {fileID: 1276909053926126734}
   - {fileID: 2747763905237077975}
@@ -220,6 +225,42 @@ MonoBehaviour:
   maximumAngle: 19
   minimumAngle: -10
   publishPeriod: 1
+--- !u!114 &-6243379898425970557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34002221728508653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3dca1d8de2df30489d7fa14f5682c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 1.5
+  TurnSpeed: 100
+  bike: {fileID: 34002221728508653}
+--- !u!95 &4502725951429615996
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34002221728508653}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2efcbc135e613e142af27c68629f0108, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &280326954019154437
 GameObject:
   m_ObjectHideFlags: 0
@@ -3656,7 +3697,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.45
   far clip plane: 1000
   field of view: 60
   orthographic: 0
