@@ -20,9 +20,21 @@ public class Mission6 : MonoBehaviour
         missionCompletion = false;
         points = 0;
 
+        // find children with collectable and subscribe
+        var collectables = GetComponentsInChildren<Collectable>();
+        foreach (var collectable in collectables)
+        {
+            collectable.Register(Collect);
+        }
+
         // Sets UI to default
         UpdateUI();
         StartCoroutine(CountdownTimer());
+    }
+
+    private void Collect(Collectable item)
+    {
+        CollectItem(item.gameObject, item.Value, 3);
     }
 
     void Update()
@@ -44,7 +56,6 @@ public class Mission6 : MonoBehaviour
         }
         else if (other.CompareTag("2"))
         {
-          
             CollectItem(other.gameObject, 2, 5f);
         }
         else if (other.CompareTag("5"))
@@ -70,9 +81,12 @@ public class Mission6 : MonoBehaviour
     // Changes the UI for the player based on the defined mission 
     private void UpdateUI()
     {
-        missionNameText.text = "Mission: " + missionName; // Tells player the goal
-        timerText.text = "Time: " + Mathf.Ceil(remainingTime) + "s"; // Display remaining time
-        pointsText.text = "Points: " + points; // Display current points
+        if (missionNameText != null)
+            missionNameText.text = "Mission: " + missionName; // Tells player the goal
+        if (timerText != null)
+            timerText.text = "Time: " + Mathf.Ceil(remainingTime) + "s"; // Display remaining time
+        if (pointsText != null)
+            pointsText.text = "Points: " + points; // Display current points
     }
 
     private IEnumerator CountdownTimer()
@@ -81,22 +95,31 @@ public class Mission6 : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             remainingTime--;
+
+            Debug.Log("Time Remaining " + remainingTime);
+
             UpdateUI();
         }
     }
 
     private void EndMission()
     {
+        Debug.Log("Mission Ended! Points " + points + " Remaining Time " + remainingTime);
+
         // Display final points and mission completion message
-        missionStatusText.text = "Mission Complete! Final Points: " + points;
-        StartCoroutine(HideMissionStatusText());
+        if (missionStatusText != null)
+        {
+            missionStatusText.text = "Mission Complete! Final Points: " + points;
+            StartCoroutine(HideMissionStatusText());
+        }
 
         //hide other UI elements
-        missionNameText.gameObject.SetActive(false);
-        timerText.gameObject.SetActive(false);
-        pointsText.gameObject.SetActive(false);
-
-
+        if (missionStatusText != null)
+            missionNameText.gameObject.SetActive(false);
+        if (timerText != null)
+            timerText.gameObject.SetActive(false);
+        if (pointsText != null)
+            pointsText.gameObject.SetActive(false);
     }
 
     private IEnumerator HideMissionStatusText()
