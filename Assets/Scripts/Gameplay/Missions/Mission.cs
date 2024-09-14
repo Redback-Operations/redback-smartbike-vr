@@ -28,7 +28,7 @@ public class Mission : MonoBehaviour
         // Check if the tag on the triggered collision is the same as the either of the coin tags
         if (other.CompareTag("1") || other.CompareTag("2"))
         {
-            CollectItem(other.gameObject);
+            //CollectItem(other.gameObject);
         }
     }
 

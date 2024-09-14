@@ -22,7 +22,7 @@ public class Mqtt : MonoBehaviour
 
     // Send commands to these topics to change the experience on the bike
     public static string ResistanceTopic => $"bike/{DeviceId}/resistance";
-    public static string InclineTopic => $"bike/{DeviceId}/incline";
+    public static string InclineTopic => $"bike/{DeviceId}/incline/control";
     public static string FanTopic => $"bike/{DeviceId}/fan";
     // Subscribe to these topics to receive information from the bike/cyclist
     public static string HeartRateTopic => $"bike/{DeviceId}/heartrate";
@@ -59,7 +59,7 @@ public class Mqtt : MonoBehaviour
         // create the mqtt client ready for communication
         _client = new MqttClient(MqttHostname, MqttPort, true, null, null, MqttSslProtocols.TLSv1_2);
         _connected = false;
-        
+
         if (AutoConnect)
             Connect();
     }
