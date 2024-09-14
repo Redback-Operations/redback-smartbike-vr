@@ -24,6 +24,14 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
     public List<GameObject> Prefabs;
 
+    public GameObject[] avatarPrefabs;
+    public Transform spawnPoint;
+
+    public GameObject bike;
+    private PlayerMovementController movementController;
+
+    private GameObject avatar;
+
     // local version of the player
     public NetworkObject Player;
 
@@ -32,15 +40,9 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
     private List<NetworkObject> _networkItems;
 
 
-    //KA
-    public GameObject[] avatarPrefabs;
-    public Transform spawnPoint;
-
-    public GameObject bike;
-    private PlayerMovementController movementController;
-
-    private GameObject avatar;
-    //KA 
+    
+    
+    
     void Start()
     {
         if (Instance != null)
@@ -125,7 +127,6 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
         _runner.Service();*/
 
-        ////KA
   
         //Getting the avatar's Animator
         Animator avatarAnimator = avatar.GetComponent<Animator>();
@@ -138,7 +139,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
         } else {
             Debug.LogError("No animator found on avatar prefab or PlayerMovementController is missing.");
         }
-        //KA
+       
     }
 
     void SpawnPlayer()
@@ -162,7 +163,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
         // spawn the bikes with brains, others will show based on the current location of the bikes on the server
 
-        // KA Spawn the avatar as a child of the bike (Player)
+        // Spawn the avatar as a child of the bike (Player)
         int selectedAvatar = PlayerPrefs.GetInt("selectedAvatar", 0);
         GameObject prefab = avatarPrefabs[selectedAvatar];
 
