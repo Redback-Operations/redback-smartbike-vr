@@ -6,99 +6,77 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 using uPLibrary.Networking.M2Mqtt;
 using System.Net.Security;
 using System;
-using UnityEditor;
 
 public class Mqtt : MonoBehaviour
 {
+    // TODO: Work out how to set these variables to the appropriate values but
     // ensure the credentials are NEVER CHECKED INTO THE REPOSITORY
-    public string MqttHostname = "localhost";
-    public int MqttPort = 1883;
-    public string MqttUsername = "";
-    public string MqttPassword = "";
-    public bool AutoConnect = false;
+    public string mqttHostname = "localhost";
+    public int mqttPort = 1883;
+    public string mqttUsername = "";
+    public string mqttPassword = "";
 
-    // Device ID of the Bike being connected to
-    public static string DeviceId = "000001";
+    // The deviceId should be set to the id of the bike, and then not changed at runtime
+    // While the new topic names will be returned, the client will still be subscribed to
+    // the topics for the previous bike
+    public string deviceId = "";
+
+    // Connect the hivemq.certificate.txt file to this in the Inspector
+    public TextAsset certificate;
 
     // Send commands to these topics to change the experience on the bike
-    public static string ResistanceTopic => $"bike/{DeviceId}/resistance";
-    public static string InclineTopic => $"bike/{DeviceId}/incline";
-    public static string FanTopic => $"bike/{DeviceId}/fan";
-    // Subscribe to these topics to receive information from the bike/cyclist
-    public static string HeartRateTopic => $"bike/{DeviceId}/heartrate";
-    public static string CadenceTopic => $"bike/{DeviceId}/cadence";
-    public static string SpeedTopic => $"bike/{DeviceId}/speed";
-    public static string PowerTopic => $"bike/{DeviceId}/power";
+    public string resistanceTopic { get { return "/bike/" + deviceId + "/resistance"; } }
+    public string inclineTopic { get { return "/bike/" + deviceId + "/incline"; } }
+    public string fanTopic { get { return "/bike/" + deviceId + "/fan"; } }
 
-    public string WildcardTopic => $"bike/{DeviceId}/#";
+    // Subscribe to these topics to receive information from sensors on the bike/cyclist
+    public string heartrateTopic { get { return "/bike/" + deviceId + "/heartrate"; } }
+    public string cadenceTopic { get { return "/bike/" + deviceId + "/cadence"; } }
+    public string speedTopic { get { return "/bike/" + deviceId + "/speed"; } }
+    public string powerTopic { get { return "/power/" + deviceId + "/power"; } }
 
-    public static string LeftTurnTopic => $"Turn/Left";
-    public static string RightTurnTopic => $"Turn/Right";
+    // Set to true when connection is established. Don't subscribe before this occurs
+    public bool connected = false;
 
-    public string ConnectionID => Guid.NewGuid().ToString();
+    // Wildcard topic to receive all messages for this bike
+    public string wildcardTopic { get { return "/bike/" + deviceId + "/#"; } }
 
-    private static Mqtt _instance;
-    public static Mqtt Instance => _instance;
+    // Private objects and variables
+    private MqttClient client;
 
-    private MqttClient _client;
-
-    private bool _connected;
-    public bool IsConnected => _connected;
-
+    // Start is called before the first frame update
     void Start()
     {
-        // if this is the first one, make it a singleton accessible anywhere
-        if (_instance == null)
-        {
-            // store the instance
-            _instance = this;
-            // ensure it isn't destroyed on scene change
-            DontDestroyOnLoad(this);
-        }
+        Connect();
+        //client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
 
-        // create the mqtt client ready for communication
-        _client = new MqttClient(MqttHostname, MqttPort, true, null, null, MqttSslProtocols.TLSv1_2);
-        _connected = false;
-        
-        if (AutoConnect)
-            Connect();
+        // To log all received messages to the console for debugging use the following line
+        Subscribe(client_MqttMsgPublishReceived);
+
+        // Subscribe to the wildcard topic to receive all messages for this bike
+        // If you don't need all messages, you can subscribe just to the topic(s) required
+        byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE };
+        client.Subscribe(new string[] { wildcardTopic }, qosLevels);
+        //Debug.Log("Subscribed to " + wildcardTopic);
     }
 
-    // connection system to connect to this instance
-    public bool Connect()
+    private void Connect()
     {
+        X509Certificate cert = new X509Certificate();
+        cert.Import(certificate.bytes);
+
+        client = new MqttClient(mqttHostname, mqttPort, true, cert, null, MqttSslProtocols.TLSv1_2);
+        string clientId = Guid.NewGuid().ToString();
         try
         {
-            Debug.Log($"Trying to connect to {MqttHostname}:{MqttPort}");
-            _client.Connect(ConnectionID, MqttUsername, MqttPassword);
-            _connected = true;
-
-            Debug.Log(" - connection successful");
+            client.Connect(clientId, mqttUsername, mqttPassword);
+            connected = true;
+            //Debug.Log("Connected to " + mqttHostname + ":" + mqttPort);
         }
         catch (Exception e)
         {
-            Debug.LogError(" - connection error: " + e.Message);
-            _connected = false;
+            Debug.LogError("Connection error: " + e);
         }
-
-        return _connected;
-    }
-
-    // subscribe to the following events with the handler callback, passing no subscriptions will subscribe to the wildcard topic
-    public void Subscribe(MqttClient.MqttMsgPublishEventHandler handler, params string[] subscriptions)
-    {
-        if (subscriptions.Length == 0)
-            subscriptions = new[] { WildcardTopic };
-
-        _client.MqttMsgPublishReceived += handler;
-        _client.Subscribe(subscriptions, new[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-        Debug.Log($"Subscribed to messages: {string.Join(", ", subscriptions)}");
-    }
-
-    public void Unsubscribe(MqttClient.MqttMsgPublishEventHandler handler)
-    {
-        _client.MqttMsgPublishReceived -= handler;
-        Debug.Log("Unsubscribed from messages");
     }
 
     // Send a message to the broker on a certain topic
@@ -123,7 +101,24 @@ public class Mqtt : MonoBehaviour
     // and that it will not appear duplicate times. This incurs a 2 RTT overhead.
     public void Publish(string topic, string msg)
     {
-        _client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE, false);
-        Debug.Log("Published: topic " + topic + " msg " + msg);
+        client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE, false);
+        //Debug.Log("Published: topic " + topic + " msg " + msg);
+    }
+
+    // Add a delegate to receive notifications for this bike
+    public void Subscribe(uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgPublishEventHandler callback) {
+        client.MqttMsgPublishReceived += callback;
+    }
+
+    // Remove the delegate to stop receiving notifications for this bike
+    public void Unsubscribe(uPLibrary.Networking.M2Mqtt.MqttClient.MqttMsgPublishEventHandler callback) {
+        client.MqttMsgPublishReceived -= callback;
+    }
+
+    // An example of the callback function would look like
+    public void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+    {
+        string msg = System.Text.Encoding.UTF8.GetString(e.Message);
+        Debug.Log("Received message from " + e.Topic + " : " + msg);
     }
 }

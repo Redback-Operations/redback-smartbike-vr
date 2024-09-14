@@ -20,11 +20,11 @@ public class SelectMap : MonoBehaviour
 
     private void desertClick()
     {
-        MapLoader.LoadScene(MapLoader.Scene.MainScene); //using MapLoader to load a scene
+        MapLoader.Load(MapLoader.Scene.MainScene); //using MapLoader to load a scene
     }
     private void cityClick()
     {
-        MapLoader.LoadScene(MapLoader.Scene.CityScene); //using MapLoader to load a scene
+        MapLoader.Load(MapLoader.Scene.CityScene); //using MapLoader to load a scene
     }
 
 }

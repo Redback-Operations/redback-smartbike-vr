@@ -1,4 +1,5 @@
 using UnityEngine;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,50 +8,43 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 using System.Collections;
 using TMPro;
 using UnityEngine.XR;
-using System.Text;
-using System.Security.Cryptography.X509Certificates;
-using System.Net.Security;
-using UnityEditor.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 5f;
-    private float originalSpeed = 5f;
-
     public float rotationSpeed = 90f;
-
     private Rigidbody rb;
 
     //For score made by Jai
     public int score;
 
+    public TextMeshProUGUI scoreUI;
+
     //to store rotation made by Jai
     private Quaternion OldRotation;
 
     private float change = 0;
+    
+
+    //For IOT Mad by Kirshin
+    protected MqttClient client;
+    private string clientId = Guid.NewGuid().ToString();
 
     public string R_Turn = "LOW";
     public string L_Turn = "LOW";
-	public float MQTT_Speed = 0f;
 
-    public Transform Bikes;
+
+    //For mission complete made by Dennis
+    public TextMeshProUGUI missionCompleteText;
+    private bool missionCompleted = false;
 
     private InputDevice? _controller;
     private Vector2 _direction = Vector2.zero;
 
-    private float _groundHeight = 0;
-    private float _angleX = 0;
-
-    private BoxCollider _collider;
-
     void Start()
     {
-        // get the initial rotation of the player
-        change = transform.rotation.eulerAngles.y;
-
         // Get the Rigidbody component attached to the bike GameObject
         rb = GetComponent<Rigidbody>();
-        _collider = GetComponent<BoxCollider>();
 
         // Freeze rotation along the X and Z axes to prevent tumbling
         rb.freezeRotation = true;
@@ -58,10 +52,13 @@ public class PlayerController : MonoBehaviour
         //to set score to 0 made by Jai
         score = 0;
 
-        // subscribe to the MQTT topics required
-        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.LeftTurnTopic);
-        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.RightTurnTopic);
-        Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.SpeedTopic);
+        //IOT Made by Krishin
+        client = new MqttClient("broker.emqx.io");
+        client.MqttMsgPublishReceived += client_MqttMsgReceived;
+        client.Subscribe(new string[] { "Turn/Right" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+        client.Subscribe(new string[] { "Turn/Left" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+
+        client.Connect(clientId);
 
         var devices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
@@ -72,82 +69,49 @@ public class PlayerController : MonoBehaviour
 
     void client_MqttMsgReceived(object sender, MqttMsgPublishEventArgs e)
     {
-        if (e.Topic == Mqtt.RightTurnTopic)
+        if (e.Topic == "Turn/Right")
         {
             R_Turn = System.Text.Encoding.UTF8.GetString(e.Message);
         }
-        else if(e.Topic == Mqtt.LeftTurnTopic)
+        else
         {
             L_Turn = System.Text.Encoding.UTF8.GetString(e.Message);
-        }
-        else if( e.Topic == Mqtt.SpeedTopic)
-        {
-            string json = System.Text.Encoding.UTF8.GetString(e.Message); 
-            string valueKey = "\"value\":";
-            int startIndex = json.IndexOf(valueKey) + valueKey.Length;
-            int endIndex = json.IndexOf(",", startIndex);
-            string valueStr = json.Substring(startIndex, endIndex - startIndex);
-			MQTT_Speed = float.Parse(valueStr);
         }
     }
 
     void Update()
     {
+        //To check score made by Jai
+        scoreUI.text = score.ToString();
+
         UpdateDirection();
 
         MovePlayer();
         RotatePlayer();
     }
 
-    void LateUpdate()
-    {
-        if (Terrain.activeTerrain == null)
-            return;
-
-        _groundHeight = Terrain.activeTerrain.SampleHeight(transform.position);
-
-        var normal = CalculateNormal(Terrain.activeTerrain, transform.position);
-        var forward = Vector3.Cross(normal, -transform.right);
-
-        var rotation = Quaternion.LookRotation(forward, normal);
-        _angleX = rotation.eulerAngles.x;
-    }
-
-    private Vector3 CalculateNormal(Terrain terrain, Vector3 position)
-    {
-        var offset = 0.1f;
-
-        var heightLeft = terrain.SampleHeight(position + Vector3.left * offset);
-        var heightRight = terrain.SampleHeight(position + Vector3.right * offset);
-        var heightForward = terrain.SampleHeight(position + Vector3.forward * offset);
-        var heightBack = terrain.SampleHeight(position + Vector3.back * offset);
-
-        var tangentX = new Vector3(2.0f * offset, heightRight - heightLeft, 0).normalized;
-        var tangentZ = new Vector3(0, heightForward - heightBack, 2.0f * offset).normalized;
-
-        var normal = Vector3.Cross(tangentZ, tangentX).normalized;
-
-        return normal;
-    }
-
     public void UpdateDirection()
     {
-        _direction = ControllerDirection();
+        _direction = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.W))
-            _direction.y += 1;
+        if (XRSettings.enabled)
+        {
+            _direction = ControllerDirection();
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.W))
+                _direction.y += 1;
 
-        if (Input.GetKey(KeyCode.S))
-            _direction.y -= 1;
+            if (Input.GetKey(KeyCode.S))
+                _direction.y -= 1;
 
-        if (Input.GetKey(KeyCode.A))
-            _direction.x -= 1;
+            if (Input.GetKey(KeyCode.A))
+                _direction.x -= 1;
 
-        if (Input.GetKey(KeyCode.D))
-            _direction.x += 1;
-
-        if (!Mathf.Approximately(MQTT_Speed, 0))
-            _direction.y = 1;
+            if (Input.GetKey(KeyCode.D))
+                _direction.x += 1;
+        }
 
         if (L_Turn == "LEFT")
             _direction.x = -1;
@@ -161,19 +125,10 @@ public class PlayerController : MonoBehaviour
         // Get the playter's forward direction made by Jai (updated by Jonathan)
         Vector3 facingDirection = transform.forward;
         // To prevent the bike from moving in the Y-axis
-        facingDirection.y = 0;
-
-        var position = transform.position;
+        facingDirection.y = 0; 
 
         // Move the bike in the player's forward direction made by Jai (updated by Jonathan)
-        if (!Mathf.Approximately(MQTT_Speed, 0))
-            position += (facingDirection.normalized * MQTT_Speed * Time.deltaTime * _direction.y);
-        else
-            position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
-
-        position.y = _groundHeight;
-
-        transform.position = position;
+        transform.position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
     }
 
     private void RotatePlayer()
@@ -182,16 +137,12 @@ public class PlayerController : MonoBehaviour
         change += _direction.x * rotationSpeed * Time.deltaTime;
 
         //To make bike go towards new rotation made by Jai
-        OldRotation = Quaternion.Euler(_angleX, rb.transform.rotation.y + change, rb.transform.rotation.z);
-        //To make bike go towards new rotation made by Jai
+        OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y + change, rb.transform.rotation.z);
         rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.15f);
     }
 
     private Vector2 ControllerDirection()
     {
-        if (!XRSettings.enabled)
-            return Vector2.zero;
-
         if (_controller == null)
         {
             var devices = new List<InputDevice>();
@@ -210,11 +161,46 @@ public class PlayerController : MonoBehaviour
         return value;
     }
 
+    void MoveForward()
+    {
+        // Get the camera's forward direction made by Jai
+        Vector3 cameraForward = transform.forward;
+        cameraForward.y = 0; // To prevent the bike from moving in the Y-axis
+
+        // Move the bike in the camera's forward direction made by Jai
+        transform.position += cameraForward.normalized * movementSpeed * Time.deltaTime;
+    }
+
+    void MoveBackwards()
+    {
+        // Get the camera's forward direction made by Jai
+        Vector3 cameraBackwards = transform.forward;
+        cameraBackwards.y = 0; // To prevent the bike from moving in the Y-axis
+
+        // Move the bike in the camera's forward direction made by Jai
+        transform.position -= cameraBackwards.normalized * movementSpeed * Time.deltaTime;
+    }
+
+    void RotationLeft()
+    {
+        //To make chage in rotation made by Jai
+        change += 1;
+        //To set new rotation
+        OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y - change, rb.transform.rotation.z);
+    }
+
+    void RotationRight()
+    {
+        //To make chage in rotation made by Jai
+        change -= 1;
+        //To set new rotation made by Jai
+        OldRotation = Quaternion.Euler(rb.transform.rotation.x, rb.transform.rotation.y - change, rb.transform.rotation.z);
+    }
+
     //For scoring made by Jai
+
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
-
         if (other.tag == "1")
         {
             score = score + 1;
@@ -240,13 +226,28 @@ public class PlayerController : MonoBehaviour
         return movementSpeed;
     }
 
-    public void SetSpeed(float newSpeed) //Update achieved speed made by Dennis
+    public void SetSpeed(float newSpeed)
     {
         movementSpeed = newSpeed;
     }
 
-    public float GetOriginalSpeed()
+    //For exchange apple with score and display message made by Dennis
+    public void DecrementScore()
     {
-        return originalSpeed;
+        score--;
+
+        if (!missionCompleted)
+        {
+            missionCompleteText.text = "Mission Complete";
+            missionCompleted = true;
+            StartCoroutine(DisplayMissionCompleteText());
+        }
+    }
+
+    //For display message made by Dennis
+    private IEnumerator DisplayMissionCompleteText()
+    {
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+        missionCompleteText.text = ""; // Clear the text after 3 seconds
     }
 }

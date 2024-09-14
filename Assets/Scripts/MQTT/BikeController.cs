@@ -5,6 +5,8 @@ using System;
 
 public class BikeController : MonoBehaviour
 {
+    // Set this to the Mqtt object
+    public Mqtt mqtt;
     public bool dirty = true;
 
     private int resistance = 24;    // Set resistance to 24% (valid range 0 to 100)
@@ -58,14 +60,12 @@ public class BikeController : MonoBehaviour
     // After we are connected, if the bike needs updating, publish the new state
     void Update()
     {
-        if (Mqtt.Instance.IsConnected && dirty)
+        if (mqtt.connected && dirty)
         {
             var ts = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
-
-            Mqtt.Instance.Publish(Mqtt.ResistanceTopic, "{\"ts\": " + ts + ", \"resistance\": " + resistance + "}");
-            Mqtt.Instance.Publish(Mqtt.InclineTopic, "{\"ts\": " + ts + ", \"incline\": " + incline + "}");
-            Mqtt.Instance.Publish(Mqtt.FanTopic, "{\"ts\": " + ts + ", \"fan\": " + fan + "}");
-
+            mqtt.Publish(mqtt.resistanceTopic, "{\"ts\": " + ts + ", \"resistance\": " + resistance + "}");
+            mqtt.Publish(mqtt.inclineTopic, "{\"ts\": " + ts + ", \"incline\": " + incline + "}");
+            mqtt.Publish(mqtt.fanTopic, "{\"ts\": " + ts + ", \"fan\": " + fan + "}");
             dirty = false;
         }
     }

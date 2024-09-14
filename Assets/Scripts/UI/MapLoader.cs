@@ -18,53 +18,23 @@ public static class MapLoader
         LoadingScene,
         LevelSelection
     }
+    private static Scene mapName;
 
-    private static string _scene;
-
-    public static void LoadScene(Scene scene)
+    public static void Load(Scene sceneName)
     {
-        LoadScene(scene.ToString());
-    }
-
-    public static void LoadScene(string scene)
-    {
-        _scene = scene;
-        SceneManager.LoadScene(Scene.LoadingScene.ToString());
-    }
-
-    public static void LoadAfter()
-    {
-        if (string.IsNullOrEmpty(_scene))
-            _scene = "GarageScene";
-        SceneManager.LoadSceneAsync(_scene, LoadSceneMode.Additive);
-    }
-
-    public static bool HasScene(Scene scene)
-    {
-        return HasScene(scene.ToString());
-    }
-
-    public static bool HasScene(string scene)
-    {
-        for (var i = 0; i < SceneManager.sceneCount; i++)
+        //if loading desert scene
+        if (sceneName == Scene.MainScene)
         {
-            var loadedScene = SceneManager.GetSceneAt(i);
-
-            if (loadedScene.name == scene)
-                return true;
+            MapLoader.mapName = sceneName;
+            SceneManager.LoadScene(Scene.LoadingScene.ToString());//load loadingScene
+        } else
+        {
+            SceneManager.LoadScene(sceneName.ToString());
         }
-
-        return false;
     }
-
-    public static void UnloadScene(Scene scene)
+    public static void LoadAfter()//load map after 1 frame 
     {
-        UnloadScene(scene.ToString());
+        SceneManager.LoadScene(mapName.ToString());
     }
 
-    public static void UnloadScene(string scene)
-    {
-        if (HasScene(scene))
-            SceneManager.UnloadSceneAsync(scene);
-    }
 }
