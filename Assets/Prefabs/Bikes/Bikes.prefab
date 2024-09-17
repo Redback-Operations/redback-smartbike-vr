@@ -26,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122459696449080390}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.52, z: 0.1570015}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4015094971907545029}
+  m_Father: {fileID: 5491475190184015757}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7272861296361506935
 BoxCollider:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a7d1dd2d33e164daf8fa1cf6e308ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Target: {fileID: 6925473652923007549}
   MaterialIndex: 5
 --- !u!1 &2751130429443430907
 GameObject:
@@ -407,6 +407,8 @@ Transform:
   - {fileID: 1676978714424648987}
   - {fileID: 5227236454829202647}
   - {fileID: 2553010235913946553}
+  - {fileID: 2922337026217687873}
+  - {fileID: 9053114007141630181}
   m_Father: {fileID: 4015094971907545029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5236068157097883331
@@ -445,8 +447,6 @@ Transform:
   - {fileID: 8912580942141131988}
   - {fileID: 1965673002094277723}
   - {fileID: 674513088034476411}
-  - {fileID: 2922337026217687873}
-  - {fileID: 9053114007141630181}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1504115889584571692
@@ -536,12 +536,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5314378639118654989}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.52, z: 0.1570015}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4015094971907545029}
+  m_Father: {fileID: 5491475190184015757}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &260809157776102852
 BoxCollider:
@@ -576,8 +576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a7d1dd2d33e164daf8fa1cf6e308ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  MaterialIndex: 4
+  Target: {fileID: 6925473652923007549}
+  MaterialIndex: 3
 --- !u!1 &5398781998011037745
 GameObject:
   m_ObjectHideFlags: 0
