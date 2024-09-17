@@ -37,7 +37,19 @@ public class AngleControl : MonoBehaviour
         Vector3 playerVector = Player.transform.forward;
 
         //This gets the x rotation of the GameObject (Player)
-        InGameAngle = Player.transform.rotation.eulerAngles.x;
+        Quaternion rotation = Player.transform.localRotation;
+        float InGameAngle = rotation.eulerAngles.x;
+
+        // Normalize the angle to range from -180 to 180 degrees
+        if (InGameAngle > 180)
+        {
+            InGameAngle -= 360;
+        }
+        else if (InGameAngle < -180)
+        {
+            InGameAngle += 360;
+        }
+        InGameAngle = -InGameAngle;
 
         BikeAngle = RefineAngle(InGameAngle);
 
