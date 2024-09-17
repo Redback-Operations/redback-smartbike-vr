@@ -53,6 +53,7 @@ public class GateTrigger : MonoBehaviour
     //When GameObject collides with another GameObject
     void OnTriggerEnter(Collider other)
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if (other.gameObject == player)
         {
             isPressed = true; //Button is pressed when player enters the trigger.

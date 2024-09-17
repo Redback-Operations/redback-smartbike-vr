@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 public class SpeedBoostArea : MonoBehaviour
 {
     public float speedBoostMultiplier = 2.5f;
@@ -20,6 +21,10 @@ public class SpeedBoostArea : MonoBehaviour
 
         if (fadeCoroutine != null)
             StopCoroutine(fadeCoroutine);
+
+        //Changes speed boost everytime bike runs on the ramp.
+        var rand = new System.Random();
+        speedBoostMultiplier = rand.Next(1, 5);
 
         ApplySpeedBoost(playerController);
         fadeCoroutine = StartCoroutine(FadeBackSpeed(playerController));
