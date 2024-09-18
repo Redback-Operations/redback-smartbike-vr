@@ -1354,22 +1354,22 @@ PrefabInstance:
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
@@ -1379,7 +1379,7 @@ PrefabInstance:
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
@@ -7610,7 +7610,7 @@ PrefabInstance:
     - target: {fileID: 580161220348059350, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: m_Name
-      value: Mission3
+      value: Mission2
       objectReference: {fileID: 0}
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
@@ -7665,7 +7665,7 @@ PrefabInstance:
     - target: {fileID: 8138054763942815318, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: Mission
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7939,7 +7939,7 @@ PrefabInstance:
     - target: {fileID: 580161220348059350, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: m_Name
-      value: Mission2
+      value: Mission3
       objectReference: {fileID: 0}
     - target: {fileID: 7800320127822486349, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
@@ -7994,7 +7994,7 @@ PrefabInstance:
     - target: {fileID: 8138054763942815318, guid: 0be047869bcc11c4d9987dadef05ac2d,
         type: 3}
       propertyPath: Mission
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11862,8 +11862,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 965928017}
-  - {fileID: 1392258423}
   - {fileID: 1376265328}
+  - {fileID: 1392258423}
   - {fileID: 1598800596}
   - {fileID: 2073331329}
   - {fileID: 80624047}
