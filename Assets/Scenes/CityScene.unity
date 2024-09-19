@@ -350,7 +350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f739e47b7e04d439e7630838881a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointManager: {fileID: 0}
   waypoints:
   - {fileID: 555166827}
   - {fileID: 1876600688}
@@ -3082,12 +3081,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1014346085}
-  - {fileID: 1596216135}
   - {fileID: 180769457}
   - {fileID: 1272365509}
   - {fileID: 766577808}
   - {fileID: 1715024142}
+  - {fileID: 1014346085}
+  - {fileID: 1596216135}
   m_Father: {fileID: 1581421863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &466360056
@@ -7330,7 +7329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f739e47b7e04d439e7630838881a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointManager: {fileID: 0}
   waypoints:
   - {fileID: 466360057}
   - {fileID: 1876600688}
@@ -10011,7 +10009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f739e47b7e04d439e7630838881a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointManager: {fileID: 0}
   waypoints:
   - {fileID: 12247324}
   - {fileID: 1876600688}
