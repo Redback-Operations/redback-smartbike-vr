@@ -294,6 +294,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &134760532 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4413405813988409033, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502986197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &150579774 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 573763192728940802, guid: 142de5c27643e9a4fa3f29573aedd1f9,
@@ -766,12 +772,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &330942258 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1965673002094277723, guid: 2151033503a58d44884b0ea8073681d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1502986197}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &373697413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1010,12 +1010,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 573763192728940862, guid: 142de5c27643e9a4fa3f29573aedd1f9,
     type: 3}
   m_PrefabInstance: {fileID: 373697413}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &380948072 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 6925473652923007549, guid: 2151033503a58d44884b0ea8073681d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1502986197}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &398111378
 GameObject:
@@ -1552,6 +1546,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7821301142732639555, guid: 3265678c6a9bb6642aa0ac4087b69620,
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &617408636 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5116513074824157552, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502986197}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &639480400
 PrefabInstance:
@@ -2090,7 +2090,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 380948072}
+      objectReference: {fileID: 0}
     - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: MaterialIndex
@@ -2113,8 +2113,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: partButtons.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 1448651485}
+    - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1422215854}
+    - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 2125214721}
+    - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].materialIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].materialIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520234411917799841, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1595043293455813342, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -2200,7 +2235,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 380948072}
+      objectReference: {fileID: 0}
     - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: MaterialIndex
@@ -2223,8 +2258,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: partButtons.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 1448651485}
+    - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1422215854}
+    - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 2125214721}
+    - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].materialIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].materialIndex
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377536204017748767, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2610642667491188101, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -2266,7 +2336,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 1002882275}
+      objectReference: {fileID: 0}
     - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: MaterialIndex
@@ -2289,8 +2359,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: partButtons.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 2128944474}
+    - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1080769499}
+    - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 1642662869}
+    - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].materialIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].materialIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3046102865683281967, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -2321,7 +2426,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ToggleTargets.Array.data[0]
       value: 
-      objectReference: {fileID: 1690048943}
+      objectReference: {fileID: 617408636}
     - target: {fileID: 3264638288448730432, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: ToggleTargets.Array.size
@@ -2391,7 +2496,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 380948072}
+      objectReference: {fileID: 0}
     - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: MaterialIndex
@@ -2414,8 +2519,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: partButtons.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 1448651485}
+    - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1422215854}
+    - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 2125214721}
+    - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].materialIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].materialIndex
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433185212503733772, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3516893471530480328, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -2431,7 +2571,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 380948072}
+      objectReference: {fileID: 0}
     - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: colorPickerUI
@@ -2449,8 +2589,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: partButtons.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 1448651485}
+    - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1422215854}
+    - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 2125214721}
+    - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].materialIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].materialIndex
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555221046321097656, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3599997431488748446, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -2927,6 +3102,11 @@ PrefabInstance:
       propertyPath: ToggleTargets.Array.data[9]
       value: 
       objectReference: {fileID: 1502688577}
+    - target: {fileID: 6549661183773614608, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6560593879860445793, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_IsActive
@@ -2971,7 +3151,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 380948072}
+      objectReference: {fileID: 0}
     - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: MaterialIndex
@@ -2994,7 +3174,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: partButtons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 1448651485}
+    - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1422215854}
+    - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 2125214721}
+    - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].materialIndex
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].materialIndex
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6988993235466500953, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -3166,7 +3381,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 380948072}
+      objectReference: {fileID: 0}
     - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: MaterialIndex
@@ -3189,8 +3404,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: partButtons.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 1448651485}
+    - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1422215854}
+    - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 2125214721}
+    - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].materialIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].materialIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510532698212060751, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7516001306211714773, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -3206,7 +3456,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ToggleTargets.Array.data[0]
       value: 
-      objectReference: {fileID: 330942258}
+      objectReference: {fileID: 134760532}
     - target: {fileID: 7565615337144152627, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: ToggleTargets.Array.size
@@ -3276,7 +3526,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 1002882275}
+      objectReference: {fileID: 0}
     - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: MaterialIndex
@@ -3289,8 +3539,33 @@ PrefabInstance:
       objectReference: {fileID: 10597959}
     - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: SkinnedMeshRenderer
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikes.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikes.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikes.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -3347,6 +3622,26 @@ PrefabInstance:
       propertyPath: partButtons.Array.data[9]
       value: 
       objectReference: {fileID: 17405426}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 2128944474}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1080769499}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 1642662869}
+    - target: {fileID: 7621525418594618198, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7753144384213315935, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3681,7 +3976,7 @@ PrefabInstance:
         type: 3}
       propertyPath: meshRenderer
       value: 
-      objectReference: {fileID: 380948072}
+      objectReference: {fileID: 0}
     - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: MaterialIndex
@@ -3694,13 +3989,68 @@ PrefabInstance:
       objectReference: {fileID: 483155742}
     - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: SkinnedMeshRenderer
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
+      propertyPath: bikes.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikes.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikes.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
       propertyPath: partButtons.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].meshRenderer
+      value: 
+      objectReference: {fileID: 1448651485}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].meshRenderer
+      value: 
+      objectReference: {fileID: 1422215854}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].meshRenderer
+      value: 
+      objectReference: {fileID: 2125214721}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[0].materialIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[1].materialIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: bikeParts.Array.data[2].materialIndex
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8894776346593010109, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -3821,7 +4171,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ToggleTargets.Array.data[0]
       value: 
-      objectReference: {fileID: 1502986199}
+      objectReference: {fileID: 1263999509}
     - target: {fileID: 9165031305562044282, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_Camera
@@ -4294,12 +4644,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &1002882275 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2649547228203002761, guid: 2151033503a58d44884b0ea8073681d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1502986197}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1019736090 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8968237226754243696, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -4375,6 +4719,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1844958593770242166, guid: 3265678c6a9bb6642aa0ac4087b69620,
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1080769499 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3454603093481211252, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502986197}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1091112688 stripped
 GameObject:
@@ -4673,8 +5023,8 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets:
-  - {fileID: 1502986199}
-  - {fileID: 330942258}
+  - {fileID: 1263999509}
+  - {fileID: 134760532}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -4689,6 +5039,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 475042292033855612, guid: 3265678c6a9bb6642aa0ac4087b69620,
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1263999509 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3286235860125596038, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502986197}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1302523180
 PrefabInstance:
@@ -4800,6 +5156,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31629c56f6f83234a90f6296f902f9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &1422215854 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7721451829599235264, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502986197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1448651485 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 122322960339684406, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502986197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1491853581 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 312167690819743065, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -5010,6 +5378,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2796980242271429436, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4015094971907545029, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5065,6 +5438,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bikes
       objectReference: {fileID: 0}
+    - target: {fileID: 5497295514031965130, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8134637315156694638, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
       propertyPath: m_IsActive
@@ -5084,12 +5462,6 @@ PrefabInstance:
 --- !u!4 &1502986198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4015094971907545029, guid: 2151033503a58d44884b0ea8073681d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1502986197}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1502986199 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5491475190184015757, guid: 2151033503a58d44884b0ea8073681d1,
     type: 3}
   m_PrefabInstance: {fileID: 1502986197}
   m_PrefabAsset: {fileID: 0}
@@ -5165,8 +5537,8 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets:
-  - {fileID: 1502986199}
-  - {fileID: 1690048943}
+  - {fileID: 1263999509}
+  - {fileID: 617408636}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -5210,9 +5582,9 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6692290496178104961, guid: 8f9e4da5668113a4da8b4efea4a9499f, type: 3}
---- !u!4 &1690048943 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8912580942141131988, guid: 2151033503a58d44884b0ea8073681d1,
+--- !u!23 &1642662869 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6183204286173602509, guid: 2151033503a58d44884b0ea8073681d1,
     type: 3}
   m_PrefabInstance: {fileID: 1502986197}
   m_PrefabAsset: {fileID: 0}
@@ -6983,8 +7355,8 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets:
-  - {fileID: 1690048943}
-  - {fileID: 330942258}
+  - {fileID: 617408636}
+  - {fileID: 134760532}
   Renderer: {fileID: 0}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -7188,6 +7560,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31629c56f6f83234a90f6296f902f9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &2125214721 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1231183898116377465, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502986197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2128944474 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5002294839221380482, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502986197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3538765785649241979
 PrefabInstance:
   m_ObjectHideFlags: 0
