@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 693410021063476194}
   - component: {fileID: 1379397968746102376}
   - component: {fileID: 63951800022426560}
-  - component: {fileID: 5117236171941911080}
   - component: {fileID: 3502780611218496969}
   - component: {fileID: 2159730943896507330}
   - component: {fileID: 996567693356485488}
@@ -57,14 +56,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd4c0f5e896ced449298302d6af51e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnClient: {fileID: 5181704840213667243}
   movementSpeed: 5
-  rotationSpeed: 125
+  rotationSpeed: 90
   score: 0
   R_Turn: LOW
   L_Turn: LOW
   MQTT_Speed: 0
-  Bikes: {fileID: 7025182923892919932}
+  Bikes: {fileID: 0}
+  handle: {fileID: 1430900552882202113}
+  motorForce: 39
+  brakeForce: 55
+  turnSmoothing: 0.0128
+  frontWheel: {fileID: 2037322775792361664}
+  backWheel: {fileID: 7475350955272139861}
+  frontWheelTransform: {fileID: 2227047708400782468}
+  backWheelTransform: {fileID: 3644562753292163511}
+  minXRotation: -45
+  maxXRotation: 45
+  currentSpeed: 0
 --- !u!114 &1527486434321036927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +124,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34002221728508653}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 35
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -130,7 +139,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -147,27 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Customization: {fileID: 2159730943896507330}
---- !u!65 &5117236171941911080
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34002221728508653}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.4, y: 1, z: 1.5}
-  m_Center: {x: 0, y: 0.5, z: 0.125}
 --- !u!114 &3502780611218496969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,9 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bikes:
-  - {fileID: 1276909053926126734}
-  - {fileID: 2747763905237077975}
-  - {fileID: 5101070661754910552}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 6111815186343219832}
 --- !u!114 &996567693356485488
 MonoBehaviour:
@@ -1651,6 +1639,7 @@ MonoBehaviour:
   MqttPort: 1883
   MqttUsername: 
   MqttPassword: 
+  AutoConnect: 0
 --- !u!1 &2709005852558651207
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,19 +5160,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
-      propertyPath: bikeSelected.Array.data[1]
-      value: 
-      objectReference: {fileID: 2747763905237077975}
-    - target: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
-        type: 3}
       propertyPath: bikeSelected.Array.data[2]
       value: 
-      objectReference: {fileID: 5101070661754910552}
+      objectReference: {fileID: 0}
     - target: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
       propertyPath: bikeSelected.Array.data[3]
       value: 
       objectReference: {fileID: 6111815186343219832}
+    - target: {fileID: 2796980242271429436, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923833300646126707, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4015094971907545029, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5234,31 +5228,68 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4573416292829190638, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_Name
+      value: RearSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151681724110449975, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5236068157097883331, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
       propertyPath: m_Name
       value: Bikes
       objectReference: {fileID: 0}
+    - target: {fileID: 5282448294982834953, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_Name
+      value: FrontSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 5497295514031965130, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021567181186200700, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_Name
+      value: RearSphereCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894926511317437507, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: m_Name
+      value: FrontSphereCollider
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9098700250533953666, guid: 2151033503a58d44884b0ea8073681d1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2151033503a58d44884b0ea8073681d1, type: 3}
---- !u!1 &1276909053926126734 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5151681724110449975, guid: 2151033503a58d44884b0ea8073681d1,
+--- !u!4 &1430900552882202113 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4980305297117724600, guid: 2151033503a58d44884b0ea8073681d1,
     type: 3}
   m_PrefabInstance: {fileID: 6252699698239805881}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2747763905237077975 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8134637315156694638, guid: 2151033503a58d44884b0ea8073681d1,
+--- !u!146 &2037322775792361664 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 5368303376170498425, guid: 2151033503a58d44884b0ea8073681d1,
     type: 3}
   m_PrefabInstance: {fileID: 6252699698239805881}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5101070661754910552 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1156485583642029793, guid: 2151033503a58d44884b0ea8073681d1,
+--- !u!4 &2227047708400782468 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5201126678198555965, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6252699698239805881}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3644562753292163511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7228870850435334158, guid: 2151033503a58d44884b0ea8073681d1,
     type: 3}
   m_PrefabInstance: {fileID: 6252699698239805881}
   m_PrefabAsset: {fileID: 0}
@@ -5271,6 +5302,12 @@ GameObject:
 --- !u!4 &7025182923892919932 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4015094971907545029, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6252699698239805881}
+  m_PrefabAsset: {fileID: 0}
+--- !u!146 &7475350955272139861 stripped
+WheelCollider:
+  m_CorrespondingSourceObject: {fileID: 3565660310492278252, guid: 2151033503a58d44884b0ea8073681d1,
     type: 3}
   m_PrefabInstance: {fileID: 6252699698239805881}
   m_PrefabAsset: {fileID: 0}
