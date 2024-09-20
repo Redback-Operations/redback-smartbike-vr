@@ -222,6 +222,8 @@ public class PlayerController : MonoBehaviour
         {
             if (collectable.Tag == this.tag)
                 score += collectable.Collect();
+
+            UIManager.Instance.SetScore(score);
         }
         else
         {
