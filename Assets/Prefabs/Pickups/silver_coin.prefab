@@ -13,10 +13,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4725998912adb2546afaf1ee0b8eb806, type: 2}
+    - target: {fileID: 2141690567617718300, guid: f8d972788775663478934cd66f3d168b,
+        type: 3}
+      propertyPath: Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3608693078631894968, guid: f8d972788775663478934cd66f3d168b,
         type: 3}
       propertyPath: m_Name
-      value: silver_cin
+      value: silver_coin
       objectReference: {fileID: 0}
     - target: {fileID: 3608693078631894968, guid: f8d972788775663478934cd66f3d168b,
         type: 3}
