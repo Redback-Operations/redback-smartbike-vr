@@ -137,16 +137,16 @@ public class PlayerController : MonoBehaviour
     {
         _direction = ControllerDirection();
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             _direction.y += 1;
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             _direction.y -= 1;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             _direction.x -= 1;
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             _direction.x += 1;
 
         if (!Mathf.Approximately(MQTT_Speed, 0))

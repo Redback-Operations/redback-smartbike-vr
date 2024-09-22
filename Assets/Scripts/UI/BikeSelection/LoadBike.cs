@@ -16,6 +16,7 @@ public class LoadBike : MonoBehaviour
 
     public void DisplayBike(int id)
     {
+        _currentSelected = id;
         Customization.DisplayBike(id);
     }
 
@@ -23,7 +24,7 @@ public class LoadBike : MonoBehaviour
     {
         // store the currently selected bike
         _currentSelected = PlayerPrefs.GetInt("SelectedBike");
-        Debug.Log("selected Character: " + _currentSelected);
+        Debug.Log("Restored Bike: " + _currentSelected);
 
         // reset the bike to the current selected
         Customization.DisplayBike(_currentSelected);
@@ -34,6 +35,7 @@ public class LoadBike : MonoBehaviour
     {
         // update the player preferences to the selected bike
         PlayerPrefs.SetInt("SelectedBike", _currentSelected);
+        Debug.Log("Selected Bike: " + _currentSelected);
     }
 
     public void CustomizeBike(int index, string name, Color color)
