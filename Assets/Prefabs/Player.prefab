@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1822531834477099107}
   - component: {fileID: 1103924672794567691}
-  - component: {fileID: 1527486434321036927}
   - component: {fileID: 168666873821529642}
   - component: {fileID: 693410021063476194}
   - component: {fileID: 1379397968746102376}
@@ -67,23 +66,6 @@ MonoBehaviour:
   L_Turn: LOW
   MQTT_Speed: 0
   Bikes: {fileID: 7025182923892919932}
---- !u!114 &1527486434321036927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34002221728508653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ce214943ae45c143b7e643af1771bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missionName: Collect the Coins
-  missionNameText: {fileID: 2429417343985307841}
-  collectableCountText: {fileID: 2551617422925101346}
-  requiredCollectableCount: 3
-  missionCompletion: 0
 --- !u!114 &168666873821529642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5395,18 +5377,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c471d04896c6e2f48a1ecaa52d179aa4, type: 3}
---- !u!114 &2429417343985307841 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7676242247300802779, guid: c471d04896c6e2f48a1ecaa52d179aa4,
-    type: 3}
-  m_PrefabInstance: {fileID: 5417966230254336026}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2774832379788660798 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7904473538316281892, guid: c471d04896c6e2f48a1ecaa52d179aa4,
@@ -5687,15 +5657,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8034505064808264929}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2551617422925101346 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5542067809961168323, guid: b746fd2962cf7b04ca8c52a342f5fced,
-    type: 3}
-  m_PrefabInstance: {fileID: 8034505064808264929}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

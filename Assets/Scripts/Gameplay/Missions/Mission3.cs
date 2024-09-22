@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class Mission3 : MonoBehaviour
+public class Mission3 : Mission
 {
+    public override int MissionNumber => 3;
+    public override string MissionName => "Speed Trap";
+
     //Need to refer to speed boost ramp for info - maybe change up max speed for ramps via Unity? - Done.
     //Split the game into at least five zones ending with a finish line/win state - Maybe.
     //Or continuous and fail later to tally score and restart? 
