@@ -149,8 +149,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             _direction.x += 1;
 
-        _braking = Input.GetKey(KeyCode.Space);
-
         if (!Mathf.Approximately(MQTT_Speed, 0))
             _direction.y = 1;
 
