@@ -322,27 +322,41 @@ public class PlayerController : MonoBehaviour
         return value;
     }
 
-    //For scoring made by Jai
+    // trigger system updated to be use Collectable MonoBehaviour by Jonathan
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        var collectable = other.GetComponent<Collectable>();
 
-        if (other.tag == "1")
+        if (collectable != null)
         {
-            score = score + 1;
-            other.gameObject.SetActive(false);
+            if (collectable.Tag == this.tag)
+                score += collectable.Collect();
+
+            UIManager.Instance.SetScore(score);
         }
-
-        if (other.tag == "2")
+        else
         {
-            score = score + 2;
-            other.gameObject.SetActive(false);
-        }
+            // old collision code by Jai
+            // TODO replace other pickups with collectable script as above, see Prefabs/Pickups/Star for example
+            Debug.Log(other.name);
 
-        if (other.tag == "5")
-        {
-            score = score + 5;
-            other.gameObject.SetActive(false);
+            if (other.tag == "1")
+            {
+                score = score + 1;
+                other.gameObject.SetActive(false);
+            }
+
+            if (other.tag == "2")
+            {
+                score = score + 2;
+                other.gameObject.SetActive(false);
+            }
+
+            if (other.tag == "5")
+            {
+                score = score + 5;
+                other.gameObject.SetActive(false);
+            }
         }
     }
 

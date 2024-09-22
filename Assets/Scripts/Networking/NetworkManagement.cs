@@ -18,7 +18,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
     // prefabs for spawning
     public GameObject NetworkPlayer;
-
+ 
     public Transform SpawnTarget;
     private MissionSpawn[] _spawnPoints;
 
@@ -135,7 +135,6 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
             return;
 
         // spawn the bikes with brains, others will show based on the current location of the bikes on the server
-
     }
 
     private NetworkPlayer FindNetworkPlayer(int id)
@@ -230,7 +229,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress)
     {
-        throw new NotImplementedException();
+        
     }
 
     public void OnSceneLoadDone(NetworkRunner runner)
@@ -241,6 +240,12 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
     public void OnSceneLoadStart(NetworkRunner runner)
     {
         Debug.Log("OnSceneLoadStart");
+    }
+
+    public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason)
+    {
+        // load back to the garage when you disconnect
+        MapLoader.LoadScene("GarageScene");
     }
 
     #region Unused Callbacks
@@ -257,10 +262,6 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
     public void OnConnectedToServer(NetworkRunner runner)
     {
         
-    }
-
-    public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason)
-    {
     }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)

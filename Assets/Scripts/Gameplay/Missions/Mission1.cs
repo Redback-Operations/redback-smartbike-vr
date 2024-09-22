@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Diagnostics;
-using System; //For UI text
 
 //Mission is for bike to collect star before robot (capsule) crosses road. Use capsule for robot
 public class Mission1 : MonoBehaviour
@@ -24,7 +21,9 @@ public class Mission1 : MonoBehaviour
         
         // Wait for the specified delay before resetting the text
         yield return new WaitForSeconds(delay);
-        missionStatus.text = null;
+
+        if (missionStatus != null)
+            missionStatus.text = null;
         
         // Reset the text
         isDelayed = false;
@@ -51,13 +50,18 @@ public class Mission1 : MonoBehaviour
     void Start()
     {
         //No UI status yet...
-        missionStatus.text = null;
+        if (missionStatus != null)
+            missionStatus.text = null;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        // if robot not assigned don't update
+        if (robot == null)
+            return;
+
         GameObject[] starFind = GameObject.FindGameObjectsWithTag("5");//jai
 
         var step = speed * Time.deltaTime;
@@ -80,8 +84,5 @@ public class Mission1 : MonoBehaviour
                 StartCoroutine(StartResetting());   
             }
         }
-
-                
-        
     }
 }

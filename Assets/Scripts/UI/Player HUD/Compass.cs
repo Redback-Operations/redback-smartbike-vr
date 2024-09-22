@@ -30,7 +30,11 @@ public class Compass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        compassImage.uvRect = new Rect(player.localEulerAngles.y / 360f, 0f, 1f,1f);
+        float playerYaw = player.eulerAngles.y;
+        float offset = playerYaw / 360f;
+
+        compassImage.uvRect = new Rect(offset, 0, 1f,1f);
+
         foreach (QuestMarker marker in questMarkers)
         {
             marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);

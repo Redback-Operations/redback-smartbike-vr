@@ -1268,6 +1268,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &550825908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652472641626895651, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &553581866 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1903419652575100101, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -1793,6 +1799,130 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &720219926
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550825908}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.01}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &720219927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550825908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 0}
+  m_Colliders:
+  - {fileID: 720219926}
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_OnFirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectCanceled:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &730927845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,6 +2080,33 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.019
+      objectReference: {fileID: 0}
+    - target: {fileID: 186441495533958383, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 312167690819743065, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_text
+      value: 'Star Rush
+
+
+        Collect all the Stars in the scene before the timer
+        runs out
+
+
+        (timer not yet visible)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 593172860307878368, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.014999656
+      objectReference: {fileID: 0}
+    - target: {fileID: 691839101634916614, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_text
+      value: Collecting
       objectReference: {fileID: 0}
     - target: {fileID: 738079129172114185, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -2186,6 +2343,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackText
       objectReference: {fileID: 0}
+    - target: {fileID: 2089396084879455361, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_text
+      value: 'Collect Items in Order
+
+
+        Collect the Silver Coin, Gold Coin
+        and Star in the randomise order that is specified in the UI.
+
+
+        (the
+        UI is currently not connected)'
+      objectReference: {fileID: 0}
     - target: {fileID: 2241016097662141368, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_Name
@@ -2256,6 +2426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730659781573323928, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2917168062127813724, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -2682,6 +2857,19 @@ PrefabInstance:
       propertyPath: ToggleTargets.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4425921073702395261, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_text
+      value: 'Race Against NPCs
+
+
+        Race around the track starting from the
+        Star and then collect all the coins before the NPC''s beat you around the
+        track.
+
+
+        (UI not showing when you win or lose)'
+      objectReference: {fileID: 0}
     - target: {fileID: 4495400592778756615, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: ToggleTargets.Array.size
@@ -2737,6 +2925,46 @@ PrefabInstance:
       propertyPath: ToggleTargets.Array.data[9]
       value: 
       objectReference: {fileID: 1502688577}
+    - target: {fileID: 4630480084720972262, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 1051582424}
+    - target: {fileID: 4630480084720972262, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Colliders.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630480084720972262, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 969448798}
+    - target: {fileID: 4630480084720972262, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630480084720972262, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4630480084720972262, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 969448800}
+    - target: {fileID: 4630480084720972262, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 969448800}
+    - target: {fileID: 4630480084720972262, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 969448800}
     - target: {fileID: 5101747829901696942, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -2852,10 +3080,20 @@ PrefabInstance:
       propertyPath: TargetScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6277501089642678555, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: IntValue
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6438723058457035941, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483541057574278170, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_text
+      value: Race
       objectReference: {fileID: 0}
     - target: {fileID: 6488453024622794717, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -2997,9 +3235,19 @@ PrefabInstance:
       propertyPath: partButtons.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6840989833721207404, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_text
+      value: Star Rush
+      objectReference: {fileID: 0}
     - target: {fileID: 6988993235466500953, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132608607990785032, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7161407498235959206, guid: 3265678c6a9bb6642aa0ac4087b69620,
@@ -3572,6 +3820,11 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8179850001187645902, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.015
+      objectReference: {fileID: 0}
     - target: {fileID: 8187953420388199482, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_Name
@@ -3596,6 +3849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: submeshIndex
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266287812507631314, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.014999656
       objectReference: {fileID: 0}
     - target: {fileID: 8438557119727955229, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -3827,6 +4085,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1193635248}
+    - target: {fileID: 9165031305562044282, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects:
@@ -3856,6 +4119,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 165800282}
+    - targetCorrespondingSourceObject: {fileID: 3599997431488748446, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1796756106}
     - targetCorrespondingSourceObject: {fileID: 8023077374614064733, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       insertIndex: -1
@@ -3868,6 +4135,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1604268821}
+    - targetCorrespondingSourceObject: {fileID: 8652472641626895651, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 720219927}
+    - targetCorrespondingSourceObject: {fileID: 8652472641626895651, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 720219926}
     - targetCorrespondingSourceObject: {fileID: 3248420207306592241, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       insertIndex: -1
@@ -4992,6 +5267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
       propertyPath: bikeSelected.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -5965,7 +6245,7 @@ MonoBehaviour:
   m_Camera: {fileID: 1193635248}
   m_OriginBaseGameObject: {fileID: 1792777825}
   m_CameraFloorOffsetObject: {fileID: 1826232067}
-  m_RequestedTrackingOriginMode: 2
+  m_RequestedTrackingOriginMode: 1
   m_CameraYOffset: 1.1176
 --- !u!4 &1792777827
 Transform:
@@ -6027,6 +6307,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Timeout: 10
   m_XROrigin: {fileID: 0}
+--- !u!1 &1796756101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3599997431488748446, guid: 3265678c6a9bb6642aa0ac4087b69620,
+    type: 3}
+  m_PrefabInstance: {fileID: 743075657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1796756106
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796756101}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6, y: 1.05, z: 0.01}
+  m_Center: {x: -0.35, y: -0.075, z: 0}
 --- !u!1 &1800557209
 GameObject:
   m_ObjectHideFlags: 0
@@ -6265,10 +6572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action: 0
-  TargetScene: 
-  TargetValue: 
-  IntValue: 0
+  Action: 7
+  TargetScene: CityScene
+  TargetValue: MissionNumber
+  IntValue: -1
   StringValue: 
   ToggleTargets: []
   Renderer: {fileID: 1807904914}
@@ -6305,7 +6612,7 @@ Transform:
   m_GameObject: {fileID: 1826232067}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.179, y: 1.1176, z: 0}
+  m_LocalPosition: {x: 0, y: 1.1176, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

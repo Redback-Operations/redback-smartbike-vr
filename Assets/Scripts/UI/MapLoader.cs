@@ -35,7 +35,7 @@ public static class MapLoader
     public static void LoadAfter()
     {
         if (string.IsNullOrEmpty(_scene))
-            _scene = "GarageScene";
+            _scene = "AvatarSelection";
         SceneManager.LoadSceneAsync(_scene, LoadSceneMode.Additive);
     }
 

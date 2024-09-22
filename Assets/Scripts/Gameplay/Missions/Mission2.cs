@@ -1,12 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
-using JetBrains.Annotations; //For UI text
-using UnityEngine.Events;
-using UnityEngine.UIElements;
-using UnityEngine.TextCore.Text;
+
 public class Mission2 : MonoBehaviour
 {
     public GameObject silver_cin;
@@ -28,17 +23,20 @@ public class Mission2 : MonoBehaviour
 
     //Modifying the code to work on a time trial version of the mission. Record time and change time when beaten the time.
     //Separating the items far enough to give the bike enough exercise.
-    
+
     IEnumerator StartResetting()
     {
         // Set resetting flag to true to prevent multiple coroutines running simultaneously
         isDelayed = true;
-        
+
         // Wait for the specified delay before resetting the text
         yield return new WaitForSeconds(delay);
-        missionStatus.text = null;
-        timer.text = null;
-        
+
+        if (missionStatus != null)
+            missionStatus.text = null;
+        if (timer != null)
+            timer.text = null;
+
         // Reset the text
         isDelayed = false;
     }
@@ -61,7 +59,6 @@ public class Mission2 : MonoBehaviour
     void Start()
     {
         requiredItems = new GameObject[] { silver_cin, gold_coin, Star };
-
         randomItems = ShuffleArray(requiredItems);
 
         string missionDescription = "Collect in order: ";
@@ -71,26 +68,39 @@ public class Mission2 : MonoBehaviour
             missionDescription += item.name + " ";
         }
 
-        missionCollect.text = missionDescription;
+        if (missionCollect != null)
+            missionCollect.text = missionDescription;
+        Debug.Log(missionDescription);
+
         arrayChange = requiredItems.Length;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentItemIndex >= arrayChange )
-            {
-                missionComplete = true;
+        if (missionComplete)
+            return;
+
+        if (currentItemIndex >= arrayChange)
+        {
+            missionComplete = true;
+            if (missionStatus != null)
                 missionStatus.text = "Success!";
-                StartCoroutine(StartResetting());
-                return;
-                //Save the time count
-            }
+            Debug.Log("Success!");
+            StartCoroutine(StartResetting());
+            return;
+            //Save the time count
+        }
+
         //In a certain order...
-        if (!missionComplete){
+        if (!missionComplete)
+        {
             //Should make a new timer count, counting up and then when finishing the code, figure out how to save time.
             elapsedTime += Time.deltaTime;
-            timer.text = elapsedTime.ToString();
+
+            if (timer != null)
+                timer.text = elapsedTime.ToString();
+
             // Check if the current required item is inactive
             if (requiredItems[currentItemIndex].activeSelf == false)
             {
@@ -104,16 +114,19 @@ public class Mission2 : MonoBehaviour
                     if (!requiredItems[i].activeSelf)
                     {
                         missionComplete = true;
-                        missionStatus.text = "Failed!";
-                        timer.text ="0.00";
+                        if (missionStatus != null)
+                            missionStatus.text = "Failed!";
+                        Debug.Log("Failed!");
+                        if (timer != null)
+                            timer.text = "0.00";
                         StartCoroutine(StartResetting());
                         return;
                     }
                 }
-        
+
             }
-    
-        } 
+
+        }
     }
 
 }

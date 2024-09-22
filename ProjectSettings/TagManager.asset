@@ -18,6 +18,8 @@ TagManager:
   - Play
   - Garage-Menu
   - Shop
+  - BoostRamp
+  - road
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - Water
   - UI
   - Teleport
-  - 
+  - VR
   - 
   - 
   - 
