@@ -37,44 +37,23 @@ public class PlayerController : MonoBehaviour
 
     private InputDevice? _controller;
     private Vector2 _direction = Vector2.zero;
-    private bool _braking = false;
 
     private float _groundHeight = 0;
     private float _angleX = 0;
 
-    //Improve bike movement made by Dennis
-    private float currentBrakeForce;
-    private float currentSteeringAngle;
-    public Transform handle;
-    private Quaternion initialHandleRotation;
-    [SerializeField] private float motorForce;
-    [SerializeField] private float brakeForce;
-    private float maxSteeringAngle;
-    private float speedSteerControlTime = 0.0756F;
-    [Range(0f, 0.1f)][SerializeField] private float turnSmoothing;
-    [SerializeField] private WheelCollider frontWheel;
-    [SerializeField] private WheelCollider backWheel;
-    [SerializeField] private Transform frontWheelTransform;
-    [SerializeField] private Transform backWheelTransform;
-    public float minXRotation = -45f;
-    public float maxXRotation = 45f;
-
-
-    [SerializeField] private float currentSpeed;
+    private BoxCollider _collider;
 
     void Start()
     {
         // get the initial rotation of the player
         change = transform.rotation.eulerAngles.y;
 
-        // Store the initial rotation of the handle
-        initialHandleRotation = handle.localRotation;
-
         // Get the Rigidbody component attached to the bike GameObject
         rb = GetComponent<Rigidbody>();
+        _collider = GetComponent<BoxCollider>();
 
-        // Freeze rotation along the Z axes to prevent tumbling
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+        // Freeze rotation along the X and Z axes to prevent tumbling
+        rb.freezeRotation = true;
 
         //to set score to 0 made by Jai
         score = 0;
@@ -117,126 +96,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //For bike movement made by Dennis
         UpdateDirection();
-        //GetInput();
 
-        HandleEngine();
-        HandleSteering();
-        UpdateWheels();
-        UpdateHandle();
-
-        //For testing the bike movement
-        currentSpeed = rb.velocity.magnitude;
-
+        MovePlayer();
+        RotatePlayer();
     }
-
-    void FixedUpdate()
-    {
-        Vector3 currentRotation = rb.rotation.eulerAngles;
-        float clampedXRotation = currentRotation.x > 180 ? currentRotation.x - 360 : currentRotation.x;
-        clampedXRotation = Mathf.Clamp(clampedXRotation, minXRotation, maxXRotation);
-        rb.rotation = Quaternion.Euler(clampedXRotation, currentRotation.y, 0);
-    }
-
-    //For bike movement input made by Dennis  (Using UpdateDirection() now)
-    /*public void GetInput()
-    {
-        _direction.x = Input.GetAxis("Horizontal");
-        _direction.y = Input.GetAxis("Vertical");
-        _braking = Input.GetKey(KeyCode.Space);
-    }*/
-
-    //For bike movement - Controls the motor torque and braking force based on user input. Made by Dennis
-    public void HandleEngine()
-    {
-        backWheel.motorTorque = _direction.y * motorForce;
-
-        currentBrakeForce = _braking ? brakeForce : 0f;
-
-        if (_braking)
-        {
-            ApplyBraking();
-        }
-        else
-        {
-            ReleaseBraking();
-        }
-    }
-
-    //For bike movement - Applies brake torque to both wheels. Made by Dennis
-    public void ApplyBraking()
-    {
-        frontWheel.brakeTorque = currentBrakeForce;
-        backWheel.brakeTorque = currentBrakeForce;
-    }
-
-    //For bike movement - Releases brake torque on both wheels. Made by Dennis
-    public void ReleaseBraking()
-    {
-        frontWheel.brakeTorque = 0;
-        backWheel.brakeTorque = 0;
-    }
-
-
-    //For bike movement - Adjusts the maximum steering angle based on the vehicle's speed. Made by Dennis
-    public void SpeedSteerinReductor()
-    {
-        if (rb.velocity.magnitude < 5)
-        {
-            maxSteeringAngle = Mathf.LerpAngle(maxSteeringAngle, 50, speedSteerControlTime);
-        }
-        else if (rb.velocity.magnitude >= 5 && rb.velocity.magnitude < 10)
-        {
-            maxSteeringAngle = Mathf.LerpAngle(maxSteeringAngle, 30, speedSteerControlTime);
-        }
-        else if (rb.velocity.magnitude >= 10 && rb.velocity.magnitude < 15)
-        {
-            maxSteeringAngle = Mathf.LerpAngle(maxSteeringAngle, 15, speedSteerControlTime);
-        }
-        else if (rb.velocity.magnitude >= 15 && rb.velocity.magnitude < 20)
-        {
-            maxSteeringAngle = Mathf.LerpAngle(maxSteeringAngle, 10, speedSteerControlTime);
-        }
-        else if (rb.velocity.magnitude >= 20)
-        {
-            maxSteeringAngle = Mathf.LerpAngle(maxSteeringAngle, 5, speedSteerControlTime);
-        }
-    }
-
-    //For bike movement - Manages the steering input and updates the front wheel's steer angle. Made by Dennis
-    public void HandleSteering()
-    {
-        SpeedSteerinReductor();
-
-        currentSteeringAngle = Mathf.Lerp(currentSteeringAngle, maxSteeringAngle * _direction.x, turnSmoothing);
-        frontWheel.steerAngle = currentSteeringAngle;
-    }
-
-    //For bike movement - Updates the handle rotation based on the front wheel's steering angle. Made by Dennis
-    public void UpdateHandle()
-    {
-        handle.localRotation = initialHandleRotation * Quaternion.Euler(0, currentSteeringAngle, 0);
-    }
-
-    //For bike movement - Updates the wheel transforms. Made by Dennis
-    public void UpdateWheels()
-    {
-        UpdateSingleWheel(frontWheel, frontWheelTransform);
-        UpdateSingleWheel(backWheel, backWheelTransform);
-    }
-
-    //For bike movement - Updates the wheel transforms based on the wheel colliders. Made by Dennis
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
-    {
-        Vector3 pos;
-        Quaternion rot;
-        wheelCollider.GetWorldPose(out pos, out rot);
-        wheelTransform.rotation = rot;
-        wheelTransform.position = pos;
-    }
-
-
 
     void LateUpdate()
     {
@@ -297,7 +161,36 @@ public class PlayerController : MonoBehaviour
             _direction.x = 1;
     }
 
+    private void MovePlayer()
+    {
+        // Get the playter's forward direction made by Jai (updated by Jonathan)
+        Vector3 facingDirection = transform.forward;
+        // To prevent the bike from moving in the Y-axis
+        facingDirection.y = 0;
 
+        var position = transform.position;
+
+        // Move the bike in the player's forward direction made by Jai (updated by Jonathan)
+        if (!Mathf.Approximately(MQTT_Speed, 0))
+            position += (facingDirection.normalized * MQTT_Speed * Time.deltaTime * _direction.y);
+        else
+            position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
+
+        position.y = _groundHeight;
+
+        transform.position = position;
+    }
+
+    private void RotatePlayer()
+    {
+        // updated to account for frame rate
+        change += _direction.x * rotationSpeed * Time.deltaTime;
+
+        //To make bike go towards new rotation made by Jai
+        OldRotation = Quaternion.Euler(_angleX, rb.transform.rotation.y + change, rb.transform.rotation.z);
+        //To make bike go towards new rotation made by Jai
+        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.15f);
+    }
 
     private Vector2 ControllerDirection()
     {
