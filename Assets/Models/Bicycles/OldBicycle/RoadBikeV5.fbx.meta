@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0b7cda26d83dec342b0f4b572355ed2e
+guid: 2cbf5936b9e23f843a3e9209a6fec338
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,43 +7,108 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: BikeBlue
-    second: {fileID: 2100000, guid: 5c618e19d58ee3043ad18e23e78a1ed3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BikeRed
-    second: {fileID: 2100000, guid: faaa0d67bae885f45a47b8047c29ab99, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: BlackMetal
-    second: {fileID: 2100000, guid: 7190fa4e2df350045b8a462b5149f977, type: 2}
+    second: {fileID: 2100000, guid: c40ac6a864fdcf844a8727da6af0200a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlackMetal.001
+    second: {fileID: 2100000, guid: ff7aa53f6275fe64aab72d2c5fe93946, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlackMetal.002
+    second: {fileID: 2100000, guid: bcb40d13bc6a59842bc69e03a1af6c55, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BlackRubber
-    second: {fileID: 2100000, guid: 9ec61ad5352408e4c8df2daa1625b120, type: 2}
+    second: {fileID: 2100000, guid: 337ef6cc69eb1a142ba2713b7986bfe8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlackRubber.002
+    second: {fileID: 2100000, guid: 91d7aa3d72680e942af66a95e0d97e1a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BrakeHandle
-    second: {fileID: 2100000, guid: 1de37cda1457b944ca804a6a82eafc58, type: 2}
+    second: {fileID: 2100000, guid: ce2e87c5ade65034fabc6e4d23b90435, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cable
-    second: {fileID: 2100000, guid: 41d9244fe829ff64080ef31bfa394d7a, type: 2}
+    second: {fileID: 2100000, guid: a3ead565beb3a6540b4349be4d2f4406, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ChainStay.002
+    second: {fileID: 2100000, guid: f4542afb9c9212d4480bad7384ce5577, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CrankArm
+    second: {fileID: 2100000, guid: 4344b6cf44864d74eb98778c31f01221, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DownTube.002
+    second: {fileID: 2100000, guid: 509c5e65651b3b242b1ccf0d50d39418, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fork
+    second: {fileID: 2100000, guid: b315a4c4f227d5943b696de52f5f4eec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HandleBar
+    second: {fileID: 2100000, guid: b7a0eec682756b947b6b075cb1fa4731, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HeadTube.002
+    second: {fileID: 2100000, guid: e49f364e4ebb06a47b4a6bfe88138c2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Peddle.001
+    second: {fileID: 2100000, guid: d05ab9c600026004fb7d9be22057489d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat.002
+    second: {fileID: 2100000, guid: 4cf7b2745b5c2914aa78ba9f2c241b2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SeatStay.002
+    second: {fileID: 2100000, guid: 2d49add4f6bf06f4e8fec3f9efa1e937, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SeatTube.002
+    second: {fileID: 2100000, guid: 0a1781c596f176549aef6cfea5a6a8f7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ShinyBlackMetal
-    second: {fileID: 2100000, guid: 3446b69d0ff85a64d8525dce633b72b1, type: 2}
+    second: {fileID: 2100000, guid: 9c3f773494412df4e8ed555c8769b986, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShinyBlackMetal.002
+    second: {fileID: 2100000, guid: 1e8b8092ecb2d1f4fbb4867321bd5a53, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: SilverMetal
-    second: {fileID: 2100000, guid: 8daeaa264c98de749a9906aee354e60f, type: 2}
+    second: {fileID: 2100000, guid: 1b917fb216f7fe041945a1b3f9678595, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopTube.002
+    second: {fileID: 2100000, guid: e7581545e63d06a48b61b1f6deb84599, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -130,7 +195,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.35
+    globalScale: 0.0034999999
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
