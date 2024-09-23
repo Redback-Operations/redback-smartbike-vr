@@ -3,13 +3,18 @@ using UnityEngine;
 using TMPro;
 
 //Mission is for bike to collect star before robot (capsule) crosses road. Use capsule for robot
-public class Mission1 : MonoBehaviour
+public class Mission1 : Mission
 {
+    public override int MissionNumber => 1;
+    public override string MissionName => "Collect the Star";
+
     public GameObject b;
     public GameObject robot;
+
     public float speed = 1.0f;
     private float delay = 2.0f;
-      //For time delay to reset.
+
+    //For time delay to reset.
     private bool isDelayed = false;
     public bool missionComplete = false; //Tracking whether mission completed, either bike take star or robot reach point b.  
     public TextMeshProUGUI missionStatus; //Ref to TextMeshPro
@@ -66,23 +71,24 @@ public class Mission1 : MonoBehaviour
 
         var step = speed * Time.deltaTime;
         //Alteration of speed for the robot to reach point b, use step
-        if (!missionComplete){
-             //Move robot to b
-             robot.transform.position = Vector3.MoveTowards(robot.transform.position, b.transform.position, step);
-             if(robot.transform.position == b.transform.position)
-             {
-                missionStatus.text = "Failed!";
-                missionComplete = true;
-                StartCoroutine(StartResetting());
-             }
+        if (missionComplete)
+            return;
+
+        //Move robot to b
+        robot.transform.position = Vector3.MoveTowards(robot.transform.position, b.transform.position, step);
+        if(robot.transform.position == b.transform.position)
+        {
+            missionStatus.text = "Failed!";
+            missionComplete = true;
+            StartCoroutine(StartResetting());
+        }
              
-            //alterating by jai for mission combining
-            if(starFind.Length == 0)
-            {
-                missionComplete = true;
-                missionStatus.text = "Success!";
-                StartCoroutine(StartResetting());   
-            }
+        //alterating by jai for mission combining
+        if(starFind.Length == 0)
+        {
+            missionComplete = true;
+            missionStatus.text = "Success!";
+            StartCoroutine(StartResetting());   
         }
     }
 }

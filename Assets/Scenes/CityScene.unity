@@ -2339,6 +2339,7 @@ Transform:
   - {fileID: 1868885221}
   - {fileID: 809260574}
   - {fileID: 562097769}
+  - {fileID: 937348079}
   - {fileID: 1338741815}
   m_Father: {fileID: 944841654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2355,15 +2356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MissionNumber: 0
-  Missions:
-  - ID: 1
-    Mission: {fileID: 1868885220}
-  - ID: 2
-    Mission: {fileID: 809260573}
-  - ID: 3
-    Mission: {fileID: 562097768}
-  - ID: 6
-    Mission: {fileID: 1338741814}
+  Missions: []
 --- !u!1001 &311150581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5789,6 +5782,54 @@ Transform:
   - {fileID: 2064286330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &937348078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 937348079}
+  - component: {fileID: 937348080}
+  m_Layer: 0
+  m_Name: Mission4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &937348079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937348078}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 857.36426, y: 235.4282, z: 1099.668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 274825456}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &937348080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937348078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce214943ae45c143b7e643af1771bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionNameText: {fileID: 0}
+  collectableCountText: {fileID: 0}
+  requiredCollectableCount: 0
+  missionCompletion: 0
 --- !u!1 &944841653
 GameObject:
   m_ObjectHideFlags: 0

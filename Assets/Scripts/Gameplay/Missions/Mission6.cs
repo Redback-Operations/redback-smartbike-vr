@@ -2,8 +2,11 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Mission6 : MonoBehaviour
+public class Mission6 : Mission
 {
+    public override int MissionNumber => 6;
+    public override string MissionName => "Star Rush";
+
     public string missionName; // Defines the mission goal to be displayed to the user
     public TextMeshProUGUI missionNameText; // References the UI text that displays the mission goal
     public TextMeshProUGUI timerText; // References the UI text that displays the remaining time

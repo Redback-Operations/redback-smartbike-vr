@@ -2,8 +2,11 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class Mission2 : MonoBehaviour
+public class Mission2 : Mission
 {
+    public override int MissionNumber => 2;
+    public override string MissionName => "Collect in Order";
+
     public GameObject silver_cin;
     public GameObject gold_coin;
     public GameObject Star;

@@ -3,33 +3,47 @@ using UnityEngine;
 
 public class Mission_Activator : MonoBehaviour
 {
-    /* TODO: Mission parent class
-             Need to have a Mission behaviour that is parent of all that has an ID that is used to
-             automatically find using FindObjectsOfType<Mission>(), removes need for specific layout
-             of game objects and adding manually to the activator script */
-
-    [Serializable]
-    // mission settings to assign the ID and mission object
-    public class MissionSetting
+    // used to store the active mission to access elsewhere
+    private static Mission _active;
+    public static Mission ActiveMission
     {
-        public int ID;
-        public GameObject Mission;
+        get
+        {
+            if (_active?.gameObject == null)
+                _active = null;
+
+            return _active;
+        }
     }
 
     public int MissionNumber;
-    public MissionSetting[] Missions;
+    public Mission[] Missions;
 
-    void Awake()
+    public void Activate(int id)
     {
-        // mission number retrieved from preferences unless testing
-        if (MissionNumber == 0)
-            MissionNumber = PlayerPrefs.GetInt("MissionNumber");
+        MissionNumber = id;
 
         // loop through each mission object
         foreach (var mission in Missions)
         {
             // disable the missions that are not matching the mission ID
-            mission.Mission.SetActive(mission.ID == MissionNumber);
+            mission.gameObject.SetActive(mission.MissionNumber == MissionNumber);
+            // store the active mission
+            if (mission.MissionNumber == MissionNumber)
+                _active = mission;
         }
+    }
+
+    void Awake()
+    {
+        // if not missions assigned manually, find all missions in the scene
+        if (Missions == null || Missions.Length == 0)
+            Missions = FindObjectsOfType<Mission>();
+
+        // mission number retrieved from preferences unless testing
+        if (MissionNumber == 0)
+            MissionNumber = PlayerPrefs.GetInt("MissionNumber");
+
+        Activate(MissionNumber);
     }
 }
