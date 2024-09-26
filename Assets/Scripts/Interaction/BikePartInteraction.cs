@@ -6,32 +6,39 @@ using UnityEngine.UI;
 
 public class BikePartInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public MeshRenderer meshRenderer; 
-    public int materialIndex;
-    public Color highlightColor = Color.white; 
-    private Color originalColor;
+    [System.Serializable]
+    public class BikePart
+    {
+        public MeshRenderer meshRenderer;
+        public int materialIndex;
+    }
 
-    private Material _material;
+    public List<BikePart> bikeParts;
+    public Color highlightColor = Color.white;
+    private Dictionary<BikePart, Color> originalColors = new Dictionary<BikePart, Color>();
 
     public GameObject colorPickerUI;
     public FlexibleColorPicker colorPicker;
 
     void Start()
     {
-        if (meshRenderer  == null)
+        if (bikeParts == null || bikeParts.Count == 0)
         {
-            Debug.LogError("MeshRenderer  is not assigned.");
+            Debug.LogError("No bike parts assigned.");
             return;
         }
 
-        if (materialIndex < meshRenderer.materials.Length)
+        foreach (var part in bikeParts)
         {
-             _material = meshRenderer.materials[materialIndex];
-            originalColor = _material.color;
-        }
-        else
-        {
-            Debug.LogError("MaterialIndex out of bounds.");
+            if (part.meshRenderer != null && part.materialIndex < part.meshRenderer.materials.Length)
+            {
+                Material material = part.meshRenderer.materials[part.materialIndex];
+                originalColors[part] = material.color;
+            }
+            else
+            {
+                Debug.LogError("MaterialIndex out of bounds or MeshRenderer missing for one or more parts.");
+            }
         }
 
         if (colorPickerUI != null)
@@ -47,27 +54,46 @@ public class BikePartInteraction : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (_material != null)
+        foreach (var part in bikeParts)
         {
-            _material.color = highlightColor;
+            if (part.meshRenderer != null)
+            {
+                Material material = part.meshRenderer.materials[part.materialIndex];
+                if (material != null)
+                {
+                    material.color = highlightColor;
+                }
+            }
         }
     }
 
-     public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
-        if (_material != null)
+        foreach (var part in bikeParts)
         {
-            _material.color = originalColor;
+            if (part.meshRenderer != null && originalColors.ContainsKey(part))
+            {
+                Material material = part.meshRenderer.materials[part.materialIndex];
+                if (material != null)
+                {
+                    material.color = originalColors[part];
+                }
+            }
         }
     }
 
-
-
-     public void OnColorChanged(Color newColor)
+    public void OnColorChanged(Color newColor)
     {
-        if (_material != null)
+        foreach (var part in bikeParts)
         {
-            _material.color = newColor;
+            if (part.meshRenderer != null)
+            {
+                Material material = part.meshRenderer.materials[part.materialIndex];
+                if (material != null)
+                {
+                    material.color = newColor;
+                }
+            }
         }
     }
 
