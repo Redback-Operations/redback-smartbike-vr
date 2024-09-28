@@ -7,8 +7,9 @@ using System.Threading;
 [System.Serializable]
 public class SaveData
 {
-    public string profileName;
-    public int highScore;
-    public int coins;
-    public float playerTime;
+    public string profileName = string.Empty;  // Ensure a default value to prevent null
+    public float playerTime = 0f;
+    public int highScore = 0;
+    public int coins = 0;
 }
+
