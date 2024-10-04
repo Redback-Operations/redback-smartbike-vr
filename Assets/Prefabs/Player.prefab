@@ -1761,6 +1761,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spectator UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5157037484867313632, guid: 8c4c52fa9442e1b469cdd476f15a8940,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1822531834477099107}
     - target: {fileID: 5315188663544100240, guid: 8c4c52fa9442e1b469cdd476f15a8940,
         type: 3}
       propertyPath: m_Pivot.x

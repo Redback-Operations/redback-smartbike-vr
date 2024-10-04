@@ -236,8 +236,6 @@ public class PlayerController : MonoBehaviour
         {
             // old collision code by Jai
             // TODO replace other pickups with collectable script as above, see Prefabs/Pickups/Star for example
-            Debug.Log(other.name);
-
             if (other.tag == "1")
             {
                 score = score + 1;
