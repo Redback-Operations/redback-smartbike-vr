@@ -60,7 +60,6 @@ public class AngleControl : MonoBehaviour
             //Clamps the data sent to the bike to within the valid range.
             float incline = Mathf.Clamp(BikeAngle, minimumAngle, maximumAngle);
             string payload = "{\"ts\": " + ts + ", \"incline\": " + incline + "}";
-            Debug.Log(payload);
 
             Mqtt.Instance.Publish(Mqtt.InclineTopic, payload);
 

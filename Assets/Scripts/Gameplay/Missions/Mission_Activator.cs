@@ -9,8 +9,8 @@ public class Mission_Activator : MonoBehaviour
     {
         get
         {
-            if (_active?.gameObject == null)
-                _active = null;
+            //if (_active?.gameObject == null)
+                //_active = null;
 
             return _active;
         }
@@ -21,6 +21,7 @@ public class Mission_Activator : MonoBehaviour
 
     public void Activate(int id)
     {
+        Debug.Log($"Mission {id} is Active");
         MissionNumber = id;
 
         // loop through each mission object

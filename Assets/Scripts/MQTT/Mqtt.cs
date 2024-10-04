@@ -124,6 +124,5 @@ public class Mqtt : MonoBehaviour
     public void Publish(string topic, string msg)
     {
         _client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE, false);
-        Debug.Log("Published: topic " + topic + " msg " + msg);
     }
 }
