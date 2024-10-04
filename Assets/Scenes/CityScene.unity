@@ -3165,10 +3165,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 809260574}
     m_Modifications:
+    - target: {fileID: 2141690567617718300, guid: f8d972788775663478934cd66f3d168b,
+        type: 3}
+      propertyPath: Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3608693078631894968, guid: f8d972788775663478934cd66f3d168b,
         type: 3}
       propertyPath: m_Name
-      value: gold_coin
+      value: Gold Coin
       objectReference: {fileID: 0}
     - target: {fileID: 3608693078631894968, guid: f8d972788775663478934cd66f3d168b,
         type: 3}
@@ -3838,6 +3843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcaa7b49f2367d4c880a91b6f62c956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MissionStarted: 0
   bike: {fileID: 0}
   speed: 0
   objective: 0
@@ -5225,13 +5231,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684f31b8d515bd64ea322193b223d8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MissionStarted: 0
   silver_cin: {fileID: 1095030760}
   gold_coin: {fileID: 421935047}
   Star: {fileID: 1547913976}
-  missionComplete: 0
-  missionStatus: {fileID: 0}
-  missionCollect: {fileID: 0}
-  timer: {fileID: 0}
 --- !u!1001 &826428061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6068,6 +6071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce214943ae45c143b7e643af1771bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MissionStarted: 0
   missionNameText: {fileID: 0}
   collectableCountText: {fileID: 0}
   requiredCollectableCount: 0
@@ -7710,6 +7714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4abc68f5b3268489172538269543d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MissionStarted: 0
   missionName: Star Rush
   missionNameText: {fileID: 0}
   timerText: {fileID: 0}
@@ -9331,10 +9336,15 @@ PrefabInstance:
       propertyPath: m_TagString
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1896700976452266187, guid: 0722b8babe70e3b46ac265b3ca0c4db5,
+        type: 3}
+      propertyPath: Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4650662843561065631, guid: 0722b8babe70e3b46ac265b3ca0c4db5,
         type: 3}
       propertyPath: m_Name
-      value: Star 1 (1)
+      value: Star
       objectReference: {fileID: 0}
     - target: {fileID: 4650662843561065631, guid: 0722b8babe70e3b46ac265b3ca0c4db5,
         type: 3}
@@ -9458,7 +9468,7 @@ PrefabInstance:
     - target: {fileID: 1507649688412211459, guid: 13582a8566b62bf4fa4419889c006e6a,
         type: 3}
       propertyPath: m_Name
-      value: silver_cin
+      value: Silver Coin
       objectReference: {fileID: 0}
     - target: {fileID: 1507649688412211459, guid: 13582a8566b62bf4fa4419889c006e6a,
         type: 3}
@@ -9529,6 +9539,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269492033453993639, guid: 13582a8566b62bf4fa4419889c006e6a,
+        type: 3}
+      propertyPath: Value
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11504,6 +11519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c456920b25414e7469d67fc3b298a9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MissionStarted: 0
   b: {fileID: 0}
   robot: {fileID: 0}
   speed: 1

@@ -96,6 +96,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // TODO this should be moved into a mission start system, create a mission activate zone
+        if (Mission_Activator.ActiveMission != null)
+        {
+            if (!Mission_Activator.ActiveMission.MissionStarted)
+                Mission_Activator.ActiveMission.StartMission();
+        }
+
         UpdateDirection();
 
         MovePlayer();
