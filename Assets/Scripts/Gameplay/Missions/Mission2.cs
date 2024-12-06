@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Mission2 : Mission
 {
@@ -11,6 +13,7 @@ public class Mission2 : Mission
     public GameObject silver_cin;
     public GameObject gold_coin;
     public GameObject Star;
+    public Button restartButton;
 
     private GameObject[] requiredItems;
     private GameObject[] randomItems;
@@ -20,11 +23,20 @@ public class Mission2 : Mission
     private int arrayChange;
     private int currentItemIndex = 0;
     private float delay = 2.0f;
-    private bool missionComplete = false; //Tracking whether mission completed
+    private bool missionComplete = false; // Tracking whether mission completed
     private bool missionSuccess = false;
 
     float elapsedTime = 0f;
 
+    private void Start()
+    {
+        if (restartButton != null)
+        {
+            restartButton.onClick.AddListener(RestartMission); // Adds the restart button as a listener for the onClick event
+            restartButton.gameObject.SetActive(false); // Hides the restart button at the start
+        }
+    }
+    
     //Modifying the code to work on a time trial version of the mission. Record time and change time when beaten the time.
     //Separating the items far enough to give the bike enough exercise.
 
@@ -33,6 +45,11 @@ public class Mission2 : Mission
         Debug.Log("Start Resetting");
         yield return UIManager.Instance.ShowNotification(missionSuccess ? "Mission Complete!" : "Mission Failed!", delay);
         yield return UIManager.Instance.ClearObjectives();
+
+        if (!missionSuccess)
+        {
+            restartButton.gameObject.SetActive(true); // Show Restart Button on mission fail
+        }
     }
 
     private GameObject[] ShuffleArray(GameObject[] array)
@@ -91,7 +108,7 @@ public class Mission2 : Mission
             //Save the time count
         }
 
-        //In a certain order...
+        //In a certain order..
         if (!missionComplete)
         {
             //Should make a new timer count, counting up and then when finishing the code, figure out how to save time.
@@ -120,10 +137,33 @@ public class Mission2 : Mission
                     StartCoroutine(StartResetting());
                     return;
                 }
-
             }
-
         }
     }
 
+    private void RestartMission()
+    {
+        Debug.Log("Restarting Mission...");
+
+        // Hides the restart button immediately after it's pressed
+        restartButton.gameObject.SetActive(false);
+
+        // Resets the relevant mission state variables
+        currentItemIndex = 0;
+        missionComplete = false;
+        missionSuccess = false;
+        elapsedTime = 0f;
+
+        // Resets the UI objectives
+        UIManager.Instance.ClearObjectives();
+
+        // Reactivates all the required items
+        foreach (var item in requiredItems)
+        {
+            item.SetActive(true);
+        }
+
+        // Restarts the mission
+        StartMission();
+    }
 }
