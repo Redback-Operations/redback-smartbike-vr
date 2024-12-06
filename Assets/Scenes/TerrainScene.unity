@@ -8977,7 +8977,6 @@ MonoBehaviour:
   waterObject: {fileID: 230840348}
   riseSpeed: 0.35
   targetYHeight: 150
-  missionStatusText: {fileID: 0}
   objective: 0
 --- !u!65 &1019522140
 BoxCollider:

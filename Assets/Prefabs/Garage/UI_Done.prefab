@@ -765,8 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 0}
   colorPicker: {fileID: 0}
@@ -2643,8 +2642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 0}
   colorPicker: {fileID: 0}
@@ -3610,8 +3608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 3393533801672298678}
   colorPicker: {fileID: 7134876128878507101}
@@ -4492,8 +4489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 0}
   colorPicker: {fileID: 0}
@@ -5317,8 +5313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 0}
   colorPicker: {fileID: 0}
@@ -6468,8 +6463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 0}
   colorPicker: {fileID: 0}
@@ -12995,8 +12989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 0}
   colorPicker: {fileID: 0}
@@ -15224,8 +15217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 0}
   colorPicker: {fileID: 0}
@@ -15598,8 +15590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e0ded30333db429b60ddb4eeeb597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
-  materialIndex: 0
+  bikeParts: []
   highlightColor: {r: 1, g: 1, b: 1, a: 1}
   colorPickerUI: {fileID: 0}
   colorPicker: {fileID: 0}
