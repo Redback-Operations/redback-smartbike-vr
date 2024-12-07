@@ -11,12 +11,12 @@ public class BookInteractor : MonoBehaviour
 
     public int PageOffset;
 
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable _interactable;
+    private IXRSelectInteractable _interactable;
 
     void Awake()
     {
         EnablePageTurning(false);
-        _interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>();
+        _interactable = GetComponent<XRBaseInteractable>();
 
         if (Target != null)
             Target.SelectPage(PlayerPrefs.GetInt("SelectedBike") + 1);

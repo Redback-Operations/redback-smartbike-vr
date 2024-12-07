@@ -9,7 +9,7 @@ public class Demo : MonoBehaviour
     private void Start()
     {
         timer1 = FindObjectOfType<Timer2>(); // Automatically finds the first Timer2 in the scene
-        timer1.SetDuration(120).Begin(); // Sets the timer for a duration in seconds and starts it
+        timer1.SetDuration(300).Begin(); // Sets the timer for a duration in seconds and starts it
     }
 
 }
