@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class OffsetInteractable : UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
+public class OffsetInteractable : XRGrabInteractable
 {
     protected override void Awake()
     {
@@ -14,17 +14,17 @@ public class OffsetInteractable : UnityEngine.XR.Interaction.Toolkit.Interactabl
         MatchAttachPoint(args.interactorObject);
     }
 
-    protected void MatchAttachPoint(UnityEngine.XR.Interaction.Toolkit.Interactors.IXRInteractor interactor)
+    protected void MatchAttachPoint(IXRInteractor interactor)
     {
         if (IsFirstSelecting(interactor))
         {
-            bool isDirect = interactor is UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor;
+            bool isDirect = interactor is XRDirectInteractor;
             attachTransform.position = isDirect ? interactor.GetAttachTransform(this).position : transform.position;
             attachTransform.rotation = isDirect ? interactor.GetAttachTransform(this).rotation : transform.rotation;
         }
     }
 
-    private bool IsFirstSelecting(UnityEngine.XR.Interaction.Toolkit.Interactors.IXRInteractor interactor)
+    private bool IsFirstSelecting(IXRInteractor interactor)
     {
         return interactor == firstInteractorSelecting;
     }

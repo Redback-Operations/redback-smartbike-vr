@@ -6,7 +6,7 @@ public class DroppedInteractor : MonoBehaviour
 	public Transform TargetLocation;
 	public float ResetDelay;
 	
-	private UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable _interactable;
+	private IXRSelectInteractable _interactable;
 
 	private Vector3 _target;
     private Quaternion _direction;
@@ -16,7 +16,7 @@ public class DroppedInteractor : MonoBehaviour
 
 	void Awake()
 	{
-		_interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+		_interactable = GetComponent<XRGrabInteractable>();
 
         _target = TargetLocation != null ? TargetLocation.position : transform.position;
         _direction = TargetLocation != null ? TargetLocation.rotation : transform.rotation;
@@ -60,7 +60,7 @@ public class DroppedInteractor : MonoBehaviour
 		if (ControllerCheck(other.gameObject))
 			return;
 
-		var socket = other.gameObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>();
+		var socket = other.gameObject.GetComponent<XRSocketInteractor>();
 
 		if (socket == null)
 			_return = true;
