@@ -13,7 +13,7 @@ public class Rotator : MonoBehaviour
     public Vector3 AxisMinRotation;
     public Vector3 AxisMaxRotation;
 
-    private IXRHoverInteractor interactor;
+    private UnityEngine.XR.Interaction.Toolkit.Interactors.IXRHoverInteractor interactor;
     private float startAngle;
     private bool shouldGetHandRotation = false;
 
@@ -24,7 +24,7 @@ public class Rotator : MonoBehaviour
 
     public void GrabbedBy(SelectEnterEventArgs arg0)
     {
-        interactor = GetComponent<XRGrabInteractable>().GetOldestInteractorHovering();
+        interactor = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().GetOldestInteractorHovering();
         shouldGetHandRotation = true;
         startAngle = GetInteractorRotation();
     }
