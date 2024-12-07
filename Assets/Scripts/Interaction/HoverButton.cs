@@ -39,12 +39,12 @@ public class HoverButton : MonoBehaviour
     private Material _material;
     private bool _selected;
 
-    private XRSimpleInteractable _interactable;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable _interactable;
     private Button _button;
 
     void Awake()
     {
-        _interactable = GetComponent<XRSimpleInteractable>();
+        _interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
         _button = GetComponent<Button>();
     }
 
