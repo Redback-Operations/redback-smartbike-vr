@@ -7,6 +7,8 @@ public class Timer2 : MonoBehaviour
     [Header("Timer UI references :")]
     [SerializeField] private Image uiFillImage; // Reference to the UI image that fills the timer
     [SerializeField] private Text uiText; // Reference to the text that shows time remaining
+    [SerializeField] private GameObject timerUIParent; // Parent object to hide/show the timer UI
+
 
     public int Duration { get; private set; } // Property to store the total duration of the timer
     private int remainingDuration; // Internal variable to track the remaining time
@@ -33,6 +35,25 @@ public class Timer2 : MonoBehaviour
         Duration = remainingDuration = seconds;
         UpdateUI(remainingDuration); // Shows the full duration right away
         return this;
+    }
+
+    public void BeginWithDelay(float delaySeconds)
+    {
+        // Starts the timer after a delay
+        StartCoroutine(BeginAfterDelay(delaySeconds));
+    }
+
+    private IEnumerator BeginAfterDelay(float delaySeconds)
+    {
+        if (timerUIParent != null)
+            timerUIParent.SetActive(false); // Hide timer UI during the delay
+
+        yield return new WaitForSeconds(delaySeconds); // Wait for the delay
+
+        if (timerUIParent != null)
+            timerUIParent.SetActive(true); // Show timer UI after the delay
+
+        Begin(); // Start the countdown
     }
 
     public void Begin()

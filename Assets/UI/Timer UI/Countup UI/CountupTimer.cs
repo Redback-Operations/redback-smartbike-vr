@@ -16,7 +16,7 @@ public class Timer1 : MonoBehaviour
     private void Start()
     {
         ResetTimer1(); // Resets the timer UI and variables when the script starts
-        Begin(); // Automatically starts the timer on start
+        Begin(); // Automatically starts the timer on start with a delay
     }
 
     private void ResetTimer1()
@@ -30,7 +30,13 @@ public class Timer1 : MonoBehaviour
     public void Begin()
     {
         StopAllCoroutines(); // Stops any running timer updates
-        StartCoroutine(UpdateTimer1()); // Starts updating the timer
+        StartCoroutine(BeginWithDelay()); // Starts the timer with a delay
+    }
+
+    private IEnumerator BeginWithDelay()
+    {
+        yield return new WaitForSeconds(3f); // Waits for 3 seconds before starting the timer
+        StartCoroutine(UpdateTimer1()); // Starts updating the timer after the delay
     }
 
     private IEnumerator UpdateTimer1()
@@ -38,7 +44,7 @@ public class Timer1 : MonoBehaviour
         while (true) // Continuously updates the timer
         {
             yield return new WaitForSeconds(1f); // Waits for 1 second between updates
-            elapsedTime++; // Incremenst the elapsed time by 1 second
+            elapsedTime++; // Increments the elapsed time by 1 second
             UpdateUI(elapsedTime); // Updates the timer UI and clock hands
         }
     }
