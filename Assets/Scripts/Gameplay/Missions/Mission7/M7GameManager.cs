@@ -9,6 +9,7 @@ public class M7GameManager : MonoBehaviour
     public static M7GameManager inst;
 
     public Text scoreText;
+    public Text speedText;
 
     public PlayMove playmove;
 
@@ -17,7 +18,7 @@ public class M7GameManager : MonoBehaviour
         score++;
         scoreText.text = "Score: " + score;
 
-        playmove.speed += playmove.speedIncreasePerPoint;
+        playmove.maxSpeed += playmove.speedIncreasePerPoint;
     }
 
     private void Awake()
@@ -34,6 +35,6 @@ public class M7GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        speedText.text = $"Speed: {playmove.currentSpeed:F1}";
     }
 }
