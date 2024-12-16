@@ -488,15 +488,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Collect Items in Order
+  m_text: 'Race Along the track and collect the coins!
 
 
-    Collect the Silver Coin, Gold Coin and Star
-    in the randomise order that is specified in the UI.
+    Avoid the walls to keep
+    your speed.
 
 
-    (the UI is currently
-    not connected)'
+    (Not loading?)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4128,17 +4127,17 @@ PrefabInstance:
     - target: {fileID: 5408453958871494044, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5408453958871494044, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5408453958871494044, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.087552786
       objectReference: {fileID: 0}
     - target: {fileID: 5472097449033590307, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -4153,7 +4152,7 @@ PrefabInstance:
     - target: {fileID: 5502406545168767848, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -26.177217
+      value: -26.17666
       objectReference: {fileID: 0}
     - target: {fileID: 5652821091347406231, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -4258,7 +4257,7 @@ PrefabInstance:
     - target: {fileID: 6438723058457035941, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6458943978836687328, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -5153,17 +5152,17 @@ PrefabInstance:
     - target: {fileID: 8796692413800788127, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8796692413800788127, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8796692413800788127, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -6294,12 +6293,12 @@ GameObject:
   - component: {fileID: 1403550040}
   - component: {fileID: 1403550039}
   m_Layer: 0
-  m_Name: Mission2DesctiptionPanel
+  m_Name: Mission7DesctiptionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1403550038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6319,7 +6318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.018999875, y: -0.4}
+  m_AnchoredPosition: {x: 0.018999875, y: -1.374}
   m_SizeDelta: {x: 0.7, y: 3.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1403550039
@@ -7088,7 +7087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.446314, y: 106.2}
+  m_AnchoredPosition: {x: 5.446314, y: 98.5}
   m_SizeDelta: {x: 0.5, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1606193575
