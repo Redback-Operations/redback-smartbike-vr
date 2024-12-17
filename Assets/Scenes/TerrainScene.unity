@@ -132,6 +132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1222731060140294, guid: 01bbe20c855564648b02e0092e511cac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1505934643987248, guid: 01bbe20c855564648b02e0092e511cac, type: 3}
       propertyPath: m_Name
       value: Gas_station_A_PREFAB
@@ -281,6 +285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -347,6 +355,10 @@ PrefabInstance:
     - target: {fileID: 1516307884609076, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_Name
       value: building_X_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705812710899832, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4604579876288746, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_RootOrder
@@ -415,6 +427,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_Z_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1973031268852238, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4571776215605590, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -478,6 +494,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1277488071553818, guid: 931ecb32d754b3f40afc9a688c8cea66, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1934853517836424, guid: 931ecb32d754b3f40afc9a688c8cea66, type: 3}
       propertyPath: m_Name
       value: Building_I_1_prefab
@@ -545,6 +565,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab
@@ -612,6 +636,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1650222205530508, guid: 95aaceaac899f9a47aea3a9744ce9c20, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1956396886676158, guid: 95aaceaac899f9a47aea3a9744ce9c20, type: 3}
       propertyPath: m_Name
       value: Building_V_prefab
@@ -679,6 +707,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1092326577667866, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_Name
       value: Building_M_prefab
@@ -746,6 +778,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab (1)
@@ -813,6 +849,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (1)
@@ -961,6 +1001,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1179208597819272, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1700467701915904, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
       propertyPath: m_Name
       value: Building_R_Prefab (2)
@@ -1028,6 +1072,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab (2)
@@ -1095,6 +1143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1238618232821446, guid: 62788775cce139e4abe5fdd7071ead29, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1859279354129462, guid: 62788775cce139e4abe5fdd7071ead29, type: 3}
       propertyPath: m_Name
       value: Building_B_prefab
@@ -1421,6 +1473,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1226169113815216, guid: cb91b3980066872409d19e753a241063, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1803214414384070, guid: cb91b3980066872409d19e753a241063, type: 3}
       propertyPath: m_Name
       value: Building_p_prefab
@@ -1488,6 +1544,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (1)
@@ -1559,6 +1619,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1622,6 +1686,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1112206945803808, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1970175596446060, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
       propertyPath: m_Name
       value: Building_Q_prefab
@@ -1693,6 +1761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1759,6 +1831,10 @@ PrefabInstance:
     - target: {fileID: 1378370071209536, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_Name
       value: Building_B1_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
@@ -1827,6 +1903,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1890,6 +1970,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab
@@ -1957,6 +2041,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (1)
@@ -2028,6 +2116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_T_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1871840052373534, guid: 90045d2ccf59b6f45afd8bab908bb038, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4208510527079596, guid: 90045d2ccf59b6f45afd8bab908bb038, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2094,6 +2186,10 @@ PrefabInstance:
     - target: {fileID: 1378370071209536, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_Name
       value: Building_B1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
@@ -2162,6 +2258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_W_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1769148396902374, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4725887406615136, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2225,6 +2325,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1092326577667866, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_Name
       value: Building_M_prefab
@@ -2292,6 +2396,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (2)
@@ -2359,6 +2467,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (1)
@@ -2526,6 +2638,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1092326577667866, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_Name
       value: Building_M_prefab
@@ -2593,6 +2709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab
@@ -2739,6 +2859,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab
@@ -2806,9 +2930,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4984302113942590, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_RootOrder
@@ -2877,6 +3009,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2940,6 +3076,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1112206945803808, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1970175596446060, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
       propertyPath: m_Name
       value: Building_Q_prefab
@@ -3094,6 +3234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_Z_Prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1973031268852238, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4571776215605590, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3157,6 +3301,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1064072402016956, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1355464884281048, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
       propertyPath: m_Name
       value: Bulding_C_prefab 1
@@ -3228,6 +3376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_Z_Prefab (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1973031268852238, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4571776215605590, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3294,6 +3446,10 @@ PrefabInstance:
     - target: {fileID: 1516307884609076, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_Name
       value: building_X_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1705812710899832, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4604579876288746, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_RootOrder
@@ -3395,6 +3551,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1064072402016956, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1355464884281048, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
       propertyPath: m_Name
       value: Bulding_C_prefab 1
@@ -3462,6 +3622,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1333667526047858, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1503822532645738, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
       propertyPath: m_Name
       value: Building_H_prefab
@@ -3529,6 +3693,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab
@@ -3596,6 +3764,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab
@@ -3666,6 +3838,10 @@ PrefabInstance:
     - target: {fileID: 1499163232218088, guid: c637a821140f92a4dbb62e352cf8f140, type: 3}
       propertyPath: m_Name
       value: Building_S_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605738543181100, guid: c637a821140f92a4dbb62e352cf8f140, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4903034567477216, guid: c637a821140f92a4dbb62e352cf8f140, type: 3}
       propertyPath: m_RootOrder
@@ -3781,6 +3957,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1179208597819272, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1700467701915904, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
       propertyPath: m_Name
       value: Building_R_Prefab
@@ -3848,9 +4028,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1240908962797102, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560490928162206, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1737964153803582, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_Name
       value: Car_repair_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747537672962790, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4197068249736730, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_RootOrder
@@ -3915,6 +4107,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1238618232821446, guid: 62788775cce139e4abe5fdd7071ead29, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1859279354129462, guid: 62788775cce139e4abe5fdd7071ead29, type: 3}
       propertyPath: m_Name
       value: Building_B_prefab (2)
@@ -3982,6 +4178,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1222731060140294, guid: 01bbe20c855564648b02e0092e511cac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1505934643987248, guid: 01bbe20c855564648b02e0092e511cac, type: 3}
       propertyPath: m_Name
       value: Gas_station_A_PREFAB (1)
@@ -4132,6 +4332,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1064072402016956, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1355464884281048, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
       propertyPath: m_Name
       value: Bulding_C_prefab 1
@@ -4199,6 +4403,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1179208597819272, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1700467701915904, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
       propertyPath: m_Name
       value: Building_R_Prefab (1)
@@ -4270,6 +4478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hospital_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1829630317900042, guid: 03f4debef6f82ef43b174ff67987c532, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4473089879916392, guid: 03f4debef6f82ef43b174ff67987c532, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4337,6 +4549,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4400,9 +4616,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1560490928162206, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1737964153803582, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_Name
       value: Car_repair_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747537672962790, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4197068249736730, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_RootOrder
@@ -4467,6 +4691,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1333667526047858, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1503822532645738, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
       propertyPath: m_Name
       value: Building_H_prefab (1)
@@ -4537,6 +4765,10 @@ PrefabInstance:
     - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_Name
       value: Building_A1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
@@ -4649,6 +4881,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1092326577667866, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_Name
       value: Building_M_prefab
@@ -4720,6 +4956,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_T_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1871840052373534, guid: 90045d2ccf59b6f45afd8bab908bb038, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4208510527079596, guid: 90045d2ccf59b6f45afd8bab908bb038, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4786,6 +5026,10 @@ PrefabInstance:
     - target: {fileID: 1164899596817984, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_Name
       value: Building_A_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
@@ -4854,6 +5098,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4917,6 +5165,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab
@@ -4984,6 +5236,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab (1)
@@ -5055,6 +5311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building_X_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1705812710899832, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4604579876288746, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -5122,6 +5382,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -5188,6 +5452,10 @@ PrefabInstance:
     - target: {fileID: 1600722264159988, guid: 445da40af79ed8241871555db3d63e27, type: 3}
       propertyPath: m_Name
       value: Build_G-Left_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681268036702202, guid: 445da40af79ed8241871555db3d63e27, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4383515063083230, guid: 445da40af79ed8241871555db3d63e27, type: 3}
       propertyPath: m_RootOrder
@@ -5344,6 +5612,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1333667526047858, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1503822532645738, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
       propertyPath: m_Name
       value: Building_H_prefab
@@ -5411,6 +5683,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1064072402016956, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1355464884281048, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
       propertyPath: m_Name
       value: Bulding_C_prefab 1
@@ -5478,6 +5754,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1184142013480454, guid: 9a52ba64c3a0abf49ad9515917ade04b, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1213795830858570, guid: 9a52ba64c3a0abf49ad9515917ade04b, type: 3}
       propertyPath: m_Name
       value: Shop_B_prefab
@@ -5545,6 +5825,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1650278645903672, guid: 406aca78ed1cb18449485b10b9cffa85, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1772776456942506, guid: 406aca78ed1cb18449485b10b9cffa85, type: 3}
       propertyPath: m_Name
       value: Building_F_prefab
@@ -5612,6 +5896,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1112206945803808, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1970175596446060, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
       propertyPath: m_Name
       value: Building_Q_prefab
@@ -5679,6 +5967,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab
@@ -5746,6 +6038,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1333667526047858, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1503822532645738, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
       propertyPath: m_Name
       value: Building_H_prefab
@@ -5937,6 +6233,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1092326577667866, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
       propertyPath: m_Name
       value: Building_M_prefab
@@ -6091,6 +6391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_T_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1871840052373534, guid: 90045d2ccf59b6f45afd8bab908bb038, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4208510527079596, guid: 90045d2ccf59b6f45afd8bab908bb038, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6164,6 +6468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6231,6 +6539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6294,6 +6606,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab
@@ -6479,6 +6795,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab (1)
@@ -6546,6 +6866,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab (1)
@@ -6617,6 +6941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6680,6 +7008,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab
@@ -6747,6 +7079,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab
@@ -6814,6 +7150,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1579549174255102, guid: 5b71bcfe27faa8a4a9ec939bb5377114, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1653091941771604, guid: 5b71bcfe27faa8a4a9ec939bb5377114, type: 3}
       propertyPath: m_Name
       value: Building_E_prefab
@@ -6885,6 +7225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6948,6 +7292,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab
@@ -7019,6 +7367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7086,6 +7438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7149,6 +7505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1059702496391702, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1681277682126416, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
       propertyPath: m_Name
       value: Building_N_Prefab
@@ -7220,6 +7580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7286,6 +7650,10 @@ PrefabInstance:
     - target: {fileID: 1378370071209536, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_Name
       value: Building_B1_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
@@ -7387,6 +7755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire_department_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1859262065797286, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4085613477960446, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7453,6 +7825,10 @@ PrefabInstance:
     - target: {fileID: 1350961368450940, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
       propertyPath: m_Name
       value: Supermaket_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433151737428836, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4105848772479938, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
       propertyPath: m_RootOrder
@@ -7521,6 +7897,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Supermaket_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1433151737428836, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4105848772479938, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7584,6 +7964,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab
@@ -7651,6 +8035,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1473300881592230, guid: 6f3dc1314311772438667865ceda9b08, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1571249495974434, guid: 6f3dc1314311772438667865ceda9b08, type: 3}
       propertyPath: m_Name
       value: Building_I_3_prefab
@@ -7721,6 +8109,10 @@ PrefabInstance:
     - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_Name
       value: Building_A1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
@@ -7870,6 +8262,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Build_G-right_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1701896581052030, guid: 19427fc607e7e5645a1f1fe831d3add4, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4386006478067882, guid: 19427fc607e7e5645a1f1fe831d3add4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7936,6 +8332,10 @@ PrefabInstance:
     - target: {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_Name
       value: Building_A1_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
@@ -8004,6 +8404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Build_G-Left_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1681268036702202, guid: 445da40af79ed8241871555db3d63e27, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4383515063083230, guid: 445da40af79ed8241871555db3d63e27, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8067,6 +8471,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab
@@ -8138,6 +8546,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hospital_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1829630317900042, guid: 03f4debef6f82ef43b174ff67987c532, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4473089879916392, guid: 03f4debef6f82ef43b174ff67987c532, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8201,6 +8613,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1112206945803808, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1970175596446060, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
       propertyPath: m_Name
       value: Building_Q_prefab (1)
@@ -8315,6 +8731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8378,6 +8798,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab
@@ -8445,6 +8869,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1064072402016956, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1355464884281048, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
       propertyPath: m_Name
       value: Bulding_C_prefab 1
@@ -8516,6 +8944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_Z_Prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1973031268852238, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4571776215605590, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8579,6 +9011,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1179208597819272, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1700467701915904, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
       propertyPath: m_Name
       value: Building_R_Prefab
@@ -8646,6 +9082,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab (1)
@@ -8716,6 +9156,10 @@ PrefabInstance:
     - target: {fileID: 1026470964538568, guid: d9ae8f6b23fb5a54584fb5b5ada007dc, type: 3}
       propertyPath: m_Name
       value: Motel_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921260489881878, guid: d9ae8f6b23fb5a54584fb5b5ada007dc, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4904285700624236, guid: d9ae8f6b23fb5a54584fb5b5ada007dc, type: 3}
       propertyPath: m_RootOrder
@@ -8814,6 +9258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1473300881592230, guid: 6f3dc1314311772438667865ceda9b08, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1571249495974434, guid: 6f3dc1314311772438667865ceda9b08, type: 3}
       propertyPath: m_Name
       value: Building_I_3_prefab
@@ -8885,6 +9333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8948,6 +9400,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab (1)
@@ -9086,6 +9542,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (2)
@@ -9153,6 +9613,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (2)
@@ -9224,6 +9688,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire_department_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1859262065797286, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4085613477960446, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -9291,6 +9759,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A_prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -9357,6 +9829,10 @@ PrefabInstance:
     - target: {fileID: 1780644637145660, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
       propertyPath: m_Name
       value: Fire_department_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859262065797286, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4085613477960446, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
       propertyPath: m_RootOrder
@@ -9504,6 +9980,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1064072402016956, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1355464884281048, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
       propertyPath: m_Name
       value: Bulding_C_prefab 1 (1)
@@ -9575,6 +10055,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -9638,6 +10122,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1226169113815216, guid: cb91b3980066872409d19e753a241063, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1803214414384070, guid: cb91b3980066872409d19e753a241063, type: 3}
       propertyPath: m_Name
       value: Building_p_prefab
@@ -9705,6 +10193,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab
@@ -9772,6 +10264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (1)
@@ -9843,6 +10339,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -9906,6 +10406,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1579549174255102, guid: 5b71bcfe27faa8a4a9ec939bb5377114, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1653091941771604, guid: 5b71bcfe27faa8a4a9ec939bb5377114, type: 3}
       propertyPath: m_Name
       value: Building_E_prefab
@@ -9977,6 +10481,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_W_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1769148396902374, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4725887406615136, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10043,6 +10551,10 @@ PrefabInstance:
     - target: {fileID: 1724744115054700, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
       propertyPath: m_Name
       value: Building_W_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769148396902374, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4725887406615136, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
       propertyPath: m_RootOrder
@@ -10111,6 +10623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_W_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1769148396902374, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4725887406615136, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10174,6 +10690,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab
@@ -10241,6 +10761,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab
@@ -10345,6 +10869,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab
@@ -10412,6 +10940,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1059702496391702, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1681277682126416, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
       propertyPath: m_Name
       value: Building_N_Prefab
@@ -10604,6 +11136,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1290088440890928, guid: b62a88683020bad4f88cd9c883281901, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1878098898913144, guid: b62a88683020bad4f88cd9c883281901, type: 3}
       propertyPath: m_Name
       value: Building_Y_prefab
@@ -10675,6 +11211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Build_G-right_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1701896581052030, guid: 19427fc607e7e5645a1f1fe831d3add4, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4386006478067882, guid: 19427fc607e7e5645a1f1fe831d3add4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10738,9 +11278,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1240908962797102, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560490928162206, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1737964153803582, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_Name
       value: Car_repair_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747537672962790, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4197068249736730, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_RootOrder
@@ -10883,6 +11435,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab
@@ -11000,6 +11556,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab
@@ -11067,6 +11627,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1338914458493622, guid: 150fadf88f51c2b4b9b7b62af8d39db9, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1441186220738132, guid: 150fadf88f51c2b4b9b7b62af8d39db9, type: 3}
       propertyPath: m_Name
       value: Building_u_prefab
@@ -11253,6 +11817,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab
@@ -11323,6 +11891,10 @@ PrefabInstance:
     - target: {fileID: 1724744115054700, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
       propertyPath: m_Name
       value: Building_W_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769148396902374, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4725887406615136, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
       propertyPath: m_RootOrder
@@ -11536,6 +12108,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1184142013480454, guid: 9a52ba64c3a0abf49ad9515917ade04b, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1213795830858570, guid: 9a52ba64c3a0abf49ad9515917ade04b, type: 3}
       propertyPath: m_Name
       value: Shop_B_prefab
@@ -11603,6 +12179,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1226169113815216, guid: cb91b3980066872409d19e753a241063, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1803214414384070, guid: cb91b3980066872409d19e753a241063, type: 3}
       propertyPath: m_Name
       value: Building_p_prefab
@@ -11670,6 +12250,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1579549174255102, guid: 5b71bcfe27faa8a4a9ec939bb5377114, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1653091941771604, guid: 5b71bcfe27faa8a4a9ec939bb5377114, type: 3}
       propertyPath: m_Name
       value: Building_E_prefab
@@ -11737,6 +12321,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1059702496391702, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1681277682126416, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
       propertyPath: m_Name
       value: Building_N_Prefab
@@ -11882,6 +12470,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab (1)
@@ -11949,6 +12541,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (1)
@@ -12020,6 +12616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12087,6 +12687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12150,6 +12754,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab (2)
@@ -12221,6 +12829,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12284,6 +12896,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1650222205530508, guid: 95aaceaac899f9a47aea3a9744ce9c20, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1956396886676158, guid: 95aaceaac899f9a47aea3a9744ce9c20, type: 3}
       propertyPath: m_Name
       value: Building_V_prefab
@@ -12351,6 +12967,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab (1)
@@ -12422,6 +13042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12485,6 +13109,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab
@@ -12552,6 +13180,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1238618232821446, guid: 62788775cce139e4abe5fdd7071ead29, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1859279354129462, guid: 62788775cce139e4abe5fdd7071ead29, type: 3}
       propertyPath: m_Name
       value: Building_B_prefab (1)
@@ -12619,6 +13251,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab
@@ -12690,6 +13326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12753,6 +13393,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (1)
@@ -12820,6 +13464,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab (1)
@@ -12887,6 +13535,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab (1)
@@ -12958,6 +13610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -13021,6 +13677,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1333667526047858, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1503822532645738, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
       propertyPath: m_Name
       value: Building_H_prefab
@@ -13092,6 +13752,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building_X_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1705812710899832, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4604579876288746, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -13159,6 +13823,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -13225,6 +13893,10 @@ PrefabInstance:
     - target: {fileID: 1499163232218088, guid: c637a821140f92a4dbb62e352cf8f140, type: 3}
       propertyPath: m_Name
       value: Building_S_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605738543181100, guid: c637a821140f92a4dbb62e352cf8f140, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4903034567477216, guid: c637a821140f92a4dbb62e352cf8f140, type: 3}
       propertyPath: m_RootOrder
@@ -13320,6 +13992,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1112206945803808, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1970175596446060, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
       propertyPath: m_Name
       value: Building_Q_prefab
@@ -13470,9 +14146,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1240908962797102, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560490928162206, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1737964153803582, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_Name
       value: Car_repair_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747537672962790, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4197068249736730, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_RootOrder
@@ -13541,6 +14229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_O_PREFAB
       objectReference: {fileID: 0}
+    - target: {fileID: 1590380894351202, guid: 4410dff019705d648959a9ceea02bfbb, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4397089938149152, guid: 4410dff019705d648959a9ceea02bfbb, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -13604,6 +14296,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab
@@ -13675,6 +14371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1283467027243318, guid: ba33f5f0a254c9443956b40146028648, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4872864705531724, guid: ba33f5f0a254c9443956b40146028648, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -13738,6 +14438,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab
@@ -13805,6 +14509,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab
@@ -13876,6 +14584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_W_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1769148396902374, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4725887406615136, guid: daa1a100f65deb34787ae1bb55d44a76, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -13943,6 +14655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building_X_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1705812710899832, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4604579876288746, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -14009,6 +14725,10 @@ PrefabInstance:
     - target: {fileID: 1313561039655254, guid: 28e73319f340c644db3fdb95596c6596, type: 3}
       propertyPath: m_Name
       value: Police_station_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436000515310872, guid: 28e73319f340c644db3fdb95596c6596, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4665181676838408, guid: 28e73319f340c644db3fdb95596c6596, type: 3}
       propertyPath: m_RootOrder
@@ -14111,6 +14831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -14178,6 +14902,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -14241,6 +14969,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1112206945803808, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1970175596446060, guid: 984e7c3587655ac489a642619bb3ef24, type: 3}
       propertyPath: m_Name
       value: Building_Q_prefab
@@ -14308,6 +15040,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (2)
@@ -14462,6 +15198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_T_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1871840052373534, guid: 90045d2ccf59b6f45afd8bab908bb038, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4208510527079596, guid: 90045d2ccf59b6f45afd8bab908bb038, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -14525,6 +15265,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1126650510197670, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1631595132073662, guid: 2c1f60045e2f58f48966f8cea8354944, type: 3}
       propertyPath: m_Name
       value: Bank_prefab
@@ -14592,6 +15336,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1064072402016956, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1355464884281048, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
       propertyPath: m_Name
       value: Bulding_C_prefab 1
@@ -14659,6 +15407,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab (3)
@@ -14730,6 +15482,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -14793,6 +15549,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab
@@ -14942,6 +15702,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15009,6 +15773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15072,6 +15840,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab
@@ -15139,6 +15911,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab (1)
@@ -15210,6 +15986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hospital_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829630317900042, guid: 03f4debef6f82ef43b174ff67987c532, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4473089879916392, guid: 03f4debef6f82ef43b174ff67987c532, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15273,6 +16053,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1650278645903672, guid: 406aca78ed1cb18449485b10b9cffa85, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1772776456942506, guid: 406aca78ed1cb18449485b10b9cffa85, type: 3}
       propertyPath: m_Name
       value: Building_F_prefab
@@ -15340,6 +16124,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab (1)
@@ -15411,6 +16199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building_X_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1705812710899832, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4604579876288746, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15474,6 +16266,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1226876378394272, guid: 1b917d070ca78d8458d7db3681a2c913, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1964126759934866, guid: 1b917d070ca78d8458d7db3681a2c913, type: 3}
       propertyPath: m_Name
       value: Shop_C_prefab
@@ -15579,6 +16375,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Police_station_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1436000515310872, guid: 28e73319f340c644db3fdb95596c6596, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4665181676838408, guid: 28e73319f340c644db3fdb95596c6596, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15646,6 +16446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Supermaket_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1433151737428836, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4105848772479938, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15709,6 +16513,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1238618232821446, guid: 62788775cce139e4abe5fdd7071ead29, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1859279354129462, guid: 62788775cce139e4abe5fdd7071ead29, type: 3}
       propertyPath: m_Name
       value: Building_B_prefab
@@ -15780,6 +16588,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_Z_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1973031268852238, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4571776215605590, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15846,6 +16658,10 @@ PrefabInstance:
     - target: {fileID: 1378370071209536, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_Name
       value: Building_B1_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
@@ -15914,6 +16730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Police_station_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1436000515310872, guid: 28e73319f340c644db3fdb95596c6596, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4665181676838408, guid: 28e73319f340c644db3fdb95596c6596, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15980,6 +16800,10 @@ PrefabInstance:
     - target: {fileID: 1199332134306268, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
       propertyPath: m_Name
       value: Building_I_2_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275060198990118, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4370792754970456, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
       propertyPath: m_RootOrder
@@ -16127,6 +16951,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1338914458493622, guid: 150fadf88f51c2b4b9b7b62af8d39db9, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1441186220738132, guid: 150fadf88f51c2b4b9b7b62af8d39db9, type: 3}
       propertyPath: m_Name
       value: Building_u_prefab
@@ -16198,6 +17026,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire_department_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1859262065797286, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4085613477960446, guid: 7eb437ce89e76c640809f70f15bde317, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16261,6 +17093,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1560490928162206, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1737964153803582, guid: 9094aa5ae2e324346997aa2ea9ad7930, type: 3}
       propertyPath: m_Name
       value: Car_repair_prefab
@@ -16332,6 +17168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16395,6 +17235,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1179208597819272, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1700467701915904, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
       propertyPath: m_Name
       value: Building_R_Prefab
@@ -16462,6 +17306,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1638178282622772, guid: b8c04fd14b199f34a802353a72a0af44, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1799015002716730, guid: b8c04fd14b199f34a802353a72a0af44, type: 3}
       propertyPath: m_Name
       value: Parking_checkOut_prefab
@@ -16529,6 +17377,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1159271124920244, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1385491797830740, guid: f9526b7c12770f14aa830082aa6d9b45, type: 3}
       propertyPath: m_Name
       value: Building_D1_prefab (3)
@@ -16596,6 +17448,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1059702496391702, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1681277682126416, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
       propertyPath: m_Name
       value: Building_N_Prefab
@@ -16667,6 +17523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_C1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16733,6 +17593,10 @@ PrefabInstance:
     - target: {fileID: 1468578926959842, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_Name
       value: Building_C1_prefab (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961242768103578, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
+      propertyPath: m_TagString
+      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 4819851783926722, guid: 1fbdccb55fd15bc4f92646bd818aca51, type: 3}
       propertyPath: m_RootOrder
@@ -16801,6 +17665,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_A1_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1945057450944616, guid: 562df8355904213468a690c4ce6740b6, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4541227407256296, guid: 562df8355904213468a690c4ce6740b6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16864,6 +17732,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab
@@ -16931,6 +17803,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1168006780139396, guid: 49e4fbb0397806849a4871cd85eaca26, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1716336653257340, guid: 49e4fbb0397806849a4871cd85eaca26, type: 3}
       propertyPath: m_Name
       value: Shop_A_prefab
@@ -16998,6 +17874,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab (1)
@@ -17065,6 +17945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1022694994191732, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1899946360806954, guid: 7d569c6acdec3c2428d7b39889d89720, type: 3}
       propertyPath: m_Name
       value: Building_J_prefab
@@ -17136,6 +18020,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_B1_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1913871558650214, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4917032449352002, guid: a60988b24f8ff094ba511054edf48a9d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -17199,6 +18087,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1473300881592230, guid: 6f3dc1314311772438667865ceda9b08, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1571249495974434, guid: 6f3dc1314311772438667865ceda9b08, type: 3}
       propertyPath: m_Name
       value: Building_I_3_prefab
@@ -17266,6 +18158,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab
@@ -17530,6 +18426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_Z_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1973031268852238, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4571776215605590, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -17593,6 +18493,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1179208597819272, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1700467701915904, guid: 332e08e35cda1b84e8c36c123299b8ac, type: 3}
       propertyPath: m_Name
       value: Building_R_Prefab
@@ -17660,6 +18564,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1135358366631424, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1248084678627422, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
       propertyPath: m_Name
       value: Building_D_prefab
@@ -17727,6 +18635,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab
@@ -17794,6 +18706,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1277488071553818, guid: 931ecb32d754b3f40afc9a688c8cea66, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1934853517836424, guid: 931ecb32d754b3f40afc9a688c8cea66, type: 3}
       propertyPath: m_Name
       value: Building_I_1_prefab
@@ -17861,6 +18777,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1333667526047858, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1503822532645738, guid: c8c7944afbb63f548bf2b2bddd8a848f, type: 3}
       propertyPath: m_Name
       value: Building_H_prefab (1)
@@ -17932,6 +18852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building_X_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1705812710899832, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4604579876288746, guid: 1c6290f76fd11c74fa326bdf8cd95a9f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -17995,6 +18919,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1064072402016956, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1355464884281048, guid: 80f1713dca16e654abd9002f6e9f5627, type: 3}
       propertyPath: m_Name
       value: Bulding_C_prefab 1 (2)
@@ -18143,6 +19071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building_Z_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1973031268852238, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4571776215605590, guid: a6cd0c657da915144bd367d385c0fc31, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -18206,6 +19138,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1124859566972604, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1646639913439324, guid: ac16a24c584766f4e905adc7db85b93d, type: 3}
       propertyPath: m_Name
       value: Building_K_prefab
@@ -18358,6 +19294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Build_G-Left_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1681268036702202, guid: 445da40af79ed8241871555db3d63e27, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 4383515063083230, guid: 445da40af79ed8241871555db3d63e27, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -18454,6 +19394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 147873716}
     m_Modifications:
+    - target: {fileID: 1222731060140294, guid: 01bbe20c855564648b02e0092e511cac, type: 3}
+      propertyPath: m_TagString
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 1505934643987248, guid: 01bbe20c855564648b02e0092e511cac, type: 3}
       propertyPath: m_Name
       value: Gas_station_A_PREFAB
