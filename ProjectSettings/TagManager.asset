@@ -20,6 +20,9 @@ TagManager:
   - Shop
   - BoostRamp
   - road
+  - NPC
+  - Checkpoint
+  - Collision
   layers:
   - Default
   - TransparentFX
