@@ -3,7 +3,11 @@ guid: f4053022659f6be4b86944dbde9e5cbb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - itemPrefab: {fileID: 5779373908981192658, guid: e7299f585bf2b0a4b884035c7cd1bbf6,
+      type: 3}
+  - boostRampPrefab: {fileID: 4755110089908861969, guid: 446741323a9669249b2b3e58cc52ad79,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

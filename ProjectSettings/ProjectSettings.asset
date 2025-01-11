@@ -986,11 +986,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: d073575f-ba83-4ff7-9239-ceb96ab4bf59
+  cloudProjectId: 172f98ed-1d01-4f9a-8375-9b4babfa3645
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: redback-smartbike-vr
+  organizationId: romodeakin
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
