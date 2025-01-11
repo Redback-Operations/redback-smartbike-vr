@@ -241,7 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 2622329401361513194, guid: 838d037d4afc66f448e87e9084047f10,
     type: 3}
-  coinPrefab: {fileID: 6007923955049582681, guid: 683ad706d5208ee4985a757f6136f0cd,
+  boostRampPrefab: {fileID: 4755110089908861969, guid: 446741323a9669249b2b3e58cc52ad79,
     type: 3}
 --- !u!1 &7046331759909209325
 GameObject:
