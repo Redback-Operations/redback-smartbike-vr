@@ -231,28 +231,35 @@ public class PlayerController : MonoBehaviour
                 score += collectable.Collect();
 
             UIManager.Instance.SetScore(score);
+
+            // Early escape helps reduce indentation further down the function.
+            return;
         }
-        else
+
+        // Waypoint!
+        if (WaypointManager.Instance.IsWaypoint(other.transform)){
+            WaypointManager.Instance.CheckWaypoint(other.transform);
+            return;
+        }
+
+        // old collision code by Jai
+        // TODO replace other pickups with collectable script as above, see Prefabs/Pickups/Star for example
+        if (other.tag == "1")
         {
-            // old collision code by Jai
-            // TODO replace other pickups with collectable script as above, see Prefabs/Pickups/Star for example
-            if (other.tag == "1")
-            {
-                score = score + 1;
-                other.gameObject.SetActive(false);
-            }
+            score = score + 1;
+            other.gameObject.SetActive(false);
+        }
 
-            if (other.tag == "2")
-            {
-                score = score + 2;
-                other.gameObject.SetActive(false);
-            }
+        if (other.tag == "2")
+        {
+            score = score + 2;
+            other.gameObject.SetActive(false);
+        }
 
-            if (other.tag == "5")
-            {
-                score = score + 5;
-                other.gameObject.SetActive(false);
-            }
+        if (other.tag == "5")
+        {
+            score = score + 5;
+            other.gameObject.SetActive(false);
         }
     }
 
