@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7fdc766bdc9b799429493b3491f02de9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - roadTilePrefab: {fileID: 5779373908981192658, guid: e7299f585bf2b0a4b884035c7cd1bbf6,
+      type: 3}
+  - playerTransform: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

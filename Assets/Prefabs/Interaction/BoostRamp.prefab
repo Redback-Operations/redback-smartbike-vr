@@ -142,3 +142,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedBoostMultiplier: 3.73
   speedBoostFadeDuration: 1.23
+  maxSpeed: 30
