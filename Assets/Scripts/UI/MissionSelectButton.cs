@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class MissionSelectButton : MonoBehaviour
+public class MissionSelectButton : MonoBehaviour, IUIButton
 {
     private MissionSelectButtonManager _manager;
     public ButtonAction Action;
@@ -64,7 +64,7 @@ public class MissionSelectButton : MonoBehaviour
 
         if (_button != null)
         {
-            _button.onClick.AddListener(ButtonInteract);
+            _button.onClick.AddListener(OnButtonInteract);
         }
     }
 
@@ -79,7 +79,7 @@ public class MissionSelectButton : MonoBehaviour
 
         if (_button != null)
         {
-            _button.onClick.RemoveListener(ButtonInteract);
+            _button.onClick.RemoveListener(OnButtonInteract);
         }
     }
 
@@ -90,7 +90,7 @@ public class MissionSelectButton : MonoBehaviour
             return;
 
         if (Input.GetMouseButtonDown(0))
-            ButtonInteract();
+            OnButtonInteract();
     }
 
     void OnMouseEnter()
@@ -124,12 +124,12 @@ public class MissionSelectButton : MonoBehaviour
         _material.color = Unselected;
     }
 
-    private void OnButtonInteract(SelectEnterEventArgs args)
+    public void OnButtonInteract(SelectEnterEventArgs args)
     {
-        ButtonInteract();
+        OnButtonInteract();
     }
 
-    public void ButtonInteract()
+    public void OnButtonInteract()
     {
         Debug.Log($"Sending button hit: {name}");
         _manager.ButtonInteract(this);
