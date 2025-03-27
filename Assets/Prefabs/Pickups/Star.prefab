@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7464111948316513303}
   - component: {fileID: 1896700976452266187}
   - component: {fileID: 4135459250771223290}
+  - component: {fileID: 7852700211022993379}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -69,6 +70,80 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.25, y: 1.45, z: 1.4}
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &7852700211022993379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4650662843561065631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorType: 1
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 4.656811, g: 5.152504, b: 0, a: 0}
+    key1: {r: 4.020215, g: 5.152504, b: 0, a: 1}
+    key2: {r: 2.8907113, g: 0, b: 1.9097216, a: 1}
+    key3: {r: 2.8907113, g: 0, b: 1.9097216, a: 1}
+    key4: {r: 2.8907113, g: 0, b: 1.9097216, a: 0}
+    key5: {r: 2.8907113, g: 0, b: 1.9097216, a: 0}
+    key6: {r: 2.8907113, g: 0, b: 1.9097216, a: 0}
+    key7: {r: 2.8907113, g: 0, b: 1.9097216, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 61102
+    ctime3: 61102
+    ctime4: 61102
+    ctime5: 61102
+    ctime6: 61102
+    ctime7: 61102
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 65535
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 2
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  colorAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.26136738
+      outSlope: 0.26136738
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.26534292
+    - serializedVersion: 3
+      time: 1
+      value: 1.0021362
+      inSlope: 2.5544846
+      outSlope: 2.5544846
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.059574485
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 4
+  animationSpeed: 2
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &3188703971778765805
 PrefabInstance:
   m_ObjectHideFlags: 0
