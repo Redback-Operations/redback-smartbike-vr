@@ -9,6 +9,7 @@ public class BikePartInteraction : MonoBehaviour, IPointerEnterHandler, IPointer
     [System.Serializable]
     public class BikePart
     {
+        public string partName;
         public MeshRenderer meshRenderer;
         public int materialIndex;
     }
