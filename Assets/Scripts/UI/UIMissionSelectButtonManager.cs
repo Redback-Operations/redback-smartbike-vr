@@ -8,31 +8,33 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
+using static IUIButtonManager;
 using static UnityEngine.GraphicsBuffer;
 
 public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
-{
+{ 
     public MissionSelectButton[] Missions;
     public MissionSelectButton BackButton;
     public MissionSelectButton GoButton;
     public CanvasRenderer DescriptionPanel;
     public TextMeshProUGUI DescriptionText;
 
-    public Canvas Base;
+    public GameObject menuBase;
     private MissionData _activeMissionData;
-    private IUIButtonManager.IUIState _activeState;
+    private IUIState _activeState;
 
     public bool doDynamicMissionAlign = true;
+    private Stack<IUIState> _stateStack;
 
     private void Awake()
     {
         //activate base-state
         Debug.Log("Initial state set");
-        SetState(new BaseState(this));
+        Reset();
     }
 
 
-    //dynamic menu alignment instead of manual
+    //dynamic menu alignment instead of manual (needs work)
     private void _DynamicAlignMissions()
     {
         float y;
@@ -44,26 +46,56 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
         }
     }
 
-    //change the current active state to the given new state
-    public void SetState(IUIButtonManager.IUIState nextState)
+    //clears the state stack and returns to base
+    public void Reset()
     {
-        if (nextState == null) return; 
+        _stateStack = new Stack<IUIState>();
+        SetState(new BaseState(this));
+    }
+
+    //returns to previous state on the stack
+    public void BackState()
+    {
+        IUIState prevState;
+
+        //don't go back if we're on base state
+        if (_stateStack.Count <= 1)
+        {
+            Debug.Log("Attempting to goto previous state from Base state!");
+            return;
+        }
+
+        //remove current state and get the state from before
+        _stateStack.Pop();
+        prevState = _stateStack.Pop();
+
+        //assign previous state as current
+        SetState(prevState);
+    }
+
+    //change the current active state to the given new state
+    public void SetState(IUIState nextState)
+    {
+        //make sure next UIState is a mission state
+        if (nextState == null) { Debug.Log("ERROR: Null State!"); return; }
 
         //shut down the active state
-        Debug.Log($"Switching state from {_activeState}");
         if (_activeState != null) _activeState.OnExitState();
 
-        //set new state and activate it
+        //set new state, activate it, add to state stack
+        Debug.Log($"Changing State!");
+        _stateStack.Push(nextState);
         _activeState = nextState;
-        Debug.Log($"New state: {_activeState}");
         _activeState.OnEnterState();
     }
 
     //when receiving button press, pass it on to the active-state
-    public void ButtonInteract(MissionSelectButton button)
+    public void ButtonInteract(IUIButton inbutton)
     {
-        Debug.Log($"Received button hit: {button.name}");
-        _activeState.ButtonInteract(button);
+        if (_activeState == null)
+        { Debug.Log("ERROR: NO ACTIVE STATE"); return; }
+
+        _activeState.ButtonInteract(inbutton);
     }
 
     //======================================================================================================================================
@@ -71,7 +103,7 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
     //======================================================================================================================================
 
     //extended interface of base nested interface - only use for mission-specific state functionality IF NEEDED
-    interface IMissionState : IUIButtonManager.IUIState { };
+    interface IMissionState : IUIState { };
 
     //initial menu - mission select not yet active
     public class BaseState : IMissionState
@@ -79,8 +111,8 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
         private MissionSelectButtonManager _manager;
         public BaseState(MissionSelectButtonManager manager) { _manager = manager; }
 
-        public void OnEnterState()  { _manager.Base.gameObject.SetActive(false); }
-        public void OnExitState() { _manager.Base.gameObject.SetActive(true); }
+        public void OnEnterState()  { _manager.menuBase.gameObject.SetActive(false); }
+        public void OnExitState() { _manager.menuBase.gameObject.SetActive(true); }
 
         public void ButtonInteract(IUIButton inButton) {
             MissionSelectButton.ButtonAction ButtonAction;
@@ -147,7 +179,7 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
 
                 //return to base state
                 case MissionSelectButton.ButtonAction.Back:
-                { _manager.SetState(new BaseState(_manager)); break; }
+                { _manager.BackState(); break; }
 
                 default: return;
             }
@@ -208,7 +240,7 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
                 //return to mission select list
                 case MissionSelectButton.ButtonAction.Back:
                 {
-                    _manager.SetState(new MissionListState(_manager));
+                    _manager.BackState();
                     break;
                 }
                 default: return;
