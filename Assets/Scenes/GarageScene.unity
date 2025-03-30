@@ -4306,6 +4306,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 3.4062
       objectReference: {fileID: 0}
+    - target: {fileID: 6621710796965901698, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: m_Name
+      value: Menus
+      objectReference: {fileID: 0}
     - target: {fileID: 6797005761575820249, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: colorPicker
@@ -5403,12 +5408,6 @@ RectTransform:
 --- !u!65 &743075662 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 4929462147968279735, guid: 3265678c6a9bb6642aa0ac4087b69620,
-    type: 3}
-  m_PrefabInstance: {fileID: 743075657}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &743075665 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 213830343830279815, guid: 3265678c6a9bb6642aa0ac4087b69620,
     type: 3}
   m_PrefabInstance: {fileID: 743075657}
   m_PrefabAsset: {fileID: 0}
@@ -7880,7 +7879,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1745123242}
         m_TargetAssemblyTypeName: MissionSelectButton, Assembly-CSharp
-        m_MethodName: ButtonInteract
+        m_MethodName: OnButtonInteract
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7969,7 +7968,7 @@ MonoBehaviour:
   GoButton: {fileID: 361544445}
   DescriptionPanel: {fileID: 860305850}
   DescriptionText: {fileID: 1389766264}
-  Base: {fileID: 743075665}
+  menuBase: {fileID: 743075659}
   doDynamicMissionAlign: 1
 --- !u!114 &1745123242
 MonoBehaviour:
