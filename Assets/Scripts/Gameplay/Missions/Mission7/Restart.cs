@@ -14,15 +14,7 @@ public class PlayerReset : MonoBehaviour
         initialRotation = transform.rotation;
     }
 
-    private void Update()
-    {
-        if (transform.position.y < -5f)
-        {
-            ResetToStartPoint();
-        }
-    }
-
-    private void ResetToStartPoint()
+    public void ResetToStartPoint()
     {
         Debug.Log("Resetting player to start point...");
 
