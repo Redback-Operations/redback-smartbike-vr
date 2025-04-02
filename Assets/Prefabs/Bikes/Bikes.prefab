@@ -362,7 +362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9053114007141630181
 Transform:
   m_ObjectHideFlags: 0
@@ -413,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 6925473652923007549}
   MaterialIndex: 5
+  bike: {fileID: 0}
 --- !u!1 &2459462210881228685
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2984219096329147703}
+  - component: {fileID: 9101657961928197892}
   m_Layer: 0
   m_Name: MountainBikeV2
   m_TagString: Untagged
@@ -449,6 +451,48 @@ Transform:
   - {fileID: 3302668215644733037}
   m_Father: {fileID: 4015094971907545029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9101657961928197892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459462210881228685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b860b02c18224363a637b5b02c8e7ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - name: Chain Stay
+    renderer: {fileID: 379297951054733447}
+    materialIndex: 0
+  - name: Seat Stay
+    renderer: {fileID: 379297951054733447}
+    materialIndex: 1
+  - name: Down Tube
+    renderer: {fileID: 379297951054733447}
+    materialIndex: 2
+  - name: Top Tube
+    renderer: {fileID: 379297951054733447}
+    materialIndex: 3
+  - name: Seat Tube
+    renderer: {fileID: 379297951054733447}
+    materialIndex: 4
+  - name: Seat
+    renderer: {fileID: 379297951054733447}
+    materialIndex: 6
+  - name: Head Tube
+    renderer: {fileID: 379297951054733447}
+    materialIndex: 10
+  - name: Fork
+    renderer: {fileID: 4727273040172419379}
+    materialIndex: 1
+  - name: Handle Bar
+    renderer: {fileID: 4727273040172419379}
+    materialIndex: 3
+  bikeData:
+    partCustomizations: []
 --- !u!1 &2471224131048082921
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2954464630489929555}
+  - component: {fileID: 7543685621751392307}
   m_Layer: 0
   m_Name: WomenBikeV3
   m_TagString: Untagged
@@ -486,6 +531,48 @@ Transform:
   - {fileID: 6335667121905233822}
   m_Father: {fileID: 4015094971907545029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7543685621751392307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471224131048082921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b860b02c18224363a637b5b02c8e7ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - name: Seat Tube
+    renderer: {fileID: 372048219955962595}
+    materialIndex: 0
+  - name: Head Tube
+    renderer: {fileID: 372048219955962595}
+    materialIndex: 3
+  - name: Down Tube
+    renderer: {fileID: 372048219955962595}
+    materialIndex: 4
+  - name: Seat
+    renderer: {fileID: 372048219955962595}
+    materialIndex: 5
+  - name: Top Tube
+    renderer: {fileID: 372048219955962595}
+    materialIndex: 7
+  - name: Seat Stay
+    renderer: {fileID: 372048219955962595}
+    materialIndex: 8
+  - name: Chain Stay
+    renderer: {fileID: 372048219955962595}
+    materialIndex: 9
+  - name: Fork
+    renderer: {fileID: 4751556336690269015}
+    materialIndex: 1
+  - name: Bike Handle
+    renderer: {fileID: 4751556336690269015}
+    materialIndex: 0
+  bikeData:
+    partCustomizations: []
 --- !u!1 &2678401212234561191
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,6 +811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 796105735874826036}
   MaterialIndex: 3
+  bike: {fileID: 0}
 --- !u!1 &3298206655173516507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,13 +1440,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491475190184015757}
+  - component: {fileID: 689347938841878601}
   m_Layer: 0
   m_Name: RoadBikeV5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5491475190184015757
 Transform:
   m_ObjectHideFlags: 0
@@ -1381,6 +1470,48 @@ Transform:
   - {fileID: 9053114007141630181}
   m_Father: {fileID: 4015094971907545029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &689347938841878601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5151681724110449975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b860b02c18224363a637b5b02c8e7ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - name: HandleBar
+    renderer: {fileID: 2649547228203002761}
+    materialIndex: 0
+  - name: Seat
+    renderer: {fileID: 6925473652923007549}
+    materialIndex: 0
+  - name: DownTube
+    renderer: {fileID: 6925473652923007549}
+    materialIndex: 3
+  - name: TopTube
+    renderer: {fileID: 6925473652923007549}
+    materialIndex: 1
+  - name: HeadTube
+    renderer: {fileID: 6925473652923007549}
+    materialIndex: 2
+  - name: Fork
+    renderer: {fileID: 2649547228203002761}
+    materialIndex: 4
+  - name: SeatTube
+    renderer: {fileID: 6925473652923007549}
+    materialIndex: 4
+  - name: SeatStay
+    renderer: {fileID: 6925473652923007549}
+    materialIndex: 5
+  - name: ChainStay
+    renderer: {fileID: 6925473652923007549}
+    materialIndex: 6
+  bikeData:
+    partCustomizations: []
 --- !u!1 &5231535253219802721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,6 +1607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4015094971907545029}
   - component: {fileID: 1504115889584571692}
+  - component: {fileID: 2984116782637822122}
   - component: {fileID: 5759151481748946755}
   - component: {fileID: 8220820672966649644}
   m_Layer: 0
@@ -1518,7 +1650,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f629e412bbdcc74388ae713e6b7be40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Customization: {fileID: 0}
+  selector: {fileID: 2984116782637822122}
+--- !u!114 &2984116782637822122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236068157097883331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe4581166d86524693613faa2232bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatarPrefabs: []
 --- !u!54 &5759151481748946755
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1669,7 +1814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2922337026217687873
 Transform:
   m_ObjectHideFlags: 0
@@ -1720,6 +1865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 6925473652923007549}
   MaterialIndex: 3
+  bike: {fileID: 0}
 --- !u!1 &5398781998011037745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,6 +2018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 7774609309968824251}
   MaterialIndex: 0
+  bike: {fileID: 0}
 --- !u!1 &6428626573102565811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,7 +2561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2414768537340503597
 Transform:
   m_ObjectHideFlags: 0
@@ -2688,17 +2835,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 36deb6ee10b2d45a490ac07d667fcca9,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36deb6ee10b2d45a490ac07d667fcca9,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36deb6ee10b2d45a490ac07d667fcca9,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36deb6ee10b2d45a490ac07d667fcca9,
         type: 3}
@@ -2708,12 +2855,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 36deb6ee10b2d45a490ac07d667fcca9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.45
+      value: -0.073
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36deb6ee10b2d45a490ac07d667fcca9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00167
+      value: -0.119
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36deb6ee10b2d45a490ac07d667fcca9,
         type: 3}
@@ -2883,6 +3030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 2347248012472722614}
   MaterialIndex: 0
+  bike: {fileID: 0}
 --- !u!1001 &2075526466889241520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2924,7 +3072,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f31abf2620c9f284e8efe20fa022c33a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0142
+      value: 0.134
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31abf2620c9f284e8efe20fa022c33a,
         type: 3}
