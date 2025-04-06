@@ -2668,7 +2668,7 @@ GameObject:
   - component: {fileID: 698850107}
   - component: {fileID: 698850106}
   m_Layer: 0
-  m_Name: Mission 8
+  m_Name: Mission8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4114,6 +4114,21 @@ PrefabInstance:
       propertyPath: MissionDescriptionPanel
       value: 
       objectReference: {fileID: 988721189}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: ToggleTargets.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: ToggleTargets.Array.data[4]
+      value: 
+      objectReference: {fileID: 1606193574}
+    - target: {fileID: 5359565180278453061, guid: 3265678c6a9bb6642aa0ac4087b69620,
+        type: 3}
+      propertyPath: ToggleTargets.Array.data[5]
+      value: 
+      objectReference: {fileID: 698850105}
     - target: {fileID: 5368825363781112700, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_Enabled
@@ -4127,17 +4142,17 @@ PrefabInstance:
     - target: {fileID: 5408453958871494044, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5408453958871494044, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5408453958871494044, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.087552786
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5472097449033590307, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -4152,7 +4167,7 @@ PrefabInstance:
     - target: {fileID: 5502406545168767848, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -26.17666
+      value: -26.176624
       objectReference: {fileID: 0}
     - target: {fileID: 5652821091347406231, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -4257,7 +4272,7 @@ PrefabInstance:
     - target: {fileID: 6438723058457035941, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458943978836687328, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -5152,17 +5167,17 @@ PrefabInstance:
     - target: {fileID: 8796692413800788127, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8796692413800788127, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8796692413800788127, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8856381433491578207, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -7327,7 +7342,7 @@ GameObject:
   - component: {fileID: 1680758452}
   - component: {fileID: 1680758451}
   m_Layer: 0
-  m_Name: Mission 8
+  m_Name: Mission8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
