@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetSceneName: GarageScene
+  teleportEffect: {fileID: 1763783451191056315, guid: 88403e53cc1db31409af1a7973e0ebaf,
+    type: 3}
 --- !u!1 &4138604615893978372
 GameObject:
   m_ObjectHideFlags: 0
