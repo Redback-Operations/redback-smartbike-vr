@@ -4076,11 +4076,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6342028781825167367, guid: 83183c4b6bdfd8a45bd11fd490284e4a,
-        type: 3}
-      propertyPath: TargetSceneName
-      value: GarageScene
-      objectReference: {fileID: 0}
     - target: {fileID: 8484237551066196385, guid: 83183c4b6bdfd8a45bd11fd490284e4a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
