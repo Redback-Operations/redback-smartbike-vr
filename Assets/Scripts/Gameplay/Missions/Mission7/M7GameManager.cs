@@ -7,18 +7,19 @@ public class M7GameManager : MonoBehaviour
 {
     public int score;
     public static M7GameManager inst;
+    public RoadSpawner roadSpawner;
+    public Transform playerTransform;
 
     public Text scoreText;
     public Text speedText;
 
-    public PlayMove playmove;
+    private PlayMove playMove;
+    private PlayerReset playerReset;
 
     public void IncreaseScore()
     {
         score++;
-        scoreText.text = "Score: " + score;
-
-        playmove.maxSpeed += playmove.speedIncreasePerPoint;
+        playMove.IncreaseMaxSpeed();
     }
 
     private void Awake()
@@ -29,12 +30,25 @@ public class M7GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playMove = playerTransform.GetComponent<PlayMove>();
+        playerReset = playerTransform.GetComponent<PlayerReset>();
+
+        roadSpawner.manager = this;
+        roadSpawner.Reset();
     }
 
     // Update is called once per frame
     void Update()
     {
-        speedText.text = $"Speed: {playmove.currentSpeed:F1}";
+
+        if (playerTransform.transform.position.y < -5f)
+        {
+            playerReset.ResetToStartPoint();
+            score = 0;
+            roadSpawner.Reset();
+        }
+
+        speedText.text = $"Speed: {playMove.currentSpeed:F1}";
+        scoreText.text = $"Score: {score:F1}"; //temporarily removed
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayMove : MonoBehaviour
 {
-    public float maxSpeed = 10.0f;
+    public float defaultmaxSpeed = 10.0f;
     public float maxReverseSpeed = -5.0f;
     public float acceleration = 5.0f;
     public float deceleration = 3.0f;
@@ -19,11 +19,13 @@ public class PlayMove : MonoBehaviour
     private bool isSpeedReset = false;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
+    private float _maxSpeed;
 
     private void Start()
     {
         initialPosition = transform.position;
         initialRotation = transform.rotation;
+        _maxSpeed = defaultmaxSpeed;
 
         UpdateSpeedText();
     }
@@ -66,7 +68,7 @@ public class PlayMove : MonoBehaviour
         }
 
         // Clamp speed between max forward and max reverse speeds
-        currentSpeed = Mathf.Clamp(currentSpeed, maxReverseSpeed, maxSpeed);
+        currentSpeed = Mathf.Clamp(currentSpeed, maxReverseSpeed, _maxSpeed);
 
         transform.position += currentSpeed * Time.deltaTime * transform.forward;
         transform.rotation *= Quaternion.AngleAxis(turnspeed * horizontal * Time.deltaTime, transform.up);
@@ -104,7 +106,7 @@ public class PlayMove : MonoBehaviour
 
     public void IncreaseMaxSpeed()
     {
-        maxSpeed += speedIncreasePerPoint;
-        Debug.Log($"Max speed increased to: {maxSpeed}");
+        _maxSpeed += speedIncreasePerPoint;
+        Debug.Log($"Max speed increased to: {_maxSpeed}");
     }
 }
