@@ -1766,6 +1766,12 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1822531834477099107}
+    - target: {fileID: 5157037484867313632, guid: 8c4c52fa9442e1b469cdd476f15a8940,
+        type: 3}
+      propertyPath: iconPrefab
+      value: 
+      objectReference: {fileID: 2378903645905238739, guid: 2b8ae96ac949def4fb13aecc3fa50856,
+        type: 3}
     - target: {fileID: 5315188663544100240, guid: 8c4c52fa9442e1b469cdd476f15a8940,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1865,6 +1871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114592382738757911, guid: 8c4c52fa9442e1b469cdd476f15a8940,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 480
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
