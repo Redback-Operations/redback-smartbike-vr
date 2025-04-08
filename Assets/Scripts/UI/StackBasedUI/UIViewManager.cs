@@ -17,7 +17,7 @@ namespace UI
         [SerializeField] private float duration;
 
         
-        [Header("debug")]
+        [Header("Debug")]
         public View _currentView;
 
         public View[] stack;
