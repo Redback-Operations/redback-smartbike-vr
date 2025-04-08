@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fusion;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR;
 
 public class NetworkPlayer : NetworkBehaviour
@@ -10,7 +11,8 @@ public class NetworkPlayer : NetworkBehaviour
     public Transform HandLeft;
     public Transform HandRight;
 
-    public BikeCustomization Customization;
+    [FormerlySerializedAs("Customization")] public BikeSelector selector;
+    public SaveLoadBike SaveLoadBike;
 
     private bool _firstRun = true;
 
@@ -58,9 +60,9 @@ public class NetworkPlayer : NetworkBehaviour
         {
             Debug.Log($"Updating to {BikeSelection} with {BikeCustomization}");
 
-            Customization.DisplayBike(BikeSelection);
-            Customization.RestoreCustomization(BikeCustomization);
-
+            selector.DisplayBike(BikeSelection);
+            SaveLoadBike.LoadBikeData(BikeCustomization);
+            
             Dirty = false;
         }
 
