@@ -6,14 +6,7 @@ public class SprayTarget : MonoBehaviour
 {
     public Renderer Target;
     public int MaterialIndex;
-
-    private LoadBike _bikes;
-
-    void Start()
-    {
-        _bikes = GetComponentInParent<LoadBike>();
-    }
-
+    public Bike bike;
     void OnTriggerEnter(Collider other)
     {
         if (Target == null || SprayGun.Instance == null)
@@ -23,9 +16,8 @@ public class SprayTarget : MonoBehaviour
             return;
 
         if (SprayGun.Instance.SprayCollider == other)
-            Target.materials[MaterialIndex].color = SprayGun.Instance.SprayColor;
-
-        if (_bikes != null)
-            _bikes.CustomizeBike(MaterialIndex, Target.name, SprayGun.Instance.SprayColor);
+        {
+            bike.SetPartColor(Target,MaterialIndex,SprayGun.Instance.SprayColor,true);
+        }
     }
 }
