@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631b3126c4b49436b9d346f0b3c15b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raceResultText: {fileID: 2908223136431388674}
 --- !u!114 &693410021063476194
 MonoBehaviour:
   m_ObjectHideFlags: 0
