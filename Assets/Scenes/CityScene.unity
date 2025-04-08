@@ -4076,11 +4076,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6342028781825167367, guid: 83183c4b6bdfd8a45bd11fd490284e4a,
-        type: 3}
-      propertyPath: TargetSceneName
-      value: GarageScene
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
