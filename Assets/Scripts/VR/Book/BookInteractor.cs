@@ -6,7 +6,7 @@ public class BookInteractor : MonoBehaviour
     public bool DisableOnDrop;
     public bool CloseOnDrop;
 
-    public LoadBike Bikes;
+    public SaveLoadBike Bikes;
     public Book Target;
 
     public int PageOffset;
