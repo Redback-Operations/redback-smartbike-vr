@@ -1488,7 +1488,7 @@ PrefabInstance:
     - target: {fileID: 7438559245718029225, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.078
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7753144384213315935, guid: 3265678c6a9bb6642aa0ac4087b69620,
         type: 3}
@@ -1831,6 +1831,9 @@ MonoBehaviour:
   IntValue: -1
   StringValue: 
   ToggleTargets: []
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   Renderer: {fileID: 460426345}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -3581,6 +3584,9 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets: []
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   Renderer: {fileID: 1481137974}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
@@ -4167,6 +4173,9 @@ MonoBehaviour:
   StringValue: 
   ToggleTargets:
   - {fileID: 185187344}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   Renderer: {fileID: 1639068494}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
@@ -4361,6 +4370,9 @@ MonoBehaviour:
   IntValue: 0
   StringValue: 
   ToggleTargets: []
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   Renderer: {fileID: 1840138751}
   Selected: {r: 1, g: 1, b: 1, a: 1}
   Unselected: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}

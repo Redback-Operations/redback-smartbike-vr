@@ -14,8 +14,11 @@ namespace UI
         [SerializeField] private SaveLoadBike saveLoadBike;
 
         [FormerlySerializedAs("colorPicker")] [SerializeField]
-        private GameObject colorPickerScreen;
+        private BasicView colorPickerScreen;
 
+        [SerializeField] private int columnCount = 2;
+        [SerializeField] private RectOffset padding;
+        [SerializeField] private float spacing;
 
         private void Start()
         {
@@ -36,22 +39,39 @@ namespace UI
             }
 
             FlexibleColorPicker colorPicker = colorPickerScreen.GetComponentInChildren<FlexibleColorPicker>();
-
-            foreach (var bikePartData in bike.PartDatas)
+            
+            GameObject[] columns = new GameObject[columnCount];
+            for (int i = 0; i < columnCount; i++)
             {
-                var partButton = Instantiate(partButtonPrefab, parent);
-                var bikePartInteraction = partButton.GetComponentInChildren<BikePartColorPick>();
+                var column = new GameObject($"column_{i}");
+                column.transform.parent = parent;
+                column.transform.localScale= Vector3.one;
+                column.transform.localPosition = Vector3.zero;
+                columns[i] = column;
+                var verticalLayoutGroup = column.AddComponent<VerticalLayoutGroup>();
+                verticalLayoutGroup.padding = padding;
+                verticalLayoutGroup.spacing = spacing;
+            }
+
+            for (var index = 0; index < bike.PartDatas.Length; index++)
+            {
+                var bikePartData = bike.PartDatas[index];
+                var partButton = Instantiate(partButtonPrefab, columns[index % columnCount].transform);
+                if (!partButton.GetComponent<BikePartColorPick>())
+                {
+                    partButton.AddComponent<BikePartColorPick>();
+                }
+                var bikePartInteraction = partButton.GetComponent<BikePartColorPick>();
                 bikePartInteraction.partName = bikePartData.name;
                 bikePartInteraction.GetComponentInChildren<TMP_Text>().text = bikePartData.name;
                 partButton.name = bikePartData.name;
                 bikePartInteraction.bike = bike;
-
+                
                 partButton.GetComponentInChildren<Button>().onClick.AddListener(() =>
                 {
+                    colorPickerScreen.PushMyself();
                     colorPicker.onColorChange.RemoveAllListeners();
                     colorPicker.onColorChange.AddListener(bikePartInteraction.OnColorChanged);
-                    colorPickerScreen.SetActive(true);
-                    gameObject.SetActive(false);
                 });
             }
         }
