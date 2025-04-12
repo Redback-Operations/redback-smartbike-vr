@@ -182,7 +182,8 @@ MonoBehaviour:
   Head: {fileID: 727163265291903697}
   HandLeft: {fileID: 2977014746222217579}
   HandRight: {fileID: 3975241755619954259}
-  Customization: {fileID: 0}
+  selector: {fileID: 3491211280715602552}
+  SaveLoadBike: {fileID: 992270898872381438}
   _PlayerID: 1
   _Dirty: 0
   _BikeSelection: 0
@@ -368,9 +369,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2151033503a58d44884b0ea8073681d1, type: 3}
+--- !u!114 &992270898872381438 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1809022420884613842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f629e412bbdcc74388ae713e6b7be40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3360402014747688215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4015094971907545029, guid: 2151033503a58d44884b0ea8073681d1,
     type: 3}
   m_PrefabInstance: {fileID: 1809022420884613842}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3491211280715602552 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2984116782637822122, guid: 2151033503a58d44884b0ea8073681d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1809022420884613842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe4581166d86524693613faa2232bba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
