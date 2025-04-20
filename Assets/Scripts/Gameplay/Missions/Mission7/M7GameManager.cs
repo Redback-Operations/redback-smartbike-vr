@@ -41,7 +41,7 @@ public class M7GameManager : MonoBehaviour
     public string TargetSceneName;
     public Button restartButton;
     public Button returnButton;
-    private float delay = 2.0f;
+    private float _notificationDelay = 2.0f;
     private bool missionSuccess = false;
     private bool missionComplete = false;
 
@@ -64,10 +64,10 @@ public class M7GameManager : MonoBehaviour
         if (restartButton != null)
         {
             restartButton.onClick.AddListener(_RestartMission); // Adds the restart button as a listener for the onClick event
-            returnButton.onClick.AddListener(_ReturnToGarage); 
+            returnButton.onClick.AddListener(_ReturnToGarage);
 
             restartButton.gameObject.SetActive(false); // Hides the restart button at the start
-            returnButton.gameObject.SetActive(false); 
+            returnButton.gameObject.SetActive(false);
         }
     }
 
@@ -86,6 +86,7 @@ public class M7GameManager : MonoBehaviour
         _lifeRemaining = LifeRemainingStart;
         speedGoalIsFastMode = false;
         _speedGoalActive = speedGoalSlow;
+        _switchIntervalActive = switchIntervalSlow;
         _missionTimer = 0f;
         score = 0;
 
@@ -96,12 +97,19 @@ public class M7GameManager : MonoBehaviour
         restartButton.gameObject.SetActive(false);
         returnButton.gameObject.SetActive(false);
         missionComplete = false;
+
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ClearObjectives();
+            StartCoroutine(UIManager.Instance.ShowNotification("Survive HIIT", 5));
+            UIManager.Instance.AddObjective($"Maintain {_speedGoalActive}m/s for {_switchIntervalActive}s");
+        }
     }
 
     IEnumerator StartResetting()
     {
         Debug.Log("Start Resetting");
-        yield return UIManager.Instance.ShowNotification(missionSuccess ? "Mission Complete!" : "Mission Failed!", delay);
+        yield return UIManager.Instance.ShowNotification(missionSuccess ? "Mission Complete!" : "Mission Failed!", _notificationDelay);
         yield return UIManager.Instance.ClearObjectives();
 
         if (!missionSuccess)
@@ -135,7 +143,7 @@ public class M7GameManager : MonoBehaviour
         {
             //restart the mission
             missionComplete = true;
-            StartCoroutine(StartResetting()); 
+            StartCoroutine(StartResetting());
             UIManager.Instance.SetObjectiveState(-1, UIManager.ObjectiveState.Failed);
             return;
         }
@@ -147,27 +155,28 @@ public class M7GameManager : MonoBehaviour
             speedGoalIsFastMode = !speedGoalIsFastMode;
 
             //flip speed mode for HIIT
-            if (speedGoalIsFastMode) { 
-                _switchIntervalActive = switchIntervalFast; 
-                _speedGoalActive = speedGoalFast;  }
-            else { 
+            if (speedGoalIsFastMode) {
+                _switchIntervalActive = switchIntervalFast;
+                _speedGoalActive = speedGoalFast; }
+            else {
                 _switchIntervalActive = switchIntervalSlow;
-                _speedGoalActive = speedGoalSlow; 
+                _speedGoalActive = speedGoalSlow;
             }
 
             _missionTimer = 0f;
+            UIManager.Instance.RemoveObjective(1);
+            UIManager.Instance.AddObjective($"Maintain:\n{_speedGoalActive} for {_switchIntervalActive}s");
         }
 
         //add life for going fast enough, remove life for going too slow
         playerSpeed = playerTransform.RelativeSpeed.z;
-        if (playerSpeed < _speedGoalActive) _lifeRemaining -= Time.deltaTime; 
+        if (playerSpeed < _speedGoalActive) _lifeRemaining -= Time.deltaTime;
         else _lifeRemaining += Time.deltaTime;
 
         //update player score and VR score UI
-        if (UIManager.Instance != null) { 
+        if (UIManager.Instance != null) {
             UIManager.Instance.SetScore(score);
-            UIManager.Instance.UpdateTime(_lifeRemaining);
-            UIManager.Instance.SetObjective($"Maintain:\n{_speedGoalActive} for {_switchIntervalActive}s");
+            UIManager.Instance.UpdateTime("Time Left", _lifeRemaining);
         }
 
         //update speed score
@@ -195,11 +204,13 @@ public class M7GameManager : MonoBehaviour
     {
         NetworkManagement.OnManagerReady += OnManagerReady;
         PlayerController.OnPlayerControllerReady += OnPlayerReady;
+        UIManager.OnPlayerUIManagerReady += OnPlayerUIReady;
     }
     private void OnDisable()
     {
         NetworkManagement.OnManagerReady -= OnManagerReady;
         PlayerController.OnPlayerControllerReady -= OnPlayerReady;
+        UIManager.OnPlayerUIManagerReady -= OnPlayerUIReady;
         playerTransform = null;
     }
 
@@ -216,6 +227,16 @@ public class M7GameManager : MonoBehaviour
         _initialPosition = player.transform.position;
         _initialRotation = player.transform.rotation;
         _initialSpeed = playerTransform.GetOriginalSpeed();
+
+        speedTextTarget.gameObject.SetActive(true);
         _RestartMission();
+    }
+
+    private void OnPlayerUIReady(UIManager UIManager) {
+        UIManager.Instance = UIManager;
+
+        UIManager.Instance.ClearObjectives();
+        StartCoroutine(UIManager.Instance.ShowNotification("Survive HIIT", 5));
+        UIManager.Instance.AddObjective($"Maintain {_speedGoalActive}m/s for {_switchIntervalActive}s");
     }
 }

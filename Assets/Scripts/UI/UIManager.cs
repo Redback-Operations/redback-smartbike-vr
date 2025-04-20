@@ -6,6 +6,7 @@ using System.Net.Mime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using static UIManager;
 
 public class UIManager : MonoBehaviour
 {
@@ -30,10 +31,12 @@ public class UIManager : MonoBehaviour
     public TMP_Text ScoreVR;
 
     private float _time;
+    public TMP_Text TimeLabel;
     public TMP_Text TimeText;
-    public TMP_Text TimeTextVR;
+    public TMP_Text TimeLabelVR;
+    public TMP_Text TimeTextVR;    //static alert for now, should find a more dynamic way to do this
+    public static event Action<UIManager> OnPlayerUIManagerReady;
 
-    public TMP_Text ObjectiveText;
 
     void Start()
     {
@@ -52,6 +55,17 @@ public class UIManager : MonoBehaviour
 
         if (NotificationVR != null)
             NotificationVR.text = "";
+
+        _HideUI();
+        OnPlayerUIManagerReady?.Invoke(this);
+    }
+
+    void _HideUI()
+    {
+        if (TimeText != null) TimeText.text = "";
+        if (TimeTextVR != null) TimeTextVR.text = "";
+        if (TimeLabel != null) TimeText.text = "";
+        if (TimeLabelVR != null) TimeTextVR.text = "";
     }
 
     void Update()
@@ -157,11 +171,6 @@ public class UIManager : MonoBehaviour
             NotificationVR.text = "";
     }
 
-    public void SetObjective(string value)
-    {
-        ObjectiveText.text = $"{value}";
-    }
-
     public void SetScore(int value)
     {
         _score = value;
@@ -169,15 +178,18 @@ public class UIManager : MonoBehaviour
         ScoreVR.text = $"{_score}";
     }
 
-    public void UpdateTime(float value)
+    public void UpdateTime(string label, float value)
     {
         _time = value;
 
         TimeSpan t = TimeSpan.FromSeconds(_time);
         string timeString = $"{(int)t.TotalMinutes:00}:{t.Seconds:00}";
 
-        TimeText.text = $"{timeString}";
-        TimeTextVR.text = $"{timeString}";
+        if (TimeText != null) TimeText.text = $"{timeString}";
+        if (TimeTextVR != null) TimeTextVR.text = $"{timeString}";
+
+        if (TimeLabel != null) TimeLabel.text = label;
+        if (TimeLabelVR != null) TimeLabelVR.text = label;
     }
 
     public void AddScore(int value)
