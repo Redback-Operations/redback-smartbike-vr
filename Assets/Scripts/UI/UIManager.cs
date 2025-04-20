@@ -29,6 +29,12 @@ public class UIManager : MonoBehaviour
     public TMP_Text Score;
     public TMP_Text ScoreVR;
 
+    private float _time;
+    public TMP_Text TimeText;
+    public TMP_Text TimeTextVR;
+
+    public TMP_Text ObjectiveText;
+
     void Start()
     {
         if (Instance != null)
@@ -151,11 +157,27 @@ public class UIManager : MonoBehaviour
             NotificationVR.text = "";
     }
 
+    public void SetObjective(string value)
+    {
+        ObjectiveText.text = $"{value}";
+    }
+
     public void SetScore(int value)
     {
         _score = value;
         Score.text = $"{_score}";
         ScoreVR.text = $"{_score}";
+    }
+
+    public void UpdateTime(float value)
+    {
+        _time = value;
+
+        TimeSpan t = TimeSpan.FromSeconds(_time);
+        string timeString = $"{(int)t.TotalMinutes:00}:{t.Seconds:00}";
+
+        TimeText.text = $"{timeString}";
+        TimeTextVR.text = $"{timeString}";
     }
 
     public void AddScore(int value)
