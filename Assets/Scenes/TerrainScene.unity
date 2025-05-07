@@ -5791,6 +5791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcaa7b49f2367d4c880a91b6f62c956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionData: {fileID: 0}
   MissionStarted: 0
   bike: {fileID: 0}
   speed: 1
@@ -13827,6 +13828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461fdf29a5d3d224688bccab1918284c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionData: {fileID: 0}
   MissionStarted: 0
   waterObject: {fileID: 230840348}
   riseSpeed: 0.15
@@ -17396,7 +17398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveScene: TerrainScene
-  NetworkPlayer: {fileID: 34002221728508653, guid: e7fc1e67d1e037f43a17308005f7abd1,
+  NetworkPlayer: {fileID: 8071937129649633227, guid: ffa7a761264c99244b3cbc4c6dfbd0d0,
     type: 3}
   SpawnTarget: {fileID: 1587377402}
   Prefabs: []

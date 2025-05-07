@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementController : MonoBehaviour {
-
-    public float MoveSpeed = 1.5f; // Speed at which the player moves
-    public float TurnSpeed = 100.0f; // Speed at which the player rotates
+public class PlayerAnimationController : MonoBehaviour {
+    
     public GameObject bike; // Reference to the bike GameObject
 
     private Animator bikeAnim = null; // Animator for the bike
@@ -48,10 +46,6 @@ public class PlayerMovementController : MonoBehaviour {
                 characterAnim.SetBool("Moving", isMoving);
                 characterAnim.SetFloat("Speed", isMoving ? vert : 0.0f);
             }
-
-            // Move the bike forward/backward and rotate based on input
-            this.transform.Translate(0.0f, 0.0f, vert * MoveSpeed * Time.deltaTime);
-            this.transform.Rotate(0.0f, horz * TurnSpeed * Time.deltaTime, 0.0f);
         }
     }
 

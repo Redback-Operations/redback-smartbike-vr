@@ -21,8 +21,7 @@ public class SpeedBoostArea : MonoBehaviour
 
         if (fadeCoroutine != null)
             StopCoroutine(fadeCoroutine);
-
-        //Changes speed boost everytime bike runs on the ramp.
+        
         var rand = new System.Random();
         speedBoostMultiplier = rand.Next(1, 5);
 

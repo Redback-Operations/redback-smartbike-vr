@@ -1327,7 +1327,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint35
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1793,7 +1793,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint20
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1883,7 +1883,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint42
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2030,6 +2030,8 @@ MonoBehaviour:
   - {fileID: 609859989}
   - {fileID: 383922230}
   speed: 5
+  bikeSelector: {fileID: 0}
+  bikeMoverGameObject: {fileID: 0}
 --- !u!1 &184519876
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,7 +2390,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint37
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2701,7 +2703,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint36
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2846,7 +2848,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint30
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2877,7 +2879,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint10
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3496,10 +3498,16 @@ Transform:
   m_GameObject: {fileID: 447397307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.51, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2003500414}
+  - {fileID: 2133853117}
+  - {fileID: 1367826489}
+  - {fileID: 1612868554}
+  - {fileID: 1082385318}
+  - {fileID: 1070675435}
   - {fileID: 1014346085}
   - {fileID: 1596216135}
   - {fileID: 180769457}
@@ -3699,7 +3707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveScene: CityScene
-  NetworkPlayer: {fileID: 34002221728508653, guid: e7fc1e67d1e037f43a17308005f7abd1,
+  NetworkPlayer: {fileID: 8071937129649633227, guid: ffa7a761264c99244b3cbc4c6dfbd0d0,
     type: 3}
   SpawnTarget: {fileID: 800190335}
   Prefabs: []
@@ -3935,7 +3943,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint24
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4000,6 +4008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcaa7b49f2367d4c880a91b6f62c956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionData: {fileID: 0}
   MissionStarted: 0
   bike: {fileID: 0}
   speed: 0
@@ -4176,6 +4185,17 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 8a9476b8065c071408ec70739880b69f, type: 2}
     - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
         type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'MCH-spine.003'\n\tTransform 'MCH-spine.002'\n\tTransform
+        'DEF-thigh.R'\n\tTransform 'DEF-foot.L'\n\tTransform 'DEF-thigh.R.001'\n\tTransform
+        'DEF-shin.R.001'\n\tTransform 'DEF-shin.L.001'\n\tTransform 'DEF-foot.R'\n\tTransform
+        'torso'\n\tTransform 'DEF-shin.R'\n\tand more ...\n\tFrom animation clip
+        'NPC_M_Cycling_Animation'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
+        type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
@@ -4208,7 +4228,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint40
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4239,7 +4259,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint11
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4556,7 +4576,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint15
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4647,7 +4667,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint8
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4709,7 +4729,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint26
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5131,6 +5151,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcBicycle_1_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f305b9d662b804a4e9b35a1ae7ec40e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5172,6 +5197,8 @@ MonoBehaviour:
   - {fileID: 1676683218}
   - {fileID: 1266309244}
   speed: 5
+  bikeSelector: {fileID: 0}
+  bikeMoverGameObject: {fileID: 0}
 --- !u!1001 &789168338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5519,6 +5546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684f31b8d515bd64ea322193b223d8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionData: {fileID: 0}
   MissionStarted: 0
   silver_cin: {fileID: 1095030760}
   gold_coin: {fileID: 421935047}
@@ -6300,6 +6328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce214943ae45c143b7e643af1771bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionData: {fileID: 0}
   MissionStarted: 0
   missionNameText: {fileID: 0}
   collectableCountText: {fileID: 0}
@@ -6759,7 +6788,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint19
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -6808,6 +6837,8 @@ MonoBehaviour:
   - {fileID: 2085498533}
   - {fileID: 1610276454}
   speed: 5
+  bikeSelector: {fileID: 0}
+  bikeMoverGameObject: {fileID: 0}
 --- !u!114 &1027465680 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6826096831271285776, guid: 1edd98f62a1924dc5b1fc10872e9a074,
@@ -7182,11 +7213,234 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 2.9625607}
   m_Center: {x: 0, y: 0, z: 0.03156376}
+--- !u!1001 &1070675434
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 447397308}
+    m_Modifications:
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1544995051}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1388833682}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 2085498533}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1610276454}
+    - target: {fileID: 1725753563034583354, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_Name
+      value: NPCBicycle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948677847726718072, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d68ede40be8e7b47b6b1776b9abd206, type: 3}
+--- !u!4 &1070675435 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+    type: 3}
+  m_PrefabInstance: {fileID: 1070675434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1077341207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4134154446092604674, guid: f8d972788775663478934cd66f3d168b,
     type: 3}
   m_PrefabInstance: {fileID: 1996568621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1082385317
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 447397308}
+    m_Modifications:
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1435907324}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1544995051}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1181292254}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1099822402}
+    - target: {fileID: 1725753563034583354, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_Name
+      value: NPCBicycle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d68ede40be8e7b47b6b1776b9abd206, type: 3}
+--- !u!4 &1082385318 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+    type: 3}
+  m_PrefabInstance: {fileID: 1082385317}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1095030760 stripped
 GameObject:
@@ -7228,7 +7482,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint7
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7486,7 +7740,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint9
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7588,6 +7842,17 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8a9476b8065c071408ec70739880b69f, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'MCH-spine.003'\n\tTransform 'MCH-spine.002'\n\tTransform
+        'DEF-thigh.R'\n\tTransform 'DEF-foot.L'\n\tTransform 'DEF-thigh.R.001'\n\tTransform
+        'DEF-shin.R.001'\n\tTransform 'DEF-shin.L.001'\n\tTransform 'DEF-foot.R'\n\tTransform
+        'torso'\n\tTransform 'DEF-shin.R'\n\tand more ...\n\tFrom animation clip
+        'NPC_M_Cycling_Animation'"
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -7692,7 +7957,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint6
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7925,7 +8190,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint38
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8115,7 +8380,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint29
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8292,7 +8557,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint31
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8389,6 +8654,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcBicycle_1_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f305b9d662b804a4e9b35a1ae7ec40e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -8432,6 +8702,8 @@ MonoBehaviour:
   - {fileID: 1882894583}
   - {fileID: 1707804863}
   speed: 5
+  bikeSelector: {fileID: 0}
+  bikeMoverGameObject: {fileID: 0}
 --- !u!1001 &1274976539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8570,7 +8842,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint27
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8670,6 +8942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4abc68f5b3268489172538269543d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionData: {fileID: 0}
   MissionStarted: 0
   missionName: Star Rush
   missionNameText: {fileID: 0}
@@ -8769,7 +9042,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint22
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8928,6 +9201,125 @@ Transform:
   m_Children: []
   m_Father: {fileID: 752904926}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1001 &1367826488
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 447397308}
+    m_Modifications:
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 686914771}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1142665792}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1882894583}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1707804863}
+    - target: {fileID: 1725753563034583354, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_Name
+      value: NPCBicycle (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d68ede40be8e7b47b6b1776b9abd206, type: 3}
+--- !u!4 &1367826489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+    type: 3}
+  m_PrefabInstance: {fileID: 1367826488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1370966681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9380,7 +9772,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9563,6 +9955,17 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 8a9476b8065c071408ec70739880b69f, type: 2}
     - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
         type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'MCH-spine.003'\n\tTransform 'MCH-spine.002'\n\tTransform
+        'DEF-thigh.R'\n\tTransform 'DEF-foot.L'\n\tTransform 'DEF-thigh.R.001'\n\tTransform
+        'DEF-shin.R.001'\n\tTransform 'DEF-shin.L.001'\n\tTransform 'DEF-foot.R'\n\tTransform
+        'torso'\n\tTransform 'DEF-shin.R'\n\tand more ...\n\tFrom animation clip
+        'NPC_M_Cycling_Animation'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
+        type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
@@ -9708,7 +10111,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint28
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9858,7 +10261,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint16
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9889,7 +10292,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9920,7 +10323,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint14
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10096,7 +10499,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint33
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10127,7 +10530,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint41
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10189,7 +10592,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint34
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10429,7 +10832,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -11206,6 +11609,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcBicycle_2_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f31abf2620c9f284e8efe20fa022c33a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -11249,6 +11657,8 @@ MonoBehaviour:
   - {fileID: 1181292254}
   - {fileID: 1099822402}
   speed: 5
+  bikeSelector: {fileID: 0}
+  bikeMoverGameObject: {fileID: 0}
 --- !u!1001 &1598800595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11340,7 +11750,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint5
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -11390,6 +11800,125 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1666602815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1612868553
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 447397308}
+    m_Modifications:
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 2085498533}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1963139263}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 609859989}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 383922230}
+    - target: {fileID: 1725753563034583354, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_Name
+      value: NPCBicycle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d68ede40be8e7b47b6b1776b9abd206, type: 3}
+--- !u!4 &1612868554 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+    type: 3}
+  m_PrefabInstance: {fileID: 1612868553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1616957753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5456388916987972262, guid: 1edd98f62a1924dc5b1fc10872e9a074,
@@ -11479,6 +12008,17 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8a9476b8065c071408ec70739880b69f, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'MCH-spine.003'\n\tTransform 'MCH-spine.002'\n\tTransform
+        'DEF-thigh.R'\n\tTransform 'DEF-foot.L'\n\tTransform 'DEF-thigh.R.001'\n\tTransform
+        'DEF-shin.R.001'\n\tTransform 'DEF-shin.L.001'\n\tTransform 'DEF-foot.R'\n\tTransform
+        'torso'\n\tTransform 'DEF-shin.R'\n\tand more ...\n\tFrom animation clip
+        'NPC_M_Cycling_Animation'"
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -11793,7 +12333,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint18
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -11890,6 +12430,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcBicycle_1_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f305b9d662b804a4e9b35a1ae7ec40e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -11939,7 +12484,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint23
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12067,6 +12612,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcBicycle_1_4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f305b9d662b804a4e9b35a1ae7ec40e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -12110,6 +12660,8 @@ MonoBehaviour:
   - {fileID: 1234421760}
   - {fileID: 65293871}
   speed: 5
+  bikeSelector: {fileID: 0}
+  bikeMoverGameObject: {fileID: 0}
 --- !u!1 &1738803434
 GameObject:
   m_ObjectHideFlags: 0
@@ -12474,7 +13026,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint32
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12559,7 +13111,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint39
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12816,7 +13368,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint21
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13011,6 +13563,17 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 8a9476b8065c071408ec70739880b69f, type: 2}
     - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
         type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'MCH-spine.003'\n\tTransform 'MCH-spine.002'\n\tTransform
+        'DEF-thigh.R'\n\tTransform 'DEF-foot.L'\n\tTransform 'DEF-thigh.R.001'\n\tTransform
+        'DEF-shin.R.001'\n\tTransform 'DEF-shin.L.001'\n\tTransform 'DEF-foot.R'\n\tTransform
+        'torso'\n\tTransform 'DEF-shin.R'\n\tand more ...\n\tFrom animation clip
+        'NPC_M_Cycling_Animation'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
+        type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
@@ -13063,6 +13626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c456920b25414e7469d67fc3b298a9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionData: {fileID: 0}
   MissionStarted: 0
   b: {fileID: 0}
   robot: {fileID: 0}
@@ -13304,7 +13868,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint13
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13335,7 +13899,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint17
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13630,7 +14194,7 @@ Transform:
   m_GameObject: {fileID: 1943474987}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.51, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13819,7 +14383,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint12
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13921,6 +14485,17 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8a9476b8065c071408ec70739880b69f, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'MCH-spine.003'\n\tTransform 'MCH-spine.002'\n\tTransform
+        'DEF-thigh.R'\n\tTransform 'DEF-foot.L'\n\tTransform 'DEF-thigh.R.001'\n\tTransform
+        'DEF-shin.R.001'\n\tTransform 'DEF-shin.L.001'\n\tTransform 'DEF-foot.R'\n\tTransform
+        'torso'\n\tTransform 'DEF-shin.R'\n\tand more ...\n\tFrom animation clip
+        'NPC_M_Cycling_Animation'"
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 937828707fd4edd4298e3dc0f6496aa0,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -14104,6 +14679,115 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 39, y: 3, z: 11}
   m_Center: {x: -10, y: 0, z: 0}
+--- !u!1001 &2003500413
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 447397308}
+    m_Modifications:
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1676683218}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1266309244}
+    - target: {fileID: 1725753563034583354, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_Name
+      value: NPCBicycle (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d68ede40be8e7b47b6b1776b9abd206, type: 3}
+--- !u!4 &2003500414 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003500413}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2029817977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14573,7 +15257,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint4
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14684,7 +15368,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPCWayPoint25
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14835,6 +15519,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcBicycle_2_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f31abf2620c9f284e8efe20fa022c33a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -14848,6 +15537,130 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1014346088}
   m_SourcePrefab: {fileID: 100100000, guid: f31abf2620c9f284e8efe20fa022c33a, type: 3}
+--- !u!1001 &2133853116
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 447397308}
+    m_Modifications:
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1676683218}
+    - target: {fileID: 1529622983163195882, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1266309244}
+    - target: {fileID: 1725753563034583354, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_Name
+      value: NPCBicycle (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726614688448785457, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7954911179213609339, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384359420404648929, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d68ede40be8e7b47b6b1776b9abd206, type: 3}
+--- !u!4 &2133853117 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7584304163523448266, guid: 2d68ede40be8e7b47b6b1776b9abd206,
+    type: 3}
+  m_PrefabInstance: {fileID: 2133853116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2810830880712506
 GameObject:
   m_ObjectHideFlags: 0
