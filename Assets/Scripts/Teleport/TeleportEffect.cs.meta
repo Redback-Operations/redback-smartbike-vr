@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: cc03634eae840874cb90ed39c0e97177
+guid: 4e02aa2643a6ab1408dd9a68587c2568
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - teleportEffect: {fileID: 1763783451191056315, guid: 88403e53cc1db31409af1a7973e0ebaf,
-      type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
