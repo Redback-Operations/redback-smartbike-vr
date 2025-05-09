@@ -11,6 +11,7 @@ using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using UnityEditor.Rendering;
+using Unity.Mathematics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,15 +43,67 @@ public class PlayerController : MonoBehaviour
     private float _angleX = 0;
 
     private BoxCollider _collider;
+    public GroundLockMode BikeGroundMode;
 
-    void Start()
+    //gets the movement speed of the player
+    private Vector3 _relativeSpeed;
+    public Vector3 RelativeSpeed{
+        get { return _relativeSpeed; }
+    }
+
+    public enum GroundLockMode
     {
-        // get the initial rotation of the player
-        change = transform.rotation.eulerAngles.y;
+        TerrainLock,
+        FreePhysics
+    }
+
+    private void Awake()
+    {
 
         // Get the Rigidbody component attached to the bike GameObject
         rb = GetComponent<Rigidbody>();
         _collider = GetComponent<BoxCollider>();
+    }
+
+    //static alert for now, should find a more dynamic way to do this
+    public static event Action<PlayerController> OnPlayerControllerReady;
+
+    void Start()
+    {
+        OnPlayerControllerReady?.Invoke(this);
+
+        // get the initial rotation of the player
+        change = transform.rotation.eulerAngles.y;
+
+        Debug.Log($"Initial velocity: {rb.velocity}, angularVelocity: {rb.angularVelocity}");
+
+        //free-physics mode
+        if (BikeGroundMode == GroundLockMode.FreePhysics)
+        {
+            Collider[] _childColliders = GetComponentsInChildren<Collider>();
+
+            Debug.Log(_childColliders.Length);
+
+            //stop base collider from impacting with child colliders
+            foreach (Collider child in _childColliders)
+            {
+                Debug.Log("Finding collision");
+                if (child != _collider)
+                {
+                    Debug.Log("Removing collision");
+                    Physics.IgnoreCollision(_collider, child);
+                }
+            }
+
+            //fix collisions
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            //disable kinematic mode in rigidbody, and istrigger mode on collider to unlock physics
+            rb.isKinematic = false;
+            _collider.isTrigger = false;
+        }
+
 
         // Freeze rotation along the X and Z axes to prevent tumbling
         rb.freezeRotation = true;
@@ -104,8 +157,18 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateDirection();
+        Debug.Log(rb.velocity);
+        Debug.Log(rb.angularVelocity);
 
+        var prevPos = transform.position;
         MovePlayer();
+        var curPos = transform.position;
+
+        //get relative speed
+        _relativeSpeed = (curPos - prevPos) / Time.deltaTime;
+
+        Debug.Log($"current velocity: {rb.velocity}, angularVelocity: {rb.angularVelocity}");
+
         RotatePlayer();
     }
 
@@ -176,14 +239,30 @@ public class PlayerController : MonoBehaviour
         var position = transform.position;
 
         // Move the bike in the player's forward direction made by Jai (updated by Jonathan)
+        //added optional speed modifier multiplier (default 1)
         if (!Mathf.Approximately(MQTT_Speed, 0))
             position += (facingDirection.normalized * MQTT_Speed * Time.deltaTime * _direction.y);
         else
             position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
 
-        position.y = _groundHeight;
+        //lock height to terrain if we're in terrain-lock mode
+        if (BikeGroundMode == GroundLockMode.TerrainLock)
+        {
+            position.y = _groundHeight;
+        }
 
         transform.position = position;
+    }
+
+    //manual forced rotation
+    public void SetRotation(quaternion inRotation)
+    {
+        if (rb == null) return;
+        rb.transform.rotation = inRotation;
+
+        //must update old rotation and change to avoid instant-resetting to prior rotation
+        OldRotation = inRotation;
+        change = 0;
     }
 
     private void RotatePlayer()
