@@ -14,7 +14,7 @@ public class RoadSpawner : MonoBehaviour
 
     public int initialRoadTileCount = 10;
     public int nMaxActiveTiles = 20;
-    public M7GameManager manager;
+    private M7GameManager _manager;
 
     public void Reset()
     {
@@ -36,21 +36,32 @@ public class RoadSpawner : MonoBehaviour
             nextSpawnPoint = transform.position;
         }
 
-        //spawn roadtiles 
+        //spawn initial roadtiles (no objects on them)
         for (int i = 0; i < initialRoadTileCount; i++)
         {
             SpawnTile(false);
         }
     }
 
-    private void Update()
+    private void Start()
     {
-        if (manager == null) return;
-        if (manager.playerTransform != null && manager.playerTransform.position.z < allRoadTiles[0].transform.position.z - 10f)
-        {
-            ResetRoadTiles();
-        }
+        _manager = M7GameManager.inst;
+        //    if (_manager == null) return;
     }
+
+    ////handled by M7GameManager now
+    //private void Update()
+    //{
+    //    _manager = M7GameManager.inst;
+    //    if (_manager == null) return;
+
+    //    if (allRoadTiles.Count == 0) return;
+
+    //if (_manager.playerTransform != null && _manager.playerTransform.transform.position.z < allRoadTiles[0].transform.position.z - 10f)
+    //{
+    //    ResetRoadTiles();
+    //}
+    //}
 
     public void SpawnTile(bool spawnItems)
     {
@@ -69,9 +80,8 @@ public class RoadSpawner : MonoBehaviour
         RoadTile tileScript = roadTile.GetComponent<RoadTile>();
         tileScript.TileIndex = allRoadTiles.Count;
 
-        //add tile to list and increase score
+        //add tile to list
         allRoadTiles.Add(roadTile);
-        if (manager != null) manager.IncreaseScore();
 
         if (spawnItems)
         {
@@ -93,6 +103,9 @@ public class RoadSpawner : MonoBehaviour
 
         if (!tile.bHasBeenVisited)
         {
+            //increase score
+            if (_manager != null) _manager.IncreaseScore();
+
             tile.bHasBeenVisited = true;
             SpawnTile(true);
         }
