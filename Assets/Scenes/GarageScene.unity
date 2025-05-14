@@ -3825,7 +3825,6 @@ GameObject:
   - component: {fileID: 698850107}
   - component: {fileID: 698850110}
   - component: {fileID: 698850111}
-  - component: {fileID: 698850106}
   m_Layer: 0
   m_Name: Mission8
   m_TagString: Untagged
@@ -3853,36 +3852,6 @@ RectTransform:
   m_AnchoredPosition: {x: 26.01, y: -62}
   m_SizeDelta: {x: 42.02, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &698850106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698850104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Action: 2
-  TargetScene: 
-  TargetValue: 
-  IntValue: 0
-  StringValue: 
-  ToggleTargets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 1606193574}
-  - {fileID: 2036346828}
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  Renderer: {fileID: 969448802}
-  Selected: {r: 1, g: 1, b: 1, a: 1}
-  Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!114 &698850107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11509,7 +11478,6 @@ GameObject:
   - component: {fileID: 1606193576}
   - component: {fileID: 1606193579}
   - component: {fileID: 1606193580}
-  - component: {fileID: 1606193575}
   m_Layer: 0
   m_Name: Mission7
   m_TagString: Untagged
@@ -11537,36 +11505,6 @@ RectTransform:
   m_AnchoredPosition: {x: 26.01, y: -49}
   m_SizeDelta: {x: 42.02, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1606193575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606193573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4767356ded508747ac666be3ebf272a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Action: 2
-  TargetScene: 
-  TargetValue: 
-  IntValue: 0
-  StringValue: 
-  ToggleTargets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 698850105}
-  - {fileID: 2036346828}
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  Renderer: {fileID: 969448802}
-  Selected: {r: 1, g: 1, b: 1, a: 1}
-  Unselected: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!114 &1606193576
 MonoBehaviour:
   m_ObjectHideFlags: 0

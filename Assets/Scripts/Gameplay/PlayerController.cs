@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //For speed reference made by Dennis
     public float GetSpeed()
     {
         return movementSpeed;
