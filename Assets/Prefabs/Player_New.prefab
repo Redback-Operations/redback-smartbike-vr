@@ -1097,6 +1097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b71c50cdd84fa0be6c124f8724365e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BikeGroundMode: 0
   rotationSpeed: 90
 --- !u!1 &2587361573656180526
 GameObject:
@@ -4286,7 +4287,6 @@ GameObject:
   - component: {fileID: 7524261127387979886}
   - component: {fileID: 5419384336606370540}
   - component: {fileID: 6670762756608491413}
-  - component: {fileID: 8648028623360408840}
   m_Layer: 0
   m_Name: Player_New
   m_TagString: Player
@@ -4348,6 +4348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631b3126c4b49436b9d346f0b3c15b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raceResultText: {fileID: 0}
 --- !u!114 &6614919747474909275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4405,7 +4406,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.3, y: 0.68, z: 1.61}
   m_Center: {x: 0, y: 0.64, z: 0}
@@ -4482,29 +4483,6 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours: []
---- !u!136 &8648028623360408840
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8071937129649633227}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.26
-  m_Height: 1.7631006
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.67132795, z: -0.05125308}
 --- !u!1 &8127776259480126818
 GameObject:
   m_ObjectHideFlags: 0
@@ -4690,6 +4668,10 @@ MonoBehaviour:
   NotificationVR: {fileID: 0}
   Score: {fileID: 8309278006934548885}
   ScoreVR: {fileID: 1426720615477886636}
+  TimeLabel: {fileID: 0}
+  TimeText: {fileID: 0}
+  TimeLabelVR: {fileID: 0}
+  TimeTextVR: {fileID: 0}
 --- !u!1 &8736114677415470375
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,14 @@ namespace Gameplay.BikeMovement
 {
     public class SimpleBikeController : MonoBehaviour, IBikeMover
     {
+        public enum GroundLockMode
+        {
+            TerrainLock,
+            FreePhysics
+        }
+
+        public GroundLockMode BikeGroundMode;
+
         public float rotationSpeed = 90f;
         private float _groundHeight = 0;
         private float _angleX = 0;
@@ -23,6 +31,7 @@ namespace Gameplay.BikeMovement
         private Transform _rearWheelTf;
 
         private float wheelRadius;
+        private Collider _collider;
 
         public void Init(GameObject controller)
         {
@@ -38,6 +47,37 @@ namespace Gameplay.BikeMovement
             _pedalTf = bike.pedalTransform;
             wheelRadius = bike.frontWheelCollider.radius;
             change = tf.rotation.y;
+
+
+            _collider = controller.GetComponent<Collider>();
+
+            if (BikeGroundMode == GroundLockMode.FreePhysics)
+            {
+                Collider[] _childColliders = controller.GetComponentsInChildren<Collider>();
+
+                Debug.Log(_childColliders.Length);
+
+                //stop base collider from impacting with child colliders
+                foreach (Collider child in _childColliders)
+                {
+                    Debug.Log("Finding collision");
+                    if (child != _collider)
+                    {
+                        Debug.Log("Removing collision");
+                        Physics.IgnoreCollision(_collider, child);
+                    }
+                }
+
+                //fix collisions
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+
+                rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+
+                //disable kinematic mode in rigidbody, and istrigger mode on collider to unlock physics
+                rb.isKinematic = false;
+                _collider.isTrigger = false;
+            }
         }
 
         public void HanldeInput(Vector2 direction)
@@ -48,12 +88,13 @@ namespace Gameplay.BikeMovement
                 _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, 360f * Time.fixedDeltaTime) *
                                                    _pedalTf.transform.localRotation;
             }
+
             var wheelRot = Quaternion.AngleAxis(Mathf.Rad2Deg * Speed * direction.y * Time.fixedDeltaTime
                                                 / wheelRadius,
                 _frontWheelTf.right);
             _frontWheelTf.rotation = wheelRot * _frontWheelTf.rotation;
             _rearWheelTf.rotation = wheelRot * _rearWheelTf.rotation;
-            
+
             Move(direction);
         }
 
@@ -65,7 +106,11 @@ namespace Gameplay.BikeMovement
             facingDirection.y = 0;
             var position = tf.position;
             position += facingDirection.normalized * (Speed * Time.fixedDeltaTime * direction.y);
-            position.y = _groundHeight;
+            if (BikeGroundMode == GroundLockMode.TerrainLock)
+            {
+                position.y = _groundHeight;
+            }
+
             tf.position = position;
         }
 

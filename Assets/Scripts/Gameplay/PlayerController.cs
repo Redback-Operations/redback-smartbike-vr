@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour
     private float originalSpeed;
     private IPlayerInput _playerInput;
     private IBikeMover _bikeMover;
-
+    public IBikeMover BikeMover => _bikeMover;
+    public Vector3 RelativeSpeed { get; private set; }
+    public static event Action<PlayerController> OnPlayerControllerReady;
 
     private void OnValidate()
     {
@@ -63,6 +65,8 @@ public class PlayerController : MonoBehaviour
             _playerInput = new AxisInput();
         }
 
+        
+
         Debug.Log($"MQTT INSTANCE exists:{Mqtt.Instance}", Mqtt.Instance);
         Debug.Log($"Player input:{_playerInput.GetType()}");
 
@@ -70,9 +74,7 @@ public class PlayerController : MonoBehaviour
 
         if (overridePlayerPrefs)
         {
-            _bikeMover = bikeMovementHandler.GetComponent<IBikeMover>();
-            _bikeMover.Speed = movementSpeed;
-            _bikeMover.Init(gameObject);
+            SetupBikeMover(bikeMovementHandler);
         }
         else
         {
@@ -81,11 +83,17 @@ public class PlayerController : MonoBehaviour
                     pair.type == PlayerPrefs.GetString("BikeControllerType"));
             if (handler != null)
             {
-                _bikeMover = handler.movementHandler.GetComponent<IBikeMover>();
-                _bikeMover.Speed = movementSpeed;
-                _bikeMover.Init(gameObject);
+                SetupBikeMover(handler.movementHandler);
             }
         }
+    }
+
+    private void SetupBikeMover(GameObject handler)
+    {
+        _bikeMover = handler.GetComponent<IBikeMover>();
+        _bikeMover.Speed = movementSpeed;
+        OnPlayerControllerReady?.Invoke(this);
+        _bikeMover.Init(gameObject);
     }
 
     void Update()
@@ -102,7 +110,10 @@ public class PlayerController : MonoBehaviour
     {
         if (_bikeMover != null && _playerInput != null)
         {
+            var prevPos = transform.position;
             _bikeMover.HanldeInput(_playerInput.GetDirection());
+            var curPos = transform.position;
+            RelativeSpeed = (curPos - prevPos) / Time.fixedDeltaTime;
         }
     }
 
@@ -149,10 +160,17 @@ public class PlayerController : MonoBehaviour
     public void SetSpeed(float newSpeed) //Update achieved speed made by Dennis
     {
         movementSpeed = newSpeed;
+        if (_bikeMover != null)
+            _bikeMover.Speed = movementSpeed;
     }
 
     public float GetOriginalSpeed()
     {
         return originalSpeed;
+    }
+
+    public void SetRotation(Quaternion initialRotation)
+    {
+        transform.rotation = initialRotation;
     }
 }
