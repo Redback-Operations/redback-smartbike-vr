@@ -1,14 +1,20 @@
+using ExitGames.Client.Photon.StructWrapping;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class RoadTile : MonoBehaviour
 {
     RoadSpawner roadSpawner;
+    public bool bHasBeenVisited;
+    public int TileIndex;
 
     // Start is called before the first frame update
     private void Start()
     {
+        bHasBeenVisited = false;
         roadSpawner = GameObject.FindObjectOfType<RoadSpawner>();
         if (boostRampPrefab == null)
         {
@@ -16,9 +22,11 @@ public class RoadTile : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+
+    //inform the spawner when we've been entered
+    private void OnTriggerEnter(Collider other)
     {
-        roadSpawner.SpawnTile(true);
+        if (roadSpawner != null) roadSpawner.TileTriggerEnter(this, other);
     }
 
     public GameObject itemPrefab;
