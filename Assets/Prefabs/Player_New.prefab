@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b71c50cdd84fa0be6c124f8724365e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BikeGroundMode: 0
+  BikeGroundMode: 1
   rotationSpeed: 90
 --- !u!1 &2587361573656180526
 GameObject:
@@ -4356,7 +4356,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071937129649633227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 616fc123ba644844abc69fe3f0f3dc50, type: 3}
   m_Name: 
@@ -4386,7 +4386,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &623698420321666199
