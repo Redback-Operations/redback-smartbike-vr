@@ -240,4 +240,3 @@ public class M7GameManager : MonoBehaviour
         UIManager.Instance.AddObjective($"Maintain {_speedGoalActive}m/s for {_switchIntervalActive}s");
     }
 }
-
