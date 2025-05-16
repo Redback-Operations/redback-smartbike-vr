@@ -22,9 +22,9 @@ public class Compass : MonoBehaviour
     {
         compassUnit = compassImage.rectTransform.rect.width / 360f;
 
-        AddQuestMarker(one);
-        AddQuestMarker(two);
-        AddQuestMarker(three);
+        //AddQuestMarker(one);
+        //AddQuestMarker(two);
+        //AddQuestMarker(three);
     }
 
     // Update is called once per frame

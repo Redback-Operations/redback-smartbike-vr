@@ -44,7 +44,6 @@ public class CheckpointManager : MonoBehaviour
 
         playerCheckpoints = new bool[checkpoints.Length];
         npcCheckpoints = new bool[checkpoints.Length];
-        raceResultText.text = null;
     }
     public void CheckpointReached(GameObject checkpoint, GameObject bike)
     {
