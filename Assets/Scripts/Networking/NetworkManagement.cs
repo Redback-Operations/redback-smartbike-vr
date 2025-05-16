@@ -31,6 +31,8 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
     private Dictionary<PlayerRef, NetworkObject> _players;
     private List<NetworkObject> _networkItems;
 
+    public static event Action<NetworkManagement> OnManagerReady;
+
     void Start()
     {
         if (Instance != null)
@@ -40,6 +42,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
         }
 
         Instance = this;
+        OnManagerReady?.Invoke(this);
 
         // set the active scene to ensure items are spawned in this scene
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(ActiveScene));

@@ -1,8 +1,10 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -31,6 +33,8 @@ public class HoverButton : MonoBehaviour
     public string StringValue;
 
     public Transform[] ToggleTargets;
+
+    [SerializeField] private UnityEvent onInteract;
 
     public Renderer Renderer;
     public Color Selected = Color.white;
@@ -194,5 +198,7 @@ public class HoverButton : MonoBehaviour
                 }
             } break;
         }
+        
+        onInteract?.Invoke();
     }
 }
