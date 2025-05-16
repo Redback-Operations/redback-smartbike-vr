@@ -1,13 +1,26 @@
 using UnityEngine;
 
-public enum TrackType { Straight, TurnL, TurnR, Cross }
+/// <summary>
+/// Enum to represent the type of track piece.
+/// </summary>
+public enum TrackType 
+{ 
+    Straight,    // Straight path
+    TurnL,       // Left turn
+    TurnR,       // Right turn
+    Cross        // 4-way intersection
+}
 
+/// <summary>
+/// Defines key reference points for a modular track piece.
+/// This component is attached to each track prefab.
+/// </summary>
 public class TrackPiece : MonoBehaviour
 {
-    public Transform startPoint;
-    public Transform endPoint;
-    public Transform midPoint;
-    public Transform endPointC1;  // Cross左
-    public Transform endPointC2;  // Cross右
-    public TrackType trackType;
+    public Transform startPoint;      // Starting point of this piece
+    public Transform endPoint;        // Main end point (used for straight and turns)
+    public Transform midPoint;        // Midpoint used for overlap detection
+    public Transform endPointC1;      // Secondary exit (left for cross piece)
+    public Transform endPointC2;      // Tertiary exit (right for cross piece)
+    public TrackType trackType;       // Type of this track piece
 }
