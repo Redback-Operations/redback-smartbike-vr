@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: -6243379898425970557}
   - component: {fileID: 4502725951429615996}
   - component: {fileID: 4935649353313280024}
-  - component: {fileID: 3132246751229760152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -229,21 +228,6 @@ MonoBehaviour:
   - {fileID: 4603769971612631423, guid: b918fc7ecfcf0e44382b67a51c1791e1, type: 3}
   - {fileID: 1622555878925337678, guid: 82b3db82be196e24c8b2739c688e3c54, type: 3}
 --- !u!1 &311612635963606861
---- !u!114 &3132246751229760152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34002221728508653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63caba88f168ae34795973a3e9493b20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chainSource: {fileID: 8586206877896652086}
-  chainAudio: {fileID: 0}
---- !u!1 &116521649587747259
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,10 +240,6 @@ GameObject:
   - component: {fileID: 7109751772239456919}
   m_Layer: 8
   m_Name: ScoreLabel
-  - component: {fileID: 2010257564983200900}
-  - component: {fileID: 8586206877896652086}
-  m_Layer: 0
-  m_Name: ChainAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,8 +247,6 @@ GameObject:
   m_IsActive: 1
 --- !u!224 &6639594452847867844
 RectTransform:
---- !u!4 &2010257564983200900
-Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -288,17 +266,6 @@ Transform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1367184813423399525
 CanvasRenderer:
-  m_GameObject: {fileID: 116521649587747259}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.243, z: -0.152}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7025182923892919932}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &8586206877896652086
-AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -396,96 +363,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
-  m_GameObject: {fileID: 116521649587747259}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 44a6b7b6ae26ca6469aa3dbff5aa4dc8, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1393928787209128059
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,16 +2502,6 @@ PrefabInstance:
       propertyPath: bikeSelected.Array.data[3]
       value: 
       objectReference: {fileID: 6111815186343219832}
-    - target: {fileID: 2459462210881228685, guid: 2151033503a58d44884b0ea8073681d1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2471224131048082921, guid: 2151033503a58d44884b0ea8073681d1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4015094971907545029, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2685,11 +2552,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5151681724110449975, guid: 2151033503a58d44884b0ea8073681d1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5236068157097883331, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
       propertyPath: m_Name
@@ -2703,11 +2565,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5759151481748946755, guid: 2151033503a58d44884b0ea8073681d1, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4015094971907545029, guid: 2151033503a58d44884b0ea8073681d1,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2010257564983200900}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2151033503a58d44884b0ea8073681d1, type: 3}
 --- !u!1 &2747763905237077975 stripped
