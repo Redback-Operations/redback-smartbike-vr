@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using Fusion;
 using Fusion.Sockets;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -18,7 +17,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
     // prefabs for spawning
     public GameObject NetworkPlayer;
- 
+
     public Transform SpawnTarget;
     private MissionSpawn[] _spawnPoints;
 
@@ -191,7 +190,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
         //var spawned = _runner.Spawn(NetworkPlayer, Vector3.zero, Quaternion.identity);
         //spawned.AssignInputAuthority(player);
-        
+
         //runner.SetPlayerObject(player, spawned);
         //_players.Add(player, spawned);
     }
@@ -212,7 +211,7 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
         var local = Player.GetComponent<LocalPlayer>();
 
-        if (local == null)
+        if (local == null || local.Properties == null)
             return;
 
         var rig = new RigInput
@@ -232,7 +231,6 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress)
     {
-        
     }
 
     public void OnSceneLoadDone(NetworkRunner runner)
@@ -252,24 +250,21 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
     }
 
     #region Unused Callbacks
+
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
     {
-        
     }
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
-        
     }
 
     public void OnConnectedToServer(NetworkRunner runner)
     {
-        
     }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
     {
-        
     }
 
     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
@@ -278,27 +273,23 @@ public class NetworkManagement : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
     {
-        
     }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {
-        
     }
 
     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
     {
-        
     }
 
     public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
     {
-        
     }
 
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data)
     {
-        
     }
+
     #endregion
 }

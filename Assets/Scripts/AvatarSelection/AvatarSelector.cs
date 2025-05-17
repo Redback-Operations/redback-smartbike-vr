@@ -1,13 +1,29 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class AvatarSelector : MonoBehaviour
 {
     public GameObject[] avatarPrefabs;
     private GameObject avatar;
-    void Start()
+    [SerializeField] private BikeSelector bikeSelector;
+
+    IEnumerator Start()
     {
+        // saveLoadBike.onBikeSelected += SetupBike;
+        yield return null;
         DisplayAvatar(PlayerPrefs.GetInt("selectedAvatar", 0));
+        SetupBike(bikeSelector.CurrentBike);
+    }
+
+    private void SetupBike(Bike bike)
+    {
+        var playerIkController = avatar.GetComponent<AvatarIkController>();
+        if (playerIkController)
+        {
+            playerIkController.Setup(bike);
+        }
     }
 
     public void DisplayAvatar(int selectedAvatar)
@@ -18,23 +34,21 @@ public class AvatarSelector : MonoBehaviour
 
         // Spawn the avatar as a child of the bike (Player)
         GameObject prefab = avatarPrefabs[selectedAvatar];
-        GameObject avatar = Instantiate(prefab, transform.position, transform.rotation);
-        avatar.transform.SetParent(transform); // Set avatar as a child of the Player (bike)
-
+        avatar = Instantiate(prefab, bikeSelector.CurrentBike.mountTf);
         // Adjusting the avatar's position relative to the bike
-        avatar.transform.localPosition = new Vector3(-0.02f, 0.55f, 0f); // Adjust as needed
-        avatar.transform.localRotation = Quaternion.identity; // Resets rotation to align with bike
+        avatar.transform.localRotation = Quaternion.Euler(70,0,0); // Resets rotation to align with bike
+        avatar.transform.localPosition = Vector3.zero; // Resets rotation to align with bike
 
         Vector3 scale = new Vector3(0.45f, 0.45f, 0.45f); // Adjust scale as needed (0.5 is 50% of the original size)
         avatar.transform.localScale = scale;
 
         var avatarAnimator = avatar.GetComponent<Animator>();
-        var movementController = GetComponent<PlayerMovementController>();
+        var movementController = GetComponent<PlayerAnimationController>();
 
         if (avatarAnimator != null && movementController != null)
             movementController
                 .AssignCharacterAnimator(avatarAnimator); // Assigning avatar's animator to the bike's controller
         else
-            Debug.LogError("No animator found on avatar prefab or PlayerMovementController is missing.");
+            Debug.Log("No animator found on avatar prefab or PlayerMovementController is missing.");
     }
 }

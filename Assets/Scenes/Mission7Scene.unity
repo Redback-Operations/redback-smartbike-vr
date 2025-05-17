@@ -1568,7 +1568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveScene: Mission7Scene
-  NetworkPlayer: {fileID: 34002221728508653, guid: e7fc1e67d1e037f43a17308005f7abd1,
+  NetworkPlayer: {fileID: 8071937129649633227, guid: ffa7a761264c99244b3cbc4c6dfbd0d0,
     type: 3}
   SpawnTarget: {fileID: 799098598}
   Prefabs: []
