@@ -3958,7 +3958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionData: {fileID: 0}
   MissionStarted: 0
-  bike: {fileID: 0}
+  bike: {fileID: 7594333520180326759, guid: ffa7a761264c99244b3cbc4c6dfbd0d0, type: 3}
   speed: 0
   objective: 0
   missionComplete: 0
