@@ -7,78 +7,56 @@ using UnityEngine.XR;
 
 public class NetworkPlayer : NetworkBehaviour
 {
-    public Transform Head;
-    public Transform HandLeft;
-    public Transform HandRight;
-
+    [SerializeField] private GameObject[] localObjects;
     [FormerlySerializedAs("Customization")] public BikeSelector selector;
     public SaveLoadBike SaveLoadBike;
-
-    private bool _firstRun = true;
-
     [Networked]
     public int PlayerID { get; set; } = 1;
-
-    [Networked]
-    public bool Dirty { get; set; } = false;
-    [Networked]
-    public int BikeSelection { get; set; } = -1;
-    [Networked]
-    [Capacity(1024)]
+    
+    
+    [Networked,OnChangedRender(nameof(BikeSelectionChanged))]
+    public int BikeSelection {get; set;}
+    
+    [Networked,Capacity(1024),OnChangedRender(nameof(BikeCustomizationChanged))]
     public string BikeCustomization { get; set; }
 
-    private NetworkTransform _networkTransform;
-
-    public bool IsLocalNetworkRig => Object.HasInputAuthority;
-
-    void Start()
+    private void BikeSelectionChanged()
     {
-        _networkTransform = GetComponent<NetworkTransform>();
-
-        if (HasInputAuthority)
-            gameObject.AddComponent<PlayerController>();
+        selector.DisplayBike(BikeSelection);
+    }
+    
+    public void BikeCustomizationChanged()
+    {
+        SaveLoadBike.LoadBikeData(BikeCustomization);
     }
 
-    public override void FixedUpdateNetwork()
+    private PlayerController _playerController;
+    public override void Spawned()
     {
-        base.FixedUpdateNetwork();
-
-        if (!GetInput<RigInput>(out var input))
-            return;
-
-        transform.position = input.playAreaPosition;
-        transform.rotation = input.playAreaRotation;
-
-        Head.localPosition = input.headsetPosition;
-        Head.localRotation = input.headsetRotation;
-        HandLeft.localPosition = input.leftHandPosition;
-        HandLeft.localRotation = input.leftHandRotation;
-        HandRight.localPosition = input.rightHandPosition;
-        HandRight.localRotation = input.rightHandRotation;
-
-        if (Dirty)
+        foreach (var localObject in localObjects)
         {
-            Debug.Log($"Updating to {BikeSelection} with {BikeCustomization}");
+            localObject.SetActive(HasInputAuthority);
+        }
+        if (HasInputAuthority)
+        {
+            _playerController = gameObject.GetComponent<PlayerController>();
+            if(_playerController==null)
+                _playerController = gameObject.AddComponent<PlayerController>();
 
-            selector.DisplayBike(BikeSelection);
-            SaveLoadBike.LoadBikeData(BikeCustomization);
-            
-            Dirty = false;
         }
 
-        if (!IsLocalNetworkRig)
-            return;
-
-        var bike = PlayerPrefs.GetInt("SelectedBike");
-        var customisation = PlayerPrefs.GetString($"Bike_{bike}");
-
-        if (!_firstRun && BikeSelection == bike)
-            return;
-
-        BikeSelection = bike;
-        BikeCustomization = customisation;
-
-        Dirty = true;
-        _firstRun = false;
+        if (HasInputAuthority)
+        {
+            BikeSelection = PlayerPrefs.GetInt("SelectedBike");
+            BikeCustomization = PlayerPrefs.GetString($"Bike_{BikeSelection}");
+        }
     }
+    public override void FixedUpdateNetwork()
+    {
+        if (HasInputAuthority)
+        {
+            _playerController.Tick(Runner.DeltaTime);
+        }
+    }
+    
 }

@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         {
             var handler =
                 movementHandleTypePairs.FirstOrDefault((pair) =>
-                    pair.type == PlayerPrefs.GetString("BikeControllerType"));
+                    pair.type == PlayerPrefs.GetString("BikeControllerType","Simple"));
             if (handler != null)
             {
                 SetupBikeMover(handler.movementHandler);
@@ -106,18 +106,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public void Tick(float deltaTime)
     {
         if (_bikeMover != null && _playerInput != null)
         {
+            _bikeMover.DeltaTime = deltaTime;
             var prevPos = transform.position;
             _bikeMover.HanldeInput(_playerInput.GetDirection());
             var curPos = transform.position;
-            RelativeSpeed = (curPos - prevPos) / Time.fixedDeltaTime;
+            RelativeSpeed = (curPos - prevPos) / deltaTime;
         }
     }
 
-    // trigger system updated to be use Collectable MonoBehaviour by Jonathan
     void OnTriggerEnter(Collider other)
     {
         var collectable = other.GetComponent<Collectable>();

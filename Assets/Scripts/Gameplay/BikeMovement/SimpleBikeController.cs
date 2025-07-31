@@ -24,6 +24,7 @@ namespace Gameplay.BikeMovement
 
         private bool _selected = false;
 
+        public float DeltaTime { get; set; }
         public float Speed { get; set; }
 
         private Transform _pedalTf;
@@ -85,11 +86,11 @@ namespace Gameplay.BikeMovement
             Rotate(direction);
             if (direction.y > 0)
             {
-                _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, 360f * Time.fixedDeltaTime) *
+                _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, 360f * DeltaTime) *
                                                    _pedalTf.transform.localRotation;
             }
 
-            var wheelRot = Quaternion.AngleAxis(Mathf.Rad2Deg * Speed * direction.y * Time.fixedDeltaTime
+            var wheelRot = Quaternion.AngleAxis(Mathf.Rad2Deg * Speed * direction.y * DeltaTime
                                                 / wheelRadius,
                 _frontWheelTf.right);
             _frontWheelTf.rotation = wheelRot * _frontWheelTf.rotation;
@@ -105,7 +106,7 @@ namespace Gameplay.BikeMovement
             // To prevent the bike from moving in the Y-axis
             facingDirection.y = 0;
             var position = tf.position;
-            position += facingDirection.normalized * (Speed * Time.fixedDeltaTime * direction.y);
+            position += facingDirection.normalized * (Speed * DeltaTime * direction.y);
             if (BikeGroundMode == GroundLockMode.TerrainLock)
             {
                 position.y = _groundHeight;

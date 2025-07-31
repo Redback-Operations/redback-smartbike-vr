@@ -1030,6 +1030,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7959643292183689738}
+  - component: {fileID: 6964357540260504464}
   m_Layer: 0
   m_Name: PedalPivot
   m_TagString: Untagged
@@ -1053,6 +1054,22 @@ Transform:
   - {fileID: 1563920222440598590}
   m_Father: {fileID: 1703919041825321023}
   m_LocalEulerAnglesHint: {x: 98.83099, y: 94.446, z: 184.499}
+--- !u!114 &6964357540260504464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2218924065227573593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &2317008236533086297
 GameObject:
   m_ObjectHideFlags: 0
@@ -4278,6 +4295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2061087725663202986}
+  - component: {fileID: 2928926833657374085}
   - component: {fileID: 7594333520180326759}
   - component: {fileID: 1228870156826663968}
   - component: {fileID: 6614919747474909275}
@@ -4287,6 +4305,7 @@ GameObject:
   - component: {fileID: 7524261127387979886}
   - component: {fileID: 5419384336606370540}
   - component: {fileID: 6670762756608491413}
+  - component: {fileID: 2759648886914715264}
   m_Layer: 0
   m_Name: Player_New
   m_TagString: Player
@@ -4315,6 +4334,26 @@ Transform:
   - {fileID: 2576902331318052338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2928926833657374085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071937129649633227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cacb68b7bf75c74083d2de24e5d8ec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localObjects:
+  - {fileID: 3162280989556632207}
+  - {fileID: 1886411714327683068}
+  selector: {fileID: 2370389851799255597}
+  SaveLoadBike: {fileID: 5184418229579193683}
+  _PlayerID: 1
+  _BikeSelection: -1
+  _BikeCustomization: 
 --- !u!114 &7594333520180326759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4329,8 +4368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 7
   score: 0
-  overridePlayerPrefs: 0
-  bikeMovementHandler: {fileID: 7435277422806923796}
+  overridePlayerPrefs: 1
+  bikeMovementHandler: {fileID: 2317008236533086297}
   movementHandleTypePairs:
   - type: Simple
     movementHandler: {fileID: 2317008236533086297}
@@ -4356,12 +4395,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071937129649633227}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 616fc123ba644844abc69fe3f0f3dc50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RightHand: {fileID: 1669423229075953276}
 --- !u!54 &8831586332175503828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4482,7 +4520,26 @@ MonoBehaviour:
   ObjectInterest: 1
   Flags: 262145
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 2928926833657374085}
+  - {fileID: 2759648886914715264}
+  - {fileID: 6964357540260504464}
+--- !u!114 &2759648886914715264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071937129649633227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &8127776259480126818
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,6 @@ public class SaveLoadBike : MonoBehaviour
     {
         _currentSelected = id;
         selector.DisplayBike(id);
-        LoadBikeData(id);
     }
 
     public void DisplayCurrentBike()

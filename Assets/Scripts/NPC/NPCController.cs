@@ -16,8 +16,7 @@ public class NPCController : MonoBehaviour
 
     private IBikeMover _bikeMover;
 
-    // Start is
-    // called before the first frame update
+ 
     void Start()
     {
         bikeSelector.DisplayBike(0);
@@ -26,7 +25,6 @@ public class NPCController : MonoBehaviour
         _bikeMover.Init(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Check if there are waypoints to follow
@@ -63,6 +61,8 @@ public class NPCController : MonoBehaviour
 
         float steerAngle = Mathf.Clamp(localDir.x, -1f, 1f);
         float throttle = Mathf.Clamp(localDir.z, -1f, 1f);
+
+        _bikeMover.DeltaTime = Time.fixedDeltaTime;
         _bikeMover.HanldeInput(new Vector2(steerAngle, throttle));
     }
 }
