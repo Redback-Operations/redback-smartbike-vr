@@ -10,14 +10,11 @@ public class NetworkPlayer : NetworkBehaviour
     [SerializeField] private GameObject[] localObjects;
     [FormerlySerializedAs("Customization")] public BikeSelector selector;
     public SaveLoadBike SaveLoadBike;
-    [Networked]
-    public int PlayerID { get; set; } = 1;
-    
     
     [Networked,OnChangedRender(nameof(BikeSelectionChanged))]
     public int BikeSelection {get; set;}
     
-    [Networked,Capacity(1024),OnChangedRender(nameof(BikeCustomizationChanged))]
+    [Networked, Capacity(1024),OnChangedRender(nameof(BikeCustomizationChanged))]
     public string BikeCustomization { get; set; }
 
     private void BikeSelectionChanged()
@@ -28,6 +25,7 @@ public class NetworkPlayer : NetworkBehaviour
     public void BikeCustomizationChanged()
     {
         SaveLoadBike.LoadBikeData(BikeCustomization);
+        Debug.Log($"{gameObject.name} customization changed {BikeCustomization}",gameObject);
     }
 
     private PlayerController _playerController;
@@ -40,23 +38,34 @@ public class NetworkPlayer : NetworkBehaviour
         if (HasInputAuthority)
         {
             _playerController = gameObject.GetComponent<PlayerController>();
-            if(_playerController==null)
-                _playerController = gameObject.AddComponent<PlayerController>();
-
+            ChangeBikeSelectionRpc( PlayerPrefs.GetInt("SelectedBike"));
+            ChangeBikeCustomizationRpc( PlayerPrefs.GetString($"Bike_{BikeSelection}"));
         }
-
-        if (HasInputAuthority)
+        else
         {
-            BikeSelection = PlayerPrefs.GetInt("SelectedBike");
-            BikeCustomization = PlayerPrefs.GetString($"Bike_{BikeSelection}");
+            BikeSelectionChanged();
+            BikeCustomizationChanged();
         }
     }
     public override void FixedUpdateNetwork()
     {
-        if (HasInputAuthority)
+        if (HasInputAuthority && _playerController!=null)
         {
             _playerController.Tick(Runner.DeltaTime);
         }
+    }
+    
+    
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void ChangeBikeSelectionRpc(int selection)
+    {
+        BikeSelection = selection;
+    }
+    
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void ChangeBikeCustomizationRpc(string customization)
+    {
+        BikeCustomization = customization;
     }
     
 }

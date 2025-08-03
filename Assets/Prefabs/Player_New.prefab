@@ -1828,6 +1828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selector: {fileID: 2370389851799255597}
+  loadBikeDataAtStart: 0
 --- !u!114 &2370389851799255597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4351,7 +4352,6 @@ MonoBehaviour:
   - {fileID: 1886411714327683068}
   selector: {fileID: 2370389851799255597}
   SaveLoadBike: {fileID: 5184418229579193683}
-  _PlayerID: 1
   _BikeSelection: -1
   _BikeCustomization: 
 --- !u!114 &7594333520180326759
