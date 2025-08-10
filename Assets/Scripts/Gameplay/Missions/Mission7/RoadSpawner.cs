@@ -7,7 +7,8 @@ using UnityEngine.Tilemaps;
 
 public class RoadSpawner : MonoBehaviour
 {
-    public GameObject roadTilePrefab;
+    public bool TileCleanup;
+    public List<GameObject> roadTilePrefab = new List<GameObject>();
     public List<GameObject> allRoadTiles = new List<GameObject>();
 
     private Vector3 nextSpawnPoint;
@@ -18,7 +19,7 @@ public class RoadSpawner : MonoBehaviour
 
     public void Reset()
     {
-        if (roadTilePrefab == null)
+        if (roadTilePrefab.Count == 0)
         {
             Debug.LogError("roadTilePrefab is not assigned in the Inspector!");
             return;
@@ -39,7 +40,7 @@ public class RoadSpawner : MonoBehaviour
         //spawn initial roadtiles (no objects on them)
         for (int i = 0; i < initialRoadTileCount; i++)
         {
-            SpawnTile(false);
+            SpawnTile(false, false);
         }
     }
 
@@ -63,18 +64,51 @@ public class RoadSpawner : MonoBehaviour
     //}
     //}
 
-    public void SpawnTile(bool spawnItems)
+    public void SpawnTile(bool spawnItems, bool randomTiles)
     {
         Debug.Log("SpawnTile method called.");
 
-        if (roadTilePrefab == null)
+        if (roadTilePrefab == null || roadTilePrefab.Count == 0)
         {
             Debug.LogError("roadTilePrefab is not assigned!");
             return;
         }
 
-        GameObject roadTile = Instantiate(roadTilePrefab, nextSpawnPoint, Quaternion.identity, transform); //updated to spawn road tile as child of spawner
-        nextSpawnPoint = roadTile.transform.GetChild(1).transform.position;
+        //chose a tile but make sure it does not drop below min height
+        //go through available tiles, and add them to possible list
+        RoadTileContainer selectedTile = roadTilePrefab[0].GetComponent<RoadTileContainer>();
+        if (randomTiles)
+        {
+            List<GameObject> weightedTileSelection = new List<GameObject>();
+            float totalWeight = 0f; //treat 1.0 as standard weight
+            foreach (var tile in roadTilePrefab)
+            {
+                RoadTileContainer t = tile.GetComponent<RoadTileContainer>();
+                if (nextSpawnPoint.y < t.MinHeight) continue;
+                if (tile == null) continue;
+
+                weightedTileSelection.Add(tile);
+                totalWeight += Mathf.Max(0f, t.Weight); //don't let negatives mess with weights
+            }
+
+            //valid options selected, now chose - aim for 50% flat, remaining 2/3 inclines, remaining 1/3 novel
+            float r = Random.value * totalWeight;
+            foreach (var tile in weightedTileSelection)
+            {
+                //subtract percentage-based weights until we get a value
+                RoadTileContainer t = tile.GetComponent<RoadTileContainer>();
+                r -= Mathf.Max(0f, t.Weight);
+                if (r <= 0f)
+                {
+                    selectedTile = t;
+                    break;
+                }
+            }
+        }
+
+
+        GameObject roadTile = Instantiate(selectedTile.gameObject, nextSpawnPoint, Quaternion.identity, transform); //updated to spawn road tile as child of spawner
+        nextSpawnPoint = roadTile.transform.GetChild(1).transform.position; //this is dangerous - assumes specific heirarchy order of NextSpawnPoint object
 
         //set the road tile index
         RoadTile tileScript = roadTile.GetComponent<RoadTile>();
@@ -107,11 +141,12 @@ public class RoadSpawner : MonoBehaviour
             if (_manager != null) _manager.IncreaseScore();
 
             tile.bHasBeenVisited = true;
-            SpawnTile(true);
+            SpawnTile(true, true);
         }
 
         //sliding window of active tiles for performance
         //half the active tiles should be behind player, half in front (floor/ceil one side to account for odd numbers)
+        if (!TileCleanup) return;
         int backThreshold = ActiveTileIndex - Mathf.FloorToInt(nMaxActiveTiles / 2);
         int fwdThreshold = (nMaxActiveTiles % 2 == 0 ? ActiveTileIndex + nMaxActiveTiles / 2 - 1 : ActiveTileIndex + Mathf.FloorToInt(nMaxActiveTiles / 2));
 

@@ -5,6 +5,8 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+[System.Serializable]
+
 public class RoadTile : MonoBehaviour
 {
     RoadSpawner roadSpawner;
@@ -29,15 +31,16 @@ public class RoadTile : MonoBehaviour
         if (roadSpawner != null) roadSpawner.TileTriggerEnter(this, other);
     }
 
-    public GameObject itemPrefab;
+    public List<GameObject> itemPrefab = new List<GameObject>();
     public GameObject boostRampPrefab;
 
     public void SpawnItem()
     {
+        int itemIndex = Random.Range(0, itemPrefab.Count);
         int itemSpawnIndex = Random.Range(2, 5);
         Transform spawnPoint = transform.GetChild(itemSpawnIndex).transform;
 
-        Instantiate(itemPrefab, spawnPoint.position, Quaternion.identity, transform);
+        Instantiate(itemPrefab[itemIndex], spawnPoint.position, Quaternion.identity, transform);
     }
 
     public void SpawnBoostRamp()
@@ -53,16 +56,21 @@ public class RoadTile : MonoBehaviour
         for (int i = 0; i < rampToSpawn; i++)
         {
             GameObject temp = Instantiate(boostRampPrefab, transform);
-            temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+            //temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+            var pivotPoint = transform.GetChild(0);
+            temp.transform.position = GetRandomPointInCollider(pivotPoint.transform.GetComponent<BoxCollider>());
+            Debug.Log($"Height: {temp.transform.position}");
+            temp.transform.rotation = pivotPoint.transform.rotation;
+
             Debug.Log($"BoostRamp spawned at: {temp.transform.position}");
         }
     }
 
-    Vector3 GetRandomPointInCollider(Collider collider)
+    Vector3 GetRandomPointInCollider(BoxCollider collider)
     {
         Vector3 point = new Vector3(
             Random.Range(collider.bounds.min.x, collider.bounds.max.x),
-            Random.Range(collider.bounds.min.y, collider.bounds.max.y),
+            Random.Range(collider.bounds.max.y, collider.bounds.max.y),
             Random.Range(collider.bounds.min.z, collider.bounds.max.z)
         );
 
@@ -71,7 +79,7 @@ public class RoadTile : MonoBehaviour
             point = GetRandomPointInCollider(collider);
         }
 
-        point.y = 0;
+        //point.y = 0;
         Debug.Log($"Generated point: {point}");
         return point;
     }
