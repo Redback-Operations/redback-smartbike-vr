@@ -1,5 +1,9 @@
 using UnityEngine;
 
+public struct TeleportEvent : IEvent
+{
+    public string targetScene;
+}
 public class TeleportEffect : MonoBehaviour
 {
     // Target scene to teleport to
@@ -20,7 +24,7 @@ public class TeleportEffect : MonoBehaviour
             Destroy(gameObject);
         }
 
-        this.GetComponent<Animation>().Play();
+        GetComponent<Animation>()?.Play();
     }
 
     // Set target scene with passed string
@@ -32,9 +36,6 @@ public class TeleportEffect : MonoBehaviour
     // Trigger teleportation and load new scene
     void Teleport ()
     {
-        if (NetworkManagement.Instance != null)
-            NetworkManagement.Instance.Disconnect();
-        
-        MapLoader.LoadScene (targetScene);
+        EventBus<TeleportEvent>.Raise(new TeleportEvent{targetScene = targetScene});
     }
 }

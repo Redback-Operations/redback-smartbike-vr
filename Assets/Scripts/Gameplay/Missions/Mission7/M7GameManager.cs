@@ -74,11 +74,7 @@ public class M7GameManager : MonoBehaviour
 
     private void _ReturnToGarage()
     {
-        if (NetworkManagement.Instance != null)
-            NetworkManagement.Instance.Disconnect();
-
-        // teleport the player to the target scene
-        MapLoader.LoadScene(TargetSceneName);
+        EventBus<TeleportEvent>.Raise(new TeleportEvent{targetScene = TargetSceneName});
     }
 
     private void _RestartMission()

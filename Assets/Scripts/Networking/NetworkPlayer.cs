@@ -17,6 +17,7 @@ public class NetworkPlayer : NetworkBehaviour
     [Networked, Capacity(1024),OnChangedRender(nameof(BikeCustomizationChanged))]
     public string BikeCustomization { get; set; }
 
+    private PlayerController _playerController;
     private void BikeSelectionChanged()
     {
         selector.DisplayBike(BikeSelection);
@@ -25,10 +26,8 @@ public class NetworkPlayer : NetworkBehaviour
     public void BikeCustomizationChanged()
     {
         SaveLoadBike.LoadBikeData(BikeCustomization);
-        Debug.Log($"{gameObject.name} customization changed {BikeCustomization}",gameObject);
     }
 
-    private PlayerController _playerController;
     public override void Spawned()
     {
         foreach (var localObject in localObjects)
