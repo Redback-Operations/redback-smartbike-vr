@@ -75,7 +75,8 @@ public class Bike : MonoBehaviour
             var collider = sprayTarget.gameObject.AddComponent<BoxCollider>();
             collider.isTrigger = true;
             collider.center = part.renderer.transform.TransformPoint(partBounds.center);
-            collider.size = part.renderer.transform.TransformVector(partBounds.size);
+            var targetSize = part.renderer.transform.TransformVector(partBounds.size);
+            collider.size = new Vector3(Mathf.Abs(targetSize.x), Mathf.Abs(targetSize.y), Mathf.Abs(targetSize.z));
         }
     }
 
