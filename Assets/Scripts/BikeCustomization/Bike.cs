@@ -1,15 +1,27 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Bike : MonoBehaviour
 {
     [SerializeField] private PartData[] parts;
+    [SerializeField] private IkTarget[] ikTargets;
+    [SerializeField] private bool generateSprayTargets = true;
+
+    public WheelCollider frontWheelCollider;
+    public WheelCollider rearWheelCollider;
+    
+    public Transform frontWheelTransform;
+    public Transform rearWheelTransform;
+    public Transform frontHandlePivot;
+    public Transform pedalTransform;
+    
+    public Transform mountTf;
+    public IkTarget[] IkTargets => ikTargets;
     public PartData[] PartDatas => parts;
     [HideInInspector] public BikeData bikeData;
-    
-    public System.Action<BikeData> OnBikeDataChange;
+    public Action<BikeData> OnBikeDataChange;
+
     public BikeData ToBikeData()
     {
         return new BikeData
@@ -22,7 +34,7 @@ public class Bike : MonoBehaviour
             }).ToArray()
         };
     }
-    
+
     public Color? GetPartColor(string partName)
     {
         foreach (var part in bikeData.partCustomizations)
@@ -34,6 +46,7 @@ public class Bike : MonoBehaviour
         }
         return null;
     }
+
     public void SetPartColor(string partName, Color color, bool save = false)
     {
         foreach (var part in parts)
@@ -44,6 +57,7 @@ public class Bike : MonoBehaviour
             }
         }
     }
+
     public void SetPartColor(Renderer renderer, int materialIndex, Color color, bool save = false)
     {
         renderer.materials[materialIndex].color = color;
@@ -56,7 +70,8 @@ public class Bike : MonoBehaviour
 
     private void Start()
     {
-        SetupSprayTargets();
+        if (generateSprayTargets)
+            SetupSprayTargets();
     }
 
     public void SetupSprayTargets()
@@ -71,7 +86,7 @@ public class Bike : MonoBehaviour
             sprayTarget.Target = part.renderer;
             sprayTarget.MaterialIndex = part.materialIndex;
             sprayTarget.bike = this;
-            
+
             var collider = sprayTarget.gameObject.AddComponent<BoxCollider>();
             collider.isTrigger = true;
             collider.center = part.renderer.transform.TransformPoint(partBounds.center);
@@ -86,6 +101,7 @@ public class Bike : MonoBehaviour
         {
             bikeData = ToBikeData();
         }
+
         this.bikeData = bikeData;
         foreach (var part in bikeData.partCustomizations)
         {
@@ -93,11 +109,21 @@ public class Bike : MonoBehaviour
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class PartData
     {
         public string name;
         public Renderer renderer;
         public int materialIndex;
+    }
+
+    [Serializable]
+    public class IkTarget
+    {
+        public AvatarIKGoal target;
+        public Transform tf;
+
+        [Range(0, 1)] public float positionWeight;
+        [Range(0, 1)] public float rotationWeight;
     }
 }

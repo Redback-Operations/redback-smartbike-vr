@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using Gameplay.BikeMovement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,11 +74,7 @@ public class M7GameManager : MonoBehaviour
 
     private void _ReturnToGarage()
     {
-        if (NetworkManagement.Instance != null)
-            NetworkManagement.Instance.Disconnect();
-
-        // teleport the player to the target scene
-        MapLoader.LoadScene(TargetSceneName);
+        EventBus<TeleportEvent>.Raise(new TeleportEvent{targetScene = TargetSceneName});
     }
 
     private void _RestartMission()
@@ -223,7 +220,11 @@ public class M7GameManager : MonoBehaviour
     private void OnPlayerReady(PlayerController player)
     {
         playerTransform = player;
-        playerTransform.BikeGroundMode = PlayerController.GroundLockMode.FreePhysics;
+
+        if (playerTransform.BikeMover is SimpleBikeController simpleBikeController)
+        {
+            simpleBikeController.BikeGroundMode = SimpleBikeController.GroundLockMode.FreePhysics;
+        }
         _initialPosition = player.transform.position;
         _initialRotation = player.transform.rotation;
         _initialSpeed = playerTransform.GetOriginalSpeed();

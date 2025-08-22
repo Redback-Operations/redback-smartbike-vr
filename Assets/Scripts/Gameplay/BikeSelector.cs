@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 
 public class BikeSelector : MonoBehaviour
 {
-
     Bike[] bikes;
     private Bike _currentBike;
     public Bike CurrentBike => _currentBike;
@@ -25,7 +24,7 @@ public class BikeSelector : MonoBehaviour
         // ensure the bike is available
         id = Math.Clamp(id, 0, bikes.Length - 1);
         
-        Debug.Log($"id:{id}");
+        // Debug.Log($"id:{id}");
 
         // loop through each bike available
         for (int index = 0; index < bikes.Length; index++)
