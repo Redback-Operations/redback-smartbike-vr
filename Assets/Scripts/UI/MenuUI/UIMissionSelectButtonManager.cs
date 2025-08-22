@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
 using TMPro;
+using UI.MissionSelection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ using static IUIButtonManager;
 using static UnityEngine.GraphicsBuffer;
 
 public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
-{ 
+{
     public MissionSelectButton[] Missions;
     public MissionSelectButton BackButton;
     public MissionSelectButton GoButton;
@@ -77,7 +78,11 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
     public void SetState(IUIState nextState)
     {
         //make sure next UIState is a mission state
-        if (nextState == null) { Debug.Log("ERROR: Null State!"); return; }
+        if (nextState == null)
+        {
+            Debug.Log("ERROR: Null State!");
+            return;
+        }
 
         //shut down the active state
         if (_activeState != null) _activeState.OnExitState();
@@ -93,7 +98,10 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
     public void ButtonInteract(IUIButton inbutton)
     {
         if (_activeState == null)
-        { Debug.Log("ERROR: NO ACTIVE STATE"); return; }
+        {
+            Debug.Log("ERROR: NO ACTIVE STATE");
+            return;
+        }
 
         _activeState.ButtonInteract(inbutton);
     }
@@ -103,46 +111,70 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
     //======================================================================================================================================
 
     //extended interface of base nested interface - only use for mission-specific state functionality IF NEEDED
-    interface IMissionState : IUIState { };
+    interface IMissionState : IUIState
+    {
+    };
 
     //initial menu - mission select not yet active
     public class BaseState : IMissionState
     {
         private MissionSelectButtonManager _manager;
-        public BaseState(MissionSelectButtonManager manager) { _manager = manager; }
 
-        public void OnEnterState()  { _manager.menuBase.gameObject.SetActive(false); }
-        public void OnExitState() { _manager.menuBase.gameObject.SetActive(true); }
+        public BaseState(MissionSelectButtonManager manager)
+        {
+            _manager = manager;
+        }
 
-        public void ButtonInteract(IUIButton inButton) {
+        public void OnEnterState()
+        {
+            _manager.menuBase.gameObject.SetActive(false);
+        }
+
+        public void OnExitState()
+        {
+            _manager.menuBase.gameObject.SetActive(true);
+        }
+
+        public void ButtonInteract(IUIButton inButton)
+        {
             MissionSelectButton.ButtonAction ButtonAction;
             MissionSelectButton button;
-            
+
             button = (MissionSelectButton)inButton;
             if (button == null) return;
 
             ButtonAction = button.Action;
 
-            switch (ButtonAction) {
+            switch (ButtonAction)
+            {
                 case MissionSelectButton.ButtonAction.Base:
-                {_manager.SetState(new MissionListState(_manager)); break;}
+                {
+                    _manager.SetState(new MissionListState(_manager));
+                    break;
+                }
 
                 default: return;
             }
         }
-
     }
 
     //mission list display menu
-    public class MissionListState: IMissionState
+    public class MissionListState : IMissionState
     {
         private MissionSelectButtonManager _manager;
-        public MissionListState(MissionSelectButtonManager manager) { _manager = manager; }
+
+        public MissionListState(MissionSelectButtonManager manager)
+        {
+            _manager = manager;
+        }
 
         //enable mission buttons
-        public void OnEnterState() {
+        public void OnEnterState()
+        {
             foreach (var button in _manager.Missions)
-            { button.gameObject.SetActive(true); }
+            {
+                button.gameObject.SetActive(true);
+            }
 
             _manager.BackButton.gameObject.SetActive(true);
 
@@ -151,35 +183,47 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
         }
 
         //disable mission buttons
-        public void OnExitState() {
-            foreach (var button in _manager.Missions) 
-            { button.gameObject.SetActive(false); }
+        public void OnExitState()
+        {
+            // foreach (var button in _manager.Missions) 
+            // { button.gameObject.SetActive(false); }
         }
 
-        public void ButtonInteract(IUIButton inButton) {
-            MissionSelectButton.ButtonAction ButtonAction; 
+        public void ButtonInteract(IUIButton inButton)
+        {
+            MissionSelectButton.ButtonAction ButtonAction;
             MissionSelectButton button;
 
             button = (MissionSelectButton)inButton;
             if (button == null) return;
 
             ButtonAction = button.Action;
-            switch (ButtonAction) {
-                case MissionSelectButton.ButtonAction.MissionSelect: 
-                {               
+            switch (ButtonAction)
+            {
+                case MissionSelectButton.ButtonAction.MissionSelect:
+                {
                     _manager._activeMissionData = button.GetComponent<MissionData>();
 
                     //get the mission data ready if we have it
                     if (_manager._activeMissionData != null)
-                    { _manager.SetState(new MissionDisplayState(_manager)); }
+                    {
+                        _manager.SetState(new MissionDisplayState(_manager));
+                    }
 
-                    else { Debug.Log("Error! Couldn't get mission data!"); }
+                    else
+                    {
+                        Debug.Log("Error! Couldn't get mission data!");
+                    }
+
                     break;
                 }
 
                 //return to base state
                 case MissionSelectButton.ButtonAction.Back:
-                { _manager.BackState(); break; }
+                {
+                    _manager.BackState();
+                    break;
+                }
 
                 default: return;
             }
@@ -192,7 +236,11 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
     public class MissionDisplayState : IMissionState
     {
         private MissionSelectButtonManager _manager;
-        public MissionDisplayState(MissionSelectButtonManager manager) { _manager = manager; }
+
+        public MissionDisplayState(MissionSelectButtonManager manager)
+        {
+            _manager = manager;
+        }
 
         public void OnEnterState()
         {
@@ -202,9 +250,13 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
             _manager.DescriptionPanel.gameObject.SetActive(true);
 
             //display our mission data if we have it and a valid renderer
-            if (_manager._activeMissionData != null && _manager.DescriptionText != null) 
-            { _manager.DescriptionText.text = _manager._activeMissionData.DescriptionText; }
+            if (_manager._activeMissionData != null && _manager.DescriptionText != null)
+            {
+                _manager.DescriptionPanel.GetComponentInChildren<UILevelSelector>().Setup(_manager._activeMissionData);
+                _manager.DescriptionText.text = _manager._activeMissionData.DescriptionText;
+            }
         }
+
         public void OnExitState()
         {
             //deactivate description panel and go/start buttons
@@ -214,8 +266,9 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
         }
 
         //we can start the mission or go back
-        public void ButtonInteract(IUIButton inButton) {
-            MissionSelectButton.ButtonAction ButtonAction; 
+        public void ButtonInteract(IUIButton inButton)
+        {
+            MissionSelectButton.ButtonAction ButtonAction;
             MissionSelectButton button;
 
             button = (MissionSelectButton)inButton;
@@ -225,18 +278,37 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
             switch (ButtonAction)
             {
                 //activate the selected mission if possible
-                case MissionSelectButton.ButtonAction.Start: 
+                case MissionSelectButton.ButtonAction.Start:
                 {
                     MissionData MissionData = _manager._activeMissionData;
                     if (MissionData != null)
                     {
                         PlayerPrefs.SetInt("MissionNumber", MissionData.MissionID);
-                        MapLoader.LoadScene(MissionData.TargetScene);
+
+                        var selectedScene = _manager
+                            .DescriptionPanel
+                            .GetComponentInChildren<UILevelSelector>()
+                            .SelectedLevel;
+
+                        MapLoader.LoadScene(selectedScene);
                     }
-                    else { Debug.Log("ERror! Couldn't get mission data!"); }
+                    else
+                    {
+                        Debug.Log("ERror! Couldn't get mission data!");
+                    }
+
                     break;
                 }
 
+                case MissionSelectButton.ButtonAction.MissionSelect:
+                {
+
+                    _manager._activeMissionData = button.GetComponent<MissionData>();
+                    _manager.DescriptionPanel.GetComponentInChildren<UILevelSelector>().Setup(_manager._activeMissionData);
+                    _manager.DescriptionText.text = _manager._activeMissionData.DescriptionText;
+                    break;
+                }
+                
                 //return to mission select list
                 case MissionSelectButton.ButtonAction.Back:
                 {
@@ -246,7 +318,5 @@ public class MissionSelectButtonManager : MonoBehaviour, IUIButtonManager
                 default: return;
             }
         }
-
     }
 }
-
