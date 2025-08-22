@@ -1,150 +1,99 @@
-using UnityEngine;
 using System;
+using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
-using System.Collections;
-using TMPro;
 using UnityEngine.XR;
-using System.Text;
-using System.Security.Cryptography.X509Certificates;
-using System.Net.Security;
-using UnityEditor.Rendering;
-using Unity.Mathematics;
+using Gameplay.BikeMovement;
 
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 5f;
-    private float originalSpeed = 5f;
-
-    public float rotationSpeed = 90f;
-
-    private Rigidbody rb;
-
-    //For score made by Jai
     public int score;
 
-    //to store rotation made by Jai
-    private Quaternion OldRotation;
+    [SerializeField] private bool overridePlayerPrefs;
+    [SerializeField] private GameObject bikeMovementHandler;
 
-    private float change = 0;
+    [SerializeField] private MovementHandleTypePair[] movementHandleTypePairs;
 
-    public string R_Turn = "LOW";
-    public string L_Turn = "LOW";
-    public float MQTT_Speed = 0f;
-
-    public Transform Bikes;
-
-    private InputDevice? _controller;
-    private Vector2 _direction = Vector2.zero;
-
-    private float _groundHeight = 0;
-    private float _angleX = 0;
-
-    private BoxCollider _collider;
-    public GroundLockMode BikeGroundMode;
-
-    //gets the movement speed of the player
-    private Vector3 _relativeSpeed;
-    public Vector3 RelativeSpeed{
-        get { return _relativeSpeed; }
-    }
-
-    public enum GroundLockMode
+    [Serializable]
+    public class MovementHandleTypePair
     {
-        TerrainLock,
-        FreePhysics
+        public string type;
+        public GameObject movementHandler;
     }
 
-    private void Awake()
-    {
-
-        // Get the Rigidbody component attached to the bike GameObject
-        rb = GetComponent<Rigidbody>();
-        _collider = GetComponent<BoxCollider>();
-    }
-
-    //static alert for now, should find a more dynamic way to do this
+    //For speed reference made by Dennis
+    private float originalSpeed;
+    private IPlayerInput _playerInput;
+    private IBikeMover _bikeMover;
+    public IBikeMover BikeMover => _bikeMover;
+    public Vector3 RelativeSpeed { get; private set; }
     public static event Action<PlayerController> OnPlayerControllerReady;
 
-    void Start()
+    private void OnValidate()
     {
-        OnPlayerControllerReady?.Invoke(this);
-
-        // get the initial rotation of the player
-        change = transform.rotation.eulerAngles.y;
-
-        Debug.Log($"Initial velocity: {rb.velocity}, angularVelocity: {rb.angularVelocity}");
-
-        //free-physics mode
-        if (BikeGroundMode == GroundLockMode.FreePhysics)
+        if (bikeMovementHandler == null) return;
+        if (bikeMovementHandler.GetComponent<IBikeMover>() == null)
         {
-            Collider[] _childColliders = GetComponentsInChildren<Collider>();
-
-            Debug.Log(_childColliders.Length);
-
-            //stop base collider from impacting with child colliders
-            foreach (Collider child in _childColliders)
-            {
-                Debug.Log("Finding collision");
-                if (child != _collider)
-                {
-                    Debug.Log("Removing collision");
-                    Physics.IgnoreCollision(_collider, child);
-                }
-            }
-
-            //fix collisions
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-
-            //disable kinematic mode in rigidbody, and istrigger mode on collider to unlock physics
-            rb.isKinematic = false;
-            _collider.isTrigger = false;
+            bikeMovementHandler = null;
+            Debug.LogWarning(
+                $"Bike movement handler object should have scripts that implements interface:{typeof(IBikeMover)}");
         }
+    }
 
-
-        // Freeze rotation along the X and Z axes to prevent tumbling
-        rb.freezeRotation = true;
-
+    IEnumerator Start()
+    {
+        originalSpeed = movementSpeed;
         //to set score to 0 made by Jai
         score = 0;
 
-        // subscribe to the MQTT topics required
-        if (Mqtt.Instance != null)
+        var devices = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(
+            InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
+
+        if (Mqtt.Instance != null && Mqtt.Instance.IsConnected)
         {
-            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.LeftTurnTopic);
-            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.RightTurnTopic);
-            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.SpeedTopic);
+            _playerInput = new MQTTInput();
+        }
+        else if (devices.Any())
+        {
+            _playerInput = new XRInput(devices.FirstOrDefault());
+        }
+        else
+        {
+            _playerInput = new AxisInput();
         }
 
-        var devices = new List<InputDevice>();
-        InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
+        
 
-        if (devices.Any())
-            _controller = devices.FirstOrDefault();
+        Debug.Log($"MQTT INSTANCE exists:{Mqtt.Instance}", Mqtt.Instance);
+        Debug.Log($"Player input:{_playerInput.GetType()}");
+
+        yield return null;
+
+        if (overridePlayerPrefs)
+        {
+            SetupBikeMover(bikeMovementHandler);
+        }
+        else
+        {
+            var handler =
+                movementHandleTypePairs.FirstOrDefault((pair) =>
+                    pair.type == PlayerPrefs.GetString("BikeControllerType","Simple"));
+            if (handler != null)
+            {
+                SetupBikeMover(handler.movementHandler);
+            }
+        }
     }
 
-    void client_MqttMsgReceived(object sender, MqttMsgPublishEventArgs e)
+    private void SetupBikeMover(GameObject handler)
     {
-        if (e.Topic == Mqtt.RightTurnTopic)
-        {
-            R_Turn = System.Text.Encoding.UTF8.GetString(e.Message);
-        }
-        else if (e.Topic == Mqtt.LeftTurnTopic)
-        {
-            L_Turn = System.Text.Encoding.UTF8.GetString(e.Message);
-        }
-        else if (e.Topic == Mqtt.SpeedTopic)
-        {
-            string json = System.Text.Encoding.UTF8.GetString(e.Message);
-            string valueKey = "\"value\":";
-            int startIndex = json.IndexOf(valueKey) + valueKey.Length;
-            int endIndex = json.IndexOf(",", startIndex);
-            string valueStr = json.Substring(startIndex, endIndex - startIndex);
-            MQTT_Speed = float.Parse(valueStr);
-        }
+        _bikeMover = handler.GetComponent<IBikeMover>();
+        _bikeMover.Speed = movementSpeed;
+        OnPlayerControllerReady?.Invoke(this);
+        _bikeMover.Init(gameObject);
     }
 
     void Update()
@@ -155,160 +104,27 @@ public class PlayerController : MonoBehaviour
             if (!Mission_Activator.ActiveMission.MissionStarted)
                 Mission_Activator.ActiveMission.StartMission();
         }
-
-        UpdateDirection();
-        Debug.Log(rb.velocity);
-        Debug.Log(rb.angularVelocity);
-
-        var prevPos = transform.position;
-        MovePlayer();
-        var curPos = transform.position;
-
-        //get relative speed
-        _relativeSpeed = (curPos - prevPos) / Time.deltaTime;
-
-        Debug.Log($"current velocity: {rb.velocity}, angularVelocity: {rb.angularVelocity}");
-
-        RotatePlayer();
     }
 
-    void LateUpdate()
+    public void Tick(float deltaTime)
     {
-        if (Terrain.activeTerrain == null)
-            return;
-
-        _groundHeight = Terrain.activeTerrain.SampleHeight(transform.position);
-
-        var normal = CalculateNormal(Terrain.activeTerrain, transform.position);
-        var forward = Vector3.Cross(normal, -transform.right);
-
-        var rotation = Quaternion.LookRotation(forward, normal);
-        _angleX = rotation.eulerAngles.x;
-    }
-
-    private Vector3 CalculateNormal(Terrain terrain, Vector3 position)
-    {
-        var offset = 0.1f;
-
-        var heightLeft = terrain.SampleHeight(position + Vector3.left * offset);
-        var heightRight = terrain.SampleHeight(position + Vector3.right * offset);
-        var heightForward = terrain.SampleHeight(position + Vector3.forward * offset);
-        var heightBack = terrain.SampleHeight(position + Vector3.back * offset);
-
-        var tangentX = new Vector3(2.0f * offset, heightRight - heightLeft, 0).normalized;
-        var tangentZ = new Vector3(0, heightForward - heightBack, 2.0f * offset).normalized;
-
-        var normal = Vector3.Cross(tangentZ, tangentX).normalized;
-
-        return normal;
-    }
-
-    public void UpdateDirection()
-    {
-        _direction = ControllerDirection();
-
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            _direction.y += 1;
-
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            _direction.y -= 1;
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            _direction.x -= 1;
-
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            _direction.x += 1;
-
-        if (!Mathf.Approximately(MQTT_Speed, 0))
-            _direction.y = 1;
-
-        if (L_Turn == "LEFT")
-            _direction.x = -1;
-
-        if (R_Turn == "RIGHT")
-            _direction.x = 1;
-    }
-
-    private void MovePlayer()
-    {
-        // Get the playter's forward direction made by Jai (updated by Jonathan)
-        Vector3 facingDirection = transform.forward;
-        // To prevent the bike from moving in the Y-axis
-        facingDirection.y = 0;
-
-        var position = transform.position;
-
-        // Move the bike in the player's forward direction made by Jai (updated by Jonathan)
-        //added optional speed modifier multiplier (default 1)
-        if (!Mathf.Approximately(MQTT_Speed, 0))
-            position += (facingDirection.normalized * MQTT_Speed * Time.deltaTime * _direction.y);
-        else
-            position += (facingDirection.normalized * movementSpeed * Time.deltaTime * _direction.y);
-
-        //lock height to terrain if we're in terrain-lock mode
-        if (BikeGroundMode == GroundLockMode.TerrainLock)
+        if (_bikeMover != null && _playerInput != null)
         {
-            position.y = _groundHeight;
+            _bikeMover.DeltaTime = deltaTime;
+            var prevPos = transform.position;
+            _bikeMover.HanldeInput(_playerInput.GetDirection());
+            var curPos = transform.position;
+            RelativeSpeed = (curPos - prevPos) / deltaTime;
         }
-
-        transform.position = position;
     }
 
-    //manual forced rotation
-    public void SetRotation(quaternion inRotation)
-    {
-        if (rb == null) return;
-        rb.transform.rotation = inRotation;
-
-        //must update old rotation and change to avoid instant-resetting to prior rotation
-        OldRotation = inRotation;
-        change = 0;
-    }
-
-    private void RotatePlayer()
-    {
-        // updated to account for frame rate
-        change += _direction.x * rotationSpeed * Time.deltaTime;
-
-        //To make bike go towards new rotation made by Jai
-        OldRotation = Quaternion.Euler(_angleX, rb.transform.rotation.y + change, rb.transform.rotation.z);
-        //To make bike go towards new rotation made by Jai
-        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.15f);
-    }
-
-    private Vector2 ControllerDirection()
-    {
-        if (!XRSettings.enabled)
-            return Vector2.zero;
-
-        if (_controller == null)
-        {
-            var devices = new List<InputDevice>();
-            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
-
-            if (devices.Any())
-                _controller = devices.FirstOrDefault();
-        }
-
-        var value = Vector2.zero;
-
-        if (_controller?.TryGetFeatureValue(CommonUsages.primary2DAxis, out value) != true)
-            return Vector2.zero;
-
-        _direction = value;
-        return value;
-    }
-
-    // trigger system updated to be use Collectable MonoBehaviour by Jonathan
     void OnTriggerEnter(Collider other)
     {
         var collectable = other.GetComponent<Collectable>();
-
         if (collectable != null)
         {
             if (collectable.Tag == this.tag)
                 score += collectable.Collect();
-
             UIManager.Instance.SetScore(score);
         }
         else
@@ -344,10 +160,17 @@ public class PlayerController : MonoBehaviour
     public void SetSpeed(float newSpeed) //Update achieved speed made by Dennis
     {
         movementSpeed = newSpeed;
+        if (_bikeMover != null)
+            _bikeMover.Speed = movementSpeed;
     }
 
     public float GetOriginalSpeed()
     {
         return originalSpeed;
+    }
+
+    public void SetRotation(Quaternion initialRotation)
+    {
+        transform.rotation = initialRotation;
     }
 }

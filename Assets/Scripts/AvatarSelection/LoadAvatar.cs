@@ -12,7 +12,7 @@ public class LoadAvatar : MonoBehaviour {
     public TMP_Text label;
 
     public GameObject bike;
-    private PlayerMovementController movementController;
+    private PlayerAnimationController _animationController;
 
     //Gets the selectedAvatar saved in the Avatar selection  and spawns it
     private void Start() {
@@ -36,10 +36,10 @@ public class LoadAvatar : MonoBehaviour {
         Animator avatarAnimator = avatar.GetComponent<Animator>();
 
         //Finding the PlayerMovementController on the bike
-        movementController = bike.GetComponent<PlayerMovementController>();
+        _animationController = bike.GetComponent<PlayerAnimationController>();
 
-        if (avatarAnimator != null && movementController != null) {
-            movementController.AssignCharacterAnimator(avatarAnimator); //Passing the avatar's animator to PlayerMovementController
+        if (avatarAnimator != null && _animationController != null) {
+            _animationController.AssignCharacterAnimator(avatarAnimator); //Passing the avatar's animator to PlayerMovementController
         } else {
             Debug.LogError("No animator found on avatar prefab or PlayerMovementController is missing.");
         }
