@@ -12,13 +12,14 @@ public class RoadTile : MonoBehaviour
     RoadSpawner roadSpawner;
     public bool bHasBeenVisited;
     public int TileIndex;
+    public bool bHasBoosts;
 
     // Start is called before the first frame update
     private void Start()
     {
         bHasBeenVisited = false;
         roadSpawner = GameObject.FindObjectOfType<RoadSpawner>();
-        if (boostRampPrefab == null)
+        if (boostRampPrefab == null && bHasBoosts)
         {
             Debug.LogError("boostRampPrefab is not assigned in RoadTile!");
         }
@@ -47,9 +48,8 @@ public class RoadTile : MonoBehaviour
 
     public void SpawnBoostRamp()
     {
-        return; //test seems boost pads are causing stack overflow?
         Debug.Log("SpawnBoostRamp method called.");
-        if (boostRampPrefab == null)
+        if (!bHasBoosts)
         {
             Debug.LogWarning("BoostRamp Prefab is not assigned!");
             return;
@@ -59,28 +59,46 @@ public class RoadTile : MonoBehaviour
         for (int i = 0; i < rampToSpawn; i++)
         {
             GameObject temp = Instantiate(boostRampPrefab, transform);
-            //temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
-            var pivotPoint = transform.GetChild(0);
-            temp.transform.position = GetRandomPointInCollider(pivotPoint.transform.GetComponent<BoxCollider>());
-            Debug.Log($"Height: {temp.transform.position}");
-            temp.transform.rotation = pivotPoint.transform.rotation;
+            try
+            {
 
-            Debug.Log($"BoostRamp spawned at: {temp.transform.position}");
+                //temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+
+                //evil gameobject hierarchy assumption of tile collider should be changed
+                var pivotPoint = transform.GetChild(0);
+                BoxCollider collider = pivotPoint.transform.GetComponent<BoxCollider>();
+                if (collider = null) throw new System.Exception("Invalid collider!");
+
+                temp.transform.position = GetRandomPointInCollider(pivotPoint.transform.GetComponent<BoxCollider>());
+                Debug.Log($"Height: {temp.transform.position}");
+                temp.transform.rotation = pivotPoint.transform.rotation;
+
+                Debug.Log($"BoostRamp spawned at: {temp.transform.position}");
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log($"Error. Failed to find collision point! {e}");
+                Destroy(temp); // remove unnused boosts
+            }
+
         }
     }
 
+    //evil recursive function blows up when no valid collider
     Vector3 GetRandomPointInCollider(BoxCollider collider)
     {
+        if (collider == null) throw new System.Exception("Invalid collider!");
+
         Vector3 point = new Vector3(
             Random.Range(collider.bounds.min.x, collider.bounds.max.x),
-            Random.Range(collider.bounds.max.y, collider.bounds.max.y),
+            collider.bounds.max.y,
             Random.Range(collider.bounds.min.z, collider.bounds.max.z)
         );
 
         Debug.Log($"Point: {point}");
         if (point != collider.ClosestPoint(point))
         {
-            point = GetRandomPointInCollider(collider);
+            point = GetRandomPointInCollider(collider); //evil recursion
         }
 
         //point.y = 0;

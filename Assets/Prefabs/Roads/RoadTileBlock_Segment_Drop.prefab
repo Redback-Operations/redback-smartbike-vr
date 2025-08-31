@@ -1560,8 +1560,7 @@ MonoBehaviour:
   bHasBeenVisited: 0
   TileIndex: 0
   itemPrefab: []
-  boostRampPrefab: {fileID: 5351845041639648242, guid: 062ea8c102ce80a45a7f0682e9ae173a,
-    type: 3}
+  boostRampPrefab: {fileID: 0}
 --- !u!114 &1374348960883039881
 MonoBehaviour:
   m_ObjectHideFlags: 0

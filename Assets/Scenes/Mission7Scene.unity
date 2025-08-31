@@ -1957,7 +1957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdc766bdc9b799429493b3491f02de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileCleanup: 0
+  TileCleanup: 1
   roadTilePrefab:
   - {fileID: 5779373908981192658, guid: 4f00f4056a8be5d43b9c28afec9be7e0, type: 3}
   - {fileID: 5779373908981192658, guid: 3583c313a20553741a1b9e7f28641d23, type: 3}
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   - {fileID: 5779373908981192658, guid: 3aace21423f1f8244aeed55fc47f9d13, type: 3}
   allRoadTiles: []
   initialRoadTileCount: 10
-  maxTiles: 20
+  maxTiles: 10
   nMaxActiveTiles: 20
 --- !u!4 &1489329981
 Transform:

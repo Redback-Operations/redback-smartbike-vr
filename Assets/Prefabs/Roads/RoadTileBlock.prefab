@@ -454,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bHasBeenVisited: 0
   TileIndex: 0
+  bHasBoosts: 1
   itemPrefab:
   - {fileID: 2622329401361513194, guid: 838d037d4afc66f448e87e9084047f10, type: 3}
   - {fileID: 7171657923609553380, guid: c9c048807845554449768690c64e98fb, type: 3}

@@ -458,8 +458,7 @@ MonoBehaviour:
   - {fileID: 2622329401361513194, guid: 838d037d4afc66f448e87e9084047f10, type: 3}
   - {fileID: 7171657923609553380, guid: c9c048807845554449768690c64e98fb, type: 3}
   - {fileID: 7171657923609553380, guid: 47c5a601bb4f37c41a26a3f7ac15b996, type: 3}
-  boostRampPrefab: {fileID: 5351845041639648242, guid: 062ea8c102ce80a45a7f0682e9ae173a,
-    type: 3}
+  boostRampPrefab: {fileID: 0}
 --- !u!114 &6033929700055332098
 MonoBehaviour:
   m_ObjectHideFlags: 0

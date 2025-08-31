@@ -16,6 +16,7 @@ public class RoadSpawner : MonoBehaviour
     public int initialRoadTileCount = 10;
     public int maxTiles = 20;
     public int nMaxActiveTiles = 20;
+    public bool bSpawnNonFlatOnStart;
     private M7GameManager _manager;
 
     public void Reset()
@@ -38,11 +39,12 @@ public class RoadSpawner : MonoBehaviour
             nextSpawnPoint = transform.position;
         }
 
-        //spawn initial roadtiles (no objects on them)
+        //spawn initial roadtiles (no objects on first batch, then spawn with objects if allowed)
+        if (initialRoadTileCount > maxTiles) initialRoadTileCount = maxTiles;
         for (int i = 0; i < maxTiles; i++)
         {
             if (i < initialRoadTileCount) SpawnTile(false, false);
-            else SpawnTile(true, true);
+            else if (bSpawnNonFlatOnStart) SpawnTile(true, true);
         }
     }
 
@@ -135,7 +137,10 @@ public class RoadSpawner : MonoBehaviour
     {
         if (other.CompareTag("Player") == false) return;
 
+        //half the active tiles should be behind player, half in front (floor/ceil one side to account for odd numbers)
         int ActiveTileIndex = tile.TileIndex;
+        int backThreshold = ActiveTileIndex - Mathf.FloorToInt(nMaxActiveTiles / 2);
+        int fwdThreshold = (nMaxActiveTiles % 2 == 0 ? ActiveTileIndex + nMaxActiveTiles / 2 - 1 : ActiveTileIndex + Mathf.FloorToInt(nMaxActiveTiles / 2));
 
         if (!tile.bHasBeenVisited)
         {
@@ -143,14 +148,11 @@ public class RoadSpawner : MonoBehaviour
             if (_manager != null) _manager.IncreaseScore();
 
             tile.bHasBeenVisited = true;
-            if (allRoadTiles.Count >= maxTiles) SpawnTile(true, true);
+            if (fwdThreshold >= allRoadTiles.Count) SpawnTile(true, true);
         }
 
         //sliding window of active tiles for performance
-        //half the active tiles should be behind player, half in front (floor/ceil one side to account for odd numbers)
         if (!TileCleanup) return;
-        int backThreshold = ActiveTileIndex - Mathf.FloorToInt(nMaxActiveTiles / 2);
-        int fwdThreshold = (nMaxActiveTiles % 2 == 0 ? ActiveTileIndex + nMaxActiveTiles / 2 - 1 : ActiveTileIndex + Mathf.FloorToInt(nMaxActiveTiles / 2));
 
         //adjust for window cutoff at back end
         if (fwdThreshold < nMaxActiveTiles - 1) fwdThreshold = nMaxActiveTiles - 1;
