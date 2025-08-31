@@ -36,8 +36,10 @@ public class RoadTile : MonoBehaviour
 
     public void SpawnItem()
     {
+        if (itemPrefab.Count == 0) return;
+
         int itemIndex = Random.Range(0, itemPrefab.Count);
-        int itemSpawnIndex = Random.Range(2, 5);
+        int itemSpawnIndex = Random.Range(2, 5); //this is assuming specific gameobject heirarchy in the prefab and is dangerous design
         Transform spawnPoint = transform.GetChild(itemSpawnIndex).transform;
 
         Instantiate(itemPrefab[itemIndex], spawnPoint.position, Quaternion.identity, transform);
@@ -45,6 +47,7 @@ public class RoadTile : MonoBehaviour
 
     public void SpawnBoostRamp()
     {
+        return; //test seems boost pads are causing stack overflow?
         Debug.Log("SpawnBoostRamp method called.");
         if (boostRampPrefab == null)
         {
@@ -74,6 +77,7 @@ public class RoadTile : MonoBehaviour
             Random.Range(collider.bounds.min.z, collider.bounds.max.z)
         );
 
+        Debug.Log($"Point: {point}");
         if (point != collider.ClosestPoint(point))
         {
             point = GetRandomPointInCollider(collider);

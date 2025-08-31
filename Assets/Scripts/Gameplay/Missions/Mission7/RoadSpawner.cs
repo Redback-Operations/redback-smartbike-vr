@@ -14,6 +14,7 @@ public class RoadSpawner : MonoBehaviour
     private Vector3 nextSpawnPoint;
 
     public int initialRoadTileCount = 10;
+    public int maxTiles = 20;
     public int nMaxActiveTiles = 20;
     private M7GameManager _manager;
 
@@ -38,9 +39,10 @@ public class RoadSpawner : MonoBehaviour
         }
 
         //spawn initial roadtiles (no objects on them)
-        for (int i = 0; i < initialRoadTileCount; i++)
+        for (int i = 0; i < maxTiles; i++)
         {
-            SpawnTile(false, false);
+            if (i < initialRoadTileCount) SpawnTile(false, false);
+            else SpawnTile(true, true);
         }
     }
 
@@ -141,7 +143,7 @@ public class RoadSpawner : MonoBehaviour
             if (_manager != null) _manager.IncreaseScore();
 
             tile.bHasBeenVisited = true;
-            SpawnTile(true, true);
+            if (allRoadTiles.Count >= maxTiles) SpawnTile(true, true);
         }
 
         //sliding window of active tiles for performance
