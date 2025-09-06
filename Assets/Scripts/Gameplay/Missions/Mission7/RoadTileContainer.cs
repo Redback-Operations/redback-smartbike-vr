@@ -7,6 +7,6 @@ public class RoadTileContainer : MonoBehaviour
 
     public GameObject Tile;
     public float Weight;
-    public float MinHeight;
-
+    public float MinHeight, MaxHeight;
+    public bool bHasMinHeight, bHasMaxHeight;
 }

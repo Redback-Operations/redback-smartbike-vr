@@ -87,8 +87,9 @@ public class RoadSpawner : MonoBehaviour
             float totalWeight = 0f; //treat 1.0 as standard weight
             foreach (var tile in roadTilePrefab)
             {
+                //don't spawn tiles if they're too high or low
                 RoadTileContainer t = tile.GetComponent<RoadTileContainer>();
-                if (nextSpawnPoint.y < t.MinHeight) continue;
+                if ((nextSpawnPoint.y < t.MinHeight && t.bHasMinHeight)|| (nextSpawnPoint.y > t.MaxHeight && t.bHasMaxHeight)) continue;
                 if (tile == null) continue;
 
                 weightedTileSelection.Add(tile);

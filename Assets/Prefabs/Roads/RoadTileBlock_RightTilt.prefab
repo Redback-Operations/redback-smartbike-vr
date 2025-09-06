@@ -454,11 +454,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bHasBeenVisited: 0
   TileIndex: 0
+  bHasBoosts: 0
   itemPrefab:
   - {fileID: 2622329401361513194, guid: 838d037d4afc66f448e87e9084047f10, type: 3}
   - {fileID: 8679202041979607770, guid: e5def73a0fa719045a894f8c787e81e0, type: 3}
   - {fileID: 7171657923609553380, guid: c9c048807845554449768690c64e98fb, type: 3}
-  boostRampPrefab: {fileID: 0}
+  - {fileID: 7171657923609553380, guid: c9c048807845554449768690c64e98fb, type: 3}
+  boostRampPrefab: {fileID: 5351845041639648242, guid: 062ea8c102ce80a45a7f0682e9ae173a,
+    type: 3}
 --- !u!114 &1374348960883039881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +477,9 @@ MonoBehaviour:
   Tile: {fileID: 0}
   Weight: 0.25
   MinHeight: -5
+  MaxHeight: 12
+  bHasMinHeight: 1
+  bHasMaxHeight: 1
 --- !u!1 &7046331759909209325
 GameObject:
   m_ObjectHideFlags: 0

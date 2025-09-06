@@ -809,6 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bHasBeenVisited: 0
   TileIndex: 0
+  bHasBoosts: 0
   itemPrefab: []
   boostRampPrefab: {fileID: 0}
 --- !u!114 &1374348960883039881
@@ -826,6 +827,9 @@ MonoBehaviour:
   Tile: {fileID: 0}
   Weight: 0.25
   MinHeight: -5
+  MaxHeight: 12
+  bHasMinHeight: 1
+  bHasMaxHeight: 1
 --- !u!1 &7046331759909209325
 GameObject:
   m_ObjectHideFlags: 0

@@ -476,6 +476,9 @@ MonoBehaviour:
   Tile: {fileID: 0}
   Weight: 1
   MinHeight: -5
+  MaxHeight: 12
+  bHasMinHeight: 1
+  bHasMaxHeight: 1
 --- !u!1 &7046331759909209325
 GameObject:
   m_ObjectHideFlags: 0
