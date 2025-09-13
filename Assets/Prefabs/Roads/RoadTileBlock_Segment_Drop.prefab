@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 4067423289648093459}
   - component: {fileID: 8357517523162062113}
   m_Layer: 0
-  m_Name: Cube (13)
+  m_Name: Tile 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,11 +902,11 @@ Transform:
   m_GameObject: {fileID: 2409026758975235716}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 5}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8183108616479934408}
+  m_Father: {fileID: 8885580280309232919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2025696074154354649
 MeshFilter:
@@ -1008,14 +1008,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1655584624393232869}
   - {fileID: 1146423492907143666}
   - {fileID: 8158200869720816810}
   - {fileID: 4364513636086377407}
   - {fileID: 8941138234119253147}
   - {fileID: 577429876060674503}
-  - {fileID: 6793776273752198675}
-  - {fileID: 3875614586741681646}
   - {fileID: 3716616135229758572}
   - {fileID: 3173874001258062988}
   - {fileID: 6244252708686061733}
@@ -1516,6 +1513,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8885580280309232919}
   - {fileID: 8183108616479934408}
   - {fileID: 7108833113887671299}
   - {fileID: 7763866594361735510}
@@ -1543,8 +1541,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 0, z: 5}
+  m_Size: {x: 20, y: 100, z: 30}
+  m_Center: {x: 0, y: -2.5, z: 15}
 --- !u!114 &6280762905540272602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1560,7 +1558,9 @@ MonoBehaviour:
   bHasBeenVisited: 0
   TileIndex: 0
   bHasBoosts: 0
-  itemPrefab: []
+  TileSurface: {fileID: 8277909507968286574}
+  obstaclePrefabs: []
+  obstacleSpawnPoints: []
   boostRampPrefab: {fileID: 0}
 --- !u!114 &1374348960883039881
 MonoBehaviour:
@@ -1580,6 +1580,7 @@ MonoBehaviour:
   MaxHeight: 20
   bHasMinHeight: 1
   bHasMaxHeight: 0
+  tileSpawnPoint: {fileID: 3226884803799162504}
 --- !u!1 &6044619424774518645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,7 +1594,7 @@ GameObject:
   - component: {fileID: 1656495864571565189}
   - component: {fileID: 4344840998674584335}
   m_Layer: 0
-  m_Name: Cube (6)
+  m_Name: Tile 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1607,12 +1608,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6044619424774518645}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3, z: 15}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8183108616479934408}
+  m_Father: {fileID: 8885580280309232919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9026141461990026452
 MeshFilter:
@@ -1821,6 +1822,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4509758294643501400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8277909507968286574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8885580280309232919}
+  m_Layer: 0
+  m_Name: TileSurface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8885580280309232919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8277909507968286574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3875614586741681646}
+  - {fileID: 1655584624393232869}
+  - {fileID: 6793776273752198675}
+  m_Father: {fileID: 4509758294643501400}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8587966485175629539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,7 +1869,7 @@ GameObject:
   - component: {fileID: 1142424297305287078}
   - component: {fileID: 7295865199475214228}
   m_Layer: 0
-  m_Name: Cube (11)
+  m_Name: Tile 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1849,11 +1884,11 @@ Transform:
   m_GameObject: {fileID: 8587966485175629539}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.5, z: 20}
+  m_LocalPosition: {x: 0, y: -5, z: 25}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8183108616479934408}
+  m_Father: {fileID: 8885580280309232919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3163554085990442335
 MeshFilter:

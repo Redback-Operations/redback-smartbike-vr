@@ -13,6 +13,8 @@ public class RoadTile : MonoBehaviour
     public bool bHasBeenVisited;
     public int TileIndex;
     public bool bHasBoosts;
+    public bool spawnsObstacles;
+    public GameObject TileSurface;
 
     // Start is called before the first frame update
     private void Start()
@@ -32,18 +34,22 @@ public class RoadTile : MonoBehaviour
         if (roadSpawner != null) roadSpawner.TileTriggerEnter(this, other);
     }
 
-    public List<GameObject> itemPrefab = new List<GameObject>();
+    public List<GameObject> obstaclePrefabs = new List<GameObject>();
+    public List<GameObject> obstacleSpawnPoints = new List<GameObject>();
     public GameObject boostRampPrefab;
 
     public void SpawnItem()
     {
-        if (itemPrefab.Count == 0) return;
+        if (!spawnsObstacles) return;
+        if (obstaclePrefabs.Count == 0 || obstaclePrefabs == null) return;
+        if (obstacleSpawnPoints.Count == 0 || obstacleSpawnPoints == null) return;
 
-        int itemIndex = Random.Range(0, itemPrefab.Count);
-        int itemSpawnIndex = Random.Range(2, 5); //this is assuming specific gameobject heirarchy in the prefab and is dangerous design
-        Transform spawnPoint = transform.GetChild(itemSpawnIndex).transform;
+        //updated to select obstacle spawn point from list of spawns
+        int itemIndex = Random.Range(0, obstaclePrefabs.Count);
+        int itemSpawnIndex = Random.Range(0, obstacleSpawnPoints.Count - 1);
+        Transform spawnPoint = obstacleSpawnPoints[itemSpawnIndex].transform;
 
-        Instantiate(itemPrefab[itemIndex], spawnPoint.position, Quaternion.identity, transform);
+        Instantiate(obstaclePrefabs[itemIndex], spawnPoint.position, Quaternion.identity, transform);
     }
 
     public void SpawnBoostRamp()
@@ -61,17 +67,12 @@ public class RoadTile : MonoBehaviour
             GameObject temp = Instantiate(boostRampPrefab, transform);
             try
             {
-
-                //temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
-
-                //evil gameobject hierarchy assumption of tile collider should be changed
-                var pivotPoint = transform.GetChild(0);
-                BoxCollider collider = pivotPoint.transform.GetComponent<BoxCollider>();
+                BoxCollider collider = TileSurface.transform.GetComponent<BoxCollider>();
                 if (collider = null) throw new System.Exception("Invalid collider!");
 
-                temp.transform.position = GetRandomPointInCollider(pivotPoint.transform.GetComponent<BoxCollider>());
+                temp.transform.position = GetRandomPointInCollider(TileSurface.transform.GetComponent<BoxCollider>());
                 Debug.Log($"Height: {temp.transform.position}");
-                temp.transform.rotation = pivotPoint.transform.rotation;
+                temp.transform.rotation = TileSurface.transform.rotation;
 
                 Debug.Log($"BoostRamp spawned at: {temp.transform.position}");
             }

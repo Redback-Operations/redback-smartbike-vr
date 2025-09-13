@@ -113,7 +113,8 @@ public class RoadSpawner : MonoBehaviour
 
 
         GameObject roadTile = Instantiate(selectedTile.gameObject, nextSpawnPoint, Quaternion.identity, transform); //updated to spawn road tile as child of spawner
-        nextSpawnPoint = roadTile.transform.GetChild(1).transform.position; //this is dangerous - assumes specific heirarchy order of NextSpawnPoint object
+        //nextSpawnPoint = roadTile.transform.GetChild(1).transform.position; //this is dangerous - assumes specific heirarchy order of NextSpawnPoint object
+        nextSpawnPoint = roadTile.GetComponent<RoadTileContainer>().tileSpawnPoint.transform.position;
 
         //set the road tile index
         RoadTile tileScript = roadTile.GetComponent<RoadTile>();
