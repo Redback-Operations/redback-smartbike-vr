@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fusion;
+using Fusion.Addons.Physics;
 using Fusion.Sockets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -65,6 +67,8 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
 
         _runner = gameObject.AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
+        var simulatePhysics3D = _runner.gameObject.AddComponent<RunnerSimulatePhysics3D>();
+        simulatePhysics3D.ClientPhysicsSimulation = ClientPhysicsSimulation.SimulateAlways;
 
         _runner.AddCallbacks(this);
         _runner.StartGame(new StartGameArgs
