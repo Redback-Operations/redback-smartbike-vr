@@ -30,11 +30,4 @@ public class Collectable : MonoBehaviour
 
         return Value;
     }
-    private void OnTriggerEnter(Collider other)
-{
-    if (other.CompareTag("Player") || other.CompareTag("NPC"))
-    {
-        Collect();
-    }
-}
 }

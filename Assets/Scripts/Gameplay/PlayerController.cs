@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
         public GameObject movementHandler;
     }
 
+    public PlayerInventory inventory;
     //For speed reference made by Dennis
     private float originalSpeed;
     private IPlayerInput _playerInput;
@@ -30,6 +31,24 @@ public class PlayerController : MonoBehaviour
     public IBikeMover BikeMover => _bikeMover;
     public Vector3 RelativeSpeed { get; private set; }
     public static event Action<PlayerController> OnPlayerControllerReady;
+
+    private EventBinding<ItemAddedEvent> itemAddedEventBinding;
+
+    private void OnEnable()
+    {
+        itemAddedEventBinding = new EventBinding<ItemAddedEvent>(HandleItemAdded);
+        EventBus<ItemAddedEvent>.Register(itemAddedEventBinding);
+    }
+
+    private void HandleItemAdded(ItemAddedEvent itemAddedEvent)
+    {
+        inventory.AddItem(itemAddedEvent.itemName,itemAddedEvent.quantity);
+    }
+
+    private void OnDisable()
+    {
+        EventBus<ItemAddedEvent>.Deregister(itemAddedEventBinding);
+    }
 
     private void OnValidate()
     {
@@ -80,7 +99,7 @@ public class PlayerController : MonoBehaviour
         {
             var handler =
                 movementHandleTypePairs.FirstOrDefault((pair) =>
-                    pair.type == PlayerPrefs.GetString("BikeControllerType"));
+                    pair.type == PlayerPrefs.GetString("BikeControllerType","Simple"));
             if (handler != null)
             {
                 SetupBikeMover(handler.movementHandler);
@@ -106,18 +125,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    public void Tick(float deltaTime)
     {
         if (_bikeMover != null && _playerInput != null)
         {
+            _bikeMover.DeltaTime = deltaTime;
             var prevPos = transform.position;
             _bikeMover.HanldeInput(_playerInput.GetDirection());
             var curPos = transform.position;
-            RelativeSpeed = (curPos - prevPos) / Time.fixedDeltaTime;
+            RelativeSpeed = (curPos - prevPos) / deltaTime;
         }
     }
 
-    // trigger system updated to be use Collectable MonoBehaviour by Jonathan
     void OnTriggerEnter(Collider other)
     {
         var collectable = other.GetComponent<Collectable>();

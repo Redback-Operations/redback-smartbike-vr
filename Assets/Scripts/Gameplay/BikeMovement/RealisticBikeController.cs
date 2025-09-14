@@ -36,6 +36,7 @@ namespace Gameplay.BikeMovement
 
         private float _wheelbase = 1;
 
+        public float DeltaTime { get; set; }
         public float Speed { get; set; }
 
         public void Init(GameObject controller)
@@ -139,7 +140,7 @@ namespace Gameplay.BikeMovement
         {
             if (direction.y > 0)
             {
-                _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, pedalRotSpeed * Time.deltaTime) *
+                _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, pedalRotSpeed * DeltaTime) *
                                                    _pedalTf.transform.localRotation;
             }
 
@@ -153,7 +154,6 @@ namespace Gameplay.BikeMovement
         {
             // Get current tilt around Z (sideways)
             float tiltAngle = Vector3.SignedAngle(_tf.up, Vector3.up, _tf.forward);
-            // float output = secondOrderDynamics.Update(Time.deltaTime, _currentLean);
             float delta = tiltAngle - _currentLean;
             float output = balanceResponseCurve.Evaluate(Mathf.Lerp(1, 0, delta / 30f)) * delta;
             float balanceTorque = output * balancingForce;

@@ -69,7 +69,7 @@ public class Mission3 : Mission
         if (missionStatus != null)
             missionStatus.text = "Speed: " + bike.movementSpeed;
 
-        Debug.Log("Objective: " + objective + " Speed: " + bike.movementSpeed);
+        // Debug.Log("Objective: " + objective + " Speed: " + bike.movementSpeed);
 
         if (bike.movementSpeed >= objective)
         {

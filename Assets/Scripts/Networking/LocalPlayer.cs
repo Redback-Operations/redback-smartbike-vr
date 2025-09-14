@@ -5,12 +5,6 @@ using UnityEngine.XR;
 public class LocalPlayer : MonoBehaviour
 {
     public PlayerProperties Properties { get; private set; }
-    public GameObject RightHand;
-
-    public int PlayerID { get; set; } = 1;
-    public int BikeSelection { get; set; }
-    public string BikeCustomization { get; set; }
-
     void Start()
     {
         Properties = new PlayerProperties
@@ -24,8 +18,6 @@ public class LocalPlayer : MonoBehaviour
             HandRightLocalPosition = Vector3.zero,
             HandRightLocalRotation = Quaternion.identity
         };
-
-        PlayerID = PlayerPrefs.GetInt("PlayerID");
     }
 
     void Update()
@@ -42,11 +34,6 @@ public class LocalPlayer : MonoBehaviour
         Properties.HandRightLocalPosition = GetPosition(XRNode.RightHand);
         Properties.HandRightLocalRotation = GetRotation(XRNode.RightHand);
 
-        var bike = PlayerPrefs.GetInt("SelectedBike");
-        var customisation = PlayerPrefs.GetString($"Bike_{bike}");
-
-        BikeSelection = bike;
-        BikeCustomization = customisation;
     }
 
     Vector3 GetPosition(XRNode node)

@@ -11125,6 +11125,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 398111379}
     m_Modifications:
+    - target: {fileID: 1504115889584571692, guid: 2151033503a58d44884b0ea8073681d1,
+        type: 3}
+      propertyPath: loadBikeDataAtStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2459462210881228685, guid: 2151033503a58d44884b0ea8073681d1,
         type: 3}
       propertyPath: m_IsActive
@@ -13434,7 +13439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22056595bad270e4f961a1fec8addcd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applePrefab: {fileID: 8503266118808498289, guid: ff3cbda5d3020034696f681cc528282d,
+  itemName: apple
+  itemPrefab: {fileID: 8503266118808498289, guid: ff3cbda5d3020034696f681cc528282d,
     type: 3}
   spawnPoint: {fileID: 1800557211}
 --- !u!4 &1800557211

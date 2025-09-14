@@ -7,78 +7,64 @@ using UnityEngine.XR;
 
 public class NetworkPlayer : NetworkBehaviour
 {
-    public Transform Head;
-    public Transform HandLeft;
-    public Transform HandRight;
-
+    [SerializeField] private GameObject[] localObjects;
     [FormerlySerializedAs("Customization")] public BikeSelector selector;
     public SaveLoadBike SaveLoadBike;
-
-    private bool _firstRun = true;
-
-    [Networked]
-    public int PlayerID { get; set; } = 1;
-
-    [Networked]
-    public bool Dirty { get; set; } = false;
-    [Networked]
-    public int BikeSelection { get; set; } = -1;
-    [Networked]
-    [Capacity(1024)]
+    
+    [Networked,OnChangedRender(nameof(BikeSelectionChanged))]
+    public int BikeSelection {get; set;}
+    
+    [Networked, Capacity(1024),OnChangedRender(nameof(BikeCustomizationChanged))]
     public string BikeCustomization { get; set; }
 
-    private NetworkTransform _networkTransform;
-
-    public bool IsLocalNetworkRig => Object.HasInputAuthority;
-
-    void Start()
+    private PlayerController _playerController;
+    private void BikeSelectionChanged()
     {
-        _networkTransform = GetComponent<NetworkTransform>();
-
-        if (HasInputAuthority)
-            gameObject.AddComponent<PlayerController>();
+        selector.DisplayBike(BikeSelection);
+    }
+    
+    public void BikeCustomizationChanged()
+    {
+        SaveLoadBike.LoadBikeData(BikeCustomization);
     }
 
+    public override void Spawned()
+    {
+        foreach (var localObject in localObjects)
+        {
+            localObject.SetActive(HasInputAuthority);
+        }
+        if (HasInputAuthority)
+        {
+            _playerController = gameObject.GetComponent<PlayerController>();
+            ChangeBikeSelectionRpc( PlayerPrefs.GetInt("SelectedBike"));
+            ChangeBikeCustomizationRpc( PlayerPrefs.GetString($"Bike_{BikeSelection}"));
+        }
+        else
+        {
+            BikeSelectionChanged();
+            BikeCustomizationChanged();
+        }
+    }
     public override void FixedUpdateNetwork()
     {
-        base.FixedUpdateNetwork();
-
-        if (!GetInput<RigInput>(out var input))
-            return;
-
-        transform.position = input.playAreaPosition;
-        transform.rotation = input.playAreaRotation;
-
-        Head.localPosition = input.headsetPosition;
-        Head.localRotation = input.headsetRotation;
-        HandLeft.localPosition = input.leftHandPosition;
-        HandLeft.localRotation = input.leftHandRotation;
-        HandRight.localPosition = input.rightHandPosition;
-        HandRight.localRotation = input.rightHandRotation;
-
-        if (Dirty)
+        if (HasInputAuthority && _playerController!=null)
         {
-            Debug.Log($"Updating to {BikeSelection} with {BikeCustomization}");
-
-            selector.DisplayBike(BikeSelection);
-            SaveLoadBike.LoadBikeData(BikeCustomization);
-            
-            Dirty = false;
+            _playerController.Tick(Runner.DeltaTime);
         }
-
-        if (!IsLocalNetworkRig)
-            return;
-
-        var bike = PlayerPrefs.GetInt("SelectedBike");
-        var customisation = PlayerPrefs.GetString($"Bike_{bike}");
-
-        if (!_firstRun && BikeSelection == bike)
-            return;
-
-        BikeSelection = bike;
-        BikeCustomization = customisation;
-
-        Dirty = true;
-        _firstRun = false;
     }
+    
+    
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void ChangeBikeSelectionRpc(int selection)
+    {
+        BikeSelection = selection;
+    }
+    
+    [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+    public void ChangeBikeCustomizationRpc(string customization)
+    {
+        BikeCustomization = customization;
+    }
+    
 }
