@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UI.FloodEscape;
+
 
 public class RisingWater : Mission
 {
@@ -14,15 +16,37 @@ public class RisingWater : Mission
 
     public int objective;
 
+    [SerializeField] private ElevationIndicatorUI elevationIndicatorUIPrefab;
+    [SerializeField] private GameObject[] objectsToDisable;
+    [SerializeField] private GameObject[] objectsToEnable;
     private float height;
     private bool missionComplete = false;
+
+    public struct RisingWaterEvent : IEvent
+    {
+        public float CurrentWaterHeight;
+        public float TargetHeight;
+    }
 
     public override void StartMission()
     {
         objective = UIManager.Instance.AddObjective("Escape the Rising Water");
         DisplayMissionStatus("Flee to the hills!");
+
+        foreach (var go in objectsToDisable)
+        {
+            go.SetActive(false);
+        }
+
+        foreach (var go in objectsToEnable)
+        {
+            go.SetActive(true);
+        }
+        
+        UIManager.Instance.InsertAddon(elevationIndicatorUIPrefab.gameObject);
         base.StartMission();
     }
+
 
     IEnumerator StartResetting()
     {
@@ -43,6 +67,8 @@ public class RisingWater : Mission
                 EndMission(true);
 
             height = waterObject.transform.position.y;
+            EventBus<RisingWaterEvent>.Raise(
+                new RisingWaterEvent { CurrentWaterHeight = height, TargetHeight = targetYHeight });
             transform.position = waterObject.transform.position;
         }
     }
@@ -50,32 +76,22 @@ public class RisingWater : Mission
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name);
-
+        
         // Check if the water collides with the player
         if (other.CompareTag("Player"))
             EndMission(false);
     }
-
-    void OnTriggerStay(Collider other)
-    {
-        // Check if the player has reached the target Y height during the game
-        if (other.CompareTag("Player") && other.transform.position.y >= targetYHeight && !missionComplete)
-        {
-            missionComplete = true;
-            DisplayMissionStatus("Mission Complete");
-            EndMission(true);
-        }
-    }
-
-   
     private void EndMission(bool success)
     {
         missionComplete = true;
 
-        Debug.Log(success ? "Mission Complete! You reached the safe height." : "Mission Failed! The water touched you.");
+        Debug.Log(success
+            ? "Mission Complete! You reached the safe height."
+            : "Mission Failed! The water touched you.");
 
         DisplayMissionStatus(success ? "Mission Complete" : "Mission Failed");
-        UIManager.Instance.SetObjectiveState(objective, success ? UIManager.ObjectiveState.Success : UIManager.ObjectiveState.Failed);
+        UIManager.Instance.SetObjectiveState(objective,
+            success ? UIManager.ObjectiveState.Success : UIManager.ObjectiveState.Failed);
 
         if (!success)
             StartCoroutine(StartResetting());

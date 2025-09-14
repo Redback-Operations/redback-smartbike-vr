@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text TimeText;
     public TMP_Text TimeLabelVR;
     public TMP_Text TimeTextVR;    //static alert for now, should find a more dynamic way to do this
+
+    public Canvas Addons; // Mission Specific ui objects you want to add 
     public static event Action<UIManager> OnPlayerUIManagerReady;
 
 
@@ -344,6 +346,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void InsertAddon(GameObject addonPrefab)
+    {
+        Instantiate(addonPrefab, Addons.transform, worldPositionStays: false);
+    }
     public class Objective
     {
         public int ID;
