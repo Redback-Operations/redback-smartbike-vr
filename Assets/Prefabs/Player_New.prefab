@@ -4498,6 +4498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 7
+  score: 0
   overridePlayerPrefs: 1
   bikeMovementHandler: {fileID: 2317008236533086297}
   movementHandleTypePairs:
