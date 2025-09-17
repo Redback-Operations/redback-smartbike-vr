@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Player_New.prefab.meta
+guid: e1ecbd886ed19a1419929bbd28921985
+labels:
+- FusionPrefab
+========
+guid: 4f00f4056a8be5d43b9c28afec9be7e0
+>>>>>>>> upstream/main:Assets/Prefabs/Roads/RoadTileBlock.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

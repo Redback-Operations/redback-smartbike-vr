@@ -7,18 +7,21 @@ using UnityEngine.Tilemaps;
 
 public class RoadSpawner : MonoBehaviour
 {
-    public GameObject roadTilePrefab;
+    public bool TileCleanup;
+    public List<GameObject> roadTilePrefab = new List<GameObject>();
     public List<GameObject> allRoadTiles = new List<GameObject>();
 
     private Vector3 nextSpawnPoint;
 
     public int initialRoadTileCount = 10;
+    public int maxTiles = 20;
     public int nMaxActiveTiles = 20;
+    public bool bSpawnNonFlatOnStart;
     private M7GameManager _manager;
 
     public void Reset()
     {
-        if (roadTilePrefab == null)
+        if (roadTilePrefab.Count == 0)
         {
             Debug.LogError("roadTilePrefab is not assigned in the Inspector!");
             return;
@@ -36,10 +39,12 @@ public class RoadSpawner : MonoBehaviour
             nextSpawnPoint = transform.position;
         }
 
-        //spawn initial roadtiles (no objects on them)
-        for (int i = 0; i < initialRoadTileCount; i++)
+        //spawn initial roadtiles (no objects on first batch, then spawn with objects if allowed)
+        if (initialRoadTileCount > maxTiles) initialRoadTileCount = maxTiles;
+        for (int i = 0; i < maxTiles; i++)
         {
-            SpawnTile(false);
+            if (i < initialRoadTileCount) SpawnTile(false, false);
+            else if (bSpawnNonFlatOnStart) SpawnTile(true, true);
         }
     }
 
@@ -63,18 +68,52 @@ public class RoadSpawner : MonoBehaviour
     //}
     //}
 
-    public void SpawnTile(bool spawnItems)
+    public void SpawnTile(bool spawnItems, bool randomTiles)
     {
         Debug.Log("SpawnTile method called.");
 
-        if (roadTilePrefab == null)
+        if (roadTilePrefab == null || roadTilePrefab.Count == 0)
         {
             Debug.LogError("roadTilePrefab is not assigned!");
             return;
         }
 
-        GameObject roadTile = Instantiate(roadTilePrefab, nextSpawnPoint, Quaternion.identity, transform); //updated to spawn road tile as child of spawner
-        nextSpawnPoint = roadTile.transform.GetChild(1).transform.position;
+        //chose a tile but make sure it does not drop below min height
+        //go through available tiles, and add them to possible list
+        RoadTileContainer selectedTile = roadTilePrefab[0].GetComponent<RoadTileContainer>();
+        if (randomTiles)
+        {
+            List<GameObject> weightedTileSelection = new List<GameObject>();
+            float totalWeight = 0f; //treat 1.0 as standard weight
+            foreach (var tile in roadTilePrefab)
+            {
+                //don't spawn tiles if they're too high or low
+                RoadTileContainer t = tile.GetComponent<RoadTileContainer>();
+                if ((nextSpawnPoint.y < t.MinHeight && t.bHasMinHeight)|| (nextSpawnPoint.y > t.MaxHeight && t.bHasMaxHeight)) continue;
+                if (tile == null) continue;
+
+                weightedTileSelection.Add(tile);
+                totalWeight += Mathf.Max(0f, t.Weight); //don't let negatives mess with weights
+            }
+
+            //valid options selected, now chose - aim for 50% flat, remaining 2/3 inclines, remaining 1/3 novel
+            float r = Random.value * totalWeight;
+            foreach (var tile in weightedTileSelection)
+            {
+                //subtract percentage-based weights until we get a value
+                RoadTileContainer t = tile.GetComponent<RoadTileContainer>();
+                r -= Mathf.Max(0f, t.Weight);
+                if (r <= 0f)
+                {
+                    selectedTile = t;
+                    break;
+                }
+            }
+        }
+
+        //updated to get spawn point from container variable
+        GameObject roadTile = Instantiate(selectedTile.gameObject, nextSpawnPoint, Quaternion.identity, transform);
+        nextSpawnPoint = roadTile.GetComponent<RoadTileContainer>().tileSpawnPoint.transform.position;
 
         //set the road tile index
         RoadTile tileScript = roadTile.GetComponent<RoadTile>();
@@ -99,7 +138,10 @@ public class RoadSpawner : MonoBehaviour
     {
         if (other.CompareTag("Player") == false) return;
 
+        //half the active tiles should be behind player, half in front (floor/ceil one side to account for odd numbers)
         int ActiveTileIndex = tile.TileIndex;
+        int backThreshold = ActiveTileIndex - Mathf.FloorToInt(nMaxActiveTiles / 2);
+        int fwdThreshold = (nMaxActiveTiles % 2 == 0 ? ActiveTileIndex + nMaxActiveTiles / 2 - 1 : ActiveTileIndex + Mathf.FloorToInt(nMaxActiveTiles / 2));
 
         if (!tile.bHasBeenVisited)
         {
@@ -107,13 +149,11 @@ public class RoadSpawner : MonoBehaviour
             if (_manager != null) _manager.IncreaseScore();
 
             tile.bHasBeenVisited = true;
-            SpawnTile(true);
+            if (fwdThreshold >= allRoadTiles.Count) SpawnTile(true, true);
         }
 
         //sliding window of active tiles for performance
-        //half the active tiles should be behind player, half in front (floor/ceil one side to account for odd numbers)
-        int backThreshold = ActiveTileIndex - Mathf.FloorToInt(nMaxActiveTiles / 2);
-        int fwdThreshold = (nMaxActiveTiles % 2 == 0 ? ActiveTileIndex + nMaxActiveTiles / 2 - 1 : ActiveTileIndex + Mathf.FloorToInt(nMaxActiveTiles / 2));
+        if (!TileCleanup) return;
 
         //adjust for window cutoff at back end
         if (fwdThreshold < nMaxActiveTiles - 1) fwdThreshold = nMaxActiveTiles - 1;

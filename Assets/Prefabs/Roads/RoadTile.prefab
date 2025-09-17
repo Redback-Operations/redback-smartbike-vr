@@ -239,8 +239,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4053022659f6be4b86944dbde9e5cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 2622329401361513194, guid: 838d037d4afc66f448e87e9084047f10,
-    type: 3}
+  bHasBeenVisited: 0
+  TileIndex: 0
+  itemPrefab:
+  - {fileID: 2622329401361513194, guid: 838d037d4afc66f448e87e9084047f10, type: 3}
   boostRampPrefab: {fileID: 4755110089908861969, guid: 446741323a9669249b2b3e58cc52ad79,
     type: 3}
 --- !u!1 &7046331759909209325

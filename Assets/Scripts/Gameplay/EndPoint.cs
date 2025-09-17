@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,9 @@ using UnityEngine;
 public class EndPoint : MonoBehaviour
 {
     public GameManager gameManager;
-
-    void onTriggerEnter()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit something");
-        gameManager.CompleteLevel();
+        if(other.CompareTag("Player"))
+            gameManager.CompleteLevel();
     }
 }

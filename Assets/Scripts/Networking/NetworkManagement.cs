@@ -1,29 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
 {
     public string ActiveScene;
-    public static NetworkManagement Instance;
-
     private NetworkRunner _runner;
-
     // prefabs for spawning
     public GameObject NetworkPlayer;
 
     public Transform SpawnTarget;
     private MissionSpawn[] _spawnPoints;
-
-    public List<GameObject> Prefabs;
-
+    
     // local version of the player
     [FormerlySerializedAs("Player")] public NetworkObject SpawnedPlayer;
 
@@ -31,19 +24,31 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
     private Dictionary<PlayerRef, NetworkObject> _players;
     private List<NetworkObject> _networkItems;
 
+    private EventBinding<TeleportEvent> teleportEventBinding;
     public static event Action<NetworkManagement> OnManagerReady;
+
+    private void OnEnable()
+    {
+        teleportEventBinding = new EventBinding<TeleportEvent>(OnTeleport);
+        EventBus<TeleportEvent>.Register(teleportEventBinding);
+    }
+    
+    private void OnDisable()
+    {
+        EventBus<TeleportEvent>.Deregister(teleportEventBinding);
+    }
+
+    
+    private void OnTeleport(TeleportEvent teleportEvent)
+    {
+        Disconnect();
+        MapLoader.LoadScene(teleportEvent.targetScene);
+    }
 
     void Start()
     {
-        if (Instance != null)
-        {
-            Destroy(this);
-            return;
-        }
-
-        Instance = this;
+        
         OnManagerReady?.Invoke(this);
-
         // set the active scene to ensure items are spawned in this scene
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(ActiveScene));
 
@@ -76,8 +81,6 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
     {
         _runner.Shutdown();
         _runner.RemoveCallbacks(this);
-
-        Instance = null;
     }
 
     void OnApplicationQuit()

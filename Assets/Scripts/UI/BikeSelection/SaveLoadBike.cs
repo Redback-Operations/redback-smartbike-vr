@@ -10,7 +10,9 @@ public class SaveLoadBike : MonoBehaviour
     [FormerlySerializedAs("Customization")] public BikeSelector selector;
     public UnityAction<Bike> onBikeSelected;
     public Bike CurrentBike => selector.CurrentBike;
+    [SerializeField] private bool loadBikeDataAtStart;
     private int _currentSelected;
+    
     void Start()
     {
         DisplayBike(PlayerPrefs.GetInt("SelectedBike",0));
@@ -20,6 +22,9 @@ public class SaveLoadBike : MonoBehaviour
     {
         _currentSelected = id;
         selector.DisplayBike(id);
+        
+        if(loadBikeDataAtStart)
+            LoadBikeData(id);
     }
 
     public void DisplayCurrentBike()
@@ -28,9 +33,7 @@ public class SaveLoadBike : MonoBehaviour
     }
     public void SelectBike()
     {
-        // update the player preferences to the selected bike
         PlayerPrefs.SetInt("SelectedBike", _currentSelected);
-        Debug.Log("Selected Bike: " + _currentSelected);
         selector.DisplayBike(_currentSelected);
         selector.CurrentBike.OnBikeDataChange += SaveBikeData;
         onBikeSelected?.Invoke(selector.CurrentBike);
@@ -41,7 +44,6 @@ public class SaveLoadBike : MonoBehaviour
     }
     public void LoadBikeData(string data)
     {
-        Debug.Log($"loading bike data:{data}");
         selector.CurrentBike.LoadBikeData(JsonUtility.FromJson<BikeData>(data));
     }
     public void SaveBikeData(BikeData bikeData)

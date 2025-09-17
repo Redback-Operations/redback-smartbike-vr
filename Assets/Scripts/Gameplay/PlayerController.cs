@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
         public GameObject movementHandler;
     }
 
+    public PlayerInventory inventory;
     //For speed reference made by Dennis
     private float originalSpeed;
     private IPlayerInput _playerInput;
@@ -30,6 +31,24 @@ public class PlayerController : MonoBehaviour
     public IBikeMover BikeMover => _bikeMover;
     public Vector3 RelativeSpeed { get; private set; }
     public static event Action<PlayerController> OnPlayerControllerReady;
+
+    private EventBinding<ItemAddedEvent> itemAddedEventBinding;
+
+    private void OnEnable()
+    {
+        itemAddedEventBinding = new EventBinding<ItemAddedEvent>(HandleItemAdded);
+        EventBus<ItemAddedEvent>.Register(itemAddedEventBinding);
+    }
+
+    private void HandleItemAdded(ItemAddedEvent itemAddedEvent)
+    {
+        inventory.AddItem(itemAddedEvent.itemName,itemAddedEvent.quantity);
+    }
+
+    private void OnDisable()
+    {
+        EventBus<ItemAddedEvent>.Deregister(itemAddedEventBinding);
+    }
 
     private void OnValidate()
     {

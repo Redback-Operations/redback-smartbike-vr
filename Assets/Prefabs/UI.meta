@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/UI.meta
 guid: de6a49762902cb8459bec2b820440252
+========
+guid: ee076eb3c8cdf5744bd88229b1cb7bf9
+>>>>>>>> upstream/main:Assets/Photon.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
