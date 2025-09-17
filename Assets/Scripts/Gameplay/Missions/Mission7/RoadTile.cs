@@ -13,6 +13,8 @@ public class RoadTile : MonoBehaviour
     public bool bHasBeenVisited;
     public int TileIndex;
     public bool bHasBoosts;
+    public bool spawnsObstacles;
+    public GameObject TileSurface;
 
     // Start is called before the first frame update
     private void Start()
@@ -32,18 +34,22 @@ public class RoadTile : MonoBehaviour
         if (roadSpawner != null) roadSpawner.TileTriggerEnter(this, other);
     }
 
-    public List<GameObject> itemPrefab = new List<GameObject>();
+    public List<GameObject> obstaclePrefabs = new List<GameObject>();
+    public List<GameObject> obstacleSpawnPoints = new List<GameObject>();
     public GameObject boostRampPrefab;
 
     public void SpawnItem()
     {
-        if (itemPrefab.Count == 0) return;
+        if (!spawnsObstacles) return;
+        if (obstaclePrefabs.Count == 0 || obstaclePrefabs == null) return;
+        if (obstacleSpawnPoints.Count == 0 || obstacleSpawnPoints == null) return;
 
-        int itemIndex = Random.Range(0, itemPrefab.Count);
-        int itemSpawnIndex = Random.Range(2, 5); //this is assuming specific gameobject heirarchy in the prefab and is dangerous design
-        Transform spawnPoint = transform.GetChild(itemSpawnIndex).transform;
+        //updated to select obstacle spawn point from list of spawns
+        int itemIndex = Random.Range(0, obstaclePrefabs.Count);
+        int itemSpawnIndex = Random.Range(0, obstacleSpawnPoints.Count);
+        Transform spawnPoint = obstacleSpawnPoints[itemSpawnIndex].transform;
 
-        Instantiate(itemPrefab[itemIndex], spawnPoint.position, Quaternion.identity, transform);
+        Instantiate(obstaclePrefabs[itemIndex], spawnPoint.position, Quaternion.identity, transform);
     }
 
     public void SpawnBoostRamp()
@@ -61,17 +67,13 @@ public class RoadTile : MonoBehaviour
             GameObject temp = Instantiate(boostRampPrefab, transform);
             try
             {
-
-                //temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
-
-                //evil gameobject hierarchy assumption of tile collider should be changed
-                var pivotPoint = transform.GetChild(0);
-                BoxCollider collider = pivotPoint.transform.GetComponent<BoxCollider>();
+                Collider collider = TileSurface.transform.GetComponent<Collider>();
                 if (collider = null) throw new System.Exception("Invalid collider!");
 
-                temp.transform.position = GetRandomPointInCollider(pivotPoint.transform.GetComponent<BoxCollider>());
+                //find spawn point on the tile for the instantiated boostpad
+                temp.transform.position = GetRandomPointInCollider(TileSurface.transform.GetComponent<Collider>(), temp.transform.GetComponent<Collider>());
                 Debug.Log($"Height: {temp.transform.position}");
-                temp.transform.rotation = pivotPoint.transform.rotation;
+                temp.transform.rotation = TileSurface.transform.rotation;
 
                 Debug.Log($"BoostRamp spawned at: {temp.transform.position}");
             }
@@ -85,20 +87,26 @@ public class RoadTile : MonoBehaviour
     }
 
     //evil recursive function blows up when no valid collider
-    Vector3 GetRandomPointInCollider(BoxCollider collider)
+    Vector3 GetRandomPointInCollider(Collider tileCollider, Collider toSpawnCollider)
     {
-        if (collider == null) throw new System.Exception("Invalid collider!");
+        if (tileCollider == null) throw new System.Exception("Invalid tile collider!");
+        if (toSpawnCollider == null) throw new System.Exception("Invalid boost collider!");
 
+        //if we have a collider to spawn with, offset its spawnpoint by dimensions, otherwise no offset
+        Vector3 toSpawnSize = toSpawnCollider.bounds.size;
+        Debug.Log($"Boost size: {(toSpawnSize.x, toSpawnSize.y, toSpawnSize.z)}");
+
+        //chose random point between bounds of tile + half size of new object
         Vector3 point = new Vector3(
-            Random.Range(collider.bounds.min.x, collider.bounds.max.x),
-            collider.bounds.max.y,
-            Random.Range(collider.bounds.min.z, collider.bounds.max.z)
+            Random.Range(tileCollider.bounds.min.x + toSpawnSize.x, tileCollider.bounds.max.x - toSpawnSize.x),
+            tileCollider.bounds.max.y,
+            Random.Range(tileCollider.bounds.min.z + toSpawnSize.z, tileCollider.bounds.max.z - toSpawnSize.z)
         );
 
         Debug.Log($"Point: {point}");
-        if (point != collider.ClosestPoint(point))
+        if (point != tileCollider.ClosestPoint(point))
         {
-            point = GetRandomPointInCollider(collider); //evil recursion
+            point = GetRandomPointInCollider(tileCollider, toSpawnCollider); //evil recursion
         }
 
         //point.y = 0;
