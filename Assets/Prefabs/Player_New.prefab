@@ -4886,6 +4886,7 @@ MonoBehaviour:
   TimeText: {fileID: 0}
   TimeLabelVR: {fileID: 0}
   TimeTextVR: {fileID: 0}
+  Addons: {fileID: 0}
 --- !u!1 &8736114677415470375
 GameObject:
   m_ObjectHideFlags: 0
