@@ -378,6 +378,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5661609872021061316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3834211202115874699}
+  - component: {fileID: 5268642287861785350}
+  m_Layer: 0
+  m_Name: RaycastPlane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3834211202115874699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661609872021061316}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4509758294643501400}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5268642287861785350
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5661609872021061316}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 0, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5779373908981192658
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +463,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3834211202115874699}
   - {fileID: 3330711060529505411}
   - {fileID: 4767674947038256531}
   - {fileID: 6070854695893829846}
@@ -452,9 +506,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bHasBeenVisited: 0
   TileIndex: 0
-  bHasBoosts: 0
+  bHasBoosts: 1
   spawnsObstacles: 1
   TileSurface: {fileID: 3375934951791937384}
+  RaycastSpawner: {fileID: 5268642287861785350}
+  maxBoostPads: 2
   obstaclePrefabs:
   - {fileID: 2622329401361513194, guid: 838d037d4afc66f448e87e9084047f10, type: 3}
   - {fileID: 8679202041979607770, guid: e5def73a0fa719045a894f8c787e81e0, type: 3}
