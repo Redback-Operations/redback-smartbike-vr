@@ -89,7 +89,7 @@ namespace Gameplay.BikeMovement
             // Store starting conditions for Reset().
             _startingPosition = _tf.position;
             _startingRotation = _tf.rotation;
-            _startingVelocity = _rb.velocity;
+            _startingVelocity = _rb.linearVelocity;
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Gameplay.BikeMovement
             float maxA = GetMaxForwardAcceleration();
             value = Mathf.Clamp(value, -maxA, maxA);
 
-            float rpm = (_rb.velocity.magnitude + 1) * 30 / Mathf.PI / _rearWheelCol.radius;
+            float rpm = (_rb.linearVelocity.magnitude + 1) * 30 / Mathf.PI / _rearWheelCol.radius;
             float k = _rearWheelCol.rpm / rpm * 0.75f;
             if (k > 1)
                 value /= k;
@@ -130,7 +130,7 @@ namespace Gameplay.BikeMovement
         {
             _tf.position = _startingPosition;
             _tf.rotation = _startingRotation;
-            _rb.velocity = _startingVelocity;
+            _rb.linearVelocity = _startingVelocity;
             _rb.angularVelocity = Vector3.zero;
             _frontWheelCol.steerAngle = 0;
             _rearWheelCol.motorTorque = 0;
@@ -163,7 +163,7 @@ namespace Gameplay.BikeMovement
         private void HandleSteering(Vector2 direction)
         {
             var horizontalInput = direction.x;
-            float normalizedSpeed = Mathf.Clamp01(_tf.InverseTransformDirection(_rb.velocity).z / 10f);
+            float normalizedSpeed = Mathf.Clamp01(_tf.InverseTransformDirection(_rb.linearVelocity).z / 10f);
             float effectiveSteer = horizontalInput * Mathf.Lerp(maxSteer, 0f, normalizedSpeed);
             float targetLean = horizontalInput * Mathf.Lerp(0f, maxLean, normalizedSpeed);
             _currentLean = targetLean;
@@ -179,7 +179,7 @@ namespace Gameplay.BikeMovement
         private void ApplyMotor(Vector2 input)
         {
             var targetSpeed = input.y * Speed;
-            Vector3 localV = _tf.InverseTransformVector(_rb.velocity);
+            Vector3 localV = _tf.InverseTransformVector(_rb.linearVelocity);
             float diff = targetSpeed - localV.z;
             float a = Mathf.Clamp(diff, -maxAccelleration, maxAccelleration);
 

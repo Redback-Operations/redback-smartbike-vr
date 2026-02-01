@@ -1,128 +1,233 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Security.Authentication;
+using System.Text;
+using System.Threading.Tasks;
+using MQTTnet;
+using MQTTnet.Client;
+using MQTTnet.Client.Options;
 using UnityEngine;
-using System.Security.Cryptography.X509Certificates;
-using uPLibrary.Networking.M2Mqtt.Messages;
-using uPLibrary.Networking.M2Mqtt;
-using System.Net.Security;
-using System;
-using UnityEditor;
 
 public class Mqtt : MonoBehaviour
 {
-    // ensure the credentials are NEVER CHECKED INTO THE REPOSITORY
-    public string MqttHostname = "localhost";
-    public int MqttPort = 1883;
-    public string MqttUsername = "";
-    public string MqttPassword = "";
-    public bool AutoConnect = false;
+    [Header("HiveMQ Cloud (MQTT TLS)")]
+    public string Host = "YOUR_CLUSTER.s1.eu.hivemq.cloud";
+    public int Port = 8883;
+    public string Username = "YOUR_USER";
+    public string Password = "YOUR_PASS";
+    public bool AutoConnect = true;
 
-    // Device ID of the Bike being connected to
-    public static string DeviceId = "000001";
+    [Header("Device / Topic")]
+    [Tooltip("Must match the sender (website / Pi), e.g. 000001")]
+    public string DeviceId = "000001";
 
-    // Send commands to these topics to change the experience on the bike
-    public static string ResistanceTopic => $"bike/{DeviceId}/resistance";
-    public static string InclineTopic => $"bike/{DeviceId}/incline/control";
-    public static string FanTopic => $"bike/{DeviceId}/fan";
-    // Subscribe to these topics to receive information from the bike/cyclist
-    public static string HeartRateTopic => $"bike/{DeviceId}/heartrate";
-    public static string CadenceTopic => $"bike/{DeviceId}/cadence";
-    public static string SpeedTopic => $"bike/{DeviceId}/speed";
-    public static string PowerTopic => $"bike/{DeviceId}/power";
+    // One JSON topic per device
+    public string ControlTopic => $"bike/{DeviceId}/control";
 
-    public string WildcardTopic => $"bike/{DeviceId}/#";
+    public static Mqtt Instance { get; private set; }
 
-    public static string LeftTurnTopic => $"Turn/Left";
-    public static string RightTurnTopic => $"Turn/Right";
+    private IMqttClient _client;
+    private IMqttClientOptions _options;
 
-    public string ConnectionID => Guid.NewGuid().ToString();
+    private string _subscribedTopic = null;
+    private string _lastDeviceId = null;
 
-    private static Mqtt _instance;
-    public static Mqtt Instance => _instance;
+    public bool IsConnected => _client != null && _client.IsConnected;
 
-    private MqttClient _client;
+    // Debug / status
+    public string LastStatus { get; private set; } = "Not connected";
+    public string LastTopic { get; private set; } = "-";
+    public string LastPayload { get; private set; } = "-";
 
-    private bool _connected;
-    public bool IsConnected => _connected;
+    [Header("Live Control State (Debug)")]
+    public float WebSpeed = 0f;     // RAW speed from bike (0..40+)
+    public int WebTurn = 0;         // -1, 0, 1
+    public bool WebBrake = false;   // true/false
+    public long WebTs = 0;
 
-    void Start()
+    public event Action<ControlPacket> ControlReceived;
+
+    [Serializable]
+    public class ControlPacket
     {
-        // if this is the first one, make it a singleton accessible anywhere
-        if (_instance == null)
-        {
-            // store the instance
-            _instance = this;
-            // ensure it isn't destroyed on scene change
-            DontDestroyOnLoad(this);
-        }
-
-        // create the mqtt client ready for communication
-        _client = new MqttClient(MqttHostname, MqttPort, true, null, null, MqttSslProtocols.TLSv1_2);
-        _connected = false;
-
-        if (AutoConnect)
-            Connect();
+        public string device;  // "000001"
+        public float speed;    // raw
+        public int turn;       // -1,0,1
+        public bool brake;     // true/false
+        public long ts;        // ms timestamp
     }
 
-    // connection system to connect to this instance
-    public bool Connect()
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private async void Start()
+    {
+        _lastDeviceId = DeviceId;
+
+        var factory = new MqttFactory();
+        _client = factory.CreateMqttClient();
+
+        _client.UseConnectedHandler(_ =>
+        {
+            LastStatus = "Connected ✅";
+            Debug.Log("MQTTnet: Connected ✅");
+        });
+
+        _client.UseDisconnectedHandler(e =>
+        {
+            LastStatus = "Disconnected ❌";
+            Debug.LogWarning($"MQTTnet: Disconnected ❌ Reason={e.Reason}");
+        });
+
+        _client.UseApplicationMessageReceivedHandler(e =>
+        {
+            var topic = e.ApplicationMessage.Topic;
+            var payload = e.ApplicationMessage.Payload == null
+                ? ""
+                : Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
+
+            LastTopic = topic;
+            LastPayload = payload;
+
+            // Only process our device control topic
+            if (!string.Equals(topic, ControlTopic, StringComparison.Ordinal))
+                return;
+
+            try
+            {
+                var pkt = JsonUtility.FromJson<ControlPacket>(payload);
+                if (pkt == null)
+                {
+                    Debug.LogWarning($"MQTTnet: JSON parse returned null. Payload={payload}");
+                    return;
+                }
+
+                // Optional but recommended: device match
+                if (!string.IsNullOrEmpty(pkt.device) &&
+                    !string.Equals(pkt.device, DeviceId, StringComparison.Ordinal))
+                {
+                    Debug.LogWarning($"MQTTnet: Packet device={pkt.device} but DeviceId={DeviceId}. Ignoring.");
+                    return;
+                }
+
+                WebSpeed = pkt.speed;                       // keep RAW here
+                WebTurn = Mathf.Clamp(pkt.turn, -1, 1);
+                WebBrake = pkt.brake;
+                WebTs = pkt.ts;
+
+                Debug.Log($"MQTTnet: PARSED ✅ speed={WebSpeed} turn={WebTurn} brake={WebBrake} ts={WebTs}");
+
+                ControlReceived?.Invoke(pkt);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"MQTTnet: JSON parse error ❌ {ex.Message}\nPayload={payload}");
+            }
+        });
+
+        _options = new MqttClientOptionsBuilder()
+            .WithClientId("unity-" + Guid.NewGuid().ToString("N"))
+            .WithTcpServer(Host, Port)
+            .WithCredentials(Username, Password)
+            .WithCleanSession()
+            .WithTls(new MqttClientOptionsBuilderTlsParameters
+            {
+                UseTls = true,
+                SslProtocol = SslProtocols.Tls12,
+
+                // OK for testing/class projects. For production validate properly.
+                AllowUntrustedCertificates = true,
+                IgnoreCertificateChainErrors = true,
+                IgnoreCertificateRevocationErrors = true,
+                CertificateValidationHandler = _ => true
+            })
+            .Build();
+
+        if (AutoConnect)
+            await ConnectAndSubscribe(ControlTopic);
+    }
+
+    private async void Update()
+    {
+        // If you change DeviceId in inspector while running,
+        // auto move subscription to the new control topic.
+        if (!IsConnected) return;
+
+        if (_lastDeviceId != DeviceId)
+        {
+            _lastDeviceId = DeviceId;
+            await ResubscribeTo(ControlTopic);
+        }
+    }
+
+    public async Task ConnectAndSubscribe(params string[] topics)
     {
         try
         {
-            Debug.Log($"Trying to connect to {MqttHostname}:{MqttPort}");
-            _client.Connect(ConnectionID, MqttUsername, MqttPassword);
-            _connected = true;
+            LastStatus = $"Connecting to {Host}:{Port}...";
+            Debug.Log($"MQTTnet: Connecting to {Host}:{Port}...");
 
-            Debug.Log(" - connection successful");
+            await _client.ConnectAsync(_options);
+
+            foreach (var t in topics)
+                await _client.SubscribeAsync(t);
+
+            _subscribedTopic = topics.Length > 0 ? topics[0] : null;
+
+            LastStatus = "Subscribed ✅: " + string.Join(", ", topics);
+            Debug.Log($"MQTTnet: Subscribed ✅ {string.Join(", ", topics)}");
         }
-        catch (Exception e)
+        catch (MQTTnet.Adapter.MqttConnectingFailedException ex)
         {
-            Debug.LogError(" - connection error: " + e.Message);
-            _connected = false;
+            Debug.LogError($"MQTTnet: Connect failed ❌ ResultCode={ex.ResultCode} Message={ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("MQTTnet: " + ex);
+        }
+    }
+
+    private async Task ResubscribeTo(string newTopic)
+    {
+        try
+        {
+            if (!IsConnected) return;
+
+            if (!string.IsNullOrEmpty(_subscribedTopic))
+            {
+                await _client.UnsubscribeAsync(_subscribedTopic);
+                Debug.Log($"MQTTnet: Unsubscribed ⛔ {_subscribedTopic}");
+            }
+
+            await _client.SubscribeAsync(newTopic);
+            _subscribedTopic = newTopic;
+
+            Debug.Log($"MQTTnet: Subscribed ✅ {newTopic}");
+            LastStatus = "Subscribed ✅: " + newTopic;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("MQTTnet: Resubscribe error ❌ " + ex);
+        }
+    }
+
+    public async void Publish(string topic, string msg)
+    {
+        if (!IsConnected)
+        {
+            Debug.LogWarning($"MQTTnet: Publish blocked (not connected). Topic={topic}");
+            return;
         }
 
-        return _connected;
-    }
+        var message = new MqttApplicationMessageBuilder()
+            .WithTopic(topic)
+            .WithPayload(msg)
+            .WithAtMostOnceQoS()
+            .Build();
 
-    // subscribe to the following events with the handler callback, passing no subscriptions will subscribe to the wildcard topic
-    public void Subscribe(MqttClient.MqttMsgPublishEventHandler handler, params string[] subscriptions)
-    {
-        if (subscriptions.Length == 0)
-            subscriptions = new[] { WildcardTopic };
-
-        _client.MqttMsgPublishReceived += handler;
-        _client.Subscribe(subscriptions, new[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
-        Debug.Log($"Subscribed to messages: {string.Join(", ", subscriptions)}");
-    }
-
-    public void Unsubscribe(MqttClient.MqttMsgPublishEventHandler handler)
-    {
-        _client.MqttMsgPublishReceived -= handler;
-        Debug.Log("Unsubscribed from messages");
-    }
-
-    // Send a message to the broker on a certain topic
-    // Topics for the bike are provided as public member variables
-    // The message is in JSON format and should include a timestamp (seconds since 1/1/70 UTC)
-    //
-    // Payload for resistance: {"ts": 176854940, "resistance": 24} 
-    // The value for resistance should be an integer between 0 and 100, and is percentage of the maximum
-    // Values around 24 seem good for cycling with a light resistance (otherwise the pedals feel too easy)
-    // and 100 is the maximum resistance.
-    //
-    // Payload for incline: {"ts": 176854940, "incline": 0.0)
-    // The value for incline should be a float between -10 and +19 (in steps of 0.5)
-    // and represents the angle the front wheel should be raised. Use 0 to have the bike flat.
-    //
-    // Payload for fan: ("ts": 17685940, "fan": 100)
-    // The value for fan should be an integer between 0 and 100 and is percentage of the maximum
-    // 0 is no wind
-    // 100 is winds that feel similar to riding at 54 km/hr
-    //
-    // Since this is used to send commands, QOS is set to provide a guarantee tha the message will be received,
-    // and that it will not appear duplicate times. This incurs a 2 RTT overhead.
-    public void Publish(string topic, string msg)
-    {
-        _client.Publish(topic, System.Text.Encoding.UTF8.GetBytes(msg), MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE, false);
+        await _client.PublishAsync(message);
     }
 }

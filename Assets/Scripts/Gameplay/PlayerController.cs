@@ -68,12 +68,13 @@ public class PlayerController : MonoBehaviour
         score = 0;
 
         var devices = new List<InputDevice>();
+        var webListener = FindObjectOfType<Mqtt>();
         InputDevices.GetDevicesWithCharacteristics(
             InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
 
-        if (Mqtt.Instance != null && Mqtt.Instance.IsConnected)
+        if (webListener != null)
         {
-            _playerInput = new MQTTInput();
+            _playerInput = new Gameplay.BikeMovement.WebJsonInput();
         }
         else if (devices.Any())
         {
@@ -84,10 +85,9 @@ public class PlayerController : MonoBehaviour
             _playerInput = new AxisInput();
         }
 
-        
 
-        Debug.Log($"MQTT INSTANCE exists:{Mqtt.Instance}", Mqtt.Instance);
-        Debug.Log($"Player input:{_playerInput.GetType()}");
+        Debug.Log($"WebListener found: {webListener != null}");
+        Debug.Log($"Player input: {_playerInput.GetType().Name}");
 
         yield return null;
 
@@ -123,6 +123,11 @@ public class PlayerController : MonoBehaviour
             if (!Mission_Activator.ActiveMission.MissionStarted)
                 Mission_Activator.ActiveMission.StartMission();
         }
+    }
+
+    void FixedUpdate()
+    {
+        Tick(Time.fixedDeltaTime);
     }
 
     public void Tick(float deltaTime)

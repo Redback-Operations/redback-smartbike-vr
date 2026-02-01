@@ -28,8 +28,8 @@ public class Hover : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         //Fairly high drag makes the object easier to control.
-        rb.drag = 0.5f;
-        rb.angularDrag = 2.0f;
+        rb.linearDamping = 0.5f;
+        rb.angularDamping = 2.0f;
     }
 
     void FixedUpdate()
@@ -41,7 +41,7 @@ public class Hover : MonoBehaviour
         Ray downRay = new Ray(transform.position, down);
         Debug.DrawRay(transform.position, down, Color.red);
 
-        float upwardSpeed = rb.velocity.y;
+        float upwardSpeed = rb.linearVelocity.y;
 
         // Apply a lifting force if the object is too low
         if(transform.position.y < minimumHeight){

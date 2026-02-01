@@ -94,6 +94,7 @@ Material:
     - Vector1_617de2cdfa8d43cdb152d39bb282c6ba: 0.05
     - Vector1_86e42545fc0c45c1b232be4978e5db76: -0.1
     - Vector1_95cd99b5dec847ffbf6fbaf8ad925b6b: 0.025
+    - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -126,6 +127,7 @@ Material:
     - _Surface: 0
     - _UVSec: 0
     - _WorkflowMode: 1
+    - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - Color_03621b156fc8444ba32428149120e2af: {r: 1, g: 1, b: 1, a: 0}
@@ -150,4 +152,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 9
+  version: 10

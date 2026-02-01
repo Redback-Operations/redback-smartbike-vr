@@ -19,7 +19,7 @@ public class MissionSelectButton : MonoBehaviour, IUIButton
     private Material _material;
     private bool _selected;
 
-    private XRSimpleInteractable _interactable;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable _interactable;
     private Button _button;
 
     [Serializable]
@@ -36,7 +36,7 @@ public class MissionSelectButton : MonoBehaviour, IUIButton
     void Awake()
     {
         _manager = GetComponentInParent<MissionSelectButtonManager>(true); //find manager in ancestor
-        _interactable = GetComponent<XRSimpleInteractable>();
+        _interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable>();
         _button = GetComponent<Button>();
     }
 

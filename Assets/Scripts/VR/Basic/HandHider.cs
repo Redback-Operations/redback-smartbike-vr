@@ -6,12 +6,12 @@ public class HandHider : MonoBehaviour
     public GameObject handObject = null;
 
     private HandPhysics handPhysics = null;
-    private XRBaseInteractor interactor = null;
+    private UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor interactor = null;
 
     private void Awake()
     {
         handPhysics = handObject.GetComponent<HandPhysics>();
-        interactor = GetComponent<XRBaseInteractor>();
+        interactor = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor>();
     }
 
     private void OnEnable()

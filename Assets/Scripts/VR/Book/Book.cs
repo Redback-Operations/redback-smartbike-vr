@@ -11,7 +11,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 public enum FlipMode
 {
@@ -72,7 +72,7 @@ public class Book : MonoBehaviour
     public OnSelectedEvent OnSelected;
         
 
-    public XRRayInteractor Interactor;
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor Interactor;
 
     float radius1, radius2;
     //Spine Bottom

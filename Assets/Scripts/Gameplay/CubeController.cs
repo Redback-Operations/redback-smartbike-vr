@@ -50,7 +50,7 @@ public class CubeController : MonoBehaviour
         }
 
         // Move the cube using Rigidbody's velocity
-        rb.velocity = new Vector3(movementDirection.x * movementSpeed, rb.velocity.y, movementDirection.z * movementSpeed);
+        rb.linearVelocity = new Vector3(movementDirection.x * movementSpeed, rb.linearVelocity.y, movementDirection.z * movementSpeed);
 
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())

@@ -1,0 +1,251 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bike Controller (Device Select + JSON)</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 16px;
+        }
+
+        button {
+            width: 140px;
+            height: 80px;
+            font-size: 22px;
+            margin: 10px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        input, select {
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .small {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(140px, 1fr));
+            gap: 10px;
+            max-width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Bike Controller</h2>
+
+    <div class="card">
+        <div class="row">
+            <div>
+                <div class="small">Device ID</div>
+                <select id="deviceSelect">
+                    <option value="000001">000001</option>
+                    <option value="000002">000002</option>
+                    <option value="000003">000003</option>
+                </select>
+            </div>
+
+            <div>
+                <div class="small">Or type</div>
+                <input id="deviceInput" placeholder="e.g. 000004" />
+            </div>
+
+            <button id="applyBtn" style="height:44px; width:auto; font-size:16px;">Apply Device</button>
+        </div>
+
+        <div style="margin-top:10px;">
+            <span class="small">Active topic:</span>
+            <span id="topicLabel" class="status">bike/000001/control</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="row">
+            <span class="small">MQTT status:</span>
+            <span id="connLabel" class="status">Connecting...</span>
+        </div>
+        <div class="small" id="logLine">-</div>
+    </div>
+
+    <div class="card">
+        <div class="grid">
+            <button id="btnLeft">Left</button>
+            <button id="btnForward">Forward</button>
+            <button id="btnRight">Right</button>
+        </div>
+    </div>
+
+    <script>
+        // -------------------------
+        // UI
+        // -------------------------
+        const connLabel = document.getElementById("connLabel");
+        const topicLabel = document.getElementById("topicLabel");
+        const logLine = document.getElementById("logLine");
+
+        function setStatus(text) { connLabel.textContent = text; }
+        function log(text) { logLine.textContent = text; console.log(text); }
+
+        // -------------------------
+        // Device + Topic
+        // -------------------------
+        let deviceId = "000001";
+        let controlTopic = `bike/${deviceId}/control`;
+
+        function normalizeDeviceId(raw) {
+            const digits = (raw || "").replace(/\D/g, "");
+            if (!digits) return null;
+            return digits.padStart(6, "0").slice(-6);
+        }
+
+        function applyDevice() {
+            const sel = document.getElementById("deviceSelect").value;
+            const typed = document.getElementById("deviceInput").value.trim();
+            const chosenRaw = typed.length ? typed : sel;
+
+            const norm = normalizeDeviceId(chosenRaw);
+            if (!norm) {
+                alert("Please enter a valid device ID (numbers only).");
+                return;
+            }
+
+            deviceId = norm;
+            controlTopic = `bike/${deviceId}/control`;
+            topicLabel.textContent = controlTopic;
+
+            // Reset to safe state when switching
+            setSpeed(0);
+            setTurn(0);
+
+            log(`✅ Device set to ${deviceId} → topic=${controlTopic}`);
+        }
+
+        document.getElementById("applyBtn").addEventListener("click", applyDevice);
+
+        // -------------------------
+        // MQTT Connect (HiveMQ Cloud WebSocket)
+        // -------------------------
+        const host = "f3663ca47b774390aec80599408c81b8.s1.eu.hivemq.cloud";
+        const url = `wss://${host}:8884/mqtt`;
+
+        const client = mqtt.connect(url, {
+            username: "deakin",
+            password: "Aa12345678",
+            clean: true,
+            reconnectPeriod: 1000
+        });
+
+        client.on("connect", () => {
+            setStatus("Connected ✅");
+            topicLabel.textContent = controlTopic;
+            log("✅ Web MQTT connected");
+        });
+
+        client.on("reconnect", () => setStatus("Reconnecting..."));
+        client.on("close", () => setStatus("Disconnected ❌"));
+        client.on("error", (err) => {
+            setStatus("Error ❌");
+            console.error(err);
+        });
+
+        // -------------------------
+        // Control State (send only on change)
+        // -------------------------
+        let currentSpeed = 0;
+        let currentTurn = 0;
+
+        // Dedupe: prevents extra STOP spam from multiple events
+        let lastSentSpeed = null;
+        let lastSentTurn = null;
+
+        function publishControl(speed, turn) {
+            if (!client.connected) {
+                log("⚠️ Not connected yet - publish skipped");
+                return;
+            }
+
+            // ✅ Only publish if state actually changed
+            if (speed === lastSentSpeed && turn === lastSentTurn) return;
+
+            lastSentSpeed = speed;
+            lastSentTurn = turn;
+
+            const pkt = {
+                device: deviceId,  // optional but useful
+                speed: speed,
+                turn: turn,        // -1, 0, 1
+                brake: false,
+                ts: Date.now()
+            };
+
+            client.publish(controlTopic, JSON.stringify(pkt), { qos: 0, retain: false });
+            log(`send → topic=${controlTopic} payload=${JSON.stringify(pkt)}`);
+        }
+
+        function setSpeed(s) {
+            if (s === currentSpeed) return;
+            currentSpeed = s;
+            publishControl(currentSpeed, currentTurn);
+        }
+
+        function setTurn(t) {
+            if (t === currentTurn) return;
+            currentTurn = t;
+            publishControl(currentSpeed, currentTurn);
+        }
+
+        // -------------------------
+        // Buttons (Pointer Events = no ghost mouse/touch)
+        // -------------------------
+        function bindHold(btn, downFn, upFn) {
+            btn.addEventListener("pointerdown", (e) => { e.preventDefault(); downFn(); });
+            btn.addEventListener("pointerup", (e) => { e.preventDefault(); upFn(); });
+            btn.addEventListener("pointercancel", (e) => { e.preventDefault(); upFn(); });
+            btn.addEventListener("pointerleave", (e) => { e.preventDefault(); upFn(); });
+
+            // Helps on some browsers to avoid text selection / long press behavior
+            btn.style.touchAction = "none";
+        }
+
+        const btnLeft = document.getElementById("btnLeft");
+        const btnForward = document.getElementById("btnForward");
+        const btnRight = document.getElementById("btnRight");
+
+        bindHold(btnLeft, () => setTurn(-1), () => setTurn(0));
+        bindHold(btnRight, () => setTurn(1), () => setTurn(0));
+        bindHold(btnForward, () => setSpeed(1), () => setSpeed(0));
+
+        // Safety: stop if tab loses focus
+        window.addEventListener("blur", () => {
+            setSpeed(0);
+            setTurn(0);
+        });
+
+        // Initial UI
+        topicLabel.textContent = controlTopic;
+    </script>
+</body>
+</html>
