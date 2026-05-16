@@ -292,6 +292,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1945691590659786517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1419497693349405422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8343739469046099699}
+  - component: {fileID: 383659840067800641}
+  m_Layer: 0
+  m_Name: MQTT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8343739469046099699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419497693349405422}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2061087725663202986}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &383659840067800641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419497693349405422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2ac1b33c0af9e43a123063976f5b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MqttHostname: localhost
+  MqttPort: 1883
+  MqttUsername: 
+  MqttPassword: 
+  AutoConnect: 0
 --- !u!1 &1437735505470945608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,55 +3981,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_SortAtRoot: 0
---- !u!1 &7135573091862146512
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4079374461040116993}
-  - component: {fileID: 3343674322893201381}
-  m_Layer: 0
-  m_Name: MQTT
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4079374461040116993
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7135573091862146512}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2061087725663202986}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3343674322893201381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7135573091862146512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a307835828b1c45abf919460305e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MqttHostname: localhost
-  MqttPort: 1883
-  MqttUsername: 
-  MqttPassword: 
-  AutoConnect: 0
 --- !u!1 &7177815752956736833
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,46 +4203,12 @@ MonoBehaviour:
   balancingForce: 50
   balanceResponseCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -0.00012191549
-      outSlope: -0.00012191549
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.07773531
-    - serializedVersion: 3
-      time: 0.10775268
-      value: 0.6419504
-      inSlope: -0.0000680089
-      outSlope: -0.0000680089
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.25199583
-      value: 0.99708426
-      inSlope: 2.312342
-      outSlope: 2.312342
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  stoppedBalanceForce: 80
+  stoppedBalanceSpeedThreshold: 1.5
 --- !u!1 &7912294996275021675
 GameObject:
   m_ObjectHideFlags: 0
@@ -4437,6 +4403,9 @@ GameObject:
   - component: {fileID: 7731882423338289307}
   - component: {fileID: 6670762756608491413}
   - component: {fileID: 2759648886914715264}
+  - component: {fileID: 6327474657802878925}
+  - component: {fileID: -2277986732292815766}
+  - component: {fileID: 7651574691524291915}
   m_Layer: 0
   m_Name: Player_New
   m_TagString: Player
@@ -4460,10 +4429,10 @@ Transform:
   - {fileID: 4421266951571339747}
   - {fileID: 8665118143479101953}
   - {fileID: 883057270296937406}
-  - {fileID: 4079374461040116993}
   - {fileID: 3612488069075933332}
   - {fileID: 1048588403577523841}
   - {fileID: 2576902331318052338}
+  - {fileID: 8343739469046099699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2928926833657374085
@@ -4500,12 +4469,8 @@ MonoBehaviour:
   movementSpeed: 7
   score: 0
   overridePlayerPrefs: 1
-  bikeMovementHandler: {fileID: 2317008236533086297}
-  movementHandleTypePairs:
-  - type: Simple
-    movementHandler: {fileID: 2317008236533086297}
-  - type: Realistic
-    movementHandler: {fileID: 7435277422806923796}
+  bikeMovementHandler: {fileID: 7435277422806923796}
+  speedListener: {fileID: 0}
 --- !u!114 &1228870156826663968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4598,7 +4563,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071937129649633227}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 086db03d87149d54c867046467e40b45, type: 3}
   m_Name: 
@@ -4618,7 +4583,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071937129649633227}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2efcbc135e613e142af27c68629f0108, type: 2}
   m_CullingMode: 0
@@ -4697,6 +4662,54 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &6327474657802878925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071937129649633227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f41057632cbf284bb3d189966270558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingTag: Building
+  stopOnHit: 1
+  pushBackOnHit: 1
+  pushBackDistance: 0.75
+  pushBackSpeed: 8
+  collisionCooldown: 0.15
+--- !u!114 &-2277986732292815766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071937129649633227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9fc628704542dd46b7698e2c40265c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dirty: 1
+--- !u!114 &7651574691524291915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071937129649633227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29cf769d939507549a90617b279684e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribed: 0
+  speed: 0
+  turn: 0
+  brake: 0
+  logMessages: 1
 --- !u!1 &8127776259480126818
 GameObject:
   m_ObjectHideFlags: 0

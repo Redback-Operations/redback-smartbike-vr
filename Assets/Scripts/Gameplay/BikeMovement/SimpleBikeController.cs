@@ -33,6 +33,7 @@ namespace Gameplay.BikeMovement
 
         private float wheelRadius;
         private Collider _collider;
+        private BikeBuildingCollisionHandler _buildingCollisionHandler;
 
         public void Init(GameObject controller)
         {
@@ -49,7 +50,7 @@ namespace Gameplay.BikeMovement
             wheelRadius = bike.frontWheelCollider.radius;
             change = tf.rotation.y;
 
-
+            _buildingCollisionHandler = controller.GetComponent<BikeBuildingCollisionHandler>();
             _collider = controller.GetComponent<Collider>();
 
             if (BikeGroundMode == GroundLockMode.FreePhysics)
@@ -101,6 +102,8 @@ namespace Gameplay.BikeMovement
 
         private void Move(Vector2 direction)
         {
+            if (_buildingCollisionHandler != null && _buildingCollisionHandler.IsColliding)
+                return;
             // Get the playter's forward direction made by Jai (updated by Jonathan)
             Vector3 facingDirection = tf.forward;
             // To prevent the bike from moving in the Y-axis
