@@ -24,8 +24,7 @@ public class PlayerController : MonoBehaviour
         public string type;
         public GameObject movementHandler;
     }
-    private float fakeSpeed;
-    private float fakeTurn;
+    
     public PlayerInventory inventory;
     //For speed reference made by Dennis
     private float originalSpeed;
@@ -130,36 +129,46 @@ public class PlayerController : MonoBehaviour
 
     public void Tick(float deltaTime)
     {
-        if (_bikeMover == null)
-            return;
+        if (_bikeMover == null) return;
 
         _bikeMover.DeltaTime = deltaTime;
 
-        var prevPos = transform.position;
-
-        Vector2 input;
-
-        if (speedListener != null && speedListener.subscribed)
-        {
-            input = speedListener.GetInput();
-            //Debug.Log($"USING MQTT | Turn: {input.x} | Speed: {input.y}");
-        }
-        else
-        {
-            // Spoof MQTT input with keyboard
-            float turn = Input.GetAxis("Horizontal");
-            float speed = Input.GetKey(KeyCode.W) ? 1f : 0f;
-
-            input = new Vector2(turn, speed);
-
-            //Debug.Log($"SPOOF MQTT | Turn: {input.x} | Speed: {input.y}");
-        }
+        Vector2 input = new Vector2(
+            Input.GetAxis("Horizontal"),
+            Input.GetAxis("Vertical")
+        );
 
         _bikeMover.HanldeInput(input);
-
-        var curPos = transform.position;
-        RelativeSpeed = (curPos - prevPos) / deltaTime;
     }
+
+    /*public void Tick(float deltaTime)
+    {
+        if (_bikeMover != null)
+        {
+            _bikeMover.DeltaTime = deltaTime;
+
+            var prevPos = transform.position;
+
+            Vector2 input;
+
+            if (speedListener != null && speedListener.subscribed)
+            {
+                input = speedListener.GetInput();
+            }
+            else
+            {
+                input = new Vector2(
+                    Input.GetAxis("Horizontal"),
+                    Input.GetAxis("Vertical")
+                );
+            }
+
+            _bikeMover.HanldeInput(input);
+
+            var curPos = transform.position;
+            RelativeSpeed = (curPos - prevPos) / deltaTime;
+        }
+    }*/
 
     /*public void Tick(float deltaTime)
     {
@@ -177,7 +186,7 @@ public class PlayerController : MonoBehaviour
     }
     */
 
-    //also test code to spoof mqtt input with kb
+
     void OnTriggerEnter(Collider other)
     {
         var collectable = other.GetComponent<Collectable>();

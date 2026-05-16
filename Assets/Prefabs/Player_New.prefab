@@ -3411,13 +3411,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
+    m_ExtremumValue: 2
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_AsymptoteValue: 1
+    m_Stiffness: 2.5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4197,16 +4197,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pedalRotSpeed: 360
   maxSteer: 70
-  maxLean: 35
+  maxLean: 5
   maxAccelleration: 5
   centerOfMassY: 0.63
-  balancingForce: 50
+  balancingForce: 10
   balanceResponseCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  leanSmoothSpeed: 6
   stoppedBalanceForce: 80
   stoppedBalanceSpeedThreshold: 1.5
 --- !u!1 &7912294996275021675
@@ -4392,6 +4411,7 @@ GameObject:
   - component: {fileID: 2061087725663202986}
   - component: {fileID: 2928926833657374085}
   - component: {fileID: 7594333520180326759}
+  - component: {fileID: 5694749238017234312}
   - component: {fileID: 1228870156826663968}
   - component: {fileID: 6614919747474909275}
   - component: {fileID: 8666692910712180161}
@@ -4405,7 +4425,6 @@ GameObject:
   - component: {fileID: 2759648886914715264}
   - component: {fileID: 6327474657802878925}
   - component: {fileID: -2277986732292815766}
-  - component: {fileID: 7651574691524291915}
   m_Layer: 0
   m_Name: Player_New
   m_TagString: Player
@@ -4466,11 +4485,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd4c0f5e896ced449298302d6af51e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 7
+  movementSpeed: 25
   score: 0
   overridePlayerPrefs: 1
   bikeMovementHandler: {fileID: 7435277422806923796}
   speedListener: {fileID: 0}
+--- !u!114 &5694749238017234312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071937129649633227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29cf769d939507549a90617b279684e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribed: 1
+  speed: 0
+  turn: 0
+  brake: 0
+  logMessages: 1
 --- !u!114 &1228870156826663968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4653,7 +4689,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8071937129649633227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
@@ -4693,23 +4729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirty: 1
---- !u!114 &7651574691524291915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8071937129649633227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29cf769d939507549a90617b279684e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  subscribed: 0
-  speed: 0
-  turn: 0
-  brake: 0
-  logMessages: 1
 --- !u!1 &8127776259480126818
 GameObject:
   m_ObjectHideFlags: 0
@@ -5260,13 +5279,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
+    m_ExtremumValue: 2
     m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_AsymptoteValue: 1
+    m_Stiffness: 2.5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -8,13 +8,14 @@ public class Timer2 : MonoBehaviour
     [SerializeField] private Image uiFillImage; // Reference to the UI image that fills the timer
     [SerializeField] private Text uiText; // Reference to the text that shows time remaining
     [SerializeField] private GameObject timerUIParent; // Parent object to hide/show the timer UI
-
+    [SerializeField] private int defaultDuration = 60;
 
     public int Duration { get; private set; } // Property to store the total duration of the timer
     private int remainingDuration; // Internal variable to track the remaining time
 
     private void Start()
     {
+        SetDuration(defaultDuration);
         // Initialise the timer UI with default values (00:00 and full fill)
         uiText.text = "00:00";
         uiFillImage.fillAmount = 1f; // Starts with the fill circle fully filled

@@ -13,12 +13,12 @@ namespace Gameplay.BikeMovement
 
         [SerializeField] private float maxSteer = 45;
         [SerializeField] private float maxLean = 45;
-        [SerializeField] private float maxAccelleration = 12f;
+        [SerializeField] private float maxAccelleration = 3f;
         [SerializeField] private float centerOfMassY = 0.6f;
         [SerializeField] private float balancingForce = 10f;
 
         [SerializeField] private AnimationCurve balanceResponseCurve;
-
+        [SerializeField] private float leanSmoothSpeed = 5f;
         [SerializeField] private float stoppedBalanceForce = 80f;
         [SerializeField] private float stoppedBalanceSpeedThreshold = 1.5f;
 
@@ -69,13 +69,17 @@ namespace Gameplay.BikeMovement
             _wheelbase = Vector3.Distance(_frontWheelCol.transform.position, _rearWheelCol.transform.position);
 
             CalculatePhysicalProperties();
-            Speed = 25f;
-            
-
-            
 
         }
+        private void LimitAngularVelocity()
+        {
+            float maxAngularSpeed = 3f;
 
+            if (_rb.angularVelocity.magnitude > maxAngularSpeed)
+            {
+                _rb.angularVelocity = _rb.angularVelocity.normalized * maxAngularSpeed;
+            }
+        }
         private void CalculatePhysicalProperties()
         {
             // Calculate mass and center of mass adjustments.
@@ -145,7 +149,7 @@ namespace Gameplay.BikeMovement
             _tf.position = _startingPosition;
             _tf.rotation = _startingRotation;
             _rb.velocity = _startingVelocity;
-            _rb.angularVelocity = Vector3.zero;
+            
             _frontWheelCol.steerAngle = 0;
             _rearWheelCol.motorTorque = 0;
         }
@@ -161,12 +165,12 @@ namespace Gameplay.BikeMovement
             ApplyMotor(direction);
             HandleSteering(direction);
             ApplyBalance();
+            LimitAngularVelocity();
         }
 
 
         private void ApplyBalance()
         {
-            // Get current tilt around Z (sideways)
             float tiltAngle = Vector3.SignedAngle(_tf.up, Vector3.up, _tf.forward);
 
             float delta = tiltAngle - _currentLean;
@@ -186,25 +190,17 @@ namespace Gameplay.BikeMovement
             float forwardSpeed = Mathf.Abs(_tf.InverseTransformDirection(_rb.velocity).z);
             float normalizedSpeed = Mathf.Clamp01(forwardSpeed / 25f);
 
-            float minSteerAtSpeed = maxSteer * 0.35f;
+            // Less steering at high speed
+            float steerMultiplier = Mathf.Lerp(1f, 0.15f, normalizedSpeed);
+            float effectiveSteer = horizontalInput * maxSteer * steerMultiplier;
 
-            float effectiveSteer = horizontalInput * Mathf.Lerp(
-                maxSteer,
-                minSteerAtSpeed,
-                normalizedSpeed
-            );
+            // Less lean at high speed to stop spinning/flipping
+            float leanMultiplier = Mathf.Lerp(1f, 0.35f, normalizedSpeed);
+            float targetLean = horizontalInput * maxLean * leanMultiplier;
 
-            float targetLean = horizontalInput * Mathf.Lerp(
-                0f,
-                maxLean,
-                normalizedSpeed
-            );
-
-            _currentLean = targetLean;
+            _currentLean = 0f;
 
             SetSteer(effectiveSteer);
-
-            //Debug.Log($"STEER | Input:{horizontalInput} Speed:{forwardSpeed} Angle:{effectiveSteer}");
         }
 
         private void SetSteer(float value)
@@ -219,23 +215,17 @@ namespace Gameplay.BikeMovement
 
             Vector3 localV = _tf.InverseTransformVector(_rb.velocity);
             float diff = targetSpeed - localV.z;
+            float a = Mathf.Clamp(diff, -maxAccelleration, maxAccelleration);
 
-            if (input.y > 0.01f)
+            if (a > 0)
             {
-                SetBrake(0f);
-
-                float a = Mathf.Clamp(diff, 0f, maxAccelleration);
-
-                // Recovery boost after slowing down/collision
-                if (localV.z < targetSpeed * 0.5f)
-                    a = maxAccelleration;
-
                 SetAcceleration(a);
+                SetBrake(0);
             }
             else
             {
-                SetAcceleration(0f);
-                SetBrake(1f);
+                SetAcceleration(0);
+                SetBrake(-a);
             }
         }
 
