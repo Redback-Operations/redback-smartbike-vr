@@ -1,59 +1,51 @@
 using UnityEngine;
 using System.Collections;
-using System;
+
 public class SpeedBoostArea : MonoBehaviour
 {
-    public float speedBoostMultiplier = 2.5f;
-    public float speedBoostFadeDuration = 0.5f;
-    public float maxSpeed = 30f; 
+    [SerializeField] private float speedBoostMultiplier = 2.5f;
+    [SerializeField] private float boostDuration = 3f;
+    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private float maxSpeed = 30f;
 
-    private Coroutine fadeCoroutine; 
+    private Coroutine boostCoroutine;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player"))
-            return;
+        if (!other.CompareTag("Player")) return;
 
-        var playerController = other.GetComponent<PlayerController>();
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player == null) return;
 
-        if (playerController == null)
-            return;
+        if (boostCoroutine != null)
+            StopCoroutine(boostCoroutine);
 
-        if (fadeCoroutine != null)
-            StopCoroutine(fadeCoroutine);
-        
-        var rand = new System.Random();
-        speedBoostMultiplier = rand.Next(1, 5);
-
-        ApplySpeedBoost(playerController);
-        fadeCoroutine = StartCoroutine(FadeBackSpeed(playerController));
+        boostCoroutine = StartCoroutine(BoostRoutine(player));
     }
 
-    private void ApplySpeedBoost(PlayerController controller)
+    private IEnumerator BoostRoutine(PlayerController player)
     {
-        float currentSpeed = controller.GetSpeed();
-        float newSpeed = currentSpeed * speedBoostMultiplier;
+        float originalSpeed = player.GetOriginalSpeed();
+        float boostedSpeed = Mathf.Min(originalSpeed * speedBoostMultiplier, maxSpeed);
 
-        if (newSpeed > maxSpeed)
-            newSpeed = maxSpeed;
+        player.SetSpeed(boostedSpeed);
+        Debug.Log($"BOOST START | Speed: {boostedSpeed}");
 
-        controller.SetSpeed(newSpeed);
-    }
+        yield return new WaitForSeconds(boostDuration);
 
-    private IEnumerator FadeBackSpeed(PlayerController controller)
-    {
-        float elapsedTime = 0f;
-        float startSpeed = controller.GetSpeed();
-        float targetSpeed = controller.GetOriginalSpeed();
+        float startSpeed = player.GetSpeed();
+        float elapsed = 0f;
 
-        while (elapsedTime < speedBoostFadeDuration)
+        while (elapsed < fadeDuration)
         {
-            float newSpeed = Mathf.Lerp(startSpeed, targetSpeed, elapsedTime / speedBoostFadeDuration);
-            controller.SetSpeed(newSpeed);
-            elapsedTime += Time.deltaTime;
+            float newSpeed = Mathf.Lerp(startSpeed, originalSpeed, elapsed / fadeDuration);
+            player.SetSpeed(newSpeed);
+
+            elapsed += Time.deltaTime;
             yield return null;
         }
 
-        controller.SetSpeed(targetSpeed);
+        player.SetSpeed(originalSpeed);
+        Debug.Log("BOOST END");
     }
 }

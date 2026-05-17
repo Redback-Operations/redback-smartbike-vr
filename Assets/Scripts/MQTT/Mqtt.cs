@@ -21,6 +21,7 @@ public class Mqtt : MonoBehaviour
     public static string DeviceId = "000001";
 
     // Send commands to these topics to change the experience on the bike
+    public static string ControlTopic => $"bike/{DeviceId}/control";
     public static string ResistanceTopic => $"bike/{DeviceId}/resistance";
     public static string InclineTopic => $"bike/{DeviceId}/incline/control";
     public static string FanTopic => $"bike/{DeviceId}/fan";
@@ -50,14 +51,18 @@ public class Mqtt : MonoBehaviour
         // if this is the first one, make it a singleton accessible anywhere
         if (_instance == null)
         {
-            // store the instance
             _instance = this;
-            // ensure it isn't destroyed on scene change
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
 
-        // create the mqtt client ready for communication
-        _client = new MqttClient(MqttHostname, MqttPort, true, null, null, MqttSslProtocols.TLSv1_2);
+        if (!string.IsNullOrWhiteSpace(PlayerPrefs.GetString("MQTTHost")))
+            MqttHostname = PlayerPrefs.GetString("MQTTHost");
+        if (!string.IsNullOrWhiteSpace(PlayerPrefs.GetString("MQTTUsername")))
+            MqttUsername = PlayerPrefs.GetString("MQTTUsername");
+        if (!string.IsNullOrWhiteSpace(PlayerPrefs.GetString("MQTTPassword")))
+            MqttPassword = PlayerPrefs.GetString("MQTTPassword");
+
+        _client = new MqttClient(MqttHostname, MqttPort, false, null, null, MqttSslProtocols.None);
         _connected = false;
 
         if (AutoConnect)
@@ -70,14 +75,18 @@ public class Mqtt : MonoBehaviour
         try
         {
             Debug.Log($"Trying to connect to {MqttHostname}:{MqttPort}");
-            _client.Connect(ConnectionID, MqttUsername, MqttPassword);
-            _connected = true;
 
-            Debug.Log(" - connection successful");
+            if (string.IsNullOrWhiteSpace(MqttUsername))
+                _client.Connect(ConnectionID);
+            else
+                _client.Connect(ConnectionID, MqttUsername, MqttPassword);
+
+            _connected = _client.IsConnected;
+            Debug.Log("Connection successful: " + _connected);
         }
         catch (Exception e)
         {
-            Debug.LogError(" - connection error: " + e.Message);
+            Debug.LogError("Connection error: " + e);
             _connected = false;
         }
 
@@ -91,7 +100,14 @@ public class Mqtt : MonoBehaviour
             subscriptions = new[] { WildcardTopic };
 
         _client.MqttMsgPublishReceived += handler;
-        _client.Subscribe(subscriptions, new[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+
+        byte[] qosLevels = new byte[subscriptions.Length];
+        for (int i = 0; i < subscriptions.Length; i++)
+        {
+            qosLevels[i] = MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE;
+        }
+
+        _client.Subscribe(subscriptions, qosLevels);
         Debug.Log($"Subscribed to messages: {string.Join(", ", subscriptions)}");
     }
 
