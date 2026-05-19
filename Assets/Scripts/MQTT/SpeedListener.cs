@@ -1,24 +1,11 @@
 using System;
 using UnityEngine;
 using uPLibrary.Networking.M2Mqtt.Messages;
-using static UnityEngine.GraphicsBuffer;
 
 public class SpeedListener : MonoBehaviour
 {
     public bool subscribed = false;
-
-    /*
-    MQTT speed 25.0 = bike target speed 25.0
-    MQTT turn -1 = full left
-    MQTT turn 0 = straight
-    MQTT turn 1 = full right
-    brake true = target speed 0
-    */
-
-    public float speed = 0.0f; //0 to 25
-    public float turn = 0.0f;// -1 to 1
-    public bool brake = false;
-
+    public float speed = 0.0f;
     public bool logMessages = true;
 
     void Update()
@@ -33,9 +20,7 @@ public class SpeedListener : MonoBehaviour
             Debug.Log("SpeedListener subscribed.");
         }
 
-        // DO NOT move the bike here.
-        // No transform.Translate here.
-        // No transform.Rotate here.
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     public void OnMessage(object sender, MqttMsgPublishEventArgs e)
@@ -57,17 +42,21 @@ public class SpeedListener : MonoBehaviour
         try
         {
             speed = ReadFloatField(msg, "speed");
-            turn = ReadFloatField(msg, "turn");
-            brake = ReadBoolField(msg, "brake");
+            float turn = ReadFloatField(msg, "turn");
+            bool brake = ReadBoolField(msg, "brake");
+
+            Debug.Log($"Parsed control | speed: {speed}, turn: {turn}, brake: {brake}");
 
             if (brake)
                 speed = 0f;
 
-            Debug.Log($"Parsed control | speed: {speed}, turn: {turn}, brake: {brake}");
+            if (turn < 0)
+                transform.Rotate(0f, -60f * Time.deltaTime, 0f);
+            else if (turn > 0)
+                transform.Rotate(0f, 60f * Time.deltaTime, 0f);
         }
         catch (Exception ex)
         {
-            Debug.LogError("Control parse error: " + ex.Message);
             Debug.LogError("Control parse error: " + ex.Message);
         }
     }
@@ -116,17 +105,5 @@ public class SpeedListener : MonoBehaviour
         string rawValue = msg.Substring(colonIndex + 1, endIndex - colonIndex - 1).Trim().Trim('\'', '"');
 
         return rawValue.Equals("true", StringComparison.OrdinalIgnoreCase);
-    }
-
-    public Vector2 GetInput()
-    {
-        float finalSpeed = brake ? 0f : speed;
-
-        // Convert raw MQTT 0–25 into input 0–1
-        float normalizedSpeed = Mathf.Clamp01(finalSpeed / 25f);
-
-        Debug.Log($"MQTT INPUT | Raw Speed: {speed} | Normalized: {normalizedSpeed} | Turn: {turn} | Brake: {brake}");
-
-        return new Vector2(turn, normalizedSpeed);
     }
 }
