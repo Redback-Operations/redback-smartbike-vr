@@ -1,57 +1,132 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Security.Cryptography.X509Certificates;
-using uPLibrary.Networking.M2Mqtt.Messages;
-using uPLibrary.Networking.M2Mqtt;
-using System.Net.Security;
 using System;
+using UnityEngine;
+using uPLibrary.Networking.M2Mqtt.Messages;
+using static UnityEngine.GraphicsBuffer;
 
 public class SpeedListener : MonoBehaviour
 {
-    // Set to true once this client has subscribed
     public bool subscribed = false;
 
-    public float speed = 0.0F;
+    /*
+    MQTT speed 25.0 = bike target speed 25.0
+    MQTT turn -1 = full left
+    MQTT turn 0 = straight
+    MQTT turn 1 = full right
+    brake true = target speed 0
+    */
+
+    public float speed = 0.0f; //0 to 25
+    public float turn = 0.0f;// -1 to 1
+    public bool brake = false;
+
+    public bool logMessages = true;
 
     void Update()
     {
-        // Once MQTT connects, subscribe for updates (if not already subscribed)
-        if (Mqtt.Instance.IsConnected && !subscribed)
-        {
-            Mqtt.Instance.Subscribe(OnMessage);
-            subscribed = true;
-        }
-
-        // TODO: Each frame, do something with speed
-        // like update the transform of the avatar
-        transform.Translate(transform.right * speed * Time.deltaTime);
-    }
-
-    // Process the messages to retrieve the current speed
-    public void OnMessage(object sender, MqttMsgPublishEventArgs e)
-    {
-        // Return if this is not the message we are interested in
-        String[] topicTokens = e.Topic.Split('/');
-        if (topicTokens[0] != "" || topicTokens[1] != "bike" || topicTokens[2] != Mqtt.Instance.ConnectionID || topicTokens[3] != "speed")
+        if (Mqtt.Instance == null)
             return;
 
-        // Parse the JSON payload
-        // TODO: Use JSON.Net https://assetstore.unity.com/packages/tools/input-management/json-net-for-unity-11347
-        string msg = System.Text.Encoding.UTF8.GetString(e.Message);
-        int start = msg.IndexOf("{") + 1;
-        int end = msg.LastIndexOf("}");
-        string contents = msg.Substring(start, end - start);
-        String[] messageTokens = contents.Split(',');
-        // Find the token containing speed
-        foreach (String msgToken in messageTokens)
+        if (Mqtt.Instance.IsConnected && !subscribed)
         {
-            if (msgToken.Contains("\"speed\"")) {
-                String[] parts = msgToken.Split(':');
-                // Save the current speed for later use in Update
-                speed = float.Parse(parts[1]);
-                //Debug.Log("SPEED of bike " + topicTokens[2] + " is " + speed);
-            }
+            Mqtt.Instance.Subscribe(OnMessage, Mqtt.ControlTopic);
+            subscribed = true;
+            Debug.Log("SpeedListener subscribed.");
         }
+
+        // DO NOT move the bike here.
+        // No transform.Translate here.
+        // No transform.Rotate here.
+    }
+
+    public void OnMessage(object sender, MqttMsgPublishEventArgs e)
+    {
+        string topic = e.Topic;
+        string msg = System.Text.Encoding.UTF8.GetString(e.Message);
+
+        if (logMessages)
+            Debug.Log($"MQTT received | Topic: {topic} | Message: {msg}");
+
+        if (topic == Mqtt.ControlTopic)
+        {
+            TryReadControl(msg);
+        }
+    }
+
+    private void TryReadControl(string msg)
+    {
+        try
+        {
+            speed = ReadFloatField(msg, "speed");
+            turn = ReadFloatField(msg, "turn");
+            brake = ReadBoolField(msg, "brake");
+
+            if (brake)
+                speed = 0f;
+
+            Debug.Log($"Parsed control | speed: {speed}, turn: {turn}, brake: {brake}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Control parse error: " + ex.Message);
+            Debug.LogError("Control parse error: " + ex.Message);
+        }
+    }
+
+    private float ReadFloatField(string msg, string fieldName)
+    {
+        int keyIndex = msg.IndexOf($"'{fieldName}'");
+        if (keyIndex == -1)
+            keyIndex = msg.IndexOf($"\"{fieldName}\"");
+
+        if (keyIndex == -1)
+            return 0f;
+
+        int colonIndex = msg.IndexOf(':', keyIndex);
+        int endIndex = msg.IndexOfAny(new char[] { ',', '}' }, colonIndex + 1);
+
+        if (colonIndex == -1 || endIndex == -1)
+            return 0f;
+
+        string rawValue = msg.Substring(colonIndex + 1, endIndex - colonIndex - 1).Trim().Trim('\'', '"');
+
+        if (float.TryParse(rawValue, System.Globalization.NumberStyles.Float,
+            System.Globalization.CultureInfo.InvariantCulture, out float value))
+        {
+            return value;
+        }
+
+        return 0f;
+    }
+
+    private bool ReadBoolField(string msg, string fieldName)
+    {
+        int keyIndex = msg.IndexOf($"'{fieldName}'");
+        if (keyIndex == -1)
+            keyIndex = msg.IndexOf($"\"{fieldName}\"");
+
+        if (keyIndex == -1)
+            return false;
+
+        int colonIndex = msg.IndexOf(':', keyIndex);
+        int endIndex = msg.IndexOfAny(new char[] { ',', '}' }, colonIndex + 1);
+
+        if (colonIndex == -1 || endIndex == -1)
+            return false;
+
+        string rawValue = msg.Substring(colonIndex + 1, endIndex - colonIndex - 1).Trim().Trim('\'', '"');
+
+        return rawValue.Equals("true", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public Vector2 GetInput()
+    {
+        float finalSpeed = brake ? 0f : speed;
+
+        // Convert raw MQTT 0–25 into input 0–1
+        float normalizedSpeed = Mathf.Clamp01(finalSpeed / 25f);
+
+        Debug.Log($"MQTT INPUT | Raw Speed: {speed} | Normalized: {normalizedSpeed} | Turn: {turn} | Brake: {brake}");
+
+        return new Vector2(turn, normalizedSpeed);
     }
 }
