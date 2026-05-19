@@ -23,6 +23,7 @@ TagManager:
   - NPC
   - Checkpoint
   - Collision
+  - Building
   layers:
   - Default
   - TransparentFX

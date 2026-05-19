@@ -8,6 +8,7 @@ using Gameplay.BikeMovement;
 
 public class PlayerController : MonoBehaviour
 {
+    
     public float movementSpeed = 5f;
     public int score;
 
@@ -15,14 +16,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject bikeMovementHandler;
 
     [SerializeField] private MovementHandleTypePair[] movementHandleTypePairs;
+    [SerializeField] private SpeedListener speedListener;
 
-    [Serializable]
+    
     public class MovementHandleTypePair
     {
         public string type;
         public GameObject movementHandler;
     }
-
+    
     public PlayerInventory inventory;
     //For speed reference made by Dennis
     private float originalSpeed;
@@ -127,45 +129,75 @@ public class PlayerController : MonoBehaviour
 
     public void Tick(float deltaTime)
     {
+        if (_bikeMover == null) return;
+
+        _bikeMover.DeltaTime = deltaTime;
+
+        Vector2 input = new Vector2(
+            Input.GetAxis("Horizontal"),
+            Input.GetAxis("Vertical")
+        );
+
+        _bikeMover.HanldeInput(input);
+    }
+
+    /*public void Tick(float deltaTime)
+    {
+        if (_bikeMover != null)
+        {
+            _bikeMover.DeltaTime = deltaTime;
+
+            var prevPos = transform.position;
+
+            Vector2 input;
+
+            if (speedListener != null && speedListener.subscribed)
+            {
+                input = speedListener.GetInput();
+            }
+            else
+            {
+                input = new Vector2(
+                    Input.GetAxis("Horizontal"),
+                    Input.GetAxis("Vertical")
+                );
+            }
+
+            _bikeMover.HanldeInput(input);
+
+            var curPos = transform.position;
+            RelativeSpeed = (curPos - prevPos) / deltaTime;
+        }
+    }*/
+
+    /*public void Tick(float deltaTime)
+    {
         if (_bikeMover != null && _playerInput != null)
         {
             _bikeMover.DeltaTime = deltaTime;
+
             var prevPos = transform.position;
+
             _bikeMover.HanldeInput(_playerInput.GetDirection());
+
             var curPos = transform.position;
             RelativeSpeed = (curPos - prevPos) / deltaTime;
         }
     }
+    */
+
 
     void OnTriggerEnter(Collider other)
     {
         var collectable = other.GetComponent<Collectable>();
+
         if (collectable != null)
         {
             if (collectable.Tag == this.tag)
+            {
                 score += collectable.Collect();
-            UIManager.Instance.SetScore(score);
-        }
-        else
-        {
-            // old collision code by Jai
-            // TODO replace other pickups with collectable script as above, see Prefabs/Pickups/Star for example
-            if (other.tag == "1")
-            {
-                score = score + 1;
-                other.gameObject.SetActive(false);
-            }
 
-            if (other.tag == "2")
-            {
-                score = score + 2;
-                other.gameObject.SetActive(false);
-            }
-
-            if (other.tag == "5")
-            {
-                score = score + 5;
-                other.gameObject.SetActive(false);
+                UIManager.Instance.SetScore(score);
             }
         }
     }

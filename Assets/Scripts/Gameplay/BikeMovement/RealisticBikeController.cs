@@ -4,18 +4,25 @@ using UnityEngine.Serialization;
 
 namespace Gameplay.BikeMovement
 {
+   
     public class RealisticBikeController : MonoBehaviour, IBikeMover
     {
-        [Header("Parameters")] [SerializeField]
+        [Header("Parameters")]
+        [SerializeField]
         private float pedalRotSpeed = 60;
 
         [SerializeField] private float maxSteer = 45;
         [SerializeField] private float maxLean = 45;
-        [SerializeField] private float maxAccelleration = 5f;
+        [SerializeField] private float maxAccelleration = 3f;
         [SerializeField] private float centerOfMassY = 0.6f;
         [SerializeField] private float balancingForce = 10f;
 
         [SerializeField] private AnimationCurve balanceResponseCurve;
+        [SerializeField] private float leanSmoothSpeed = 5f;
+        [SerializeField] private float stoppedBalanceForce = 80f;
+        [SerializeField] private float stoppedBalanceSpeedThreshold = 1.5f;
+
+        private IPlayerInput _playerInput;
         private WheelCollider _frontWheelCol;
         private WheelCollider _rearWheelCol;
         private Transform _frontWheelTransform;
@@ -45,8 +52,10 @@ namespace Gameplay.BikeMovement
             _tf = controller.transform;
             _rb = controller.GetComponent<Rigidbody>();
             _rb.isKinematic = false;
-            
-            
+            _rb.constraints =
+                RigidbodyConstraints.FreezeRotationX |
+                RigidbodyConstraints.FreezeRotationZ;
+
             var currentBike = controller.GetComponentInChildren<BikeSelector>().CurrentBike;
 
             _frontWheelCol = currentBike.frontWheelCollider;
@@ -60,8 +69,17 @@ namespace Gameplay.BikeMovement
             _wheelbase = Vector3.Distance(_frontWheelCol.transform.position, _rearWheelCol.transform.position);
 
             CalculatePhysicalProperties();
-        }
 
+        }
+        private void LimitAngularVelocity()
+        {
+            float maxAngularSpeed = 3f;
+
+            if (_rb.angularVelocity.magnitude > maxAngularSpeed)
+            {
+                _rb.angularVelocity = _rb.angularVelocity.normalized * maxAngularSpeed;
+            }
+        }
         private void CalculatePhysicalProperties()
         {
             // Calculate mass and center of mass adjustments.
@@ -131,7 +149,7 @@ namespace Gameplay.BikeMovement
             _tf.position = _startingPosition;
             _tf.rotation = _startingRotation;
             _rb.velocity = _startingVelocity;
-            _rb.angularVelocity = Vector3.zero;
+            
             _frontWheelCol.steerAngle = 0;
             _rearWheelCol.motorTorque = 0;
         }
@@ -147,26 +165,41 @@ namespace Gameplay.BikeMovement
             ApplyMotor(direction);
             HandleSteering(direction);
             ApplyBalance();
+            LimitAngularVelocity();
         }
 
 
         private void ApplyBalance()
         {
-            // Get current tilt around Z (sideways)
             float tiltAngle = Vector3.SignedAngle(_tf.up, Vector3.up, _tf.forward);
+
             float delta = tiltAngle - _currentLean;
-            float output = balanceResponseCurve.Evaluate(Mathf.Lerp(1, 0, delta / 30f)) * delta;
+
+            float output =
+                balanceResponseCurve.Evaluate(Mathf.Lerp(1, 0, delta / 30f)) * delta;
+
             float balanceTorque = output * balancingForce;
+
             _rb.AddTorque(_tf.forward * balanceTorque);
         }
 
         private void HandleSteering(Vector2 direction)
         {
-            var horizontalInput = direction.x;
-            float normalizedSpeed = Mathf.Clamp01(_tf.InverseTransformDirection(_rb.velocity).z / 10f);
-            float effectiveSteer = horizontalInput * Mathf.Lerp(maxSteer, 0f, normalizedSpeed);
-            float targetLean = horizontalInput * Mathf.Lerp(0f, maxLean, normalizedSpeed);
-            _currentLean = targetLean;
+            float horizontalInput = direction.x;
+
+            float forwardSpeed = Mathf.Abs(_tf.InverseTransformDirection(_rb.velocity).z);
+            float normalizedSpeed = Mathf.Clamp01(forwardSpeed / 25f);
+
+            // Less steering at high speed
+            float steerMultiplier = Mathf.Lerp(1f, 0.15f, normalizedSpeed);
+            float effectiveSteer = horizontalInput * maxSteer * steerMultiplier;
+
+            // Less lean at high speed to stop spinning/flipping
+            float leanMultiplier = Mathf.Lerp(1f, 0.35f, normalizedSpeed);
+            float targetLean = horizontalInput * maxLean * leanMultiplier;
+
+            _currentLean = 0f;
+
             SetSteer(effectiveSteer);
         }
 
@@ -179,6 +212,7 @@ namespace Gameplay.BikeMovement
         private void ApplyMotor(Vector2 input)
         {
             var targetSpeed = input.y * Speed;
+
             Vector3 localV = _tf.InverseTransformVector(_rb.velocity);
             float diff = targetSpeed - localV.z;
             float a = Mathf.Clamp(diff, -maxAccelleration, maxAccelleration);
@@ -203,14 +237,18 @@ namespace Gameplay.BikeMovement
         private void Update()
         {
             if (!_isSelected) return;
-            // Update rear wheel transform based on the collider's world pose.
+
             _rearWheelCol.GetWorldPose(out var rearWheelPos, out var rearWheelRot);
             _rearWheelTransform.position = rearWheelPos;
             _rearWheelTransform.rotation = rearWheelRot;
 
             _frontWheelCol.GetWorldPose(out var frontWheelPos, out var frontWheelRot);
-            _frontWheelTransform.localRotation = Quaternion.Euler(frontWheelRot.eulerAngles.x, -90, 0);
-            _frontHandlePivot.localRotation = Quaternion.Euler(0, _frontWheelCol.steerAngle, 0);
+
+            _frontWheelTransform.localRotation =
+                Quaternion.Euler(frontWheelRot.eulerAngles.x, -90, 0);
+
+            _frontHandlePivot.localRotation =
+                Quaternion.Euler(0, _frontWheelCol.steerAngle, 0);
         }
     }
 }
