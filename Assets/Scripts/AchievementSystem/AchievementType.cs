@@ -1,9 +1,11 @@
-public enum AchievementType
+namespace SmartBike.Achievements
 {
-    Distance,
-    Speed,
-    Calories,
-    RideCount,
-    TimePlayed,
-    Custom
+    public enum AchievementType
+    {
+        DistanceTravelled,
+        MaximumSpeed,
+        RideTime,
+        CheckpointsReached,
+        RidesCompleted
+    }
 }
