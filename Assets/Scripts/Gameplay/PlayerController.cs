@@ -1,9 +1,11 @@
+
 using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.XR;
+using UnityEngine.SceneManagement;
 using Gameplay.BikeMovement;
 
 public class PlayerController : MonoBehaviour
@@ -18,6 +20,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private MovementHandleTypePair[] movementHandleTypePairs;
     [SerializeField] private SpeedListener speedListener;
 
+    // Scene to load when F1 or the Oculus X button is pressed
+    private string sceneToLoad = "GarageScene";
+
     
     public class MovementHandleTypePair
     {
@@ -26,7 +31,8 @@ public class PlayerController : MonoBehaviour
     }
     
     public PlayerInventory inventory;
-    //For speed reference made by Dennis
+
+    // For speed reference made by Dennis
     private float originalSpeed;
     private IPlayerInput _playerInput;
     private IBikeMover _bikeMover;
@@ -44,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleItemAdded(ItemAddedEvent itemAddedEvent)
     {
-        inventory.AddItem(itemAddedEvent.itemName,itemAddedEvent.quantity);
+        inventory.AddItem(itemAddedEvent.itemName, itemAddedEvent.quantity);
     }
 
     private void OnDisable()
@@ -55,6 +61,7 @@ public class PlayerController : MonoBehaviour
     private void OnValidate()
     {
         if (bikeMovementHandler == null) return;
+
         if (bikeMovementHandler.GetComponent<IBikeMover>() == null)
         {
             bikeMovementHandler = null;
@@ -66,12 +73,15 @@ public class PlayerController : MonoBehaviour
     IEnumerator Start()
     {
         originalSpeed = movementSpeed;
-        //to set score to 0 made by Jai
+
+        // To set score to 0 made by Jai
         score = 0;
 
         var devices = new List<InputDevice>();
+
         InputDevices.GetDevicesWithCharacteristics(
-            InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left, devices);
+            InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left,
+            devices);
 
         if (Mqtt.Instance != null && Mqtt.Instance.IsConnected)
         {
@@ -86,8 +96,6 @@ public class PlayerController : MonoBehaviour
             _playerInput = new AxisInput();
         }
 
-        
-
         Debug.Log($"MQTT INSTANCE exists:{Mqtt.Instance}", Mqtt.Instance);
         Debug.Log($"Player input:{_playerInput.GetType()}");
 
@@ -101,7 +109,8 @@ public class PlayerController : MonoBehaviour
         {
             var handler =
                 movementHandleTypePairs.FirstOrDefault((pair) =>
-                    pair.type == PlayerPrefs.GetString("BikeControllerType","Simple"));
+                    pair.type == PlayerPrefs.GetString("BikeControllerType", "Simple"));
+
             if (handler != null)
             {
                 SetupBikeMover(handler.movementHandler);
@@ -119,12 +128,58 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Check for F1 or Oculus/Meta Y button
+        CheckSceneChangeInput();
+
         // TODO this should be moved into a mission start system, create a mission activate zone
         if (Mission_Activator.ActiveMission != null)
         {
             if (!Mission_Activator.ActiveMission.MissionStarted)
                 Mission_Activator.ActiveMission.StartMission();
         }
+    }
+
+    private void CheckSceneChangeInput()
+    {
+        // F1 keyboard input
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            LoadTargetScene();
+            return;
+        }
+
+        // Oculus/Meta Y button
+        var leftHandDevices = new List<InputDevice>();
+
+        InputDevices.GetDevicesWithCharacteristics(
+            InputDeviceCharacteristics.HeldInHand |
+            InputDeviceCharacteristics.Left |
+            InputDeviceCharacteristics.Controller,
+            leftHandDevices);
+
+        foreach (var device in leftHandDevices)
+        {
+            if (device.TryGetFeatureValue(
+                    CommonUsages.primaryButton,
+                    out bool primaryButtonPressed) &&
+                primaryButtonPressed)
+            {
+                LoadTargetScene();
+                return;
+            }
+        }
+    }
+
+    private void LoadTargetScene()
+    {
+        if (string.IsNullOrEmpty(sceneToLoad))
+        {
+            Debug.LogWarning("No scene has been assigned to 'Scene To Load' in the PlayerController.");
+            return;
+        }
+
+        Debug.Log($"Loading scene: {sceneToLoad}");
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     public void Tick(float deltaTime)
@@ -141,52 +196,6 @@ public class PlayerController : MonoBehaviour
         _bikeMover.HanldeInput(input);
     }
 
-    /*public void Tick(float deltaTime)
-    {
-        if (_bikeMover != null)
-        {
-            _bikeMover.DeltaTime = deltaTime;
-
-            var prevPos = transform.position;
-
-            Vector2 input;
-
-            if (speedListener != null && speedListener.subscribed)
-            {
-                input = speedListener.GetInput();
-            }
-            else
-            {
-                input = new Vector2(
-                    Input.GetAxis("Horizontal"),
-                    Input.GetAxis("Vertical")
-                );
-            }
-
-            _bikeMover.HanldeInput(input);
-
-            var curPos = transform.position;
-            RelativeSpeed = (curPos - prevPos) / deltaTime;
-        }
-    }*/
-
-    /*public void Tick(float deltaTime)
-    {
-        if (_bikeMover != null && _playerInput != null)
-        {
-            _bikeMover.DeltaTime = deltaTime;
-
-            var prevPos = transform.position;
-
-            _bikeMover.HanldeInput(_playerInput.GetDirection());
-
-            var curPos = transform.position;
-            RelativeSpeed = (curPos - prevPos) / deltaTime;
-        }
-    }
-    */
-
-
     void OnTriggerEnter(Collider other)
     {
         var collectable = other.GetComponent<Collectable>();
@@ -202,15 +211,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //For speed reference made by Dennis
+    // For speed reference made by Dennis
     public float GetSpeed()
     {
         return movementSpeed;
     }
 
-    public void SetSpeed(float newSpeed) //Update achieved speed made by Dennis
+    public void SetSpeed(float newSpeed)
     {
         movementSpeed = newSpeed;
+
         if (_bikeMover != null)
             _bikeMover.Speed = movementSpeed;
     }
