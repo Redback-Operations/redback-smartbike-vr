@@ -4504,8 +4504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subscribed: 1
   speed: 0
-  turn: 0
-  brake: 0
   logMessages: 1
 --- !u!114 &1228870156826663968
 MonoBehaviour:
