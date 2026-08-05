@@ -11,5 +11,14 @@ public class SaveData
     public float playerTime = 0f;
     public int highScore = 0;
     public int coins = 0;
+
+    // Added for Race Mission best-time persistence.
+    public List<RaceRecord> raceRecords = new List<RaceRecord>();
 }
 
+[System.Serializable]
+public class RaceRecord
+{
+    public string trackKey = string.Empty;
+    public float bestTimeSeconds = float.MaxValue;
+}
