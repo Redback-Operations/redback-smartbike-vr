@@ -82,6 +82,43 @@ public class SaveManager : MonoBehaviour
         return data?.coins ?? 0; // Return, if null then returns zero
     }
 
+    // --- Race Mission best-time persistence (new) -----------------------
+    // Keyed by an arbitrary "trackKey" string (RaceHUD defaults this to the
+    // scene name) so different race tracks/scenes keep separate records
+    // within the same profile.
+
+    /// <summary>Saves the time if it beats the existing record (or if there isn't one yet). Returns the best time on file after saving.</summary>
+    public float SaveRaceBestTime(string trackKey, float timeSeconds)
+    {
+        EnsureDataInitialized();
+
+        var record = data.raceRecords.Find(r => r.trackKey == trackKey);
+        if (record == null)
+        {
+            record = new RaceRecord { trackKey = trackKey, bestTimeSeconds = timeSeconds };
+            data.raceRecords.Add(record);
+            SaveDataToFile();
+            return timeSeconds;
+        }
+
+        if (timeSeconds < record.bestTimeSeconds)
+        {
+            record.bestTimeSeconds = timeSeconds;
+            SaveDataToFile();
+        }
+
+        return record.bestTimeSeconds;
+    }
+
+    /// <summary>Returns the best time for a track, or -1 if none is recorded yet.</summary>
+    public float LoadRaceBestTime(string trackKey)
+    {
+        EnsureDataInitialized();
+
+        var record = data.raceRecords.Find(r => r.trackKey == trackKey);
+        return record?.bestTimeSeconds ?? -1f;
+    }
+
     // Creates/Accesses JSON file by specified profile name
     private void SetProfilePath(string profile)
     {
@@ -125,7 +162,7 @@ public class SaveManager : MonoBehaviour
     private void SavePlayerTime()
     {
         EnsureDataInitialized();
-        
+
         data.playerTime = playerTime;
         SaveDataToFile();
     }

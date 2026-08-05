@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 8404456163343031951}
   - component: {fileID: 3308572821431178743}
   - component: {fileID: -2095024732963602262}
+  - component: {fileID: 6309645480587176311}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -179,13 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cacb68b7bf75c74083d2de24e5d8ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Head: {fileID: 727163265291903697}
-  HandLeft: {fileID: 2977014746222217579}
-  HandRight: {fileID: 3975241755619954259}
+  localObjects: []
   selector: {fileID: 3491211280715602552}
   SaveLoadBike: {fileID: 992270898872381438}
-  _PlayerID: 1
-  _Dirty: 0
   _BikeSelection: 0
   _BikeCustomization: 
 --- !u!114 &8404456163343031951
@@ -207,6 +204,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7734209529733495067}
   - {fileID: 3308572821431178743}
+  - {fileID: 6309645480587176311}
   - {fileID: 5511815197539976161}
   - {fileID: 1185154426178663205}
   - {fileID: 6335160925445665550}
@@ -253,6 +251,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6309645480587176311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7958609509649990418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36a97537ed64e1e9eb74ff609102cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNpc: 0
+  npcDisplayName: NPC Racer
+  _CurrentCheckpoint: 0
+  _CurrentLap: 0
+  _HasFinished:
+    _value: 0
 --- !u!1 &9021768078586579532
 GameObject:
   m_ObjectHideFlags: 0
