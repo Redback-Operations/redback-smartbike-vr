@@ -1789,7 +1789,6 @@ GameObject:
   m_Component:
   - component: {fileID: 126096669}
   - component: {fileID: 126096670}
-  - component: {fileID: 126096671}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1826,18 +1825,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CompleteLevelUI: {fileID: 0}
   MissionFailUI: {fileID: 0}
---- !u!114 &126096671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126096668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b52f5caf21adcf543adea81f2d883bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &141910903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,6 +1870,7 @@ GameObject:
   - component: {fileID: 144249161}
   - component: {fileID: 144249160}
   - component: {fileID: 144249159}
+  - component: {fileID: 144249165}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2008,6 +1996,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &144249165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144249158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d816d62c995cf040882177e2eaf32c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedListener: {fileID: 144249160}
+  minimumMovingSpeedKmh: 0.5
+  updateInterval: 1
+  useDebugSpeed: 0
+  debugSpeedKmh: 15
 --- !u!1001 &177085406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7866,18 +7871,6 @@ MonoBehaviour:
   speed: 5
   bikeSelector: {fileID: 0}
   bikeMoverGameObject: {fileID: 0}
---- !u!114 &1027465680 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6826096831271285776, guid: 1edd98f62a1924dc5b1fc10872e9a074,
-    type: 3}
-  m_PrefabInstance: {fileID: 1196976517}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b618751708ca47d78bd7c0965a9e35a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1030172176
 GameObject:
   m_ObjectHideFlags: 0
@@ -10583,7 +10576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9470e06324e7b46159d1b90b56270f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer1: {fileID: 0}
+  countdownTimer: {fileID: 0}
+  timer: {fileID: 0}
   timerDuration: 60
   startDelay: 3
 --- !u!1 &1345695577
@@ -13979,6 +13973,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 937828707fd4edd4298e3dc0f6496aa0, type: 3}
+--- !u!1 &1627313468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1627313470}
+  - component: {fileID: 1627313469}
+  m_Layer: 0
+  m_Name: AchievementManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1627313469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627313468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f0b3471b4fe0b45ae9a0187c3976ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievementDefinitions: []
+  loadProgressOnStart: 1
+  saveProgressAutomatically: 1
+  showDebugMessages: 1
+--- !u!4 &1627313470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627313468}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1660232091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15813,7 +15855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9470e06324e7b46159d1b90b56270f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer1: {fileID: 1027465680}
+  countdownTimer: {fileID: 0}
+  timer: {fileID: 0}
   timerDuration: 15
   startDelay: 3
 --- !u!1 &1876193968
@@ -69384,3 +69427,4 @@ SceneRoots:
   - {fileID: 863573008}
   - {fileID: 1241516539}
   - {fileID: 144249164}
+  - {fileID: 1627313470}

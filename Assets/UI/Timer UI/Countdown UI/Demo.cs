@@ -38,9 +38,28 @@ public class Demo : MonoBehaviour
 
     private void Start()
     {
-        timer1 = FindObjectOfType<Timer2>();
+        if (countdownTimer == null)
+        {
+            countdownTimer = FindObjectOfType<CountdownTimerUI>();
+        }
 
-        timer1.SetDuration(timerDuration)
-              .BeginWithDelay(startDelay);
+        if (countdownTimer != null)
+        {
+            countdownTimer
+                .SetDuration(300)
+                .BeginWithDelay(3f);
+        }
+
+        if (timer == null)
+        {
+            timer = FindObjectOfType<Timer2>();
+        }
+
+        if (timer != null)
+        {
+            timer
+                .SetDuration(timerDuration)
+                .BeginWithDelay(startDelay);
+        }
     }
 } */
