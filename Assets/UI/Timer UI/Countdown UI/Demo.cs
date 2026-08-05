@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Demo : MonoBehaviour
 {
-<<<<<<< Updated upstream
     [SerializeField] Timer2 timer1;
     [SerializeField] int timerDuration = 15;
     [SerializeField] float startDelay = 3f;
@@ -28,8 +27,6 @@ public class Demo : MonoBehaviour
     {
         timer1 = FindObjectOfType<CountdownTimerUI>();
         timer1.SetDuration(300).BeginWithDelay(3f);
-=======
->>>>>>> Stashed changes
     [SerializeField] private Timer2 timer1;
 
     [SerializeField] private int timerDuration = 15;

@@ -156,6 +156,7 @@ namespace Gameplay.BikeMovement
 
         public void HanldeInput(Vector2 direction)
         {
+            Debug.Log($"Bike received direction: {direction}");
             if (direction.y > 0)
             {
                 _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, pedalRotSpeed * DeltaTime) *
@@ -214,18 +215,21 @@ namespace Gameplay.BikeMovement
             var targetSpeed = input.y * Speed;
 
             Vector3 localV = _tf.InverseTransformVector(_rb.velocity);
-            float diff = targetSpeed - localV.z;
+            float currentSpeed = localV.z;
+            float diff = targetSpeed - currentSpeed;
             float a = Mathf.Clamp(diff, -maxAccelleration, maxAccelleration);
 
-            if (a > 0)
-            {
-                SetAcceleration(a);
-                SetBrake(0);
-            }
-            else
+            bool shouldBrake = a < 0 && currentSpeed > 0.1f;
+
+            if (shouldBrake)
             {
                 SetAcceleration(0);
                 SetBrake(-a);
+            }
+            else
+            {
+                SetAcceleration(a);
+                SetBrake(0);
             }
         }
 

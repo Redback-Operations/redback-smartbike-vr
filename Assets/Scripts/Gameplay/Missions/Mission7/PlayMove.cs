@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayMove : MonoBehaviour
 {
     public float defaultmaxSpeed = 10.0f;
-    public float maxReverseSpeed = -5.0f;
+    public float maxReverseSpeed = 10.0f;
     public float acceleration = 5.0f;
     public float deceleration = 3.0f;
     public float turnspeed = 100.0f;
