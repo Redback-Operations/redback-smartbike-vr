@@ -184,6 +184,7 @@ public class PlayerController : MonoBehaviour
 
     public void Tick(float deltaTime)
     {
+        
         if (_bikeMover == null) return;
 
         _bikeMover.DeltaTime = deltaTime;
@@ -192,6 +193,9 @@ public class PlayerController : MonoBehaviour
             Input.GetAxis("Horizontal"),
             Input.GetAxis("Vertical")
         );
+
+        Debug.Log($"PlayerController input: {input}");
+
 
         _bikeMover.HanldeInput(input);
     }
