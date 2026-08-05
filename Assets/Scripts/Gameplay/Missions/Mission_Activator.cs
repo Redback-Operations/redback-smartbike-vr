@@ -19,10 +19,35 @@ public class Mission_Activator : MonoBehaviour
     public int MissionNumber;
     public Mission[] Missions;
 
+    // Gates PlayerController's call to Mission.StartMission() - only true once
+    // a MissionStartLocation's Ready/Set/Go sequence has finished for the
+    // active mission. See MissionStartLocation.cs.
+    public static bool CountdownFinished { get; private set; }
+
+    private EventBinding<MissionCountdownFinishedEvent> _countdownBinding;
+
+    private void OnEnable()
+    {
+        _countdownBinding = new EventBinding<MissionCountdownFinishedEvent>(OnCountdownFinished);
+        EventBus<MissionCountdownFinishedEvent>.Register(_countdownBinding);
+    }
+
+    private void OnDisable()
+    {
+        EventBus<MissionCountdownFinishedEvent>.Deregister(_countdownBinding);
+    }
+
+    private void OnCountdownFinished(MissionCountdownFinishedEvent e)
+    {
+        if (e.MissionNumber == MissionNumber)
+            CountdownFinished = true;
+    }
+
     public void Activate(int id)
     {
         Debug.Log($"Mission {id} is Active");
         MissionNumber = id;
+        CountdownFinished = false;
 
         // loop through each mission object
         foreach (var mission in Missions)

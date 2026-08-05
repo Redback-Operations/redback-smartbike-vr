@@ -119,8 +119,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // TODO this should be moved into a mission start system, create a mission activate zone
-        if (Mission_Activator.ActiveMission != null)
+        // Mission gameplay now only starts once the player has reached a
+        // MissionStartLocation and its Ready/Set/Go countdown has finished
+        // (see MissionStartLocation.cs and Mission_Activator.CountdownFinished),
+        // instead of starting instantly on scene load.
+        if (Mission_Activator.ActiveMission != null && Mission_Activator.CountdownFinished)
         {
             if (!Mission_Activator.ActiveMission.MissionStarted)
                 Mission_Activator.ActiveMission.StartMission();

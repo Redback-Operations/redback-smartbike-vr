@@ -28,6 +28,7 @@ public static class MapLoader
 
     public static void LoadScene(string scene)
     {
+        Debug.Log($"[MapLoader] LoadScene requested: '{scene}' (caller triggered a full LoadingScene reload)");
         _scene = scene;
         SceneManager.LoadScene(Scene.LoadingScene.ToString());
     }
@@ -35,7 +36,11 @@ public static class MapLoader
     public static void LoadAfter()
     {
         if (string.IsNullOrEmpty(_scene))
+        {
+            Debug.LogWarning("[MapLoader] LoadAfter() called with no target scene set - falling back to 'AvatarSelection'. This means LoadScene(...) was never called with a valid name before LoadingScene ran.");
             _scene = "AvatarSelection";
+        }
+        Debug.Log($"[MapLoader] LoadAfter loading '{_scene}' additively");
         SceneManager.LoadSceneAsync(_scene, LoadSceneMode.Additive);
     }
 
