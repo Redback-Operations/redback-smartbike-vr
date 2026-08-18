@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +43,12 @@ namespace SmartBike.Achievements
             }
 
             Instance = this;
+
+            // DontDestroyOnLoad only works on root objects; detach first so the
+            // singleton actually survives a scene load instead of warning.
+            if (transform.parent != null)
+                transform.SetParent(null, true);
+
             DontDestroyOnLoad(gameObject);
 
             InitializeAchievements();

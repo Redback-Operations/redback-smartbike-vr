@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using System.Collections;
 using UnityEngine;
@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public int score;
 
     [SerializeField] private bool overridePlayerPrefs;
+
+    [Tooltip("Logs the raw input vector every frame. Leave off - it floods the console.")]
+    [SerializeField] private bool logInputEveryFrame;
     [SerializeField] private GameObject bikeMovementHandler;
 
     [SerializeField] private MovementHandleTypePair[] movementHandleTypePairs;
@@ -194,7 +197,8 @@ public class PlayerController : MonoBehaviour
             Input.GetAxis("Vertical")
         );
 
-        Debug.Log($"PlayerController input: {input}");
+        if (logInputEveryFrame)
+            Debug.Log($"PlayerController input: {input}");
 
 
         _bikeMover.HanldeInput(input);

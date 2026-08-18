@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Security.Cryptography.X509Certificates;
@@ -52,6 +52,14 @@ public class Mqtt : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
+
+            // DontDestroyOnLoad silently does nothing on a non-root object - it
+            // just logs a warning - so the singleton would be rebuilt on every
+            // scene load. Detach first (keeping world position) so it genuinely
+            // survives. Nothing on this object depends on its parent.
+            if (transform.parent != null)
+                transform.SetParent(null, true);
+
             DontDestroyOnLoad(gameObject);
         }
 

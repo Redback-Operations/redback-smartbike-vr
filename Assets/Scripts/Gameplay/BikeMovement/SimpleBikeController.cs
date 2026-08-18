@@ -42,7 +42,16 @@ namespace Gameplay.BikeMovement
             rb = controller.GetComponent<Rigidbody>();
             rb.isKinematic = true;
 
-            var bike = controller.GetComponentInChildren<BikeSelector>().CurrentBike;
+            var selector = controller.GetComponentInChildren<BikeSelector>();
+            var bike = selector == null ? null : selector.CurrentBike;
+
+            if (!BikeRigIsComplete(bike))
+            {
+                // _selected stays false, so HanldeInput/LateUpdate no-op rather
+                // than throwing every frame on an un-rigged bike.
+                _selected = false;
+                return;
+            }
 
             _frontWheelTf = bike.frontWheelTransform;
             _rearWheelTf = bike.rearWheelTransform;
@@ -84,6 +93,8 @@ namespace Gameplay.BikeMovement
 
         public void HanldeInput(Vector2 direction)
         {
+            if (!_selected) return;
+
             Rotate(direction);
             if (direction.y > 0)
             {
@@ -142,6 +153,35 @@ namespace Gameplay.BikeMovement
 
             var rotation = Quaternion.LookRotation(forward, normal);
             _angleX = rotation.eulerAngles.x;
+        }
+
+        /// <summary>
+        /// True when every reference this controller dereferences per-frame is
+        /// assigned. Logs one actionable error instead of throwing forever.
+        /// </summary>
+        private static bool BikeRigIsComplete(Bike bike)
+        {
+            if (bike == null)
+            {
+                Debug.LogError("[SimpleBikeController] No bike selected (BikeSelector missing or CurrentBike null). Bike movement disabled.");
+                return false;
+            }
+
+            var missing = new System.Collections.Generic.List<string>();
+            if (bike.frontWheelTransform == null) missing.Add("frontWheelTransform");
+            if (bike.rearWheelTransform == null) missing.Add("rearWheelTransform");
+            if (bike.pedalTransform == null) missing.Add("pedalTransform");
+            if (bike.frontWheelCollider == null) missing.Add("frontWheelCollider");
+
+            if (missing.Count == 0)
+                return true;
+
+            Debug.LogError(
+                $"[SimpleBikeController] Bike '{bike.name}' is not rigged. " +
+                $"Unassigned on its Bike component: {string.Join(", ", missing)}. " +
+                "Bike movement is disabled for this bike.",
+                bike);
+            return false;
         }
 
         private Vector3 CalculateNormal(Terrain terrain, Vector3 position)

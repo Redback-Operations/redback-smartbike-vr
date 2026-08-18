@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -12,6 +12,7 @@ public class SaveManager : MonoBehaviour
     private float startTime; // Record time since starting session
     private float playerTime; // Record total playtime
     private SaveData data; // Variable to store the save data for saving and loading
+    private const string DefaultProfileName = "Default"; // used when no profile was chosen
     public string profileName; // Name for currently accessed profile
 
 
@@ -37,6 +38,21 @@ public class SaveManager : MonoBehaviour
         SetProfilePath(profile);
         LoadData();
         data.profileName = profile;
+        startTime = Time.time;
+    }
+
+    /// <summary>
+    /// Scenes entered directly (a mission scene opened from the editor, or any
+    /// scene reached without passing through the profile screen) never call
+    /// SetProfile, which leaves filePath empty and makes every save fail. Fall
+    /// back to a default profile so saving works instead of erroring out.
+    /// </summary>
+    private void EnsureProfile()
+    {
+        if (!string.IsNullOrEmpty(filePath))
+            return;
+
+        SetProfile(string.IsNullOrEmpty(profileName) ? DefaultProfileName : profileName);
     }
 
     private void Update()
@@ -170,11 +186,10 @@ public class SaveManager : MonoBehaviour
     // Ensure data is initialized to prevent null reference issues
     private void EnsureDataInitialized()
     {
+        EnsureProfile();
+
         if (data == null)
-        {
-            Debug.LogWarning("SaveData is null, initializing new SaveData.");
             data = new SaveData();
-        }
     }
 
     // Returns total play time

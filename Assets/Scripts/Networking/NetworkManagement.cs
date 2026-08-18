@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fusion;
@@ -10,7 +10,10 @@ using UnityEngine.Serialization;
 public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
 {
     public string ActiveScene;
-    private NetworkRunner _runner;
+    // Named _localRunner, not _runner: Fusion's SimulationBehaviour base class
+    // already serializes a field called _runner, and Unity refuses to serialize
+    // the same field name twice in a hierarchy.
+    private NetworkRunner _localRunner;
     // prefabs for spawning
     public GameObject NetworkPlayer;
 
@@ -63,11 +66,11 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
         _players = new Dictionary<PlayerRef, NetworkObject>();
         _networkItems = new List<NetworkObject>();
 
-        _runner = gameObject.AddComponent<NetworkRunner>();
-        _runner.ProvideInput = true;
+        _localRunner = gameObject.AddComponent<NetworkRunner>();
+        _localRunner.ProvideInput = true;
 
-        _runner.AddCallbacks(this);
-        _runner.StartGame(new StartGameArgs
+        _localRunner.AddCallbacks(this);
+        _localRunner.StartGame(new StartGameArgs
         {
             GameMode = GameMode.Shared,
             SessionName = ActiveScene,
@@ -79,8 +82,12 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
 
     public void Disconnect()
     {
-        _runner.Shutdown();
-        _runner.RemoveCallbacks(this);
+        if (_localRunner == null)
+            return;
+
+        _localRunner.Shutdown();
+        _localRunner.RemoveCallbacks(this);
+        _localRunner = null;
     }
 
     void OnApplicationQuit()
@@ -93,7 +100,7 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
         if (player == runner.LocalPlayer)
         {
             // set the spawn location for the player
-            SpawnedPlayer = _runner.Spawn(NetworkPlayer, SpawnTarget.position, SpawnTarget.rotation, player);
+            SpawnedPlayer = _localRunner.Spawn(NetworkPlayer, SpawnTarget.position, SpawnTarget.rotation, player);
             SpawnedPlayer.name = $"Player_{player.PlayerId}";
             // hide the loading scene
             MapLoader.UnloadScene("LoadingScene");
