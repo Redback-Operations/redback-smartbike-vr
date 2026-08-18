@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -14,15 +14,11 @@ public class Mission1 : Mission
     public float speed = 1.0f;
     private float delay = 2.0f;
 
-    //For time delay to reset.
-    private bool isDelayed = false;
     public bool missionComplete = false; //Tracking whether mission completed, either bike take star or robot reach point b.  
     public TextMeshProUGUI missionStatus; //Ref to TextMeshPro
 
     IEnumerator StartResetting()
     {
-        // Set resetting flag to true to prevent multiple coroutines running simultaneously
-        isDelayed = true;
         
         // Wait for the specified delay before resetting the text
         yield return new WaitForSeconds(delay);
@@ -30,8 +26,6 @@ public class Mission1 : Mission
         if (missionStatus != null)
             missionStatus.text = null;
         
-        // Reset the text
-        isDelayed = false;
     }
 
     //From point A to point B for robot...

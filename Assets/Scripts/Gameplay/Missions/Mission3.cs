@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -16,8 +16,6 @@ public class Mission3 : Mission
     //Mission can be tested so far in the race track out at the city with speedboost ramp to run and see how it works
 
     private float delay = 1.0f;
-    //For time delay to reset.
-    private bool isDelayed = false;
     //Referencing the bike to get their speed.
     public PlayerController bike;
     public float speed;
@@ -28,8 +26,6 @@ public class Mission3 : Mission
 
     IEnumerator StartResetting()
     {
-        // Set resetting flag to true to prevent multiple coroutines running simultaneously
-        isDelayed = true;
 
         // Wait for the specified delay before resetting the text
         yield return new WaitForSeconds(delay);
@@ -42,8 +38,6 @@ public class Mission3 : Mission
         // Generate a new objective after delay
         GenerateNewObjective();
 
-        // Reset the text
-        isDelayed = false;
     }
 
     void GenerateNewObjective()

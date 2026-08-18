@@ -18,7 +18,6 @@ namespace Gameplay.BikeMovement
         [SerializeField] private float balancingForce = 10f;
 
         [SerializeField] private AnimationCurve balanceResponseCurve;
-        [SerializeField] private float leanSmoothSpeed = 5f;
         [SerializeField] private float stoppedBalanceForce = 80f;
         [SerializeField] private float stoppedBalanceSpeedThreshold = 1.5f;
 

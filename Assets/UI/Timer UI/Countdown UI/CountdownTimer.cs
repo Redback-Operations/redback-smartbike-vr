@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +8,6 @@ public class Timer2 : MonoBehaviour
     [SerializeField] private Image uiFillImage; // Reference to the UI image that fills the timer
     [SerializeField] private Text uiText; // Reference to the text that shows time remaining
     [SerializeField] private GameObject timerUIParent; // Parent object to hide/show the timer UI
-    [SerializeField] private int defaultDuration = 60;
     [SerializeField] private GameObject endScreenUI;
     public int Duration { get; private set; } // Property to store the total duration of the timer
     private int remainingDuration; // Internal variable to track the remaining time
