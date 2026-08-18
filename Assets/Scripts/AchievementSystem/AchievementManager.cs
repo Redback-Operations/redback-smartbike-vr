@@ -44,12 +44,11 @@ namespace SmartBike.Achievements
 
             Instance = this;
 
-            // DontDestroyOnLoad only works on root objects; detach first so the
-            // singleton actually survives a scene load instead of warning.
-            if (transform.parent != null)
-                transform.SetParent(null, true);
-
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad only works on root GameObjects; on a nested one it
+            // is a no-op that just logs a warning. Guard the call rather than
+            // reparenting, matching how Mqtt.cs handles the same situation.
+            if (transform.parent == null)
+                DontDestroyOnLoad(gameObject);
 
             InitializeAchievements();
 

@@ -82,6 +82,9 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
 
     public void Disconnect()
     {
+        // Defensive guard: _localRunner is only assigned in Start(), and Disconnect()
+        // can be reached from OnApplicationQuit/OnTeleport before that, or a
+        // second time after an earlier shutdown.
         if (_localRunner == null)
             return;
 
@@ -99,8 +102,23 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
     {
         if (player == runner.LocalPlayer)
         {
+            // Defensive guard (stopgap): SpawnTarget can be an unassigned/broken
+            // reference if no mission spawn point matched and no default was set
+            // in the inspector. Falling back to the origin avoids a hard crash
+            // here while the underlying "Resolve Null Reference in Scenes" ticket
+            // is still being investigated.
+            if (SpawnTarget == null)
+            {
+                Debug.LogWarning(
+                    $"[NetworkManagement] SpawnTarget is null when spawning player {player.PlayerId}. " +
+                    "Falling back to world origin. Check mission spawn point assignment.");
+            }
+
+            var spawnPosition = SpawnTarget != null ? SpawnTarget.position : Vector3.zero;
+            var spawnRotation = SpawnTarget != null ? SpawnTarget.rotation : Quaternion.identity;
+
             // set the spawn location for the player
-            SpawnedPlayer = _localRunner.Spawn(NetworkPlayer, SpawnTarget.position, SpawnTarget.rotation, player);
+            SpawnedPlayer = _localRunner.Spawn(NetworkPlayer, spawnPosition, spawnRotation, player);
             SpawnedPlayer.name = $"Player_{player.PlayerId}";
             // hide the loading scene
             MapLoader.UnloadScene("LoadingScene");

@@ -20,11 +20,24 @@ public class NetworkPlayer : NetworkBehaviour
     private PlayerController _playerController;
     private void BikeSelectionChanged()
     {
+        // Defensive guard (stopgap): selector isn't always assigned on every
+        // player prefab variant. Log instead of crashing while the null-ref
+        // ticket is investigated.
+        if (selector == null)
+        {
+            Debug.LogWarning($"[NetworkPlayer] selector is null on {name}; cannot display bike {BikeSelection}.");
+            return;
+        }
         selector.DisplayBike(BikeSelection);
     }
-    
+
     public void BikeCustomizationChanged()
     {
+        if (SaveLoadBike == null)
+        {
+            Debug.LogWarning($"[NetworkPlayer] SaveLoadBike is null on {name}; cannot load bike customization.");
+            return;
+        }
         SaveLoadBike.LoadBikeData(BikeCustomization);
     }
 
