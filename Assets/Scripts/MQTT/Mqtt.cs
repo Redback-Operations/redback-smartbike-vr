@@ -52,7 +52,16 @@ public class Mqtt : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+
+            // DontDestroyOnLoad only works on root GameObjects. The MQTT component
+            // is root in the persistent Loading/City scene objects (where we do want
+            // the connection to survive scene loads), but it is also present on a
+            // non-root child inside Player_New. Guard the call so we only invoke it
+            // where it can actually take effect, instead of letting Unity log a
+            // "DontDestroyOnLoad only works for root GameObjects" warning for the
+            // child case (where the call was always a no-op anyway).
+            if (transform.parent == null)
+                DontDestroyOnLoad(gameObject);
         }
 
         if (!string.IsNullOrWhiteSpace(PlayerPrefs.GetString("MQTTHost")))

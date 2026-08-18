@@ -4412,7 +4412,6 @@ GameObject:
   - component: {fileID: 2928926833657374085}
   - component: {fileID: 7594333520180326759}
   - component: {fileID: 5694749238017234312}
-  - component: {fileID: 1228870156826663968}
   - component: {fileID: 6614919747474909275}
   - component: {fileID: 8666692910712180161}
   - component: {fileID: 8831586332175503828}
@@ -4425,6 +4424,7 @@ GameObject:
   - component: {fileID: 2759648886914715264}
   - component: {fileID: 6327474657802878925}
   - component: {fileID: -2277986732292815766}
+  - component: {fileID: 2134979653894039073}
   m_Layer: 0
   m_Name: Player_New
   m_TagString: Player
@@ -4504,22 +4504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subscribed: 1
   speed: 0
-  turn: 0
-  brake: 0
   logMessages: 1
---- !u!114 &1228870156826663968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8071937129649633227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631b3126c4b49436b9d346f0b3c15b3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raceResultText: {fileID: 0}
 --- !u!114 &6614919747474909275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4681,6 +4666,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 2928926833657374085}
   - {fileID: 2759648886914715264}
+  - {fileID: 2134979653894039073}
   - {fileID: 6964357540260504464}
 --- !u!114 &2759648886914715264
 MonoBehaviour:
@@ -4729,6 +4715,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirty: 1
+--- !u!114 &2134979653894039073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071937129649633227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36a97537ed64e1e9eb74ff609102cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNpc: 0
+  npcDisplayName: NPC Racer
+  _CurrentCheckpoint: 0
+  _CurrentLap: 0
+  _HasFinished:
+    _value: 0
 --- !u!1 &8127776259480126818
 GameObject:
   m_ObjectHideFlags: 0

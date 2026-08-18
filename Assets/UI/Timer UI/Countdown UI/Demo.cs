@@ -18,7 +18,26 @@ public class Demo : MonoBehaviour
             return;
         }
 
-        timer1.SetDuration(timerDuration)
-              .BeginWithDelay(startDelay);
+        timer1
+            .SetDuration(timerDuration)
+            .BeginWithDelay(startDelay);
     }
 }
+
+/*
+ * Found this file in a mess when we picked the project up in T2 2026.
+ * Couldn't find anything actually calling it, so I wrote a replacement above
+ * rather than untangle it. Leaving the original here in case someone's
+ * chasing a bug and needs to see what it used to do.
+ * -DM
+ *
+ * public class Demo : MonoBehaviour
+ * {
+ *     [SerializeField] CountdownTimerUI timer1;
+ *     private void Start()
+ *     {
+ *         timer1 = FindObjectOfType<CountdownTimerUI>();
+ *         timer1.SetDuration(300).BeginWithDelay(3f);
+ *     }
+ * }
+ */
