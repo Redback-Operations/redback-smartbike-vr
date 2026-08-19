@@ -18,7 +18,6 @@ namespace Gameplay.BikeMovement
         [SerializeField] private float balancingForce = 10f;
 
         [SerializeField] private AnimationCurve balanceResponseCurve;
-        [SerializeField] private float leanSmoothSpeed = 5f;
         [SerializeField] private float stoppedBalanceForce = 80f;
         [SerializeField] private float stoppedBalanceSpeedThreshold = 1.5f;
 
@@ -48,7 +47,8 @@ namespace Gameplay.BikeMovement
 
         public void Init(GameObject controller)
         {
-            _isSelected = true;
+            // set true only once every reference below is confirmed assigned
+            _isSelected = false;
             _tf = controller.transform;
             _rb = controller.GetComponent<Rigidbody>();
             _rb.isKinematic = false;
@@ -56,7 +56,17 @@ namespace Gameplay.BikeMovement
                 RigidbodyConstraints.FreezeRotationX |
                 RigidbodyConstraints.FreezeRotationZ;
 
-            var currentBike = controller.GetComponentInChildren<BikeSelector>().CurrentBike;
+            var selector = controller.GetComponentInChildren<BikeSelector>();
+            var currentBike = selector == null ? null : selector.CurrentBike;
+
+            if (!BikeRigIsComplete(currentBike))
+            {
+                // _isSelected stays false, so Update/HanldeInput/Reset all no-op.
+                // Without this guard a bike that was never rigged throws an
+                // UnassignedReferenceException every single frame.
+                _isSelected = false;
+                return;
+            }
 
             _frontWheelCol = currentBike.frontWheelCollider;
             _rearWheelCol = currentBike.rearWheelCollider;
@@ -68,8 +78,42 @@ namespace Gameplay.BikeMovement
 
             _wheelbase = Vector3.Distance(_frontWheelCol.transform.position, _rearWheelCol.transform.position);
 
+            _isSelected = true;
             CalculatePhysicalProperties();
 
+        }
+
+        /// <summary>
+        /// True when every reference this controller dereferences per-frame is
+        /// assigned. Logs one actionable error naming the bike and the missing
+        /// fields instead of letting Update() throw forever.
+        /// </summary>
+        private static bool BikeRigIsComplete(Bike bike)
+        {
+            if (bike == null)
+            {
+                Debug.LogError("[RealisticBikeController] No bike selected (BikeSelector missing or CurrentBike null). Bike movement disabled.");
+                return false;
+            }
+
+            var missing = new System.Collections.Generic.List<string>();
+            if (bike.frontWheelCollider == null) missing.Add("frontWheelCollider");
+            if (bike.rearWheelCollider == null) missing.Add("rearWheelCollider");
+            if (bike.frontWheelTransform == null) missing.Add("frontWheelTransform");
+            if (bike.rearWheelTransform == null) missing.Add("rearWheelTransform");
+            if (bike.frontHandlePivot == null) missing.Add("frontHandlePivot");
+            if (bike.pedalTransform == null) missing.Add("pedalTransform");
+
+            if (missing.Count == 0)
+                return true;
+
+            Debug.LogError(
+                $"[RealisticBikeController] Bike '{bike.name}' is not rigged for the realistic controller. " +
+                $"Unassigned on its Bike component: {string.Join(", ", missing)}. " +
+                "Bike movement is disabled for this bike. Rig it the way RoadBikeV5 is rigged " +
+                "(Tools > Missions > Rig Selected Bike), or select a rigged bike.",
+                bike);
+            return false;
         }
         private void LimitAngularVelocity()
         {
@@ -146,6 +190,8 @@ namespace Gameplay.BikeMovement
         /// </summary>
         public void Reset()
         {
+            if (!_isSelected) return;
+
             _tf.position = _startingPosition;
             _tf.rotation = _startingRotation;
             _rb.velocity = _startingVelocity;
@@ -156,7 +202,8 @@ namespace Gameplay.BikeMovement
 
         public void HanldeInput(Vector2 direction)
         {
-            Debug.Log($"Bike received direction: {direction}");
+            if (!_isSelected) return;
+
             if (direction.y > 0)
             {
                 _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, pedalRotSpeed * DeltaTime) *

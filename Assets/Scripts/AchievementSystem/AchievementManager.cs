@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,7 +43,12 @@ namespace SmartBike.Achievements
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+
+            // DontDestroyOnLoad only works on root GameObjects; on a nested one it
+            // is a no-op that just logs a warning. Guard the call rather than
+            // reparenting, matching how Mqtt.cs handles the same situation.
+            if (transform.parent == null)
+                DontDestroyOnLoad(gameObject);
 
             InitializeAchievements();
 

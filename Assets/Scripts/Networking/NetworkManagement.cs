@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Fusion;
@@ -10,7 +10,10 @@ using UnityEngine.Serialization;
 public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
 {
     public string ActiveScene;
-    private NetworkRunner _runner;
+    // Named _localRunner, not _runner: Fusion's SimulationBehaviour base class
+    // already serializes a field called _runner, and Unity refuses to serialize
+    // the same field name twice in a hierarchy.
+    private NetworkRunner _localRunner;
     // prefabs for spawning
     public GameObject NetworkPlayer;
 
@@ -63,11 +66,11 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
         _players = new Dictionary<PlayerRef, NetworkObject>();
         _networkItems = new List<NetworkObject>();
 
-        _runner = gameObject.AddComponent<NetworkRunner>();
-        _runner.ProvideInput = true;
+        _localRunner = gameObject.AddComponent<NetworkRunner>();
+        _localRunner.ProvideInput = true;
 
-        _runner.AddCallbacks(this);
-        _runner.StartGame(new StartGameArgs
+        _localRunner.AddCallbacks(this);
+        _localRunner.StartGame(new StartGameArgs
         {
             GameMode = GameMode.Shared,
             SessionName = ActiveScene,
@@ -79,14 +82,15 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
 
     public void Disconnect()
     {
-        // Defensive guard: _runner is only assigned in Start(), and Disconnect()
+        // Defensive guard: _localRunner is only assigned in Start(), and Disconnect()
         // can be reached from OnApplicationQuit/OnTeleport before that, or a
         // second time after an earlier shutdown.
-        if (_runner == null)
+        if (_localRunner == null)
             return;
 
-        _runner.Shutdown();
-        _runner.RemoveCallbacks(this);
+        _localRunner.Shutdown();
+        _localRunner.RemoveCallbacks(this);
+        _localRunner = null;
     }
 
     void OnApplicationQuit()
@@ -114,7 +118,7 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
             var spawnRotation = SpawnTarget != null ? SpawnTarget.rotation : Quaternion.identity;
 
             // set the spawn location for the player
-            SpawnedPlayer = _runner.Spawn(NetworkPlayer, spawnPosition, spawnRotation, player);
+            SpawnedPlayer = _localRunner.Spawn(NetworkPlayer, spawnPosition, spawnRotation, player);
             SpawnedPlayer.name = $"Player_{player.PlayerId}";
             // hide the loading scene
             MapLoader.UnloadScene("LoadingScene");

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
@@ -14,23 +14,17 @@ public class CheckpointManager : MonoBehaviour
     public TextMeshProUGUI raceResultText;
     private int currentCheckpointIndex = 0;
     private float delay = 2.0f;
-    private bool isDelayed = false;
     private bool raceFinished = false;
     private bool[] playerCheckpoints;
     private bool[] npcCheckpoints;
-    private bool playerWon = false;
 
     IEnumerator StartResetting()
     {
-        // Set resetting flag to true to prevent multiple coroutines running simultaneously
-        isDelayed = true;
 
         // Wait for the specified delay before resetting the text
         yield return new WaitForSeconds(delay);
         raceResultText.text = null;
 
-        // Reset the text
-        isDelayed = false;
     }
     void Start()
     {
