@@ -20,6 +20,8 @@ namespace Gameplay.BikeMovement
         [SerializeField] private AnimationCurve balanceResponseCurve;
         [SerializeField] private float stoppedBalanceForce = 80f;
         [SerializeField] private float stoppedBalanceSpeedThreshold = 1.5f;
+        [SerializeField] private float frontBrakeBias = 0.7f;
+        [SerializeField] private float brakeForceMultiplier = 3f;
 
         private IPlayerInput _playerInput;
         private WheelCollider _frontWheelCol;
@@ -282,7 +284,9 @@ namespace Gameplay.BikeMovement
 
         private void SetBrake(float value)
         {
-            _rearWheelCol.brakeTorque = value;
+            float totalBrake = value * _mass * _rearWheelCol.radius * brakeForceMultiplier;
+            _frontWheelCol.brakeTorque = totalBrake * frontBrakeBias;
+            _rearWheelCol.brakeTorque = totalBrake * (1f - frontBrakeBias);
         }
 
         private void Update()

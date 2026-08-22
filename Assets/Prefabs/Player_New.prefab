@@ -4475,9 +4475,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  leanSmoothSpeed: 6
   stoppedBalanceForce: 80
   stoppedBalanceSpeedThreshold: 1.5
+  frontBrakeBias: 0.7
+  brakeForceMultiplier: 3
 --- !u!1 &7752012162507932608
 GameObject:
   m_ObjectHideFlags: 0
