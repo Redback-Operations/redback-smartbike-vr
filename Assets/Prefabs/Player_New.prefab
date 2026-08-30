@@ -4479,6 +4479,8 @@ MonoBehaviour:
   stoppedBalanceSpeedThreshold: 1.5
   frontBrakeBias: 0.7
   brakeForceMultiplier: 3
+  overrideSuspensionDistance: 1
+  suspensionDistance: 0.4
 --- !u!1 &7752012162507932608
 GameObject:
   m_ObjectHideFlags: 0

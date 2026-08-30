@@ -46,6 +46,9 @@ namespace Gameplay.BikeMovement
 
         public float DeltaTime { get; set; }
         public float Speed { get; set; }
+        [Header("Suspension Override (runtime)")]
+        [SerializeField] private bool overrideSuspensionDistance = true;
+        [SerializeField] private float suspensionDistance = 0.4f;
 
         public void Init(GameObject controller)
         {
@@ -55,8 +58,8 @@ namespace Gameplay.BikeMovement
             _rb = controller.GetComponent<Rigidbody>();
             _rb.isKinematic = false;
             _rb.constraints =
-                RigidbodyConstraints.FreezeRotationX |
-                RigidbodyConstraints.FreezeRotationZ;
+                RigidbodyConstraints.FreezeRotationZ |
+                RigidbodyConstraints.FreezeRotationX;
 
             var selector = controller.GetComponentInChildren<BikeSelector>();
             var currentBike = selector == null ? null : selector.CurrentBike;
@@ -76,12 +79,25 @@ namespace Gameplay.BikeMovement
             _frontHandlePivot = currentBike.frontHandlePivot;
             _rearWheelTransform = currentBike.rearWheelTransform;
             _pedalTf = currentBike.pedalTransform;
+ 
+            _frontWheelCol.suspensionDistance = suspensionDistance;
+            _rearWheelCol.suspensionDistance = suspensionDistance;
 
 
             _wheelbase = Vector3.Distance(_frontWheelCol.transform.position, _rearWheelCol.transform.position);
 
             _isSelected = true;
             CalculatePhysicalProperties();
+
+            //Enable the debug option to override the suspension length
+            if (!overrideSuspensionDistance) return;
+ 
+            Debug.Log($"[RealisticBikeController] Suspension distance override — " +
+                      $"front: {_frontWheelCol.suspensionDistance} -> {suspensionDistance}, " +
+                      $"rear: {_rearWheelCol.suspensionDistance} -> {suspensionDistance}");
+ 
+            _frontWheelCol.suspensionDistance = suspensionDistance;
+            _rearWheelCol.suspensionDistance = suspensionDistance;
 
         }
 
