@@ -627,6 +627,7 @@ GameObject:
   - component: {fileID: 24944355}
   - component: {fileID: 24944354}
   - component: {fileID: 24944357}
+  - component: {fileID: 24944358}
   m_Layer: 0
   m_Name: Bicycle_2 (2)
   m_TagString: NPC
@@ -694,8 +695,11 @@ MonoBehaviour:
   - {fileID: 1764064246}
   - {fileID: 430472831}
   - {fileID: 1061444373}
-  speed: 3.5
+  baseSpeed: 5
   rotationSpeed: 5
+  catchUpStrength: 1.5
+  minSpeedMultiplier: 0.6
+  maxSpeedMultiplier: 1.4
 --- !u!23 &24944355
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -778,6 +782,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3144300656208824705, guid: f31abf2620c9f284e8efe20fa022c33a, type: 3}
+--- !u!114 &24944358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24944352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36a97537ed64e1e9eb74ff609102cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNpc: 0
+  npcDisplayName: NPC Racer
+  _CurrentCheckpoint: 0
+  _CurrentLap: 0
+  _HasFinished:
+    _value: 0
 --- !u!1001 &37022365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20790,6 +20812,7 @@ GameObject:
   - component: {fileID: 1378508539}
   - component: {fileID: 1378508538}
   - component: {fileID: 1378508541}
+  - component: {fileID: 1378508542}
   m_Layer: 0
   m_Name: Bicycle_2 (1)
   m_TagString: NPC
@@ -20841,8 +20864,11 @@ MonoBehaviour:
   - {fileID: 1764064246}
   - {fileID: 430472831}
   - {fileID: 1061444373}
-  speed: 3.75
+  baseSpeed: 5
   rotationSpeed: 5
+  catchUpStrength: 1.5
+  minSpeedMultiplier: 0.6
+  maxSpeedMultiplier: 1.4
 --- !u!23 &1378508539
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20925,6 +20951,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3144300656208824705, guid: f31abf2620c9f284e8efe20fa022c33a, type: 3}
+--- !u!114 &1378508542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378508537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36a97537ed64e1e9eb74ff609102cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNpc: 0
+  npcDisplayName: NPC Racer
+  _CurrentCheckpoint: 0
+  _CurrentLap: 0
+  _HasFinished:
+    _value: 0
 --- !u!1001 &1380253257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27319,6 +27363,111 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1717119041}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1738447282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738447286}
+  - component: {fileID: 1738447285}
+  - component: {fileID: 1738447284}
+  - component: {fileID: 1738447283}
+  m_Layer: 0
+  m_Name: Cube (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1738447283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738447282}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1738447284
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738447282}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1738447285
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738447282}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1738447286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738447282}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.4632456, y: -0, z: -0, w: 0.88623}
+  m_LocalPosition: {x: -52.01, y: 1.69, z: 57.83}
+  m_LocalScale: {x: 14.425051, y: 12.197439, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 55.193, y: 0, z: 0}
 --- !u!1001 &1749457892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28026,6 +28175,7 @@ GameObject:
   - component: {fileID: 1804428001}
   - component: {fileID: 1804428000}
   - component: {fileID: 1804428003}
+  - component: {fileID: 1804428004}
   m_Layer: 0
   m_Name: Bicycle_2 (3)
   m_TagString: NPC
@@ -28093,8 +28243,11 @@ MonoBehaviour:
   - {fileID: 1764064246}
   - {fileID: 430472831}
   - {fileID: 1061444373}
-  speed: 4
+  baseSpeed: 5
   rotationSpeed: 5
+  catchUpStrength: 1.5
+  minSpeedMultiplier: 0.6
+  maxSpeedMultiplier: 1.4
 --- !u!23 &1804428001
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28177,6 +28330,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3144300656208824705, guid: f31abf2620c9f284e8efe20fa022c33a, type: 3}
+--- !u!114 &1804428004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804427998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36a97537ed64e1e9eb74ff609102cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNpc: 0
+  npcDisplayName: NPC Racer
+  _CurrentCheckpoint: 0
+  _CurrentLap: 0
+  _HasFinished:
+    _value: 0
 --- !u!1001 &1806203361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28821,6 +28992,111 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: 55b685afd7f5fb1468bed8fb87833127, type: 3}
+--- !u!1 &1829541345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829541349}
+  - component: {fileID: 1829541348}
+  - component: {fileID: 1829541347}
+  - component: {fileID: 1829541346}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1829541346
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829541345}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1829541347
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829541345}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1829541348
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829541345}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1829541349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829541345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.63098496, y: -0, z: -0, w: 0.77579516}
+  m_LocalPosition: {x: -48.27, y: 0.55, z: 52.37}
+  m_LocalScale: {x: 14.425051, y: 12.197439, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 78.246, y: 0, z: 0}
 --- !u!1 &1846531851
 GameObject:
   m_ObjectHideFlags: 0
@@ -34480,3 +34756,5 @@ SceneRoots:
   - {fileID: 1166927575}
   - {fileID: 6343150608651382759}
   - {fileID: 144249164}
+  - {fileID: 1829541349}
+  - {fileID: 1738447286}

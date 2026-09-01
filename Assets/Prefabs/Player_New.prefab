@@ -4449,7 +4449,6 @@ MonoBehaviour:
   maxSteer: 70
   maxLean: 5
   maxAccelleration: 5
-  centerOfMassY: 0.63
   balancingForce: 10
   balanceResponseCurve:
     serializedVersion: 2
@@ -4479,6 +4478,13 @@ MonoBehaviour:
   stoppedBalanceSpeedThreshold: 1.5
   frontBrakeBias: 0.7
   brakeForceMultiplier: 3
+  enableBalancing: 0
+  centerOfMassOffset: {x: 0, y: 0.01, z: 0}
+  lockRoll: 1
+  rollCorrectionSpeed: 30
+  overrideSuspensionDistance: 1
+  frontSuspensionDistance: 0.04
+  rearSuspensionDistance: 0.9
 --- !u!1 &7752012162507932608
 GameObject:
   m_ObjectHideFlags: 0
