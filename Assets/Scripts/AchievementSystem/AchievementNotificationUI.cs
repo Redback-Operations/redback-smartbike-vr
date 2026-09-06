@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -14,8 +15,29 @@ namespace SmartBike.Achievements
 
         [Header("Settings")]
         [SerializeField] private float displayDuration = 4f;
+        [SerializeField] private float gapBetweenNotifications = 0.35f;
 
-        private Coroutine hideCoroutine;
+        private readonly Queue<PendingNotification> pendingNotifications =
+            new Queue<PendingNotification>();
+
+        private Coroutine displayCoroutine;
+
+        private readonly struct PendingNotification
+        {
+            public readonly string Name;
+            public readonly string Description;
+            public readonly int RewardPoints;
+
+            public PendingNotification(
+                string name,
+                string description,
+                int rewardPoints)
+            {
+                Name = name;
+                Description = description;
+                RewardPoints = rewardPoints;
+            }
+        }
 
         private void Start()
         {
@@ -43,16 +65,14 @@ namespace SmartBike.Achievements
                 return;
             }
 
-            ShowNotification(
-                achievement.Data.AchievementName,
-                achievement.Data.Description,
-                achievement.Data.RewardPoints);
+            EnqueueNotification(
+                new PendingNotification(
+                    achievement.Data.AchievementName,
+                    achievement.Data.Description,
+                    achievement.Data.RewardPoints));
         }
 
-        private void ShowNotification(
-            string achievementName,
-            string description,
-            int rewardPoints)
+        private void EnqueueNotification(PendingNotification notification)
         {
             if (notificationPanel == null)
             {
@@ -62,43 +82,80 @@ namespace SmartBike.Achievements
                 return;
             }
 
+            pendingNotifications.Enqueue(notification);
+
+            if (displayCoroutine == null)
+            {
+                displayCoroutine =
+                    StartCoroutine(DisplayPendingNotifications());
+            }
+        }
+
+        private IEnumerator DisplayPendingNotifications()
+        {
+            while (pendingNotifications.Count > 0)
+            {
+                ApplyNotification(pendingNotifications.Dequeue());
+
+                yield return new WaitForSeconds(
+                    Mathf.Max(displayDuration, 0.1f));
+
+                if (notificationPanel == null)
+                {
+                    break;
+                }
+
+                notificationPanel.SetActive(false);
+
+                if (pendingNotifications.Count > 0 &&
+                    gapBetweenNotifications > 0f)
+                {
+                    yield return new WaitForSeconds(
+                        gapBetweenNotifications);
+                }
+            }
+
+            displayCoroutine = null;
+        }
+
+        private void ApplyNotification(PendingNotification notification)
+        {
             if (achievementNameText != null)
             {
-                achievementNameText.text = achievementName;
+                achievementNameText.text = notification.Name;
             }
 
             if (achievementDescriptionText != null)
             {
-                achievementDescriptionText.text = description;
+                achievementDescriptionText.text = notification.Description;
             }
 
             if (rewardPointsText != null)
             {
                 rewardPointsText.text =
-                    $"+{rewardPoints} Points";
+                    $"+{notification.RewardPoints} Points";
             }
 
             notificationPanel.SetActive(true);
-
-            if (hideCoroutine != null)
-            {
-                StopCoroutine(hideCoroutine);
-            }
-
-            hideCoroutine =
-                StartCoroutine(HideNotificationAfterDelay());
         }
 
-        private IEnumerator HideNotificationAfterDelay()
+        private void OnEnable()
         {
-            yield return new WaitForSeconds(displayDuration);
+            if (pendingNotifications.Count > 0 && displayCoroutine == null)
+            {
+                displayCoroutine =
+                    StartCoroutine(DisplayPendingNotifications());
+            }
+        }
+
+        private void OnDisable()
+        {
+            displayCoroutine = null;
 
             if (notificationPanel != null)
             {
                 notificationPanel.SetActive(false);
             }
-
-            hideCoroutine = null;
         }
 
         private void OnDestroy()
