@@ -41,9 +41,9 @@ public class SpeedListener : MonoBehaviour
     {
         try
         {
-            speed = ReadFloatField(msg, "speed");
-            float turn = ReadFloatField(msg, "turn");
-            bool brake = ReadBoolField(msg, "brake");
+            speed = MqttFieldParser.ReadFloat(msg, "speed");
+            float turn = MqttFieldParser.ReadFloat(msg, "turn");
+            bool brake = MqttFieldParser.ReadBool(msg, "brake");
 
             Debug.Log($"Parsed control | speed: {speed}, turn: {turn}, brake: {brake}");
 
@@ -61,49 +61,4 @@ public class SpeedListener : MonoBehaviour
         }
     }
 
-    private float ReadFloatField(string msg, string fieldName)
-    {
-        int keyIndex = msg.IndexOf($"'{fieldName}'");
-        if (keyIndex == -1)
-            keyIndex = msg.IndexOf($"\"{fieldName}\"");
-
-        if (keyIndex == -1)
-            return 0f;
-
-        int colonIndex = msg.IndexOf(':', keyIndex);
-        int endIndex = msg.IndexOfAny(new char[] { ',', '}' }, colonIndex + 1);
-
-        if (colonIndex == -1 || endIndex == -1)
-            return 0f;
-
-        string rawValue = msg.Substring(colonIndex + 1, endIndex - colonIndex - 1).Trim().Trim('\'', '"');
-
-        if (float.TryParse(rawValue, System.Globalization.NumberStyles.Float,
-            System.Globalization.CultureInfo.InvariantCulture, out float value))
-        {
-            return value;
-        }
-
-        return 0f;
-    }
-
-    private bool ReadBoolField(string msg, string fieldName)
-    {
-        int keyIndex = msg.IndexOf($"'{fieldName}'");
-        if (keyIndex == -1)
-            keyIndex = msg.IndexOf($"\"{fieldName}\"");
-
-        if (keyIndex == -1)
-            return false;
-
-        int colonIndex = msg.IndexOf(':', keyIndex);
-        int endIndex = msg.IndexOfAny(new char[] { ',', '}' }, colonIndex + 1);
-
-        if (colonIndex == -1 || endIndex == -1)
-            return false;
-
-        string rawValue = msg.Substring(colonIndex + 1, endIndex - colonIndex - 1).Trim().Trim('\'', '"');
-
-        return rawValue.Equals("true", StringComparison.OrdinalIgnoreCase);
-    }
 }
