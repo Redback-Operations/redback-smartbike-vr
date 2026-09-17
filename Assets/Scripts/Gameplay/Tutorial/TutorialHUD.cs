@@ -19,6 +19,7 @@ namespace Gameplay.Tutorial
         [SerializeField] private Image ringFill;
         [SerializeField] private TextMeshProUGUI valueText;
         [SerializeField] private TextMeshProUGUI captionText;
+        [SerializeField] private float ringFadeSeconds = 0.5f;
 
         [Header("Placement")]
         [SerializeField] private float distance = 3.5f;
@@ -26,6 +27,7 @@ namespace Gameplay.Tutorial
         [SerializeField] private float followSpeed = 3f;
 
         private Transform _target;
+        private bool _placed;
         private float _cardTimer;
         private bool _cardPersistent;
         private float _ringTargetAlpha;
@@ -37,8 +39,7 @@ namespace Gameplay.Tutorial
 
             _cardPersistent = persistent;
             _cardTimer = cardHoldSeconds;
-            if (cardGroup != null)
-                cardGroup.alpha = 1f;
+            SetCardAlpha(1f);
         }
 
         public void SetProgress(float normalized, string value, string caption)
@@ -61,16 +62,20 @@ namespace Gameplay.Tutorial
         private void Awake()
         {
             if (ringGroup != null)
+            {
                 ringGroup.alpha = 0f;
+                ringGroup.blocksRaycasts = false;
+                ringGroup.interactable = false;
+            }
+
+            SetCardAlpha(0f);
         }
 
         private void LateUpdate()
         {
             FollowView();
             UpdateCardFade();
-
-            if (ringGroup != null)
-                ringGroup.alpha = Mathf.MoveTowards(ringGroup.alpha, _ringTargetAlpha, Time.deltaTime * 2f);
+            UpdateRingFade();
         }
 
         private void UpdateCardFade()
@@ -85,18 +90,55 @@ namespace Gameplay.Tutorial
             }
 
             if (cardGroup.alpha > 0f)
-                cardGroup.alpha = Mathf.MoveTowards(cardGroup.alpha, 0f, Time.deltaTime / Mathf.Max(cardFadeSeconds, 0.01f));
+                SetCardAlpha(Mathf.MoveTowards(cardGroup.alpha, 0f, Time.deltaTime / Mathf.Max(cardFadeSeconds, 0.01f)));
+        }
+
+        private void UpdateRingFade()
+        {
+            if (ringGroup == null)
+                return;
+
+            ringGroup.alpha = Mathf.MoveTowards(ringGroup.alpha, _ringTargetAlpha,
+                Time.deltaTime / Mathf.Max(ringFadeSeconds, 0.01f));
+        }
+
+        private void SetCardAlpha(float alpha)
+        {
+            if (cardGroup == null)
+                return;
+
+            cardGroup.alpha = alpha;
+
+            var visible = alpha > 0.01f;
+            cardGroup.blocksRaycasts = visible;
+            cardGroup.interactable = visible;
+        }
+
+        private bool ResolveTarget()
+        {
+            if (_target != null && _target.gameObject.activeInHierarchy)
+                return true;
+
+            var cam = Camera.main;
+            if (cam == null)
+            {
+                _target = null;
+                return false;
+            }
+
+            if (_target != cam.transform)
+            {
+                _target = cam.transform;
+                _placed = false;
+            }
+
+            return true;
         }
 
         private void FollowView()
         {
-            if (_target == null)
-            {
-                var cam = Camera.main;
-                if (cam == null)
-                    return;
-                _target = cam.transform;
-            }
+            if (!ResolveTarget())
+                return;
 
             // Follow the horizontal view direction only, so the panel doesn't
             // dive into the ground when the player looks down.
@@ -107,15 +149,18 @@ namespace Gameplay.Tutorial
             forward.Normalize();
 
             var targetPosition = _target.position + forward * distance + Vector3.up * heightOffset;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+            var targetRotation = Quaternion.LookRotation(forward);
 
-            var lookDirection = transform.position - _target.position;
-            lookDirection.y = 0f;
-            if (lookDirection.sqrMagnitude > 0.001f)
+            if (!_placed)
             {
-                var targetRotation = Quaternion.LookRotation(lookDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, followSpeed * Time.deltaTime);
+                transform.SetPositionAndRotation(targetPosition, targetRotation);
+                _placed = true;
+                return;
             }
+
+            var t = 1f - Mathf.Exp(-followSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, t);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, t);
         }
     }
 }
