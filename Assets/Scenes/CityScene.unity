@@ -627,6 +627,7 @@ GameObject:
   - component: {fileID: 24944355}
   - component: {fileID: 24944354}
   - component: {fileID: 24944357}
+  - component: {fileID: 24944358}
   m_Layer: 0
   m_Name: Bicycle_2 (2)
   m_TagString: NPC
@@ -694,8 +695,11 @@ MonoBehaviour:
   - {fileID: 1764064246}
   - {fileID: 430472831}
   - {fileID: 1061444373}
-  speed: 3.5
+  baseSpeed: 5
   rotationSpeed: 5
+  catchUpStrength: 1.5
+  minSpeedMultiplier: 0.6
+  maxSpeedMultiplier: 1.4
 --- !u!23 &24944355
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -778,6 +782,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3144300656208824705, guid: f31abf2620c9f284e8efe20fa022c33a, type: 3}
+--- !u!114 &24944358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24944352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36a97537ed64e1e9eb74ff609102cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNpc: 0
+  npcDisplayName: NPC Racer
+  _CurrentCheckpoint: 0
+  _CurrentLap: 0
+  _HasFinished:
+    _value: 0
 --- !u!1001 &37022365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21013,6 +21035,7 @@ GameObject:
   - component: {fileID: 1378508539}
   - component: {fileID: 1378508538}
   - component: {fileID: 1378508541}
+  - component: {fileID: 1378508542}
   m_Layer: 0
   m_Name: Bicycle_2 (1)
   m_TagString: NPC
@@ -21064,8 +21087,11 @@ MonoBehaviour:
   - {fileID: 1764064246}
   - {fileID: 430472831}
   - {fileID: 1061444373}
-  speed: 3.75
+  baseSpeed: 5
   rotationSpeed: 5
+  catchUpStrength: 1.5
+  minSpeedMultiplier: 0.6
+  maxSpeedMultiplier: 1.4
 --- !u!23 &1378508539
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21148,6 +21174,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3144300656208824705, guid: f31abf2620c9f284e8efe20fa022c33a, type: 3}
+--- !u!114 &1378508542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378508537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36a97537ed64e1e9eb74ff609102cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNpc: 0
+  npcDisplayName: NPC Racer
+  _CurrentCheckpoint: 0
+  _CurrentLap: 0
+  _HasFinished:
+    _value: 0
 --- !u!1001 &1380253257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28249,6 +28293,7 @@ GameObject:
   - component: {fileID: 1804428001}
   - component: {fileID: 1804428000}
   - component: {fileID: 1804428003}
+  - component: {fileID: 1804428004}
   m_Layer: 0
   m_Name: Bicycle_2 (3)
   m_TagString: NPC
@@ -28316,8 +28361,11 @@ MonoBehaviour:
   - {fileID: 1764064246}
   - {fileID: 430472831}
   - {fileID: 1061444373}
-  speed: 4
+  baseSpeed: 5
   rotationSpeed: 5
+  catchUpStrength: 1.5
+  minSpeedMultiplier: 0.6
+  maxSpeedMultiplier: 1.4
 --- !u!23 &1804428001
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28400,6 +28448,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3144300656208824705, guid: f31abf2620c9f284e8efe20fa022c33a, type: 3}
+--- !u!114 &1804428004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804427998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f36a97537ed64e1e9eb74ff609102cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNpc: 0
+  npcDisplayName: NPC Racer
+  _CurrentCheckpoint: 0
+  _CurrentLap: 0
+  _HasFinished:
+    _value: 0
 --- !u!1001 &1806203361
 PrefabInstance:
   m_ObjectHideFlags: 0
