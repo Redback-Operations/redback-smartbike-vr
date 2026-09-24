@@ -82,15 +82,11 @@ public class NetworkManagement : SimulationBehaviour, INetworkRunnerCallbacks
 
     public void Disconnect()
     {
-        // Defensive guard: _localRunner is only assigned in Start(), and Disconnect()
-        // can be reached from OnApplicationQuit/OnTeleport before that, or a
-        // second time after an earlier shutdown.
         if (_localRunner == null)
             return;
 
-        _localRunner.Shutdown();
         _localRunner.RemoveCallbacks(this);
-        _localRunner = null;
+        _localRunner.Shutdown();
     }
 
     void OnApplicationQuit()
