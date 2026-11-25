@@ -10,7 +10,6 @@ using Gameplay.BikeMovement;
 
 public class PlayerController : MonoBehaviour
 {
-    
     public float movementSpeed = 5f;
     public int score;
 
@@ -18,58 +17,102 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Logs the raw input vector every frame. Leave off - it floods the console.")]
     [SerializeField] private bool logInputEveryFrame;
+
     [SerializeField] private GameObject bikeMovementHandler;
 
     [SerializeField] private MovementHandleTypePair[] movementHandleTypePairs;
     [SerializeField] private SpeedListener speedListener;
 
-    // Scene to load when F1 or the Oculus X button is pressed
     private string sceneToLoad = "GarageScene";
 
-    
     public class MovementHandleTypePair
     {
         public string type;
         public GameObject movementHandler;
     }
-    
+
     public PlayerInventory inventory;
 
-    // For speed reference made by Dennis
     private float originalSpeed;
     private IPlayerInput _playerInput;
     private IBikeMover _bikeMover;
+
     public IBikeMover BikeMover => _bikeMover;
     public Vector3 RelativeSpeed { get; private set; }
+
+    public bool UsingLiveTelemetry => _playerInput is MQTTInput;
+
+    public float LiveSpeed
+    {
+        get
+        {
+            if (_playerInput is MQTTInput mqttInput)
+                return mqttInput.LiveSpeed;
+
+            return 0f;
+        }
+    }
+
+    public float LiveCadence
+    {
+        get
+        {
+            if (_playerInput is MQTTInput mqttInput)
+                return mqttInput.LiveCadence;
+
+            return 0f;
+        }
+    }
+
     public static event Action<PlayerController> OnPlayerControllerReady;
 
     private EventBinding<ItemAddedEvent> itemAddedEventBinding;
 
     private void OnEnable()
     {
-        itemAddedEventBinding = new EventBinding<ItemAddedEvent>(HandleItemAdded);
+        itemAddedEventBinding =
+            new EventBinding<ItemAddedEvent>(HandleItemAdded);
+
         EventBus<ItemAddedEvent>.Register(itemAddedEventBinding);
     }
 
     private void HandleItemAdded(ItemAddedEvent itemAddedEvent)
     {
-        inventory.AddItem(itemAddedEvent.itemName, itemAddedEvent.quantity);
+        inventory.AddItem(
+            itemAddedEvent.itemName,
+            itemAddedEvent.quantity
+        );
     }
 
     private void OnDisable()
     {
         EventBus<ItemAddedEvent>.Deregister(itemAddedEventBinding);
+
+        ReleasePlayerInput();
+    }
+
+    private void ReleasePlayerInput()
+    {
+        if (_playerInput is IDisposable disposableInput)
+        {
+            disposableInput.Dispose();
+        }
+
+        _playerInput = null;
     }
 
     private void OnValidate()
     {
-        if (bikeMovementHandler == null) return;
+        if (bikeMovementHandler == null)
+            return;
 
         if (bikeMovementHandler.GetComponent<IBikeMover>() == null)
         {
             bikeMovementHandler = null;
+
             Debug.LogWarning(
-                $"Bike movement handler object should have scripts that implements interface:{typeof(IBikeMover)}");
+                $"Bike movement handler object should have scripts that implements interface:{typeof(IBikeMover)}"
+            );
         }
     }
 
@@ -80,11 +123,41 @@ public class PlayerController : MonoBehaviour
         // To set score to 0 made by Jai
         score = 0;
 
+        yield return null;
+
+        SetupPlayerInput();
+
+        if (overridePlayerPrefs)
+        {
+            SetupBikeMover(bikeMovementHandler);
+        }
+        else
+        {
+            var handler =
+                movementHandleTypePairs.FirstOrDefault((pair) =>
+                    pair.type == PlayerPrefs.GetString(
+                        "BikeControllerType", "Simple"
+                    )
+                );
+
+            if (handler != null)
+            {
+                SetupBikeMover(handler.movementHandler);
+            }
+        }
+    }
+
+    private void SetupPlayerInput()
+    {
+        ReleasePlayerInput();
+
         var devices = new List<InputDevice>();
 
         InputDevices.GetDevicesWithCharacteristics(
-            InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Left,
-            devices);
+            InputDeviceCharacteristics.HeldInHand |
+            InputDeviceCharacteristics.Left,
+            devices
+        );
 
         if (Mqtt.Instance != null && Mqtt.Instance.IsConnected)
         {
@@ -99,42 +172,38 @@ public class PlayerController : MonoBehaviour
             _playerInput = new AxisInput();
         }
 
-        Debug.Log($"MQTT INSTANCE exists:{Mqtt.Instance}", Mqtt.Instance);
-        Debug.Log($"Player input:{_playerInput.GetType()}");
-
-        yield return null;
-
-        if (overridePlayerPrefs)
-        {
-            SetupBikeMover(bikeMovementHandler);
-        }
-        else
-        {
-            var handler =
-                movementHandleTypePairs.FirstOrDefault((pair) =>
-                    pair.type == PlayerPrefs.GetString("BikeControllerType", "Simple"));
-
-            if (handler != null)
-            {
-                SetupBikeMover(handler.movementHandler);
-            }
-        }
+        Debug.Log(
+            $"Player input: {_playerInput.GetType().Name}"
+        );
     }
 
     private void SetupBikeMover(GameObject handler)
     {
+        if (handler == null)
+        {
+            Debug.LogWarning("No bike movement handler assigned.");
+            return;
+        }
+
         _bikeMover = handler.GetComponent<IBikeMover>();
+
+        if (_bikeMover == null)
+        {
+            Debug.LogWarning("Bike movement handler is missing IBikeMover.");
+            return;
+        }
+
         _bikeMover.Speed = movementSpeed;
+
         OnPlayerControllerReady?.Invoke(this);
+
         _bikeMover.Init(gameObject);
     }
 
     void Update()
     {
-        // Check for F1 or Oculus/Meta Y button
         CheckSceneChangeInput();
 
-        // TODO this should be moved into a mission start system, create a mission activate zone
         if (Mission_Activator.ActiveMission != null)
         {
             if (!Mission_Activator.ActiveMission.MissionStarted)
@@ -158,7 +227,8 @@ public class PlayerController : MonoBehaviour
             InputDeviceCharacteristics.HeldInHand |
             InputDeviceCharacteristics.Left |
             InputDeviceCharacteristics.Controller,
-            leftHandDevices);
+            leftHandDevices
+        );
 
         foreach (var device in leftHandDevices)
         {
@@ -177,29 +247,72 @@ public class PlayerController : MonoBehaviour
     {
         if (string.IsNullOrEmpty(sceneToLoad))
         {
-            Debug.LogWarning("No scene has been assigned to 'Scene To Load' in the PlayerController.");
+            Debug.LogWarning(
+                "No scene has been assigned to 'Scene To Load' in the PlayerController."
+            );
+
             return;
         }
 
         Debug.Log($"Loading scene: {sceneToLoad}");
+
         SceneManager.LoadScene(sceneToLoad);
     }
 
     public void Tick(float deltaTime)
     {
-        
-        if (_bikeMover == null) return;
+        if (_bikeMover == null || !isActiveAndEnabled)
+            return;
+
+        if (_playerInput == null)
+            SetupPlayerInput();
+
+        bool mqttConnected =
+            Mqtt.Instance != null &&
+            Mqtt.Instance.IsConnected;
+
+        // Switch to live telemetry if MQTT connects after startup.
+        if (mqttConnected && !UsingLiveTelemetry)
+        {
+            SetupPlayerInput();
+        }
 
         _bikeMover.DeltaTime = deltaTime;
 
-        Vector2 input = new Vector2(
-            Input.GetAxis("Horizontal"),
-            Input.GetAxis("Vertical")
-        );
+        Vector2 input;
+
+        if (_playerInput is MQTTInput mqttInput)
+        {
+            input = mqttInput.GetDirection();
+
+            float liveSpeed = mqttConnected
+                ? input.y
+                : 0f;
+
+            // Both bike movers multiply Speed by input.y.
+            // Use the measured speed directly without multiplying it.
+            _bikeMover.Speed = liveSpeed;
+
+            input.y = liveSpeed > 0f ? 1f : 0f;
+
+            if (!mqttConnected)
+                input.x = 0f;
+        }
+        else
+        {
+            _bikeMover.Speed = movementSpeed;
+
+            input = _playerInput.GetDirection();
+        }
 
         if (logInputEveryFrame)
-            Debug.Log($"PlayerController input: {input}");
-
+        {
+            Debug.Log(
+                $"PlayerController input: {input} | " +
+                $"Speed: {LiveSpeed:F2} m/s | " +
+                $"Cadence: {LiveCadence:F1} RPM"
+            );
+        }
 
         _bikeMover.HanldeInput(input);
     }
@@ -229,8 +342,10 @@ public class PlayerController : MonoBehaviour
     {
         movementSpeed = newSpeed;
 
-        if (_bikeMover != null)
+        if (_bikeMover != null && !UsingLiveTelemetry)
+        {
             _bikeMover.Speed = movementSpeed;
+        }
     }
 
     public float GetOriginalSpeed()
