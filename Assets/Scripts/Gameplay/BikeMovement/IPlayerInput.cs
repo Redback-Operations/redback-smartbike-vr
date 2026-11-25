@@ -1,16 +1,16 @@
 ﻿
+using System;
+using System.Diagnostics;
+using System.Globalization;
+using System.Text;
 using UnityEngine;
 using UnityEngine.XR;
 using uPLibrary.Networking.M2Mqtt.Messages;
-
 
 namespace Gameplay.BikeMovement
 {
     public interface IPlayerInput
     {
-        /// <summary>
-        /// Returns the input direction (x for horizontal, y for forward/backward).
-        /// </summary>
         Vector2 GetDirection();
     }
 
@@ -18,79 +18,218 @@ namespace Gameplay.BikeMovement
     {
         public Vector2 GetDirection()
         {
-            Vector2 direction = Vector2.zero;
-            direction.y = Input.GetAxis("Vertical");
-            direction.x = Input.GetAxis("Horizontal");
-            return direction;
+            return new Vector2(
+                Input.GetAxis("Horizontal"),
+                Input.GetAxis("Vertical")
+            );
         }
     }
 
-    public class MQTTInput : IPlayerInput
+    public class MQTTInput : IPlayerInput, IDisposable
     {
+        private readonly object telemetryLock = new object();
+        private readonly Mqtt mqtt;
+
         private float mqttSpeed = 0f;
+        private float mqttCadence = 0f;
+
+        private long lastSpeedUpdate;
+        private long lastCadenceUpdate;
+
         private string leftTurn = "LOW";
         private string rightTurn = "LOW";
 
+        private bool disposed;
+
+        private const double TelemetryTimeoutSeconds = 3.0;
+
         public MQTTInput()
         {
-            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.LeftTurnTopic);
-            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.RightTurnTopic);
-            Mqtt.Instance.Subscribe(client_MqttMsgReceived, Mqtt.SpeedTopic);
+            mqtt = Mqtt.Instance;
+
+            mqtt.Subscribe(
+                OnMessageReceived,
+                Mqtt.LeftTurnTopic,
+                Mqtt.RightTurnTopic,
+                Mqtt.SpeedTopic,
+                Mqtt.CadenceTopic
+            );
         }
 
-        ~MQTTInput()
+        public float LiveSpeed
         {
-            Mqtt.Instance.Unsubscribe(client_MqttMsgReceived);
+            get
+            {
+                lock (telemetryLock)
+                {
+                    return IsFresh(lastSpeedUpdate)
+                        ? mqttSpeed : 0f;
+                }
+            }
         }
 
-        void client_MqttMsgReceived(object sender, MqttMsgPublishEventArgs e)
+        public float LiveCadence
         {
-            if (e.Topic == Mqtt.RightTurnTopic)
+            get
             {
-                leftTurn = System.Text.Encoding.UTF8.GetString(e.Message);
-            }
-            else if (e.Topic == Mqtt.LeftTurnTopic)
-            {
-                rightTurn = System.Text.Encoding.UTF8.GetString(e.Message);
-            }
-            else if (e.Topic == Mqtt.SpeedTopic)
-            {
-                string json = System.Text.Encoding.UTF8.GetString(e.Message);
-                string valueKey = "\"value\":";
-                int startIndex = json.IndexOf(valueKey) + valueKey.Length;
-                int endIndex = json.IndexOf(",", startIndex);
-                string valueStr = json.Substring(startIndex, endIndex - startIndex);
-                mqttSpeed = float.Parse(valueStr);
+                lock (telemetryLock)
+                {
+                    return IsFresh(lastCadenceUpdate)
+                        ? mqttCadence : 0f;
+                }
             }
         }
+
+        private static bool IsFresh(long lastUpdate)
+        {
+            if (lastUpdate == 0)
+                return false;
+
+            double elapsed =
+                (Stopwatch.GetTimestamp() - lastUpdate)
+                / (double)Stopwatch.Frequency;
+
+            return elapsed <= TelemetryTimeoutSeconds;
+        }
+
+        private void OnMessageReceived(
+            object sender,
+            MqttMsgPublishEventArgs e)
+        {
+            string message = Encoding.UTF8.GetString(e.Message);
+
+            lock (telemetryLock)
+            {
+                if (disposed)
+                    return;
+
+                if (e.Topic == Mqtt.SpeedTopic)
+                {
+                    if (TryReadValue(message, out float value))
+                    {
+                        mqttSpeed = value;
+                        lastSpeedUpdate = Stopwatch.GetTimestamp();
+                    }
+                }
+                else if (e.Topic == Mqtt.CadenceTopic)
+                {
+                    if (TryReadValue(message, out float value))
+                    {
+                        mqttCadence = value;
+                        lastCadenceUpdate = Stopwatch.GetTimestamp();
+                    }
+                }
+                else if (e.Topic == Mqtt.RightTurnTopic)
+                {
+                    leftTurn = message.Trim();
+                }
+                else if (e.Topic == Mqtt.LeftTurnTopic)
+                {
+                    rightTurn = message.Trim();
+                }
+            }
+        }
+
+        private static bool TryReadValue(
+            string json,
+            out float value)
+        {
+            value = 0f;
+
+            if (string.IsNullOrWhiteSpace(json))
+                return false;
+
+            int keyIndex = json.IndexOf(
+                "\"value\"",
+                StringComparison.Ordinal
+            );
+
+            if (keyIndex < 0)
+                return false;
+
+            int colonIndex = json.IndexOf(':', keyIndex);
+
+            if (colonIndex < 0)
+                return false;
+
+            int endIndex = json.IndexOfAny(
+                new char[] { ',', '}' },
+                colonIndex + 1
+            );
+
+            if (endIndex < 0)
+                return false;
+
+            string rawValue = json.Substring(
+                colonIndex + 1,
+                endIndex - colonIndex - 1
+            ).Trim();
+
+            if (!float.TryParse(
+                rawValue,
+                NumberStyles.Float,
+                CultureInfo.InvariantCulture,
+                out value))
+            {
+                return false;
+            }
+
+            return !float.IsNaN(value)
+                && !float.IsInfinity(value)
+                && value >= 0f;
+        }
+
         public Vector2 GetDirection()
         {
-            Vector2 direction = Vector2.zero;
+            lock (telemetryLock)
+            {
+                Vector2 direction = Vector2.zero;
 
-            // If MQTT speed is provided, override forward direction:
-            direction.y = mqttSpeed;
+                direction.y = IsFresh(lastSpeedUpdate)
+                    ? mqttSpeed : 0f;
 
-            // Apply left/right signals:
-            if (leftTurn == "LEFT")
-                direction.x = -1;
-            if (rightTurn == "RIGHT")
-                direction.x = 1;
+                if (leftTurn == "LEFT")
+                    direction.x = -1f;
 
-            return direction;
+                if (rightTurn == "RIGHT")
+                    direction.x = 1f;
+
+                return direction;
+            }
+        }
+
+        public void Dispose()
+        {
+            lock (telemetryLock)
+            {
+                if (disposed)
+                    return;
+
+                disposed = true;
+            }
+
+            if (mqtt != null)
+                mqtt.Unsubscribe(OnMessageReceived);
         }
     }
 
     public class XRInput : IPlayerInput
     {
         private InputDevice _controller;
+
         public XRInput(InputDevice inputDevice)
         {
             _controller = inputDevice;
         }
+
         public Vector2 GetDirection()
         {
-            if (_controller.TryGetFeatureValue(CommonUsages.primary2DAxis, out var dir))
-                return dir;
+            if (_controller.TryGetFeatureValue(
+                CommonUsages.primary2DAxis,
+                out var direction))
+            {
+                return direction;
+            }
 
             return Vector2.zero;
         }

@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 namespace Gameplay.BikeMovement
 {
-   
+
     public class RealisticBikeController : MonoBehaviour, IBikeMover
     {
         [Header("Parameters")]
@@ -29,6 +29,7 @@ namespace Gameplay.BikeMovement
         [SerializeField] private float rollCorrectionSpeed = 30f;
 
         private IPlayerInput _playerInput;
+        private PlayerController _playerController;
         private WheelCollider _frontWheelCol;
         private WheelCollider _rearWheelCol;
         private Transform _frontWheelTransform;
@@ -62,6 +63,7 @@ namespace Gameplay.BikeMovement
             // set true only once every reference below is confirmed assigned
             _isSelected = false;
             _tf = controller.transform;
+            _playerController = controller.GetComponent<PlayerController>();
             _rb = controller.GetComponent<Rigidbody>();
             _rb.isKinematic = false;
             _rb.constraints =
@@ -86,7 +88,7 @@ namespace Gameplay.BikeMovement
             _frontHandlePivot = currentBike.frontHandlePivot;
             _rearWheelTransform = currentBike.rearWheelTransform;
             _pedalTf = currentBike.pedalTransform;
- 
+
             _frontWheelCol.suspensionDistance = frontSuspensionDistance;
             _rearWheelCol.suspensionDistance = rearSuspensionDistance;
 
@@ -98,11 +100,11 @@ namespace Gameplay.BikeMovement
 
             //Enable the debug option to override the suspension length
             if (!overrideSuspensionDistance) return;
- 
+
             Debug.Log($"[RealisticBikeController] Suspension distance override — " +
                       $"front: {_frontWheelCol.suspensionDistance} -> {frontSuspensionDistance}, " +
                       $"rear: {_rearWheelCol.suspensionDistance} -> {rearSuspensionDistance}");
- 
+
             _frontWheelCol.suspensionDistance = frontSuspensionDistance;
             _rearWheelCol.suspensionDistance = frontSuspensionDistance;
 
@@ -220,7 +222,7 @@ namespace Gameplay.BikeMovement
             _tf.position = _startingPosition;
             _tf.rotation = _startingRotation;
             _rb.velocity = _startingVelocity;
-            
+
             _frontWheelCol.steerAngle = 0;
             _rearWheelCol.motorTorque = 0;
         }
@@ -229,10 +231,21 @@ namespace Gameplay.BikeMovement
         {
             if (!_isSelected) return;
 
-            if (direction.y > 0)
+            float rotationSpeed = 0f;
+            if (_playerController != null && _playerController.UsingLiveTelemetry)
             {
-                _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, pedalRotSpeed * DeltaTime) *
-                                                   _pedalTf.transform.localRotation;
+                // Convert cadence from RPM to degrees per second.
+                rotationSpeed = _playerController.LiveCadence * 6f;
+            }
+            else if (direction.y > 0f)
+            {
+                rotationSpeed = pedalRotSpeed;
+            }
+
+            if (rotationSpeed > 0f)
+            {
+                _pedalTf.localRotation = Quaternion.Euler(0f, 0f, rotationSpeed * DeltaTime) *
+                                         _pedalTf.localRotation;
             }
 
             ApplyMotor(direction);

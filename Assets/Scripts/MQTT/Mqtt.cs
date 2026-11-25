@@ -44,7 +44,7 @@ public class Mqtt : MonoBehaviour
     private MqttClient _client;
 
     private bool _connected;
-    public bool IsConnected => _connected;
+    public bool IsConnected => _client != null && _client.IsConnected;
 
     void Start()
     {

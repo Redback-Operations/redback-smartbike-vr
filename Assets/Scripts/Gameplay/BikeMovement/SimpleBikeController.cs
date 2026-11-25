@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using UnityEngine;
 
 namespace Gameplay.BikeMovement
@@ -35,20 +36,28 @@ namespace Gameplay.BikeMovement
         private Collider _collider;
         private BikeBuildingCollisionHandler _buildingCollisionHandler;
 
+        // Reference to the player for live MQTT cadence.
+        private PlayerController _playerController;
+
         public void Init(GameObject controller)
         {
             _selected = true;
+
             tf = controller.transform;
             rb = controller.GetComponent<Rigidbody>();
             rb.isKinematic = true;
 
-            var selector = controller.GetComponentInChildren<BikeSelector>();
-            var bike = selector == null ? null : selector.CurrentBike;
+            _playerController =
+                controller.GetComponent<PlayerController>();
+
+            var selector =
+                controller.GetComponentInChildren<BikeSelector>();
+
+            var bike =
+                selector == null ? null : selector.CurrentBike;
 
             if (!BikeRigIsComplete(bike))
             {
-                // _selected stays false, so HanldeInput/LateUpdate no-op rather
-                // than throwing every frame on an un-rigged bike.
                 _selected = false;
                 return;
             }
@@ -56,36 +65,42 @@ namespace Gameplay.BikeMovement
             _frontWheelTf = bike.frontWheelTransform;
             _rearWheelTf = bike.rearWheelTransform;
             _pedalTf = bike.pedalTransform;
+
             wheelRadius = bike.frontWheelCollider.radius;
+
             change = tf.rotation.y;
 
-            _buildingCollisionHandler = controller.GetComponent<BikeBuildingCollisionHandler>();
+            _buildingCollisionHandler =
+                controller.GetComponent<BikeBuildingCollisionHandler>();
+
             _collider = controller.GetComponent<Collider>();
 
             if (BikeGroundMode == GroundLockMode.FreePhysics)
             {
-                Collider[] _childColliders = controller.GetComponentsInChildren<Collider>();
+                Collider[] _childColliders =
+                    controller.GetComponentsInChildren<Collider>();
 
                 Debug.Log(_childColliders.Length);
 
-                //stop base collider from impacting with child colliders
+                // Stop the base collider from impacting child colliders.
                 foreach (Collider child in _childColliders)
                 {
                     Debug.Log("Finding collision");
+
                     if (child != _collider)
                     {
                         Debug.Log("Removing collision");
+
                         Physics.IgnoreCollision(_collider, child);
                     }
                 }
 
-                //fix collisions
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
 
-                rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+                rb.constraints =
+                    RigidbodyConstraints.FreezeRotationZ;
 
-                //disable kinematic mode in rigidbody, and istrigger mode on collider to unlock physics
                 rb.isKinematic = false;
                 _collider.isTrigger = false;
             }
@@ -93,34 +108,76 @@ namespace Gameplay.BikeMovement
 
         public void HanldeInput(Vector2 direction)
         {
-            if (!_selected) return;
+            if (!_selected)
+                return;
 
             Rotate(direction);
-            if (direction.y > 0)
-            {
-                _pedalTf.transform.localRotation = Quaternion.Euler(0, 0, 360f * DeltaTime) *
-                                                   _pedalTf.transform.localRotation;
-            }
 
-            var wheelRot = Quaternion.AngleAxis(Mathf.Rad2Deg * Speed * direction.y * DeltaTime
-                                                / wheelRadius,
-                _frontWheelTf.right);
-            _frontWheelTf.rotation = wheelRot * _frontWheelTf.rotation;
-            _rearWheelTf.rotation = wheelRot * _rearWheelTf.rotation;
+            UpdatePedalRotation(direction);
+
+            var wheelRot = Quaternion.AngleAxis(
+                Mathf.Rad2Deg * Speed * direction.y *
+                DeltaTime / wheelRadius,
+                _frontWheelTf.right
+            );
+
+            _frontWheelTf.rotation =
+                wheelRot * _frontWheelTf.rotation;
+
+            _rearWheelTf.rotation =
+                wheelRot * _rearWheelTf.rotation;
 
             Move(direction);
         }
 
+        private void UpdatePedalRotation(Vector2 direction)
+        {
+            float pedalRotationSpeed = 0f;
+
+            if (_playerController != null &&
+                _playerController.UsingLiveTelemetry)
+            {
+                // Convert live cadence from RPM to degrees per second.
+                // One revolution = 360 degrees.
+                // One minute = 60 seconds.
+                pedalRotationSpeed =
+                    _playerController.LiveCadence * 6f;
+            }
+            else if (direction.y > 0f)
+            {
+                // Preserve the original keyboard and XR animation.
+                pedalRotationSpeed = 360f;
+            }
+
+            if (pedalRotationSpeed > 0f)
+            {
+                _pedalTf.localRotation =
+                    Quaternion.Euler(
+                        0f,
+                        0f,
+                        pedalRotationSpeed * DeltaTime
+                    ) * _pedalTf.localRotation;
+            }
+        }
+
         private void Move(Vector2 direction)
         {
-            if (_buildingCollisionHandler != null && _buildingCollisionHandler.IsColliding)
+            if (_buildingCollisionHandler != null &&
+                _buildingCollisionHandler.IsColliding)
+            {
                 return;
-            // Get the playter's forward direction made by Jai (updated by Jonathan)
+            }
+
             Vector3 facingDirection = tf.forward;
-            // To prevent the bike from moving in the Y-axis
+
+            // Prevent the bike from moving in the Y-axis.
             facingDirection.y = 0;
+
             var position = tf.position;
-            position += facingDirection.normalized * (Speed * DeltaTime * direction.y);
+
+            position += facingDirection.normalized *
+                (Speed * DeltaTime * direction.y);
+
             if (BikeGroundMode == GroundLockMode.TerrainLock)
             {
                 position.y = _groundHeight;
@@ -131,72 +188,128 @@ namespace Gameplay.BikeMovement
 
         private void Rotate(Vector2 direction)
         {
-            // updated to account for frame rate
-            change += direction.x * rotationSpeed * Time.fixedDeltaTime;
+            change += direction.x *
+                rotationSpeed * Time.fixedDeltaTime;
 
-            //To make bike go towards new rotation made by Jai
-            OldRotation = Quaternion.Euler(_angleX, rb.transform.rotation.y + change, rb.transform.rotation.z);
-            //To make bike go towards new rotation made by Jai
-            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, OldRotation, 0.15f);
+            OldRotation = Quaternion.Euler(
+                _angleX,
+                rb.transform.rotation.y + change,
+                rb.transform.rotation.z
+            );
+
+            rb.transform.rotation = Quaternion.Slerp(
+                rb.transform.rotation,
+                OldRotation,
+                0.15f
+            );
         }
 
         void LateUpdate()
         {
-            if (!_selected) return;
+            if (!_selected)
+                return;
+
             if (Terrain.activeTerrain == null)
                 return;
 
-            _groundHeight = Terrain.activeTerrain.SampleHeight(tf.position);
+            _groundHeight =
+                Terrain.activeTerrain.SampleHeight(tf.position);
 
-            var normal = CalculateNormal(Terrain.activeTerrain, tf.position);
+            var normal = CalculateNormal(
+                Terrain.activeTerrain,
+                tf.position
+            );
+
             var forward = Vector3.Cross(normal, -tf.right);
 
-            var rotation = Quaternion.LookRotation(forward, normal);
+            var rotation =
+                Quaternion.LookRotation(forward, normal);
+
             _angleX = rotation.eulerAngles.x;
         }
 
         /// <summary>
-        /// True when every reference this controller dereferences per-frame is
-        /// assigned. Logs one actionable error instead of throwing forever.
+        /// Checks that all required bike references are assigned.
         /// </summary>
         private static bool BikeRigIsComplete(Bike bike)
         {
             if (bike == null)
             {
-                Debug.LogError("[SimpleBikeController] No bike selected (BikeSelector missing or CurrentBike null). Bike movement disabled.");
+                Debug.LogError(
+                    "[SimpleBikeController] No bike selected " +
+                    "(BikeSelector missing or CurrentBike null). " +
+                    "Bike movement disabled."
+                );
+
                 return false;
             }
 
-            var missing = new System.Collections.Generic.List<string>();
-            if (bike.frontWheelTransform == null) missing.Add("frontWheelTransform");
-            if (bike.rearWheelTransform == null) missing.Add("rearWheelTransform");
-            if (bike.pedalTransform == null) missing.Add("pedalTransform");
-            if (bike.frontWheelCollider == null) missing.Add("frontWheelCollider");
+            var missing =
+                new System.Collections.Generic.List<string>();
+
+            if (bike.frontWheelTransform == null)
+                missing.Add("frontWheelTransform");
+
+            if (bike.rearWheelTransform == null)
+                missing.Add("rearWheelTransform");
+
+            if (bike.pedalTransform == null)
+                missing.Add("pedalTransform");
+
+            if (bike.frontWheelCollider == null)
+                missing.Add("frontWheelCollider");
 
             if (missing.Count == 0)
                 return true;
 
             Debug.LogError(
-                $"[SimpleBikeController] Bike '{bike.name}' is not rigged. " +
-                $"Unassigned on its Bike component: {string.Join(", ", missing)}. " +
+                $"[SimpleBikeController] Bike '{bike.name}' " +
+                "is not rigged. " +
+                "Unassigned on its Bike component: " +
+                $"{string.Join(", ", missing)}. " +
                 "Bike movement is disabled for this bike.",
-                bike);
+                bike
+            );
+
             return false;
         }
 
-        private Vector3 CalculateNormal(Terrain terrain, Vector3 position)
+        private Vector3 CalculateNormal(
+            Terrain terrain,
+            Vector3 position)
         {
             var offset = 0.1f;
 
-            var heightLeft = terrain.SampleHeight(position + Vector3.left * offset);
-            var heightRight = terrain.SampleHeight(position + Vector3.right * offset);
-            var heightForward = terrain.SampleHeight(position + Vector3.forward * offset);
-            var heightBack = terrain.SampleHeight(position + Vector3.back * offset);
+            var heightLeft = terrain.SampleHeight(
+                position + Vector3.left * offset
+            );
 
-            var tangentX = new Vector3(2.0f * offset, heightRight - heightLeft, 0).normalized;
-            var tangentZ = new Vector3(0, heightForward - heightBack, 2.0f * offset).normalized;
+            var heightRight = terrain.SampleHeight(
+                position + Vector3.right * offset
+            );
 
-            var normal = Vector3.Cross(tangentZ, tangentX).normalized;
+            var heightForward = terrain.SampleHeight(
+                position + Vector3.forward * offset
+            );
+
+            var heightBack = terrain.SampleHeight(
+                position + Vector3.back * offset
+            );
+
+            var tangentX = new Vector3(
+                2.0f * offset,
+                heightRight - heightLeft,
+                0
+            ).normalized;
+
+            var tangentZ = new Vector3(
+                0,
+                heightForward - heightBack,
+                2.0f * offset
+            ).normalized;
+
+            var normal =
+                Vector3.Cross(tangentZ, tangentX).normalized;
 
             return normal;
         }
