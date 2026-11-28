@@ -1,26 +1,66 @@
 using System;
 using UnityEngine;
 using uPLibrary.Networking.M2Mqtt.Messages;
+using System.Globalization;
 
 public class SpeedListener : MonoBehaviour
 {
     public bool subscribed = false;
     public float speed = 0.0f;
     public bool logMessages = true;
+    public float turnSpeed = 60.0f;
+    private readonly object _stateLock = new object();
+    private float _pendingSpeed = 0.0f;
+    private float _pendingTurn = 0.0f;
+    private bool _pendingBrake = false;
 
     void Update()
     {
-        if (Mqtt.Instance == null)
-            return;
-
-        if (Mqtt.Instance.IsConnected && !subscribed)
-        {
-            Mqtt.Instance.Subscribe(OnMessage, Mqtt.ControlTopic);
-            subscribed = true;
-            Debug.Log("SpeedListener subscribed.");
+        if (Mqtt.Instance != null){
+            if (Mqtt.Instance.IsConnected && !subscribed)
+            {
+                Mqtt.Instance.Subscribe(OnMessage, Mqtt.SpeedTopic, Mqtt.ControlTopic);
+                subscribed = true;
+                Debug.Log($"SpeedListener subscribed {Mqtt.SpeedTopic} and {Mqtt.ControlTopic}.");
+            }else if (!Mqtt.Instance.IsConnected && subscribed){
+                subscribed = false;
+            }
         }
 
+        float currentSpeed;
+        float currentTurn;
+        bool isBraking;
+
+        lock (_stateLock){
+            currentSpeed = _pendingSpeed;
+            currentTurn = _pendingTurn;
+            isBraking = _pendingBrake;
+        }
+
+        speed = isBraking ? 0.0f : currentSpeed;
+
+
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        if (currentTurn < 0.0f){
+            transform.Rotate(0.0f, -turnSpeed * Time.deltaTime, 0.0f);
+        }else if (currentTurn > 0.0f){
+            transform.Rotate(0.0f, turnSpeed * Time.deltaTime, 0.0f);
+        }
+    }
+
+    private void UnsubscribeIfNeeded(){
+        if (subscribed && Mqtt.Instance != null){
+            Mqtt.Instance.Unsubscribe(OnMessage);
+            subscribed = false;
+        }
+    }
+
+    private void OnDisable(){
+        UnsubscribeIfNeeded();
+    }
+    private void OnDestroy(){
+        UnsubscribeIfNeeded();
     }
 
     public void OnMessage(object sender, MqttMsgPublishEventArgs e)
@@ -31,7 +71,7 @@ public class SpeedListener : MonoBehaviour
         if (logMessages)
             Debug.Log($"MQTT received | Topic: {topic} | Message: {msg}");
 
-        if (topic == Mqtt.ControlTopic)
+        if (topic == Mqtt.SpeedTopic || topic == Mqtt.ControlTopic)
         {
             TryReadControl(msg);
         }
@@ -41,24 +81,45 @@ public class SpeedListener : MonoBehaviour
     {
         try
         {
-            speed = ReadFloatField(msg, "speed");
-            float turn = ReadFloatField(msg, "turn");
-            bool brake = ReadBoolField(msg, "brake");
+            bool hasSpeed = HasField(msg, "speed");
+            bool hasTurn = HasField(msg, "turn");
+            bool hasBrake = HasField(msg, "brake");
 
-            Debug.Log($"Parsed control | speed: {speed}, turn: {turn}, brake: {brake}");
+            float parsedSpeed = hasSpeed ? ReadFloatField(msg, "speed") : 0f;
+            float parsedTurn = hasTurn ? ReadFloatField(msg, "turn") : 0f;
+            bool parsedBrake = hasBrake && ReadBoolField(msg, "brake");
 
-            if (brake)
-                speed = 0f;
+            float currentSpeed;
+            float currentTurn;
+            bool currentBrake;
 
-            if (turn < 0)
-                transform.Rotate(0f, -60f * Time.deltaTime, 0f);
-            else if (turn > 0)
-                transform.Rotate(0f, 60f * Time.deltaTime, 0f);
+            lock (_stateLock)
+            {
+                if (hasSpeed)
+                    _pendingSpeed = parsedSpeed;
+                if (hasTurn)
+                    _pendingTurn = parsedTurn;
+                if (hasBrake)
+                    _pendingBrake = parsedBrake;
+                if (_pendingBrake)
+                    _pendingSpeed = 0f;
+                currentSpeed = _pendingSpeed;
+                currentTurn = _pendingTurn;
+                currentBrake = _pendingBrake;
+            }
+
+            if (logMessages){
+                Debug.Log($"Parsed control | speed: {currentSpeed}, turn: {currentTurn}, brake: {currentBrake}");
+            }
         }
         catch (Exception ex)
         {
             Debug.LogError("Control parse error: " + ex.Message);
         }
+    }
+
+    private bool HasField(string msg, string fieldName){
+        return msg.IndexOf($"'{fieldName}'") != -1 || msg.IndexOf($"\"{fieldName}\"") != -1;
     }
 
     private float ReadFloatField(string msg, string fieldName)
